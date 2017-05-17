@@ -67,7 +67,7 @@ class AuthController extends Controller
         $to = new \SendGrid\Email($param['name'], $param['email']);
         $content = new \SendGrid\Content("text/plain", "Estimado ".$param['name'].", gracias por registrarte en Bosco.");
         $mail = new \SendGrid\Mail($from, $subject, $to, $content);
-        $apiKey = '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';
+        $apiKey="xxx";
         $sg = new \SendGrid($apiKey);
 
         $response = $sg->client->mail()->send()->post($mail);
