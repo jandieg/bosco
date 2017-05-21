@@ -31,13 +31,13 @@ Route::group(['middleware' => ['web']], function () {
     // Ajax Pet
     Route::get('mascotas-detalle', 'PetsController@getPetsDetail');
 
+        Route::get('mis-reportes-detalle-perdido', 'ReportsController@getReportsDetailLost');
     Route::group(['middleware' => ['auth']], function () {
         Route::get('mis-reportes', 'ReportsController@index');
         // Ajax Reports
-        Route::get('mis-reportes-detalle-perdido', 'ReportsController@getReportsDetailLost');
         Route::get('mis-reportes-detalle-encontrado', 'ReportsController@getReportsDetailFound');
         // AJax Send ReportPost
-        Route::get('mis-reportes-registrar', 'ReportsController@sendReport');
+        Route::post('mis-reportes-registrar', 'ReportsController@sendReport');
     });
 
     // Ajax Ubigeo

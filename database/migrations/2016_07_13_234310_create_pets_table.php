@@ -20,7 +20,7 @@ class CreatePetsTable extends Migration
             $table->enum('gender', ['male','female']);
             $table->string('description', 255);
             $table->timestamps();
-            $table->foreign('owner_id')->references('id')->on('users')->onUpdate('CASCADE');
+//            $table->foreign('owner_id')->references('id')->on('users')->onUpdate('CASCADE');
         });
     }
 

@@ -15,7 +15,7 @@ class Ubigeo extends Model
         'ubigeo_code', 'department', 'province', 'district',
     ];
 
-    protected $table = 'ubigeo';
+    protected $table = 'ubigeos';
 
     public function locations()
     {
@@ -44,8 +44,8 @@ class Ubigeo extends Model
         $data = [];
         
         $result = Ubigeo::where('department','=',$id)
-        ->groupBy('province')
-        ->select('province')
+        ->groupBy('city')
+        ->select('city')
         ->get();
 
         if (!empty($result)) {
@@ -61,7 +61,7 @@ class Ubigeo extends Model
     {
         $data = [];
         
-        $result = Ubigeo::where('province','=',$id)
+        $result = Ubigeo::where('city','=',$id)
         ->groupBy('district')
         ->select('id', 'district')
         ->get();

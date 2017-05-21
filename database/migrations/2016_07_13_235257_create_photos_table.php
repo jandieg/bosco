@@ -19,7 +19,7 @@ class CreatePhotosTable extends Migration
             $table->string('width', 45);
             $table->string('height', 45);
             $table->timestamps();
-            $table->foreign('pet_id')->references('id')->on('pets')->onUpdate('CASCADE');
+//            $table->foreign('pet_id')->references('id')->on('pets')->onUpdate('CASCADE');
         });
     }
 

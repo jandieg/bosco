@@ -19,11 +19,17 @@
         <div id="block-reports-lost" class="block-reports block-reports-lost col-lg-6 col-md-6 col-sm-6 col-xs-6 clearfix">
           <div class="view-content">
             <ul class="text-left">
+                <li>
+                    <a data-toggle="modal" href='#' class="report-lost-add">
+                    <em>+</em>
+                    <p>Reportar encontrado</p>
+                  </a>
+                </li>
               @if(!empty($reports['lost']['data']))
             @foreach($reports['lost']['data'] as $item)
               <li>
-                <div class="report-item-content">
-                  <img src="{{ asset('images/pets/' . $item['image']) }}" />
+                <div class="report-item-content">                  
+                  <img src="{{ asset('images/pets/' . $item['image']) }}" style="width:206px;height:206px;"/>
                   <div class="report-item-detail">
                     <h2>{{ $item['name'] }}</h2>
                     <p class="report-item-birthday">{{ $item['date'] }}</p>
@@ -31,26 +37,35 @@
                   </div>
                 </div>
                 <div class="report-buttons">
-                  <a data-toggle="modal" href="#report-detail-lost" class="btn btn-primary btn-block report-detail-lost" data-id="{{ $item['id'] }}">Generar volante</a>
+                  <a data-toggle="modal" class="btn btn-primary btn-block report-detail-lost" data-id="{{ $item['id'] }}">Generar volante</a>
                   <a data-toggle="modal" href="#" class="btn btn-primary btn-green btn-block">Encontrado</a>
+                </div> 
+                <img id="edit_menu" src="{{ asset('img/icon-edit-red.png') }}"/>
+                <div id="edit_menu_div">   
+                    <div id="rotated_div_tag"></div>
+                    <div style="width:100%;height:100%;">
+                    <p><img id="edit_icon" src="{{ asset('img/icon-edit.png') }}"/>&emsp;<span>Editar</span></p>
+                    <p><img id="edit_icon" src="{{ asset('img/icon-edit.png') }}"/>&emsp;<span>Promover</span></p>
+                    <p><img id="edit_icon" src="{{ asset('img/icon-edit.png') }}"/>&emsp;<span>Eliminar</span></p>
+                    </div>
                 </div>
               </li>
               @endforeach
             @endif
-                <li>
-                  <a data-toggle="modal" href="#form-report-lost" class="report-add">
-                    <em>+</em>
-                    <p>Reportar encontrado</p>
-                  </a>
-                </li>
             </ul>
           </div>
         </div>
         <div id="block-reports-founds" class="block-reports block-reports-founds col-lg-6 col-md-6 col-sm-6 col-xs-6 clearfix">
           <div class="view-content">
             <ul class="text-left">
-              @if(!empty($reports['founds']['data']))
-              @foreach($reports['founds']['data'] as $item)
+                <li>
+                  <a data-toggle="modal" href="#" class="report-found-add">
+                    <em>+</em>
+                    <p>Reportar encontrado</p>
+                  </a>
+                </li>
+              @if(!empty($reports['found']['data']))
+              @foreach($reports['found']['data'] as $item)
               <li>
                 <div class="report-item-content">
                   <img src="{{ asset('images/pets/' . $item['image']) }}" />
@@ -61,17 +76,12 @@
                   </div>
                 </div>
                 <div class="report-buttons">
-                  <a data-toggle="modal" href="#report-detail-founds" class="btn btn-primary btn-block report-detail-found" data-id="{{ $item['id'] }}">Generar volante</a>
+                  <a data-toggle="modal" class="btn btn-primary btn-block report-detail-lost" data-id="{{ $item['id'] }}">Generar volante</a>
+                  <a data-toggle="modal" href="#" class="btn btn-primary btn-green btn-block">Encontrado</a>
                 </div>
               </li>
               @endforeach
             @endif
-                <li>
-                  <a data-toggle="modal" href="#form-report-founds" class="report-add">
-                    <em>+</em>
-                    <p>Reportar encontrado</p>
-                  </a>
-                </li>
             </ul>
           </div>
         </div>

@@ -18,10 +18,10 @@
   </div>
 </div>
 
-<section id="content">
+<section id="content"> 
   <div class="container">
 
-    @include('blocks.block-filters',['type'=>'perdidos'])
+     @include('blocks.block-filters',['type'=>'perdidos'])
 
     <!-- Block Images -->
     <div class="row">
@@ -31,14 +31,14 @@
           <ul class="pets-list text-left">
           @foreach($reports['data'] as $item)
             <li>
-              <a data-toggle="modal" href="#pet-detail">
+              <a data-toggle="modal"><!--href="#pet-detail"-->
                 <img src="{{ asset('images/pets/' . $item['image']) }}" />
                 <div class="gallery-item-hover" data-id="{{ $item['id'] }}" data-status="lost">
                   {!! $item['description'] !!}
                 </div>
                 <div class="gallery-item-detail">
                   <h2>{{ $item['name'] }}</h2>
-                  <p class="gallery-item-birthday">{{ $item['date']->format('d F Y') }}</p>
+                  <p class="gallery-item-birthday">{{ $item['date'] }}</p>
                   <p class="gallery-item-location">{{ $item['address'] }}</p>
                 </div>
               </a>
@@ -48,9 +48,7 @@
           @endif
         </div>
       </div>
-      {!! $reports['paginate'] !!}
     </div>
-
   </div>
 </section>
 
@@ -59,6 +57,4 @@
 @endsection
 
 @section('js')
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=
-AIzaSyCVwxoueL862CKW2souz3oc3XGddmPYU_8&callback=initMap"></script>
 @endsection

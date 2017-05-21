@@ -56,123 +56,23 @@
     <div class="view-content">
       <div class="prev-gallery-btn"><</div>
       <ul class="home-pets-list text-left">
+        @if(!empty($reports['data']))
+          @foreach($reports['data'] as $item)
         <li>
-          <a data-toggle="modal" href="#pet-detail">
-            <img src="http://bosco.pe/images/pets/pet_3.jpg">
-            <div class="gallery-item-hover" data-id="3" data-status="lost">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin facilisis erat a vestibulum. Aliquam mauris ex, hendrerit eget tincidunt nec, lobortis vitae odio. Nullam tincidunt suscipit nisi. Cras elementum efficitur porttitor. Integer s
-              </p></div>
+          <a data-toggle="modal">
+            <img src="{{ asset('images/pets/' . $item['image']) }}">
+            <div class="gallery-div-hover" data-id="{{ $item['id'] }}" data-status="{{ $item['status'] }}">
+              <p>{{ $item['description'] }}</p>
+            </div>
             <div class="gallery-item-detail">
-              <h2>Pierre</h2>
-              <p class="gallery-item-birthday">15 julio 2016</p>
-              <p class="gallery-item-location">Calle Río Piedra 234</p>
+              <h2>{{ $item['name'] }}</h2>
+              <p class="gallery-item-birthday">{{ $item['date'] }}</p>
+              <p class="gallery-item-location">{{ $item['address'] }}</p>
             </div>
           </a>
         </li>
-        <li>
-          <a data-toggle="modal" href="#pet-detail">
-            <img src="http://bosco.pe/images/pets/pet_5.jpg">
-            <div class="gallery-item-hover" data-id="5" data-status="lost">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin facilisis erat a vestibulum. Aliquam mauris ex, hendrerit eget tincidunt nec, lobortis vitae odio. Nullam tincidunt suscipit nisi. Cras elementum efficitur porttitor. Integer s
-              </p></div>
-            <div class="gallery-item-detail">
-              <h2>Fernando</h2>
-              <p class="gallery-item-birthday">14 julio 2016</p>
-              <p class="gallery-item-location">Calle Río Piedra 234</p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a data-toggle="modal" href="#pet-detail">
-            <img src="http://bosco.pe/images/pets/pet_6.jpg">
-            <div class="gallery-item-hover" data-id="7" data-status="lost">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin facilisis erat a vestibulum. Aliquam mauris ex, hendrerit eget tincidunt nec, lobortis vitae odio. Nullam tincidunt suscipit nisi. Cras elementum efficitur porttitor. Integer s
-              </p></div>
-            <div class="gallery-item-detail">
-              <h2>Chocho</h2>
-              <p class="gallery-item-birthday">15 julio 2016</p>
-              <p class="gallery-item-location">Jr. Mendiola 123</p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a data-toggle="modal" href="#pet-detail">
-            <img src="http://bosco.pe/images/pets/pet_9.jpg">
-            <div class="gallery-item-hover" data-id="10" data-status="lost">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin facilisis erat a vestibulum. Aliquam mauris ex, hendrerit eget tincidunt nec, lobortis vitae odio. Nullam tincidunt suscipit nisi. Cras elementum efficitur porttitor. Integer s
-              </p></div>
-            <div class="gallery-item-detail">
-              <h2>Francisco</h2>
-              <p class="gallery-item-birthday">15 julio 2016</p>
-              <p class="gallery-item-location">Los Conquistadores 344</p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a data-toggle="modal" href="#pet-detail">
-            <img src="http://bosco.pe/images/pets/pet_9.jpg">
-            <div class="gallery-item-hover" data-id="10" data-status="lost">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin facilisis erat a vestibulum. Aliquam mauris ex, hendrerit eget tincidunt nec, lobortis vitae odio. Nullam tincidunt suscipit nisi. Cras elementum efficitur porttitor. Integer s
-              </p></div>
-            <div class="gallery-item-detail">
-              <h2>Francisco</h2>
-              <p class="gallery-item-birthday">15 julio 2016</p>
-              <p class="gallery-item-location">Los Conquistadores 344</p>
-            </div>
-          </a>
-        </li>
-          <li>
-          <a data-toggle="modal" href="#pet-detail">
-            <img src="http://bosco.pe/images/pets/pet_9.jpg">
-            <div class="gallery-item-hover" data-id="10" data-status="lost">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin facilisis erat a vestibulum. Aliquam mauris ex, hendrerit eget tincidunt nec, lobortis vitae odio. Nullam tincidunt suscipit nisi. Cras elementum efficitur porttitor. Integer s
-              </p></div>
-            <div class="gallery-item-detail">
-              <h2>Francisco</h2>
-              <p class="gallery-item-birthday">15 julio 2016</p>
-              <p class="gallery-item-location">Los Conquistadores 344</p>
-            </div>
-          </a>
-        </li>
-          <li>
-          <a data-toggle="modal" href="#pet-detail">
-            <img src="http://bosco.pe/images/pets/pet_9.jpg">
-            <div class="gallery-item-hover" data-id="10" data-status="lost">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin facilisis erat a vestibulum. Aliquam mauris ex, hendrerit eget tincidunt nec, lobortis vitae odio. Nullam tincidunt suscipit nisi. Cras elementum efficitur porttitor. Integer s
-              </p></div>
-            <div class="gallery-item-detail">
-              <h2>Francisco</h2>
-              <p class="gallery-item-birthday">15 julio 2016</p>
-              <p class="gallery-item-location">Los Conquistadores 344</p>
-            </div>
-          </a>
-        </li>
-       <li>
-          <a data-toggle="modal" href="#pet-detail">
-            <img src="http://bosco.pe/images/pets/pet_3.jpg">
-            <div class="gallery-item-hover" data-id="3" data-status="lost">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin facilisis erat a vestibulum. Aliquam mauris ex, hendrerit eget tincidunt nec, lobortis vitae odio. Nullam tincidunt suscipit nisi. Cras elementum efficitur porttitor. Integer s
-              </p></div>
-            <div class="gallery-item-detail">
-              <h2>Pierre</h2>
-              <p class="gallery-item-birthday">15 julio 2016</p>
-              <p class="gallery-item-location">Calle Río Piedra 234</p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a data-toggle="modal" href="#pet-detail">
-            <img src="http://bosco.pe/images/pets/pet_9.jpg">
-            <div class="gallery-item-hover" data-id="10" data-status="lost">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin facilisis erat a vestibulum. Aliquam mauris ex, hendrerit eget tincidunt nec, lobortis vitae odio. Nullam tincidunt suscipit nisi. Cras elementum efficitur porttitor. Integer s
-              </p></div>
-            <div class="gallery-item-detail">
-              <h2>Francisco</h2>
-              <p class="gallery-item-birthday">15 julio 2016</p>
-              <p class="gallery-item-location">Los Conquistadores 344</p>
-            </div>
-          </a>
-        </li>
+            @endforeach
+          @endif
       </ul>
       <div class="next-gallery-btn">></div>
 

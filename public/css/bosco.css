@@ -73,7 +73,6 @@ body {
   overflow-y: auto;
   width: 100%;
 }
-
 a, 
 a:link, 
 a:visited, 
@@ -629,7 +628,7 @@ a.btn-video:hover {
 }
 
 #block-home-gallery .home-pets-list{
-  width: 2050px;
+  display: inline-flex;
   position: absolute;
   left: -10px; 
 }
@@ -706,7 +705,7 @@ a.btn-video:hover {
 /* Block Gallery */
 
 .block-gallery li {
-  display: inline-block;
+  display: inline-grid;
   height: 280px;
   letter-spacing: 0.5px;
   padding: 10px;
@@ -720,7 +719,7 @@ a.btn-video:hover {
   background: #fff;
   border-bottom: 1px solid #D0D1D1;
   display: inline-block;
-  height: 260px;
+  height: 280px;
   width: 184px;
 }
 
@@ -770,7 +769,7 @@ a.btn-video:hover {
   background: url('../img/sprite_vertical.png') no-repeat -1px -247px;
 }
 
-.gallery-item-hover {
+.gallery-item-hover, .gallery-div-hover {
   transition: opacity .25s ease-in-out;
   -moz-transition: opacity .25s ease-in-out;
   -webkit-transition: opacity .25s ease-in-out;
@@ -782,6 +781,7 @@ a.btn-video:hover {
   overflow: hidden;
   padding: 5px 10px;
   position: absolute;
+  cursor:pointer;
   top: 0;
   width: 184px;
 }
@@ -791,6 +791,9 @@ a.btn-video:hover {
 }
 
 #block-gallery-lost li a:hover .gallery-item-hover {
+  background: rgba(255, 0, 0, 0.6);
+}
+#block-home-gallery li a:hover .gallery-div-hover {
   background: rgba(255, 0, 0, 0.6);
 }
 
@@ -1077,7 +1080,7 @@ a.btn-video:hover {
   border-bottom: 2px solid #1AA344 !important;
 }
 
-.block-reports li a.report-add {
+.block-reports li a.report-lost-add{
   background: #F9F9F9;
   display: inline-block;
   height: 360px;
@@ -1085,9 +1088,26 @@ a.btn-video:hover {
   text-align: center;
   width: 206px;
 }
-
-
-.block-reports li a.report-add em {
+.block-reports li a.report-found-add {
+  background: #F9F9F9;
+  display: inline-block;
+  height: 360px;
+  padding-top: 160px;
+  text-align: center;
+  width: 206px;
+}
+.block-reports li a.report-lost-add em {
+  border: 3px solid #b7b7b7;
+  border-radius: 100%;
+  color: #b7b7b7;
+  display: block;
+  font-size: 40px;
+  height: 46px;
+  line-height: 35px;
+  margin: 0 auto 25px;
+  width: 46px;
+}
+.block-reports li a.report-found-add em {
   border: 3px solid #b7b7b7;
   border-radius: 100%;
   color: #b7b7b7;
@@ -1387,12 +1407,16 @@ a.btn-video:hover {
 }
 
 /* Modal */
-
+.modal{
+    height:100%;
+}
 .modal-content {
   background: #fff;
   border-radius: 10px;
-  margin: 50px auto;
+  margin: auto;    
+  /*height:auto;*/
   max-width: 370px;
+  max-height: 740px;
 }
 
 .modal-content h4 {
@@ -1927,7 +1951,7 @@ a.btn-video:hover {
 #pet-detail .modal-content {
   background: #F1F1F2;
   color: #a8a8a8;
-  margin: 50px auto;
+  /*margin: 50px auto;*/
   max-width: 812px;
   padding-bottom: 10px;
   padding-top: 10px;
@@ -2867,5 +2891,55 @@ input[type='radio']:checked:before {
   padding-left: 10px;
   padding-right: 30px;
   padding-top: 5px;
+}
+#edit_menu{
+    position:relative;
+    left:180px;
+    top:-350px; 
+    width:20px;
+    height:20px;
+}
+#rotated_div_tag{
+    position:relative;
+    left:100px;
+    margin-top: -9px;
+    width:15px;
+    height:15px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    border:1px solid white;
+    background-color:white;
+    z-index: 20;
+    /*opacity:0.6;*/
+    box-shadow: 3px 3px 10px 0px black;
+}
+#edit_menu_div{
+    position:relative;
+    /*display: none;*/
+    left:80px;
+    top:-340px;
+    width:140px;
+    z-index: 25;
+    /*height:200px;*/
+    border-radius: 3px;
+    border:1px solid white;
+    background-color:white;
+    /*opacity:0.6;*/
+    box-shadow: 3px 3px 10px 0px black;
+}
+#edit_menu_div p{
+    cursor:pointer;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    border-bottom:1px solid black;
+}
+#edit_icon{
+    position:relative;
+    width:20px;
+    height:20px;
 }
 

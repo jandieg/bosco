@@ -24,7 +24,7 @@ var DEFAULTS = {
   dragMode: 'crop', // 'crop', 'move' or 'none'
 
   // Define the aspect ratio of the crop box
-  aspectRatio: NaN,
+  aspectRatio: 1,
 
   // An object with the previous cropping result data
   data: null,

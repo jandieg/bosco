@@ -17,8 +17,8 @@ class CreateHistoryLocationsTable extends Migration
             $table->bigInteger('location_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
-            $table->foreign('location_id')->references('id')->on('locations')->onUpdate('CASCADE');
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE');
+//            $table->foreign('location_id')->references('id')->on('locations')->onUpdate('CASCADE');
+//            $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE');
         });
     }
 

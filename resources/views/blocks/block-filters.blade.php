@@ -7,7 +7,7 @@
 
         <div class="form-group">
           <select id="ubigeo-department" class="form-control" name="department" required>
-            <?php echo $optionDepartments; ?>
+            <?php //echo $optionDepartments; ?>
           </select>
         </div>
         <div class="form-group">

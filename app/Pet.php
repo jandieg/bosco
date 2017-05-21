@@ -40,61 +40,34 @@ class Pet extends Model
     public static function getDataPet($id, $status)
     {
         $data = [];
+        $report = Report::where('id',$id)->first();
+        $pet = Pet::where('id',$report->pet_id)->first();
+        $photo = Photo::where('pet_id',$pet->id)->first();
+        $user = User::where('id',$pet->owner_id)->first();
+        $location = Location::where('id',$report->last_location_id)->first();
+        $date_time=explode(' ',$report->date);
+        $report_date=$date_time[0];
+        $report_time=$date_time[1];
+        $data = [
+            'user_name' => $user->name . ' ' . $user->last_name,
+            'user_phone' => $user->phone,
+            'user_email' => $user->email,
+            'is_owner' => $report->is_owner?'Dueño':'Usuario',
+            'owner_reward' => $report->reward,
+            'pet_name' => $pet->name, 
+            'pet_race' => $pet->race,
+            'pet_gender' => $pet->gender,
+            'pet_image' => $photo->url,
+            'pet_description' => $pet->description, 
+            'report_date' => $report_date,
+            'report_time' => $report_time,
+            'report_description' => $report->description,
+            'location_address' => $location->address,
+            'location_latitude' => $location->latitude,
+            'location_longitude' => $location->longitude,
+            'label' => $status=='lost'?'Última vez visto por:':'Encontrado en:'
+        ];
         
-        $result = Pet::where('id','=',$id)
-        ->whereHas('reports',function($query) use ($status){
-            $query->where('status','=',$status);
-        })
-        ->with(
-            [
-                'photos'=>function($queryPhoto){
-                    $queryPhoto->select('url', 'pet_id');
-                }, 
-                'user'=>function($queryUser){
-                    $queryUser->select('id', 'name', 'last_name', 'phone', 'email');
-                }, 
-                'reports'=>function($queryReport) use ($status){
-                    $queryReport->with(
-                        [
-                            'location'=>function($queryLocation){
-                                $queryLocation->select('id', 'address', 'latitude', 'longitude');
-                            }
-                        ]
-                    );
-                    $queryReport->select('date', 'description', 'last_location_id', 'pet_id', 'reward', 'status', 'is_owner');
-                }
-            ]
-        )
-        ->select('id', 'name', 'race', 'gender', 'description', 'user_id')
-        ->get();
-        
-        if (!empty($result)) {
-            $row = $result[0];
-            $location = Location::where('id','=',$row->reports[0]->last_location_id)->select('address', 'latitude', 'longitude')->get();
-            $user = User::where('id','=',$row->user_id)->select('id', 'name', 'last_name', 'phone', 'email')->get();
-            $date = new Date($row->reports[0]->date);
-            $data = [
-                'user_name' => $user[0]->name . ' ' . $user[0]->last_name,
-                'user_phone' => $user[0]->phone,
-                'user_email' => $user[0]->email,
-                'user_phone' => $user[0]->phone,
-                'is_owner' => $row->reports[0]->is_owner?'Dueño':'Usuario',
-                'owner_reward' => $row->reports[0]->reward,
-                'pet_name' => $row->name, 
-                'pet_race' => trans('bosco.'.$row->race),
-                'pet_gender' => trans('bosco.'.$row->gender),
-                'pet_image' => $row->photos[0]->url,
-                'pet_description' => $row->description, 
-                'location_address' => $location[0]->address, 
-                'location_latitude' => $location[0]->latitude, 
-                'location_longitude' => $location[0]->longitude, 
-                'report_date' => $date->format('d F Y'),
-                'report_hour' => $date->format('h:m A'),
-                'report_description' => $row->reports[0]->description,
-                'label' => $status=='lost'?'Última vez visto por:':'Encontrado en:'
-            ];
-        }
-
         return $data;
     }
 }

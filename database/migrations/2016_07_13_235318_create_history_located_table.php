@@ -18,8 +18,8 @@ class CreateHistoryLocatedTable extends Migration
             $table->bigInteger('pet_id')->unsigned();
             $table->string('status', 45);
             $table->timestamps();
-            $table->foreign('history_location_id')->references('id')->on('history_locations')->onUpdate('CASCADE');
-            $table->foreign('pet_id')->references('id')->on('pets')->onUpdate('CASCADE');
+//            $table->foreign('history_location_id')->references('id')->on('history_locations')->onUpdate('CASCADE');
+//            $table->foreign('pet_id')->references('id')->on('pets')->onUpdate('CASCADE');
         });
     }
 

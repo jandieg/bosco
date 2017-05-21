@@ -61,6 +61,12 @@
                 <input name="name" type="text" class="form-control" placeholder="Nombre">
               </div>
               <div class="form-group">
+                <input name="last_name" type="text" class="form-control" placeholder="Apellido">
+              </div>
+              <div class="form-group">
+                <input name="phone" type="text" class="form-control" placeholder="Teléfono">
+              </div>
+              <div class="form-group">
                 <input name="email" type="email" class="form-control" placeholder="Email">
               </div>
               <div class="form-group">

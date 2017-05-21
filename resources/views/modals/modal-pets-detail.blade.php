@@ -26,15 +26,16 @@
           <p><label>Nombre</label><span class="pet-detail-name"></span></p>
           <p><label>Raza</label><span class="pet-detail-race"></span></p>
           <p><label>Género</label><span class="pet-detail-gender"></span></p>
-          <p><label>Descripción</label></p>
-          <p class="description pet-detail-description"></p>
+          <p><label>Descripción</label><span class="description pet-detail-description"></span></p>
+          <!--<p class="description pet-detail-description"></p>-->
         </div>
         <div class="pet-detail-info-group">
           <h3>Reporte</h3>
           <p><label>Fecha</label><span class="report-detail-date"></span></p>
           <p><label>Hora</label><span class="report-detail-hour"></span></p>
-          <p><label>Descripción</label></p>
-          <p class="description report-detail-description"></p>
+          <p><label>dirección</label><span class="report-detail-address"></span></p>
+          <p><label>Descripción</label><span class="description report-detail-description"></span></p>
+          
         </div>
       </div>
     </div>

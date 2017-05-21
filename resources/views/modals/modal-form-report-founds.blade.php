@@ -91,11 +91,11 @@
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
                 <label>Nombre de contacto</label>
-                <input name="user[name]" type="text" class="form-control" value="{{ Auth::user()->name }}">
+                <input name="user[name]" type="text" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
               </div>
               <div class="form-group">
                 <label>Número de contacto</label>
-                <input name="user[phone]" type="phone" class="form-control" value="{{ Auth::user()-> name }}">
+                <input name="user[phone]" type="phone" class="form-control" value="{{ Auth::user()? Auth::user()-> name:'' }}">
               </div>
               <div class="form-group">
                 <label>Recompensa</label>
@@ -107,7 +107,7 @@
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
                 <label>Email de contacto #1</label>
-                <input name="user[email]" type="text" class="form-control"  value="{{ Auth::user()-> email }}" disabled>
+                <input name="user[email]" type="text" class="form-control"  value="{{ Auth::user()? Auth::user()-> email:'' }}" disabled>
               </div>
             </div>
             <div class="col-lg-12 col-md-12 center-block">

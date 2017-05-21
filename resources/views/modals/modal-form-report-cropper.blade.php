@@ -44,5 +44,5 @@
       </div>
     </div>
   </div>
-  <a data-toggle="modal" id="btn-cropper" href="#modal-cropper" style="display:none;">
+  <!--a data-toggle="modal" id="btn-cropper" href="#modal-cropper" style="display:none;"-->
 </div>

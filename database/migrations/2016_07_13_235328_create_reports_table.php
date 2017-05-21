@@ -22,8 +22,8 @@ class CreateReportsTable extends Migration
             $table->decimal('reward', 6,2);
             $table->string('code_qr', 255);
             $table->timestamps();
-            $table->foreign('pet_id')->references('id')->on('pets')->onUpdate('CASCADE');
-            $table->foreign('last_location_id')->references('id')->on('locations')->onUpdate('CASCADE');
+//            $table->foreign('pet_id')->references('id')->on('pets')->onUpdate('CASCADE');
+//            $table->foreign('last_location_id')->references('id')->on('locations')->onUpdate('CASCADE');
         });
     }
 

@@ -27,8 +27,8 @@
     <div class="row">
       <div id="block-gallery-founds" class="block-gallery clearfix">
         <div class="view-content">
-        @if(!empty($reports['data']))
           <ul class="pets-list text-left">
+        @if(!empty($reports['data']))
           @foreach($reports['data'] as $item)
             <li>
               <a data-toggle="modal" href="#pet-detail">
@@ -39,13 +39,13 @@
                 <div class="gallery-item-detail">
                   <h2>{{ $item['name'] }}</h2>
                   <p class="gallery-item-birthday">{{ $item['date']->format('d F Y') }}</p>
-                  <p class="gallery-item-location">{{ $item['address'] }}</p>
+                  <p class="gallery-item-location">address</p>
                 </div>
               </a>
             </li>
             @endforeach
-          </ul>
           @endif
+          </ul>
         </div>
       </div>
     </div>
