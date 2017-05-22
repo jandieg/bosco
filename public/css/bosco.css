@@ -706,7 +706,7 @@ a.btn-video:hover {
 
 .block-gallery li {
   display: inline-grid;
-  height: 280px;
+  height: 300px;
   letter-spacing: 0.5px;
   padding: 10px;
   width: 205px;
@@ -719,7 +719,7 @@ a.btn-video:hover {
   background: #fff;
   border-bottom: 1px solid #D0D1D1;
   display: inline-block;
-  height: 280px;
+  height: 300px;
   width: 184px;
 }
 
@@ -1015,7 +1015,7 @@ a.btn-video:hover {
   color: #5e5e5e;
   display: inline-block;
   font-size: 10px;
-  height: 280px;
+  height: 300px;
   margin-bottom: 5px;
   position: relative;
   text-align: left;
@@ -1069,9 +1069,9 @@ a.btn-video:hover {
 }
 
 #block-reports-founds .btn-primary {
-  background: #063042;
+  background: #E73737;
   border: none;
-  border-bottom: 2px solid #041F28;
+  border-bottom: 2px solid #C62E2E;
 }
 
 .btn-green {
@@ -1083,7 +1083,7 @@ a.btn-video:hover {
 .block-reports li a.report-lost-add{
   background: #F9F9F9;
   display: inline-block;
-  height: 360px;
+  height: 380px;
   padding-top: 160px;
   text-align: center;
   width: 206px;
@@ -1091,7 +1091,7 @@ a.btn-video:hover {
 .block-reports li a.report-found-add {
   background: #F9F9F9;
   display: inline-block;
-  height: 360px;
+  height: 380px;
   padding-top: 160px;
   text-align: center;
   width: 206px;
@@ -2892,14 +2892,14 @@ input[type='radio']:checked:before {
   padding-right: 30px;
   padding-top: 5px;
 }
-#edit_menu{
+.edit_menu{
     position:relative;
     left:180px;
-    top:-350px; 
+    top:-370px; 
     width:20px;
     height:20px;
 }
-#rotated_div_tag{
+.rotated_div_tag{
     position:relative;
     left:100px;
     margin-top: -9px;
@@ -2912,32 +2912,35 @@ input[type='radio']:checked:before {
     transform: rotate(45deg);
     border:1px solid white;
     background-color:white;
-    z-index: 20;
-    /*opacity:0.6;*/
-    box-shadow: 3px 3px 10px 0px black;
 }
-#edit_menu_div{
+.edit_menu_div{
     position:relative;
-    /*display: none;*/
+    display: none;
     left:80px;
-    top:-340px;
+    top:-360px;
     width:140px;
     z-index: 25;
     /*height:200px;*/
     border-radius: 3px;
     border:1px solid white;
     background-color:white;
-    /*opacity:0.6;*/
     box-shadow: 3px 3px 10px 0px black;
 }
-#edit_menu_div p{
+.edit_menu_body{
+    position:relative;
+    width:100%;
+    height:100%;
+    z-index: 25;
+    margin-top:-20px;
+}
+.edit_menu_div p{
     cursor:pointer;
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 20px;
     border-bottom:1px solid black;
 }
-#edit_icon{
+.edit_icon{
     position:relative;
     width:20px;
     height:20px;

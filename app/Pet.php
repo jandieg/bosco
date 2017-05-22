@@ -45,6 +45,7 @@ class Pet extends Model
         $photo = Photo::where('pet_id',$pet->id)->first();
         $user = User::where('id',$pet->owner_id)->first();
         $location = Location::where('id',$report->last_location_id)->first();
+        $ubigeo = Ubigeo::where('id',$location->ubigeo_id)->first();
         $date_time=explode(' ',$report->date);
         $report_date=$date_time[0];
         $report_time=$date_time[1];
@@ -65,6 +66,10 @@ class Pet extends Model
             'location_address' => $location->address,
             'location_latitude' => $location->latitude,
             'location_longitude' => $location->longitude,
+            'ubigeo_department' => $ubigeo->department,
+            'ubigeo_city' => $ubigeo->city,
+            'ubigeo_district' => $ubigeo->district,
+            'ubigeo_code' => $ubigeo->ubigeo_code,
             'label' => $status=='lost'?'Última vez visto por:':'Encontrado en:'
         ];
         

@@ -8,7 +8,7 @@
         <div class="form-group">
           <select id="ubigeo-department" class="form-control" name="department" required="" aria-required="true">
             <option value="" default="">Departamento</option>
-            <option value="Amazonas">Amazonas</option>
+<!--            <option value="Amazonas">Amazonas</option>
             <option value="Ancash">Ancash</option>
             <option value="Apurimac">Apurimac</option>
             <option value="Arequipa">Arequipa</option>
@@ -32,17 +32,32 @@
             <option value="San Martin">San Martin</option>
             <option value="Tacna">Tacna</option>
             <option value="Tumbes">Tumbes</option>
-            <option value="Ucayali">Ucayali</option>
+            <option value="Ucayali">Ucayali</option>-->
+            @if($departments)
+            @foreach($departments as $department)
+            <option value="{{ $department['department'] }}">{{ $department['department'] }}</option>
+            @endforeach
+            @endif
           </select>
         </div>
         <div class="form-group">
           <select id="ubigeo-city" class="form-control" name="city">
             <option value="" selected="">Ciudad</option>
+            @if($cities)
+            @foreach($cities as $city)
+            <option value="{{ $city['city'] }}">{{ $city['city'] }}</option>
+            @endforeach
+            @endif
           </select>
         </div>
         <div class="form-group">
           <select id="ubigeo-district" class="form-control" name="district">
             <option value="" selected="">Distrito</option>
+            @if($cities)
+            @foreach($districts as $district)
+            <option value="{{ $district['district'] }}">{{ $district['district'] }}</option>
+            @endforeach
+            @endif
           </select>
         </div>
         <div class="form-group form-actions">

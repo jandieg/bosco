@@ -53,7 +53,6 @@
   </div>
 </section>
 
-@include('modals.modal-pets-detail')
 
 @endsection
 

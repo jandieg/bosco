@@ -4,8 +4,8 @@
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       <div class="modal-form-report-menu">
         <ul class="text-center">
-          <li><span id="tab-1" data-tab="tab-1" class="tab-on"><em>1</em>Mascota</span></li>
-          <li><span id="tab-2" data-tab="tab-2"><em>2</em>Reporte</span></li>
+          <li id="report_tab_1"><span id="tab-1" data-tab="tab-1" class="tab-on"><em>1</em>Mascota</span></li>
+          <li onclick="Map_correction();"><span id="tab-2" data-tab="tab-2"><em>2</em>Reporte</span></li>
           <li><span id="tab-3" data-tab="tab-3"><em>3</em>Dueño</span></li>
         </ul>
       </div>
@@ -18,26 +18,27 @@
               <div class="form-group" style="margin-bottom: 32px;">
                 <label>Estado</label>
                 <div class="pet-type">
-                    <input type="radio" name="pet_status" id="pet_lost" value="lost">
-                    <label for="pet_lost">Perdió</label>
-                    <input type="radio" name="pet_status" id="pet_found" value="found">
-                    <label for="pet_found">Encontró</label>
+                    <input type="radio" name="pet_status" id="pet_lost_radio" value="lost">
+                    <label for="pet_lost_radio">Perdió</label>
+                    <input type="radio" name="pet_status" id="pet_found_radio" value="found">
+                    <label for="pet_found_radio">Encontró</label>
                 </div>
+                    <input type="hidden" name="report_id" id="report_id">
               </div>
               <div class="form-group" id="name_div" style="margin-bottom: 32px;">
                 <label>Nombre</label>
-                <input type="text" name="lost_pet_name" class="form-control">
+                <input type="text" name="lost_pet_name" id="lost_pet_name" class="form-control">
               </div>
               <div class="form-group" style="margin-bottom: 32px;">
                 <label>Raza</label>
-                <select class="form-control" name="lost_pet_race">
+                <select class="form-control" name="lost_pet_race" id="lost_pet_race">
                   <option value="dog">Perro</option>
                   <option value="cat">Gato</option>
                 </select>
               </div>
               <div class="form-group">
                 <label>Género</label>
-                <select class="form-control" name="lost_pet_gender">
+                <select class="form-control" name="lost_pet_gender" id="lost_pet_gender">
                   <option value="male">Macho</option>
                   <option value="female">Hembra</option>
                 </select>
@@ -58,7 +59,7 @@
               <div class="form-group">
                 <label>Descripción de mascota</label>
                 <p class="help-block">(150 caracteres max)</p>
-                <textarea name="lost_pet_description" class="form-control" rows="5"></textarea>
+                <textarea name="lost_pet_description" id="lost_pet_description" class="form-control" rows="5"></textarea>
               </div>
             </div>
             <div class="col-lg-12 col-md-12 center-block">
@@ -83,7 +84,7 @@
               <div class="form-group">
                 <label>Descripción del reporte</label>
                 <p class="help-block">(150 caracteres max)</p>
-                <textarea name="lost_pet_report_description" class="form-control" rows="8"></textarea>
+                <textarea name="lost_pet_report_description" id="lost_pet_report_description" class="form-control" rows="8"></textarea>
               </div>
             </div>
             <div class="col-lg-6 col-md-6">
@@ -112,23 +113,23 @@
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
                 <label>Nombre de dueño</label>
-                <input type="text" name="lost_pet_owner_name" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
+                <input type="text" name="lost_pet_owner_name" disabled="disabled" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
               </div>
               <div class="form-group">
                 <label>Nombre de contacto</label>
-                <input type="text" name="lost_pet_contact_name" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
+                <input type="text" name="lost_pet_contact_name" disabled="disabled" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
               </div>
               <div class="form-group">
                 <label>Recompensa</label>
                 <p class="help-block">(en soles)</p>
-                <input type="text" name="lost_pet_reward" class="form-control">
+                <input type="text" name="lost_pet_reward" id="lost_pet_reward" class="form-control">
                 <p class="description-block">Opcional*</p>
               </div>
             </div>
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
                 <label>Email de contacto #1</label>
-                <input type="text" name="lost_pet_contact_email" class="form-control" value="{{ Auth::user()? Auth::user()->email:'' }}">
+                <input type="text" name="lost_pet_contact_email" disabled="disabled" class="form-control" value="{{ Auth::user()? Auth::user()->email:'' }}">
               </div>
             </div>
             <div class="col-lg-12 col-md-12 center-block">

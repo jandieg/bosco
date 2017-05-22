@@ -22,6 +22,15 @@ class ReportsController extends Controller {
                 ]
         );
     }
+    public function delete_report(Request $request)
+    {
+        $report_id = $request->get('report_id');
+        $report = DB::table('reports')->where('id', $report_id)->delete();
+        if($report) 
+            return response()->json(TRUE);
+        else
+            return response()->json(FALSE);
+    }
 
     public function getReportsDetailLost(Request $request) {
         if ($request->isMethod('get')) {
@@ -47,9 +56,8 @@ class ReportsController extends Controller {
         }
     }
 
-    public function sendReport(Request $request) {
-        
-        //return response()->json($request->all());
+    public function sendReport(Request $request) {        
+        $report_id= $request->get('report_id');
         $status = $request->get('pet_status');
         $name = $request->get('lost_pet_name');
         $race = $request->get('lost_pet_race');
@@ -71,65 +79,124 @@ class ReportsController extends Controller {
         $url = $request->get('filename');
         $img = $request->get('pngimageData');
         $user_id = Auth::user()->id;
-        $pet_data = [
-            'owner_id' => $user_id,
-            'name' => $name,
-            'race' => $race,
-            'gender' => $gender,
-            'description' => $description,
-            'created_at' =>Date('Y-m-d H:i:s')
-        ];
-        $result = \App\Pet::insert($pet_data);
-        $file_name= basename($url);
-        $img = str_replace('data:image/png;base64,', '', $img);
-        $img = str_replace(' ', '+', $img);
-        $data = base64_decode($img);
-        file_put_contents("images/pets/".$file_name, $data);
-        $pet_id=DB::table('pets')->max('id');
-        $photo_data = [
-            'pet_id' => $pet_id,
-            'url' => $file_name,
-            'created_at' =>Date('Y-m-d H:i:s'),
-            'updated_at' =>Date('Y-m-d H:i:s')
-        ];
-        $result = \App\Photo::insert($photo_data);
-        $ubigeos = \App\Ubigeo::where('department',$department)->where('city',$city)->where('district',$district)->get()->count();
-        if(!$ubigeos)
+        if(!$report_id)
         {
-            $ubigeo_data = [
-                'department' =>$department,
-                'city' => $city,
-                'district' => $district,
-                'ubigeo_code' => $postal_code,
+            $pet_data = [
+                'owner_id' => $user_id,
+                'name' => $name,
+                'race' => $race,
+                'gender' => $gender,
+                'description' => $description,
+                'created_at' =>Date('Y-m-d H:i:s')
+            ];
+            $result = \App\Pet::insert($pet_data);
+            $file_name= basename($url);
+            $img = str_replace('data:image/png;base64,', '', $img);
+            $img = str_replace(' ', '+', $img);
+            $data = base64_decode($img);
+            file_put_contents("images/pets/".$file_name, $data);
+            $pet_id=DB::table('pets')->max('id');
+            $photo_data = [
+                'pet_id' => $pet_id,
+                'url' => $file_name,
+                'created_at' =>Date('Y-m-d H:i:s'),
+                'updated_at' =>Date('Y-m-d H:i:s')
+            ];
+            $result = \App\Photo::insert($photo_data);
+            $ubigeos = \App\Ubigeo::where('department',$department)->where('city',$city)->where('district',$district)->get()->count();
+            if(!$ubigeos)
+            {
+                $ubigeo_data = [
+                    'department' =>$department,
+                    'city' => $city,
+                    'district' => $district,
+                    'ubigeo_code' => $postal_code,
+                    'created_at' =>Date('Y-m-d H:i:s'),
+                    'updated_at' =>Date('Y-m-d H:i:s')
+                ];        
+                $result = \App\Ubigeo::insert($ubigeo_data);
+            }
+            $ubigeo_id=DB::table('ubigeos')->max('id');
+            $location_data = [
+                'address' =>$last_seen,
+                'latitude' => $latitude,
+                'longitude' => $longitude,
+                'ubigeo_id' => $ubigeo_id,
                 'created_at' =>Date('Y-m-d H:i:s'),
                 'updated_at' =>Date('Y-m-d H:i:s')
             ];        
-            $result = \App\Ubigeo::insert($ubigeo_data);
+            $result = \App\Location::insert($location_data);
+            $location_id=DB::table('locations')->max('id');
+            $report_data = [
+                'pet_id' => $pet_id,
+                'date' =>$date." ".$time,
+                'last_location_id' => $location_id,
+                'reward' => $reward,
+                'description' => $report_description,
+                'status' => $status,
+                'created_at' =>Date('Y-m-d H:i:s'),
+                'updated_at' =>Date('Y-m-d H:i:s')
+            ];
+            $result = \App\Report::insert($report_data);
         }
-        $ubigeo_id=DB::table('ubigeos')->max('id');
-        $location_data = [
-            'address' =>$last_seen,
-            'latitude' => $latitude,
-            'longitude' => $longitude,
-            'ubigeo_id' => $ubigeo_id,
-            'created_at' =>Date('Y-m-d H:i:s'),
-            'updated_at' =>Date('Y-m-d H:i:s')
-        ];        
-        $result = \App\Location::insert($location_data);
-        $location_id=DB::table('locations')->max('id');
-        $report_data = [
-            'pet_id' => $pet_id,
-            'date' =>$date." ".$time,
-            'last_location_id' => $location_id,
-            'reward' => $reward,
-            'description' => $report_description,
-            'status' => $status,
-            'created_at' =>Date('Y-m-d H:i:s'),
-            'updated_at' =>Date('Y-m-d H:i:s')
-        ];
-        $result = \App\Report::insert($report_data);
-        $response=['filename'=>$file_name,'id'=>$pet_id];
-        return json_encode($response);
+        else
+        {        
+            $report = \App\Report::where('id',$report_id)->first();
+            $pet_data = [
+                'name' => $name,
+                'race' => $race,
+                'gender' => $gender,
+                'description' => $description,
+                'updated_at' =>Date('Y-m-d H:i:s')
+            ];
+            $result = \App\Pet::where('id',$report->pet_id)->update($pet_data);
+            if($img)
+            {
+                $file_name= basename($url);
+                $img = str_replace('data:image/png;base64,', '', $img);
+                $img = str_replace(' ', '+', $img);
+                $data = base64_decode($img);
+                file_put_contents("images/pets/".$file_name, $data);
+                $photo_data = [
+                    'url' => $file_name,
+                    'updated_at' =>Date('Y-m-d H:i:s')
+                ];
+                $result = \App\Photo::where('pet_id',$report->pet_id)->update($photo_data);
+            }
+            $ubigeos = \App\Ubigeo::where('department',$department)->where('city',$city)->where('district',$district)->get()->count();
+            if(!$ubigeos)
+            {
+                $ubigeo_data = [
+                    'department' =>$department,
+                    'city' => $city,
+                    'district' => $district,
+                    'ubigeo_code' => $postal_code,
+                    'created_at' =>Date('Y-m-d H:i:s'),
+                    'updated_at' =>Date('Y-m-d H:i:s')
+                ];        
+                $result = \App\Ubigeo::insert($ubigeo_data);
+            }
+            $ubigeo_id=DB::table('ubigeos')->max('id');    
+            $location_data = [
+                'address' =>$last_seen,
+                'latitude' => $latitude,
+                'longitude' => $longitude,
+                'ubigeo_id' => $ubigeo_id,
+                'updated_at' =>Date('Y-m-d H:i:s')
+            ];        
+            $result = \App\Location::where('id',$report->last_location_id)->update($location_data);
+            $report_data = [
+                'date' =>$date." ".$time,
+//                'last_location_id' => $location_id,
+                'reward' => $reward,
+                'description' => $report_description,
+                'status' => $status,
+                'updated_at' =>Date('Y-m-d H:i:s')
+            ];
+            $result = \App\Report::where('id',$report_id)->update($report_data);
+        }
+        //$response=['result'=>true];
+        return json_encode(true);
     }
 
     public function getDownloadReport($status, Request $request) {

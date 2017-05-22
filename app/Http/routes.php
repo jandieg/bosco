@@ -32,8 +32,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('mascotas-detalle', 'PetsController@getPetsDetail');
 
         Route::get('mis-reportes-detalle-perdido', 'ReportsController@getReportsDetailLost');
-    Route::group(['middleware' => ['auth']], function () {
+        Route::group(['middleware' => ['auth']], function () {
         Route::get('mis-reportes', 'ReportsController@index');
+        Route::get('delete_report', 'ReportsController@delete_report');
         // Ajax Reports
         Route::get('mis-reportes-detalle-encontrado', 'ReportsController@getReportsDetailFound');
         // AJax Send ReportPost

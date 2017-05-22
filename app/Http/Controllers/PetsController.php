@@ -18,10 +18,16 @@ class PetsController extends Controller {
             'userid' => FALSE
         );
         $reports = Report::getDataReports($parameters, TRUE, 10, 'mascotas/perdidos');
+        $departments = Ubigeo::getDataDepartments();
+        $cities = Ubigeo::getDataCities(null);
+        $districts = Ubigeo::getDataDistricts(null);
         return view('pets.page-pets-lost', [
             'reports' => $reports,
-                'user' => Auth::check() ? Auth::user() : null
-                ]   
+            'departments'=>$departments,
+            'cities'=>$cities,
+            'districts'=>$districts,
+            'user' => Auth::check() ? Auth::user() : null
+            ]   
         );
     }
 
@@ -30,22 +36,26 @@ class PetsController extends Controller {
             'status' => 'found',
             'userid' => FALSE
         );
+        $departments = Ubigeo::getDataDepartments();
+        $cities = Ubigeo::getDataCities(null);
+        $districts = Ubigeo::getDataDistricts(null);
         $reports = Report::getDataReports($parameters, TRUE, 10, 'mascotas/perdidos');
         return view('pets.page-pets-lost', [
             'reports' => $reports,
+            'departments'=>$departments,
+            'cities'=>$cities,
+            'districts'=>$districts,
                 'user' => Auth::check() ? Auth::user() : null
                 ]   
         );
     }
 
     public function getPetsDetail(Request $request) {
-        $id = $request->get('petid');
+        $id = $request->get('report_id');
         $status = $request->get('status');
-        $pet = Pet::getDataPet($id, $status);
-
+        $pet = Pet::getDataPet($id, $status);  
         return response()->json([
                     'result' => TRUE,
-//                    'path' => url(''),
                     'pet' => $pet
         ]);
     }

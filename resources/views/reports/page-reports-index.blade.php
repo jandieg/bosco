@@ -40,13 +40,13 @@
                   <a data-toggle="modal" class="btn btn-primary btn-block report-detail-lost" data-id="{{ $item['id'] }}">Generar volante</a>
                   <a data-toggle="modal" href="#" class="btn btn-primary btn-green btn-block">Encontrado</a>
                 </div> 
-                <img id="edit_menu" src="{{ asset('img/icon-edit-red.png') }}"/>
-                <div id="edit_menu_div">   
-                    <div id="rotated_div_tag"></div>
-                    <div style="width:100%;height:100%;">
-                    <p><img id="edit_icon" src="{{ asset('img/icon-edit.png') }}"/>&emsp;<span>Editar</span></p>
-                    <p><img id="edit_icon" src="{{ asset('img/icon-edit.png') }}"/>&emsp;<span>Promover</span></p>
-                    <p><img id="edit_icon" src="{{ asset('img/icon-edit.png') }}"/>&emsp;<span>Eliminar</span></p>
+                <img class="edit_menu" src="{{ asset('img/icon-edit-red.png') }}"/>
+                <div class="edit_menu_div">   
+                    <div class="rotated_div_tag"></div>
+                    <div class="edit_menu_body">
+                    <p onclick="edit_pet_detail({{ $item['id'] }},0);"><img class="edit_icon" src="{{ asset('img/icon-edit.png') }}"/>&emsp;<span>Editar</span></p>
+                    <p ><img class="edit_icon" src="{{ asset('img/Icono-Promover.png') }}"/>&emsp;<span>Promover</span></p>
+                    <p onclick="delete_pet_detail({{ $item['id'] }},0);"><img class="edit_icon" src="{{ asset('img/icon-delete.png') }}"/>&emsp;<span>Eliminar</span></p>
                     </div>
                 </div>
               </li>
@@ -79,6 +79,15 @@
                   <a data-toggle="modal" class="btn btn-primary btn-block report-detail-lost" data-id="{{ $item['id'] }}">Generar volante</a>
                   <a data-toggle="modal" href="#" class="btn btn-primary btn-green btn-block">Encontrado</a>
                 </div>
+                <img class="edit_menu" src="{{ asset('img/icon-edit-red.png') }}"/>
+                <div class="edit_menu_div">   
+                    <div class="rotated_div_tag"></div>
+                    <div class="edit_menu_body">
+                    <p onclick="edit_pet_detail({{ $item['id'] }},1);"><img class="edit_icon" src="{{ asset('img/icon-edit.png') }}"/>&emsp;<span>Editar</span></p>
+                    <p ><img class="edit_icon" src="{{ asset('img/Icono-Promover.png') }}"/>&emsp;<span>Promover</span></p>
+                    <p onclick="delete_pet_detail({{ $item['id'] }},1);"><img class="edit_icon" src="{{ asset('img/icon-delete.png') }}"/>&emsp;<span>Eliminar</span></p>
+                    </div>
+                </div>
               </li>
               @endforeach
             @endif
@@ -90,10 +99,5 @@
   </div>
 </section>
  <div class="alert-message"></div>
-@include('modals.modal-form-report-cropper')
-@include('modals.modal-reports-detail-lost')
-@include('modals.modal-reports-detail-founds')
-@include('modals.modal-form-report-lost')
-@include('modals.modal-form-report-founds')
 
 @endsection

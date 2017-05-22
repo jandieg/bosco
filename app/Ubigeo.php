@@ -24,54 +24,33 @@ class Ubigeo extends Model
 
     public static function getDataDepartments()
     {
-        $data = [];
-        
-        $result = Ubigeo::groupBy('department')
-        ->select('department')
-        ->get();
-
-        if (!empty($result)) {
-            foreach ($result as $row) {
-                $data[$row->department] = $row->department;
-            }
-        }
-
-        return $data;
+        $result = Ubigeo::groupBy('department')->select('department')->get();
+        return $result;
     }
 
-    public static function getDataCities($id)
+    public static function getDataCities($val)
     {
-        $data = [];
-        
-        $result = Ubigeo::where('department','=',$id)
-        ->groupBy('city')
-        ->select('city')
-        ->get();
-
-        if (!empty($result)) {
-            foreach ($result as $row) {
-                $data[$row->province] = $row->province;
-            }
+        if($val)
+        {
+            $result = Ubigeo::where('department','=',$val)->groupBy('city')->select('city')->get();
         }
-
-        return $data;
+        else
+        {
+            $result = Ubigeo::groupBy('city')->select('city')->get();
+        }
+        return $result;
     }
 
-    public static function getDataDistricts($id)
+    public static function getDataDistricts($val)
     {
-        $data = [];
-        
-        $result = Ubigeo::where('city','=',$id)
-        ->groupBy('district')
-        ->select('id', 'district')
-        ->get();
-
-        if (!empty($result)) {
-            foreach ($result as $row) {
-                $data[$row->id] = $row->district;
-            }
+        if($val)
+        {
+            $result = Ubigeo::where('city','=',$val)->groupBy('district')->select('district')->get();
         }
-        
-        return $data;
+        else
+        {
+            $result = Ubigeo::groupBy('district')->select('district')->get();
+        }
+        return $result;
     }
 }

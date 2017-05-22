@@ -18,7 +18,12 @@
 		@yield('content')
 		@include('blocks.block-footer')
 		@include('modals.modal-form-user')
+    @include('modals.modal-pets-detail')
+    @include('modals.modal-form-report-cropper')
     @include('modals.modal-reports-detail-lost')
+    @include('modals.modal-reports-detail-founds')
+    @include('modals.modal-form-report-lost')
+    @include('modals.modal-form-report-founds')
 
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Report;
+use App\Ubigeo;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -14,9 +15,15 @@ class IndexController extends Controller {
             'userid' => FALSE
         );
         $reports = Report::getDataReports($parameters, TRUE, 50, 'mascotas/perdidos');
+        $departments = Ubigeo::getDataDepartments();
+        $cities = Ubigeo::getDataCities(null);
+        $districts = Ubigeo::getDataDistricts(null);
         return view('general.page-index',
                 [
                 'reports' => $reports,
+                'departments'=>$departments,
+                'cities'=>$cities,
+                'districts'=>$districts,
                 'user' => Auth::check() ? Auth::user() : null
                 ]);
     }
