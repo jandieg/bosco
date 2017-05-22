@@ -1514,6 +1514,22 @@ a.btn-video:hover {
   text-align: center;
   text-transform: uppercase;
 }
+.modal-report-detail-image .pdf-report-title {
+  background: #E73737;
+  color: #fff;
+  display: block;
+  height: 50px;
+  margin: 0;
+  padding: 25px 17px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+}
+.modal-report-detail-image .pdf-report-title h3 {
+  font-size: 50px;
+  margin: 0;
+  padding: 0;
+}
 
 #report-detail-founds .modal-report-detail-image .modal-report-title {
   background: #093042;
@@ -1577,6 +1593,21 @@ a.btn-video:hover {
   width: 100%;
   z-index: 1040;
 }
+.pdf-report-detail-image a.report-phone {
+  background: url('../img/sprite_vertical.png') no-repeat 140px -635px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  display: block;
+  font-size: 22px;
+  height: 35px;
+  letter-spacing: 1.5px;
+  margin-top: -55px;
+  padding: 18px 20px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  z-index: 1040;
+}
 
 .report-phone-export, .report-detail-data-export{
   box-sizing: border-box;
@@ -1599,6 +1630,15 @@ a.btn-video:hover {
   padding: 20px 4% 10px 50px;
   text-align: left;
   width: 50%;
+}
+.pdf-report-detail-data p {
+  color: #858585;
+  display: block;
+  float: left;
+  font-size: 16px;
+  /*padding: 20px 4% 10px 50px;*/
+  text-align: center;
+  /*width: 50%;*/
 }
 
 .report-data-birthday {

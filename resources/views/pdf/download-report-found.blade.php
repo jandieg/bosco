@@ -22,7 +22,7 @@
             <img src="{{ asset('images/pets/'.$report['image']) }}">
           </span>
             <span class="report-detail-lost-phone" >
-            <a class="report-phone report-phone-export" style="box-sizing: border-box;">{{ $report['phone'] }}</a>
+            <a class="report-phone report-phone-export" style="box-sizing: border-box;">{{ $report['user_phone'] }}</a>
           </span>
         </div>
         <div class="modal-report-detail-data clearfix">

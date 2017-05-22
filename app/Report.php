@@ -75,6 +75,7 @@ class Report extends Model
             'description' => $report->pet->description, 
             'image' => $report->pet->photos[0]->url
         ];
+//        var_dump($report);exit;
         return $data;
     }
 }
