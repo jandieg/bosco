@@ -346,13 +346,12 @@ $(document).ready(function () {
             croppng = cropcanvas.toDataURL("image/png");
         else
             croppng='';
-        var filename = $('#lost_pet_file').val();
         $.ajax({
             type: "POST",
             url: window.location.origin + '/mis-reportes-registrar',
             dataType: 'json',
             cache: false,
-            data: $('#form-report-lost-form').serialize() + "&pngimageData=" + croppng + "&filename=" + filename,
+            data: $('#form-report-lost-form').serialize() + "&pngimageData=" + croppng,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },

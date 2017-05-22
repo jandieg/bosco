@@ -76,7 +76,7 @@ class ReportsController extends Controller {
         $contact_email = $request->get('lost_pet_contact_email');
         $date = $request->get('lost_pet_date');
         $time = $request->get('lost_pet_time');
-        $url = $request->get('filename');
+//        $url = $request->get('filename');
         $img = $request->get('pngimageData');
         $user_id = Auth::user()->id;
         if(!$report_id)
@@ -90,15 +90,14 @@ class ReportsController extends Controller {
                 'created_at' =>Date('Y-m-d H:i:s')
             ];
             $result = \App\Pet::insert($pet_data);
-            $file_name= basename($url);
+            $pet_id=DB::table('pets')->max('id');
             $img = str_replace('data:image/png;base64,', '', $img);
             $img = str_replace(' ', '+', $img);
             $data = base64_decode($img);
-            file_put_contents("images/pets/".$file_name, $data);
-            $pet_id=DB::table('pets')->max('id');
+            file_put_contents("images/pets/".$pet_id.".jpg", $data);
             $photo_data = [
                 'pet_id' => $pet_id,
-                'url' => $file_name,
+                'url' => $pet_id.".jpg",
                 'created_at' =>Date('Y-m-d H:i:s'),
                 'updated_at' =>Date('Y-m-d H:i:s')
             ];
