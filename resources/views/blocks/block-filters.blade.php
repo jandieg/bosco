@@ -61,7 +61,7 @@
           </select>
         </div>
         <div class="form-group form-actions pull-right">
-          <a {{ empty($user->id)?"data-toggle=modal href=#form-user":"href=".url('mis-reportes') }} class="btn btn-primary">Reportar</a>
+          <a href="#" onclick="search_results();" class="btn btn-primary">Reportar</a>
         </div>
       </form>
     </div>

@@ -38,6 +38,7 @@ class Report extends Model
             $reports = Report::orderBy('id', 'desc')->limit($numPerItem)->get();            
         if (!empty($reports)) {
             foreach ($reports as $report) {
+                if($user && $report->pet->owner_id!=$user->id) continue;
                 $data[] = [
                     'id' => $report->id,
                     'status' => $report->status,
@@ -56,7 +57,7 @@ class Report extends Model
         return ['data' => $data, 'paginate' => $paginate];
     }
 
-    public static function getDataReport($id, $status)
+    public static function getDataReport($id)
     {
         $data = [];
         $user= Auth::user();

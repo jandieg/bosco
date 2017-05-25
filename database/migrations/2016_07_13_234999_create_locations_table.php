@@ -15,7 +15,7 @@ class CreateLocationsTable extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->bigIncrements('id');
             //$table->bigInteger('parent_id')->unsigned()->nullable();
-            $table->string('address', 25);
+            $table->string('address', 255);
             $table->double('latitude', 10,8);
             $table->double('longitude', 10, 8);
             $table->integer('ubigeo_id');

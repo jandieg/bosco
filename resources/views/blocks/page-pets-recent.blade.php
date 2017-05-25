@@ -61,14 +61,14 @@
           </select>
         </div>
         <div class="form-group form-actions">
-          <a data-toggle="modal" href="#form-user" class="btn btn-primary">Reportar</a>
+          <a data-toggle="modal" href="#" onclick="search_results();" class="btn btn-primary">Reportar</a>
         </div>
       </form>
     </div>
   </div>
   <!-- Block Images -->
   <div id="block-home-gallery" class="block-gallery clearfix">
-    <div class="view-content">
+    <div class="view-content" id="home_gallery_ul_parent">
       <div class="prev-gallery-btn"><</div>
       <ul class="home-pets-list text-left">
         @if(!empty($reports['data']))
@@ -76,7 +76,7 @@
         <li>
           <a data-toggle="modal">
             <img src="{{ asset('images/pets/' . $item['image']) }}">
-            <div class="gallery-div-hover" data-id="{{ $item['id'] }}" data-status="{{ $item['status'] }}">
+            <div class="gallery-div-hover" onclick="item_detail_view({{ $item['id'] }})">
               <p>{{ $item['description'] }}</p>
             </div>
             <div class="gallery-item-detail">
