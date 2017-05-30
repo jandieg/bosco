@@ -89,4 +89,7 @@
   'glyphicons halflings' => array(
     'normal' => $fontDir . '/85a7dec17fe74eb41cf983c661d03222',
   ),
+  'montserrat ultra light' => array(
+    'normal' => $fontDir . '\8e542bcafdf357bce71b7b8278b8d491',
+  ),
 ) ?>

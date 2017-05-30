@@ -10,6 +10,15 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::group(['prefix'=>'api','middleware' => ['auth:api']], function(){
+    Route::get('login/{email}/{password}','Auth\ApiloginController@login');
+    Route::get('logout','Auth\ApiloginController@logout');
+    Route::get('getLostPets/{lat}/{lon}','PetsController@getLostPets');
+    Route::get('getFoundPets/{lat}/{lon}','PetsController@getFoundPets');
+    Route::get('getpetinfo/{id}','PetsController@getPetInfo');
+    Route::post('foundPet/{id}','PetsController@foundPet');
+    Route::post('reportPet/{petData}/{base64photo}','ReportsController@saveReport');
+});
 Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'IndexController@index');
     Route::get('terminos-y-condiciones', 'IndexController@getTermsConditions');
@@ -25,7 +34,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('como-funciona', 'ServicesController@index');
     Route::get('como-funciona/web', 'ServicesController@getFunctioningWeb');
     Route::get('como-funciona/app', 'ServicesController@getFunctioningApp');
-    Route::get('descargar-volante/{status}','ReportsController@getDownloadReport')->where('status','perdido|encontrado');
+    Route::get('descargar-volante/{status}','ReportsController@getDownloadReport')->where('status','jpg|pdf');
 
     Route::match(['get', 'post'], 'subscription','SubscriptionController@index');
     // Ajax Pet
@@ -44,6 +53,7 @@ Route::group(['middleware' => ['web']], function () {
     // Ajax Ubigeo
     Route::get('ubigeo-ciudades', 'UbigeoController@getUbigeoCity');
     Route::get('ubigeo-distritos', 'UbigeoController@getUbigeoDistrict');
+    Route::get('search-pets', 'SearchController@search');
 
 
 
@@ -54,4 +64,4 @@ Route::group(['middleware' => ['web']], function () {
 });
 
     Route::get('iniciar-sesion/fb', 'Auth\AuthController@redirectToProvider');
-    Route::get('iniciar-sesion/fb/callback', 'Auth\AuthController@handleProviderCallback');
+    Route::get('iniciar-sesion/fb/callback', 'Auth\AuthController@handleProviderCallback');  

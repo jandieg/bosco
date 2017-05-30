@@ -33,7 +33,7 @@
             <li>
               <a data-toggle="modal"><!--href="#pet-detail"-->
                 <img src="{{ asset('images/pets/' . $item['image']) }}" />
-                <div class="gallery-item-hover" data-id="{{ $item['id'] }}" data-status="lost">
+                <div class="gallery-item-hover" onclick="gallery_item_over({{ $item['id'] }})">
                   {!! $item['description'] !!}
                 </div>
                 <div class="gallery-item-detail">

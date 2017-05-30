@@ -52,8 +52,12 @@
           </div>
         </div>
         <div class="modal-report-info">
-          <div class="modal-report-button">
+          <div class="modal-report-button" id="download_report">
             <a href="#" class="btn btn-download-lost btn-button btn-block btn-blue">Descargar volante</a>
+          </div>
+          <div class="modal-report-button hide"  id="download_report_div">
+            <a href="#" class="btn btn-download-lost btn-button btn-block btn-blue">JPG</a>
+            <a href="#" class="btn btn-download-lost btn-button btn-block btn-blue">PDF</a>
           </div>
         </div>
       </div>

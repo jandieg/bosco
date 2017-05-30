@@ -1642,7 +1642,7 @@ a.btn-video:hover {
 }
 
 .report-data-birthday {
-  background: url('../img/sprite_vertical.png') no-repeat 17px -510px;
+  background: url('../img/sprite_vertical.png') no-repeat 17px -510px ;
 }
 
 .report-data-location {
@@ -2972,17 +2972,20 @@ input[type='radio']:checked:before {
     height:100%;
     z-index: 25;
     margin-top:-20px;
+    padding-top: 20px;
 }
 .edit_menu_div p{
+    position:relative;
     cursor:pointer;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-    border-bottom:1px solid black;
+    border-bottom:1px solid #f0f0f0;
+    padding: 10px 10px 10px 10px;
+}
+.edit_menu_div p span{
+    font-size: 16px;
 }
 .edit_icon{
     position:relative;
-    width:20px;
-    height:20px;
+    width:16px;
+    height:16px;
 }
 

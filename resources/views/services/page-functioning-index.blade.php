@@ -8,7 +8,7 @@
       <div class="block-team">
         <div class="block-team-background"></div>
         <div class="block-team-content">
-          <h2>El equipo</h2>
+          <h2>El equiop</h2>
           <div class="red-underline"></div>
           <div class="red-underline"></div>
           <h4>Somos una comunidad creciente enfocada en ayudar a encontrar mascotas perdidas.</h4>

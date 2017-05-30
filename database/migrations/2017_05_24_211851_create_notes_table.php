@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUbigeosTable extends Migration
+class CreateNotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,12 @@ class CreateUbigeosTable extends Migration
      */
     public function up()
     {
-        Schema::create('ubigeos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('department', 255);
-            $table->string('city', 255);
-            $table->string('district', 255);
-            $table->string('ubigeo_code', 255);
+        Schema::create('notes', function(Blueprint $table){
+            $table->increments('id');
             $table->timestamps();
+            $table->string('text');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -29,6 +28,6 @@ class CreateUbigeosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ubigeos');
+        Schema::drop('notes');
     }
 }

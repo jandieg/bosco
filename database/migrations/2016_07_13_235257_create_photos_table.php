@@ -15,7 +15,7 @@ class CreatePhotosTable extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('pet_id')->unsigned();
-            $table->string('url', 45);
+            $table->string('url', 255);
             $table->string('width', 45);
             $table->string('height', 45);
             $table->timestamps();

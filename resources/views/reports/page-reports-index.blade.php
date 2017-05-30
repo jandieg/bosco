@@ -37,7 +37,7 @@
                   </div>
                 </div>
                 <div class="report-buttons">
-                  <a data-toggle="modal" class="btn btn-primary btn-block report-detail-lost" data-id="{{ $item['id'] }}">Generar volante</a>
+                  <a data-toggle="modal" class="btn btn-primary btn-block" onclick="item_detail_view({{ $item['id'] }});">Generar volante</a>
                   <a data-toggle="modal" href="#" class="btn btn-primary btn-green btn-block">Encontrado</a>
                 </div> 
                 <img class="edit_menu" src="{{ asset('img/icon-edit-red.png') }}"/>
@@ -76,16 +76,16 @@
                   </div>
                 </div>
                 <div class="report-buttons">
-                  <a data-toggle="modal" class="btn btn-primary btn-block report-detail-lost" data-id="{{ $item['id'] }}">Generar volante</a>
+                  <a data-toggle="modal" class="btn btn-primary btn-block" onclick="item_detail_view({{ $item['id'] }});">Generar volante</a>
                   <a data-toggle="modal" href="#" class="btn btn-primary btn-green btn-block">Encontrado</a>
                 </div>
                 <img class="edit_menu" src="{{ asset('img/icon-edit-red.png') }}"/>
                 <div class="edit_menu_div">   
                     <div class="rotated_div_tag"></div>
                     <div class="edit_menu_body">
-                    <p onclick="edit_pet_detail({{ $item['id'] }},1);"><img class="edit_icon" src="{{ asset('img/icon-edit.png') }}"/>&emsp;<span>Editar</span></p>
+                    <p onclick="edit_pet_detail({{ $item['id'] }},0);"><img class="edit_icon" src="{{ asset('img/icon-edit.png') }}"/>&emsp;<span>Editar</span></p>
                     <p ><img class="edit_icon" src="{{ asset('img/Icono-Promover.png') }}"/>&emsp;<span>Promover</span></p>
-                    <p onclick="delete_pet_detail({{ $item['id'] }},1);"><img class="edit_icon" src="{{ asset('img/icon-delete.png') }}"/>&emsp;<span>Eliminar</span></p>
+                    <p onclick="delete_pet_detail({{ $item['id'] }},0);"><img class="edit_icon" src="{{ asset('img/icon-delete.png') }}"/>&emsp;<span>Eliminar</span></p>
                     </div>
                 </div>
               </li>

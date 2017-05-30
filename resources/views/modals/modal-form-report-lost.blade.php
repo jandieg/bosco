@@ -90,7 +90,7 @@
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
                 <label>Última vez visto</label>
-                <input type="text" name="lost_pet_last_seen" id="pac-input" class="form-control">
+                <input type="text" disabled id="pac-input" class="form-control">
                 <input type="hidden" name="lost_pet_last_address" id="pac-address" class="form-control">
                 <input type="hidden" name="lost_pet_department" id="pac-department" class="form-control">
                 <input type="hidden" name="lost_pet_city" id="pac-city" class="form-control">

@@ -1,4 +1,4 @@
-﻿@extends('layouts.home')
+@extends('layouts.home')
 @section('content')
 <section id="content" class="bg-home">
   <div id="page-home" class="container-fluid">
@@ -46,7 +46,7 @@
                       <img src="../img/Icono_1.png">
                       <div>
                         <p>1 - Mascotas perdidas</p>
-                        <p>Ingresa a la sección de "Mascotas perdidas" en la parte superior.</p>
+                        <p>Ingresa a la secci...... mascotas perdidas" en la parte superior.</p>
                       </div>
                     </div>
                   </div>
@@ -80,7 +80,7 @@
               </div>
           </div>
           <div class="block-help-start">
-            <a href="mis-reportes" class="btn btn-lg btn-default">Empezar</a>
+            <a href="" class="btn btn-lg btn-default">Empezar</a>
           </div>
         </div>
       </div>
@@ -98,7 +98,7 @@
           @include('blocks.page-pets-recent')
         </div>
         <div class="block-recent-more pull-right">
-          <a href="mascotas" class="btn btn-lg btn-default">Ver más</a>
+          <a href="/mascotas" class="btn btn-lg btn-default">Ver mas</a>
         </div>
       </div>
     </div>

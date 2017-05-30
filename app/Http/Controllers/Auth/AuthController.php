@@ -30,14 +30,25 @@ class AuthController extends Controller
         if(Auth::attempt(['email'=>$request->get('email'), 'password'=>$request->get('password')],$request->get('remember'))){
             return response()->json([
                 'status' => true,
-                'message' => 'Inicio con sesión con exito!',
+                'message' => utf8_encode('La direcci��n de correo electr��nico ya existe! Por favor Iniciar sesi��n'),
                 'url' => url('mis-reportes')
-            ]);
+            ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
         }
         return response()->json([
             'status' => false,
-            'errors' => ['No se pudo iniciar sesión, verifica tu email o contraseña!']
-        ]);
+            'errors' => utf8_encode('El correo electr��nico y la contrase�0�9a no coinciden entre s��!')
+        ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+    }
+    
+    public function user_login($username, $password)
+    {
+        $user=Auth::attempt(['username'=>$username, 'password'=>$password]);
+        if($user) return true; else return false;
+    }
+    public function user_logout()
+    {
+        $user=Auth::attempt(['username'=>$username, 'password'=>$password]);
+        if($user) return true; else return false;
     }
 
     /**
@@ -48,33 +59,44 @@ class AuthController extends Controller
      */
     public function register(RegisterRequest $request)
     {   
+        $email_address=$request->get('email');
+        $user=User::where('email',$email_address)->first();
+        if($user && $user->id) 
+        {
+            return response()->json(['status'=>true,'people'=> $user, 'message'=> utf8_encode('La direcci��n de correo electr��nico ya existe! Por favor Iniciar sesi��n')], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+        }
         $user = User::create([
             'name' => $request->get('name'),
             'last_name' => $request->get('last_name'),
             'phone' => $request->get('phone'),
-            'email' => $request->get('email'),
+            'email' => $email_address,
+            'api_token' => str_random(60),
             'password' => bcrypt($request->get('password')),
         ]);
          $param = array(
             'name' => $request->get('name'),
             'email' => $request->get('email'),
         );
-      /*  \Mail::send('auth.emails.registration-success', $param, function (Message $message) use($param) {
+        /*Mail::send('auth.emails.registration-success', $param, function (Message $message) use($param) {
             $message->to( $param['email'], $param['name'])
                 ->from('info@bosco.pe', 'Bosco')
                 ->subject('Bienvenido a Bosco');
-        });*/
+        });
         $from = new \SendGrid\Email('Bosco', "info@bosco.pe");
         $subject = "Bienvenido a Bosco";
         $to = new \SendGrid\Email($param['name'], $param['email']);
         $content = new \SendGrid\Content("text/plain", "Estimado ".$param['name'].", gracias por registrarte en Bosco.");
         $mail = new \SendGrid\Mail($from, $subject, $to, $content);
-        //$apiKey = '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';
-        $apiKey = 'xxx';
+        $apiKey = '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';
+        //$apiKey = 'xxx';
         $sg = new \SendGrid($apiKey);
-
-        $response = $sg->client->mail()->send()->post($mail);
-        return response()->json(['status'=>true,'people'=> $user, 'message'=> 'Se ha registrado con exito! Ahora puede iniciar sesión']);
+        $response = $sg->client->mail()->send()->post($mail);*/
+        Auth::attempt(['email'=>$request->get('email'), 'password'=>$request->get('password')],$request->get('remember'));            
+        return response()->json([
+                'status' => true,
+                'message' => utf8_encode('La direcci��n de correo electr��nico ya existe! Por favor Iniciar sesi��n'),
+                'url' => url('mis-reportes')
+            ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
     public function logout()
