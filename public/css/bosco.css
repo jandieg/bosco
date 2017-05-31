@@ -431,10 +431,10 @@ input[type="submit"]:hover {
 /* Block Video */
 
 .block-video {
-  /*background-image: url("../img/bg.png");
+  background-image: url("../img/bg.jpg");
   background-position-x: center;
   background-position-y: bottom;
-  background-size: cover;*/
+  background-size: cover;
   height: 100vh;
   position: relative;
   width: 100%;
@@ -1089,21 +1089,23 @@ a.btn-video:hover {
   border-bottom: 2px solid #1AA344 !important;
 }
 
-.block-reports li a.report-lost-add{
-  background: #F9F9F9;
-  display: inline-block;
-  height: 380px;
-  padding-top: 160px;
-  text-align: center;
-  width: 206px;
+.block-reports li a.report-lost-add {
+    background: #F9F9F9;
+    display: inline-block;
+    height: 380px;
+    padding-top: 160px;
+    text-align: center;
+    width: 206px;
+    color: #B4C0C6;
 }
 .block-reports li a.report-found-add {
-  background: #F9F9F9;
-  display: inline-block;
-  height: 380px;
-  padding-top: 160px;
-  text-align: center;
-  width: 206px;
+    background: #F9F9F9;
+    display: inline-block;
+    height: 380px;
+    padding-top: 160px;
+    text-align: center;
+    width: 206px;
+    color: #B4C0C6;
 }
 .block-reports li a.report-lost-add em {
   border: 3px solid #b7b7b7;
@@ -1283,7 +1285,7 @@ a.btn-video:hover {
 }
 
 .block-help .block-help-container .block-help-title h5{
-  padding-top: 30px;
+  padding-top: 10px;
   padding-left: 10%;
   padding-right: 10%;
 }
@@ -1325,6 +1327,15 @@ a.btn-video:hover {
   font-weight: bold;
   font-size: 16px;
   color: #717171;
+}
+
+.block-help-content .col-lg-9.col-lg-offset-2.col-md-9.col-md-offset-2.col-sm-10.col-sm-offset-2 {
+    margin-left: 8%;
+    width: 90%;
+}
+
+.block-help-content .col-lg-3.col-md-6.col-sm-6 {
+    padding-right: 55px;
 }
 
 .block-help .block-help-container .block-help-start{
@@ -1425,7 +1436,7 @@ a.btn-video:hover {
   margin: auto;    
   /*height:auto;*/
   max-width: 370px;
-  max-height: 740px;
+  max-height: 580px;
 }
 
 .modal-content h4 {
@@ -1529,7 +1540,7 @@ a.btn-video:hover {
   display: block;
   height: 50px;
   margin: 0;
-  padding: 10px 17px;
+  padding: 25px 17px;
   position: relative;
   text-align: center;
   text-transform: uppercase;
@@ -2284,7 +2295,6 @@ footer .block-socialnetwork li a.link-instagran {
     margin-right: 10px;
   }
   .pets-list {
-    list-style:
     margin-left: auto;
     margin-right: auto;
     max-width: 1039px;
@@ -2735,7 +2745,7 @@ footer .block-socialnetwork li a.link-instagran {
     margin-top: -10px;
   }
   .block-video {
-    height: 250px;
+    height: 100vh;
   }
   .block-video-content {
     padding-top: 80px;
