@@ -23,8 +23,8 @@
           <a href="#">
             <div class="block-about-us-background"></div>
             <div class="block-about-us-detail">
-              <h3>¿Quiénes somos?</h3>
-              <p>Somos una comunidad creciente enfocada en encontrar mascotas perdidas.</p>
+              <h3>¿Qué hacemos?</h3>
+              <p>Crear soluciones innovadoras para encontrar mascotas perdidas.</p>
             </div>
             <img src="{{ asset('images/about_us_item_2.png') }}">
             <span class="block-about-us-line"></span>
@@ -46,7 +46,7 @@
             <div class="block-about-us-background"></div>
             <div class="block-about-us-detail">
               <h3>¿Cómo lo hacemos?</h3>
-              <p>Trabajando en equipo para brindar tecnología orientada al cuidado y protección de las mascotas.</p>
+              <p>Juntos. Trabajando en equipo con personas dispuestas a apoyar a aquellos que lo necesitan.</p>
             </div>
             <img src="{{ asset('images/about_us_item_4.png') }}">
             <span class="block-about-us-line"></span>
