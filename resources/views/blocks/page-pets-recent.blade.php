@@ -1,4 +1,3 @@
-
   <!-- Block Filters -->
   <div class="block-filters clearfix">
     <div class="col-lg-12 col-md-12">
@@ -43,21 +42,21 @@
         <div class="form-group">
           <select id="ubigeo-city" class="form-control" name="city">
             <option value="" selected="">Ciudad</option>
-            @if($cities)
+            <!--@if($cities)
             @foreach($cities as $city)
             <option value="{{ $city['city'] }}">{{ $city['city'] }}</option>
             @endforeach
-            @endif
+            @endif-->
           </select>
         </div>
         <div class="form-group">
           <select id="ubigeo-district" class="form-control" name="district">
             <option value="" selected="">Distrito</option>
-            @if($cities)
+           <!-- @if($cities)
             @foreach($districts as $district)
             <option value="{{ $district['district'] }}">{{ $district['district'] }}</option>
             @endforeach
-            @endif
+            @endif-->
           </select>
         </div>
         <div class="form-group form-actions">
@@ -70,13 +69,13 @@
   <div id="block-home-gallery" class="block-gallery clearfix">
     <div class="view-content" id="home_gallery_ul_parent">
       <div class="prev-gallery-btn"><</div>
-      <ul class="home-pets-list text-left">
+      <ul class="pets-list text-left">
         @if(!empty($reports['data']))
           @foreach($reports['data'] as $item)
         <li>
           <a data-toggle="modal">
             <img src="{{ asset('images/pets/' . $item['image']) }}">
-            <div class="gallery-div-hover" onclick="item_detail_view({{ $item['id'] }})">
+            <div class="gallery-item-hover"  onclick="gallery_item_over({{ $item['id'] }})"><!--onclick="item_detail_view({{ $item['id'] }})"-->
               <p>{{ $item['description'] }}</p>
             </div>
             <div class="gallery-item-detail">

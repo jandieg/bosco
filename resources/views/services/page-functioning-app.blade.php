@@ -19,7 +19,7 @@
                   <em class="works-item-app-tag-1"></em>
                   <div>
                     <p>Reportar</p>
-                    <p>Si tu mascot se pierde, puedes reportarla como perdida a trav√©s de la aplicaci√≥n.</p>
+                    <p>Si tu mascota se pierde, puedes reportarla como perdida a trav®¶s de la aplicaci®Æn.</p>
                   </div>
                 </div>
               </li>
@@ -28,7 +28,7 @@
                   <em class="works-item-app-tag-2"></em>
                   <div>
                     <p>Growd GPS</p>
-                    <p>Cada smartphone con el app funciona como un radar de b√∫squeda paraa encontrarla.</p>
+                    <p>Cada smartphone con el app funciona como un radar de b®≤squeda para encontrarla.</p>
                   </div>
                 </div>
               </li>
@@ -37,7 +37,7 @@
                   <em class="works-item-app-tag-3"></em>
                   <div>
                     <p>Encontrado</p>
-                    <p>Tna pronto como un usuario pase cerca de ella, te mandaremos la ubicci√≥n excta donde fue vista.</p>
+                    <p>Tan pronto como un usuario pase cerca de ella, te mandaremos la ubicaci®Æn excata donde fue vista.</p>
                   </div>
                 </div>
               </li>

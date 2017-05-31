@@ -157,7 +157,9 @@ return [
         App\Providers\RouteServiceProvider::class,
 
 	Barryvdh\DomPDF\ServiceProvider::class,
-	Anam\PhantomMagick\ConverterServiceProvider::class,
+	Laravel\Socialite\SocialiteServiceProvider::class,
+	//SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
+	//Anam\PhantomMagick\ConverterServiceProvider::class,
     ],
 
     /*
@@ -172,7 +174,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -204,8 +205,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        'Converter' => Anam\PhantomMagick\Facades\Converter::class,
-
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+    	//'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class,
+        //'Converter' => Anam\PhantomMagick\Facades\Converter::class,
     ],
 
 ];

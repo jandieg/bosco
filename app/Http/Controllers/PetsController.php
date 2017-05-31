@@ -23,7 +23,7 @@ class PetsController extends Controller {
             'status' => 'lost',
             'userid' => FALSE
         );
-        $reports = Report::getDataReports($parameters, TRUE, 10, 'mascotas/perdidos');
+        $reports = Report::getPublicReports($parameters, TRUE, 10, 'mascotas/perdidos');
         $departments = Ubigeo::getDataDepartments();
         $cities = Ubigeo::getDataCities(null);
         $districts = Ubigeo::getDataDistricts(null);
@@ -93,9 +93,9 @@ class PetsController extends Controller {
             $data['report']=['id'=>$report->id,'date'=>$report->date,'description'=>$report->description,'reward'=>$report->reward];
             $data['location']=['latitude'=>$location->latitude,'longitude'=>$location->longitude,'address'=>$location->address];
             $data['user']=['id'=>$user->id,'name'=>$user->name,'email'=>$user->email,'phone'=>$user->phone];
-            dd($data);
+            return response()->json($data);
         }else{
-            return dd('false');
+            return response()->json('false');
         }
     }
     public function foundPet($id){
@@ -109,9 +109,9 @@ class PetsController extends Controller {
             $data['report']=['id'=>$report->id,'date'=>$report->date,'description'=>$report->description,'reward'=>$report->reward];
             $data['location']=['latitude'=>$location->latitude,'longitude'=>$location->longitude,'address'=>$location->address];
             $data['user']=['id'=>$user->id,'name'=>$user->name,'email'=>$user->email,'phone'=>$user->phone];
-            dd($data);
+            return response()->json($data);
         }else{
-            return dd('false');
+            return response()->json('false');
         }
     }    
     public function getFoundPets($lat,$lon){
@@ -130,7 +130,7 @@ class PetsController extends Controller {
                 $data['user']=['id'=>$user->id,'name'=>$user->name,'email'=>$user->email,'phone'=>$user->phone];
             }
         }
-        dd($data);
+        return response()->json($data);
     }
     public function getLostPets($lat,$lon){
         $data=[];
@@ -148,6 +148,6 @@ class PetsController extends Controller {
                 $data['user']=['id'=>$user->id,'name'=>$user->name,'email'=>$user->email,'phone'=>$user->phone];
             }
         }
-        dd($data);
+        return response()->json($data);
     }
 }

@@ -10,9 +10,12 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['prefix'=>'api','middleware' => ['auth:api']], function(){
-    Route::get('login/{email}/{password}','Auth\ApiloginController@login');
+
+Route::group(['prefix'=>'api'], function(){   
+    Route::post('login','Auth\ApiloginController@login');
     Route::get('logout','Auth\ApiloginController@logout');
+});
+Route::group(['prefix'=>'api','middleware' => ['auth:api']], function(){
     Route::get('getLostPets/{lat}/{lon}','PetsController@getLostPets');
     Route::get('getFoundPets/{lat}/{lon}','PetsController@getFoundPets');
     Route::get('getpetinfo/{id}','PetsController@getPetInfo');

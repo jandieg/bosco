@@ -138,6 +138,7 @@ class AuthController extends Controller
                 'name' => $user_fb['first_name'],
                 'last_name' => $user_fb['last_name'],
                 'email' => $user_fb->getEmail(),
+            	'api_token' => str_random(60),
                 'password' => bcrypt(''),
             ]);
         }

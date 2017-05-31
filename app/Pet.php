@@ -48,7 +48,10 @@ class Pet extends Model
         $ubigeo = Ubigeo::where('id',$location->ubigeo_id)->first();
         $date_time=explode(' ',$report->date);
         $report_date=$date_time[0];
-        $report_time=$date_time[1];
+        $report_date=date("d M Y", strtotime($report_date));
+        $report_time=$date_time[1];        
+        $address=str_replace("Distrito de ","",$location->address);
+        $address=str_replace("Provincia de ","",$address);
         $data = [
             'user_name' => $user->name . ' ' . $user->last_name,
             'user_phone' => $user->phone,
@@ -63,7 +66,7 @@ class Pet extends Model
             'report_date' => $report_date,
             'report_time' => $report_time,
             'report_description' => $report->description,
-            'location_address' => $location->address,
+            'location_address' => $address,
             'location_latitude' => $location->latitude,
             'location_longitude' => $location->longitude,
             'ubigeo_department' => $ubigeo->department,

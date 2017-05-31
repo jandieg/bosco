@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 
 class ApiloginController extends Controller
 {
+
+
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -25,16 +27,31 @@ class ApiloginController extends Controller
     |
     */
 
-    public function login($email, $password)
+    public function login(Request $request)
     {        
-        $user=Auth::attempt(['email'=>$email, 'password'=>$password]);
-        if($user) dd(true); else dd(false);
+    	if($request->name){
+        	$user=Auth::attempt(['name'=>$request->name, 'password'=>$request->password]);
+        	$user=User::where('name',$request->name)->first();
+        	}
+        elseif($request->email){
+        	$user=Auth::attempt(['email'=>$request->email, 'password'=>$request->password]);     
+        	$user=User::where('email',$request->email)->first();
+        	}
+        if($user) 
+        {
+        	$data['name']=$user->name;
+        	$data['email']=$user->email;
+        	$data['api_token']=$user->api_token;
+        	return response()->json($data); 
+        }
+        else 
+        	return response()->json(false);
     }
     public function logout()
     {
         if(Auth::check()){
             Auth::logout();
         }
-        dd(false);
+        return response()->json(true);
     }
 }

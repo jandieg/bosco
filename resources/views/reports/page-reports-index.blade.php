@@ -22,7 +22,7 @@
                 <li>
                     <a data-toggle="modal" href='#' class="report-lost-add">
                     <em>+</em>
-                    <p>Reportar perdidos</p>
+                    <p>Reportar encontrado</p>
                   </a>
                 </li>
               @if(!empty($reports['lost']['data']))
@@ -68,7 +68,7 @@
               @foreach($reports['found']['data'] as $item)
               <li>
                 <div class="report-item-content">
-                  <img src="{{ asset('images/pets/' . $item['image']) }}" />
+                  <img src="{{ asset('images/pets/' . $item['image']) }}"  style="width:206px;height:206px;"/>
                   <div class="report-item-detail">
                     <h2>{{ $item['name'] }}</h2>
                     <p class="report-item-birthday">{{ $item['date'] }}</p>

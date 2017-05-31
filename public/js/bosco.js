@@ -1,4 +1,6 @@
-//$(document).ready(function () {    
+$('.numeric').keyup(function () { 
+    this.value = this.value.replace(/[^0-9\.]/g,'');
+});
 $(".link-user > span").on('click', function () {
     if ($(this).hasClass('active')) {
         $(this).removeClass('active');
@@ -91,13 +93,13 @@ $('#form-user .modal-footer a').click(function () {
 });
 
 $('#datepicker').datetimepicker({
-    format: "YYYY-MM-DD"
+    format: "DD MMMM YYYY"
 });
 $('#timepicker').datetimepicker({
-    format: "H:mm:ss"
+    format: "H:mm"
 });
 
-function gallery_item_over(id, status){    
+function gallery_item_over(id, status) {
     $("#pet-detail").modal().show();
     $('.pet-detail-image').html('');
     $('.pet-detail-location').html('');
@@ -232,48 +234,51 @@ locationsCity.on('change', function (e) {
     });
 });
 
-function search_results(){
-    var department=$('#ubigeo-department').val();
-    var city=$('#ubigeo-city').val();
-    var district=$('#ubigeo-district').val();
+var locationsDistrict = $('#ubigeo-district');
+locationsDistrict.on('change', function (e) {
+    var department = '';
+    var city = '';
+    var district = $('#ubigeo-district').val();
     $.ajax({
         type: "GET",
         url: window.location.origin + '/search-pets',
         dataType: 'json',
         cache: false,
-        data: {department:department, city:city, district: district},
+        data: {department: department, city: city, district: district},
         success: function (data) {
-            var li_html='';
+            var li_html = '';
             if (data.data) {
                 var gallery_class_name, gallery_event;
-                if($('ul.pets-list')) 
+                if ($('ul.pets-list'))
                 {
-                    gallery_class_name='gallery-item-hover';
-                    gallery_event="gallery_item_over";
+                    gallery_class_name = 'gallery-item-hover';
+                    gallery_event = "gallery_item_over";
                 }
-                if($('ul.home-pets-list').parent().attr('id')=='home_gallery_ul_parent'){ 
-                    gallery_class_name='gallery-div-hover';
-                    gallery_event="item_detail_view";
-                }        
-                for(var i=0;i<data.data.length;i++){
-                    li_html+='<li><a data-toggle="modal"><img src="/images/pets/' + data.data[i]['image']+'">';
-                    li_html+='<div class="'+gallery_class_name+'" onclick="'+gallery_event+'(' + data.data[i]['id']+')">';
-                    li_html+='<p>' + data.data[i]['description']+'</p>';
-                    li_html+='</div>';
-                    li_html+='<div class="gallery-item-detail">';
-                    li_html+='<h2>' + data.data[i]['name']+'</h2>';
-                    li_html+='<p class="gallery-item-birthday">' + data.data[i]['date']+'</p>';
-                    li_html+='<p class="gallery-item-location">' + data.data[i]['address']+'</p>';
-                    li_html+='</div>';
-                    li_html+='</a>';
-                    li_html+='</li>';
-                }                    
-                if($('ul.pets-list')) $('ul.pets-list').html(li_html);
-                if($('ul.home-pets-list')) $('ul.home-pets-list').html(li_html);
+                if ($('ul.pets-list').parent().attr('id') == 'home_gallery_ul_parent') {
+                    gallery_class_name = 'gallery-div-hover';
+                    gallery_event = "item_detail_view";
+                }
+                for (var i = 0; i < data.data.length; i++) {
+                    li_html += '<li><a data-toggle="modal"><img src="/images/pets/' + data.data[i]['image'] + '">';
+                    li_html += '<div class="gallery-item-hover" onclick="gallery_item_over(' + data.data[i]['id'] + ')">';
+                    li_html += '<p>' + data.data[i]['description'] + '</p>';
+                    li_html += '</div>';
+                    li_html += '<div class="gallery-item-detail">';
+                    li_html += '<h2>' + data.data[i]['name'] + '</h2>';
+                    li_html += '<p class="gallery-item-birthday">' + data.data[i]['date'] + '</p>';
+                    li_html += '<p class="gallery-item-location">' + data.data[i]['address'] + '</p>';
+                    li_html += '</div>';
+                    li_html += '</a>';
+                    li_html += '</li>';
+                }
+                if ($('ul.pets-list'))
+                    $('ul.pets-list').html(li_html);
+                if ($('ul.pets-list'))
+                    $('ul.pets-list').html(li_html);
             }
         }
     });
-}
+});
 
 var reportLostAdd = $('.report-lost-add');
 reportLostAdd.on('click', function (e) {
@@ -285,17 +290,29 @@ reportLostAdd.on('click', function (e) {
     $("#form-report-lost").find('.modal-content').css('top', '50vh');
     $("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
     Initialize_Report();
+    var pac_html = "<input type='text' id='pac-input'></input>";
+    $("#pac-input-div").html(pac_html);
 });
 var reportFoundAdd = $('.report-found-add');
 reportFoundAdd.on('click', function (e) {
     map_initial = true;
     $("#form-report-lost #pet_found_radio").prop("checked", true);
-    $("#form-report-lost #name_div").hide();
+    //$("#form-report-lost #name_div").hide();
     $("#form-report-lost").modal().show();
     var margin_top = $("#form-report-lost").find('.modal-content').outerHeight() / 2;
     $("#form-report-lost").find('.modal-content').css('top', '50vh');
     $("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
     Initialize_Report()
+    var pac_html = "<input type='text' id='pac-input'></input>";
+    $("#pac-input-div").html(pac_html);
+});
+$('#report_tab_1').on('click', function () {
+    var pac_html = "<input type='text' id='pac-input'></input>";
+    $("#pac-input-div").html(pac_html);
+});
+$('#report_tab_3').on('click', function () {
+    var pac_html = "<input type='text' id='pac-input'></input>";
+    $("#pac-input-div").html(pac_html);
 });
 function Initialize_Report()
 {
@@ -364,19 +381,19 @@ var submitReport = $('.btn-submit-report');
 submitReport.on('click', function (e) {
     e.preventDefault();
     var cropcanvas = $('#cropper-image').cropper('getCroppedCanvas');
-    if(!cropcanvas) {
-        alert('Elija una imagen del animal doméstico en su computadora, por favor');        
-        $("#form-report-lost-tab-1").removeClass('hide');
-        $("#form-report-lost-tab-2").addClass('hide');
-        $("#form-report-lost-tab-3").addClass('hide');
-        $("#tab-1").addClass('tab-on');
-        $("#tab-2").removeClass('tab-on');
-        $("#tab-3").removeClass('tab-on');
-        return false;
+    if($(".preview-img").css('background-image')=='' && !cropcanvas && $('#report_id').val()=='') {
+	alert('Elija una imagen del animal doméstico en su computadora, por favor');
+	$("#form-report-lost-tab-1").removeClass('hide');
+	$("#form-report-lost-tab-2").addClass('hide');
+	$("#form-report-lost-tab-3").addClass('hide');
+	$("#tab-1").addClass('tab-on');
+	$("#tab-2").removeClass('tab-on');
+	$("#tab-3").removeClass('tab-on');
+	return false;
     }
-    var address=$('#form-report-lost-form').find("#pac-input").val();
-    if(!address) {
-        alert('Seleccionar área en el mapa, por favor');        
+    var address = $("#pac-address").val();
+    if (!address) {
+        alert('Seleccionar área en el mapa, por favor');
         $("#form-report-lost-tab-1").addClass('hide');
         $("#form-report-lost-tab-2").removeClass('hide');
         $("#form-report-lost-tab-3").addClass('hide');
@@ -431,7 +448,7 @@ submitSubscription.submit(function (e) {
 var submitRegister = $('#form-user-register').find('form');
 submitRegister.submit(function (e) {
     e.preventDefault();
-    var data=submitRegister.serialize();
+    var data = submitRegister.serialize();
     var $this = $(this);
     $.ajax({
         type: "POST",
@@ -440,8 +457,8 @@ submitRegister.submit(function (e) {
         cache: false,
         data: data,
         success: function (data) {
-            if(data.url) 
-                window.location.href=data.url;
+            if (data.url)
+                window.location.href = data.url;
             else
             {
                 $('#register-message').show();
@@ -487,7 +504,7 @@ $("#download_report").parent().on("mouseleave", function () {
     $("#download_report_div").addClass('hide');
 })
 $("#download_report_div").on("mouseleave", function () {
-    $("#download_report_div").addClass('hide');    
+    $("#download_report_div").addClass('hide');
 })
 //});
 
@@ -497,6 +514,7 @@ var init_latitude, init_longitude;
 var latitude, longitude;
 var map_initial = false;
 function initMap() {
+    var lat,lon;
     init_latitude = -12.038601;
     init_longitude = -77.058927;
     lost_map = new google.maps.Map(document.getElementById('pet-lost-map'), {
@@ -504,15 +522,26 @@ function initMap() {
         zoom: 15,
         disableDefaultUI: true
     });
-    lost_marker = new google.maps.Marker({
-        position: {lat: init_latitude, lng: init_longitude},
-        draggable: true,
-        animation: google.maps.Animation.DROP,
-    });
-    lost_marker.setMap(lost_map);
-    google.maps.event.addListener(lost_marker, 'dragend', function (e) {
-        var lat = e.latLng.lat();
-        var lon = e.latLng.lng();
+    google.maps.event.addListener(lost_map, 'rightclick', function (e) {
+        lat = e.latLng.lat();
+        lon = e.latLng.lng();
+        lost_marker.setMap(null);
+        lost_marker = new google.maps.Marker({
+            position: {lat: lat, lng: lon},
+            draggable: true,
+            animation: google.maps.Animation.DROP
+        });
+        google.maps.event.addListener(lost_marker, 'dragend', function (e) {
+            lat = e.latLng.lat();
+            lon = e.latLng.lng();
+            displayLocation(lat, lon, lost_map);
+        });
+        lost_marker.setMap(lost_map);
+        google.maps.event.addListener(lost_marker, 'dragend', function (e) {
+            lat = e.latLng.lat();
+            lon = e.latLng.lng();
+            displayLocation(lat, lon, lost_map);
+        });
         displayLocation(lat, lon, lost_map);
     });
     detail_map = new google.maps.Map(document.getElementById('pet-detail-map'), {
@@ -526,17 +555,104 @@ function initMap() {
         animation: google.maps.Animation.DROP,
     });
     detail_marker.setMap(detail_map);
-    google.maps.event.addListener(detail_marker, 'dragend', function (e) {
-        var lat = e.latLng.lat();
-        var lon = e.latLng.lng();
-        displayLocation(lat, lon, detail_map);
+    google.maps.event.addListener(detail_marker, 'click', function (e) {
+        lat = e.latLng.lat();
+        lon = e.latLng.lng();
+        //displayLocation(lat, lon, detail_map);
+    });        // Create the search box and link it to the UI element.
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    lost_map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    // Bias the SearchBox results towards current map's viewport.
+    lost_map.addListener('bounds_changed', function () {
+        searchBox.setBounds(lost_map.getBounds());
+    });
+
+    var markers = [];
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener('places_changed', function () {
+        var places = searchBox.getPlaces();
+
+        if (places.length == 0) {
+        	alert('No hay ninguna dirección con el mismo nombre que el texto de entrada');
+            	return;
+        }
+        else if (places.length == 1) 
+        {
+	        var lat = places[0].geometry.location.lat();
+		var lon = places[0].geometry.location.lng();  
+	        lost_marker.setMap(null);
+	        lost_marker = new google.maps.Marker({
+	            position: {lat: lat, lng: lon},
+	            draggable: true,
+	            animation: google.maps.Animation.DROP
+	        });
+	        google.maps.event.addListener(lost_marker, 'dragend', function (e) {
+	            lat = e.latLng.lat();
+	            lon = e.latLng.lng();
+	            displayLocation(lat, lon, lost_map);
+	        });
+	        lost_marker.setMap(lost_map);
+	        google.maps.event.addListener(lost_marker, 'dragend', function (e) {
+	            lat = e.latLng.lat();
+	            lon = e.latLng.lng();
+	            displayLocation(lat, lon, lost_map);
+        	});        	
+        	displayLocation(lat, lon, lost_map);
+        }
+        else
+        {
+            alert('Hay varias direcciones con el mismo nombre que el texto de entrada');
+            return;
+        }
+        /*
+        // Clear out the old markers.
+        markers.forEach(function (marker) {
+            marker.setMap(null);
+        });
+        markers = [];
+
+        // For each place, get the icon, name and location.
+        var bounds = new google.maps.LatLngBounds();
+        places.forEach(function (place) {
+            if (!place.geometry) {
+                console.log("Returned place contains no geometry");
+                return;
+            }
+            var icon = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+                map: lost_map,
+                icon: icon,
+                title: place.name,
+                position: place.geometry.location,
+                type: ['route']
+            }));
+
+            if (place.geometry.viewport) {
+                // Only geocodes have viewport.
+                bounds.union(place.geometry.viewport);
+            } else {
+                bounds.extend(place.geometry.location);
+            }
+        });
+        lost_map.fitBounds(bounds);*/
     });
 }
 function displayLocation(latitude, longitude, map) {
     var geocoder;
     geocoder = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(latitude, longitude);
-
+    map.setCenter(latlng);
     geocoder.geocode(
             {'latLng': latlng},
             function (results, status) {
@@ -550,11 +666,11 @@ function displayLocation(latitude, longitude, map) {
                         var city = extractFromAdress(results[0].address_components, "locality");
                         var department = extractFromAdress(results[0].address_components, "administrative_area_level_2");
                         var country = extractFromAdress(results[0].address_components, "country");
-                        document.getElementById('pac-input').value = street_number + ", " + district + ", " + city + ", " + department;// address;
+                        document.getElementById('pac-input').value = street_number + " " + district + " " + city + " " + department;
                         document.getElementById('pac-department').value = department;
                         document.getElementById('pac-city').value = city;
                         document.getElementById('pac-district').value = district;
-                        document.getElementById('pac-address').value = street_number + ", " + district + ", " + city + ", " + department;
+                        document.getElementById('pac-address').value = street_number + " " + district + " " + city + " " + department;
                         document.getElementById('pac-latitude').value = latitude;
                         document.getElementById('pac-longitude').value = longitude;
                         document.getElementById('pac-postal_code').value = postal_code;
@@ -567,6 +683,10 @@ function displayLocation(latitude, longitude, map) {
             }
     );
 }
+$("#pac-input").on("blur", function () {
+    var address = $(this).val();
+    $("#pac-address").val(address);
+});
 function extractFromAdress(components, type) {
     for (var i = 0; i < components.length; i++)
         for (var j = 0; j < components[i].types.length; j++)
@@ -595,7 +715,7 @@ function loadPets() {
     });
 }
 
-var w_total = $('.pets-list').width();
+var w_total = $('#pets-list').width();
 var w_view = $(window).width() * 0.8;
 var cnt_pets = parseInt(w_view / 205);
 var w_gallery = cnt_pets * 205 + 95;
@@ -733,7 +853,7 @@ $('#cropper-confirm').on('click', function () {
             height: h
         });
     } else if (h > 600) {
-        croppedCanvas = $('#cropper-image').cropper('getCroppedCanvas', {
+        cropped = $('#cropper-image').cropper('getCroppedCanvas', {
             width: w,
             height: 600
         });
@@ -786,7 +906,7 @@ $('#pet_lost_radio').on('click', function () {
     $("#form-report-lost").find('#pet_lost_radio').prop("checked", true);
 });
 $('#pet_found_radio').on('click', function () {
-    $("#form-report-lost").find('#name_div').hide();
+    //$("#form-report-lost").find('#name_div').hide();
     $("#form-report-lost").find('#pet_found_radio').prop("checked", true);
 });
 function edit_pet_detail(id, status)
@@ -815,7 +935,9 @@ function edit_pet_detail(id, status)
         cache: false,
         data: {report_id: id, status: status},
         success: function (data) {
-            if (data) {
+            if (data) {                
+                var pac_html = "<input type='text' id='pac-input'></input>";
+                $("#pac-input-div").html(pac_html);
                 $("#lost_pet_file").parent().hide();
                 $(".upload-image-lost-preview").show();
                 $('.upload-image-lost-preview .preview-img').attr('style', 'background-image:url("/images/pets/' + data.pet.pet_image + '")');
@@ -840,21 +962,24 @@ function edit_pet_detail(id, status)
                 var margin_top = $("#form-report-lost").find('.modal-content').outerHeight() / 2;
                 $("#form-report-lost").find('.modal-content').css('top', '50vh');
                 $("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
-                if (lost_marker)
-                    lost_marker.setMap(null);
-                lost_marker = new google.maps.Marker({
-                    position: {lat: latitude, lng: longitude},
-                    draggable: true,
-                    animation: google.maps.Animation.DROP,
-                });
-                lost_marker.setMap(lost_map);
-                lost_map.addListener('click', toggleBounce);
-                lost_map.setCenter(new google.maps.LatLng(latitude, longitude));
-                lost_map.setZoom(15);
+//                if (lost_marker)
+//                    lost_marker.setMap(null);
+//                lost_marker = new google.maps.Marker({
+//                    position: {lat: latitude, lng: longitude},
+//                    draggable: true,
+//                    animation: google.maps.Animation.DROP,
+//                });
+//                lost_marker.setMap(lost_map);
+//                lost_map.addListener('click', toggleBounce);
+//                lost_map.setCenter(new google.maps.LatLng(latitude, longitude));
+//                lost_map.setZoom(15);
             }
         }
     });
 }
+$("#goto_map_tab").on('click', function(){
+    Map_correction();
+});
 function Map_correction()
 {
     var lat, lon;
@@ -872,11 +997,16 @@ function Map_correction()
             position: {lat: lat, lng: lon},
             draggable: true,
             animation: google.maps.Animation.DROP,
+        });        
+        google.maps.event.addListener(lost_marker, 'dragend', function (e) {
+            lat = e.latLng.lat();
+            lon = e.latLng.lng();
+            displayLocation(lat, lon, lost_map);
         });
         lost_marker.setMap(lost_map);
         lost_map.setCenter(new google.maps.LatLng(lat, lon));
         lost_map.setZoom(15);
-        google.maps.event.addListener(lost_marker, 'dragend', function (e) {
+        google.maps.event.addListener(lost_marker, 'rightclick', function (e) {
             var lat = e.latLng.lat();
             var lon = e.latLng.lng();
             displayLocation(lat, lon, lost_map);

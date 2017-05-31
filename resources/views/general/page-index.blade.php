@@ -1,4 +1,4 @@
-﻿@extends('layouts.home')
+@extends('layouts.home')
 @section('content')
 <section id="content" class="bg-home">
   <div id="page-home" class="container-fluid">
@@ -6,6 +6,8 @@
     <!-- Block Video -->
     <div class="row">
       <div class="block-video">
+      	<img style='position:absolute;width:100%;height:auto;bottom:0px;' src='/img/bg.jpg'>      	
+      	<div style='position:absolute;width:100%;height:100vh;top:0px;z-index:1;'></div>
         <div class="arrow-down"></div>
         <div class="block-video-content">
           <p>Un amor tan grande, no merece ser separado</p>
@@ -45,8 +47,8 @@
                     <div class="block-works-item-tag clearfix">
                       <img src="../img/Icono_1.png">
                       <div>
-                        <strong>1 - Mascotas perdidas</strong>
-                        <p>Ingresa a la sección mascotas perdidas" en la parte superior.</p>
+                        <p>1 - Mascotas perdidas</p>
+                        <p>Ingresa a la sección de "Mascotas perdidas" en la parte superior.</p>
                       </div>
                     </div>
                   </div>
@@ -54,7 +56,7 @@
                     <div class="block-works-item-tag clearfix">
                       <img src="../img/Icono_2.png">
                       <div>
-                        <strong>2 - Selecciona el tipo de reporte</strong>
+                        <p>2 - Selecciona el tipo de reporte</p>
                         <p>Selecciona el tipo de reporte a generar; mascota perdida o mascota encontrada.</p>
                       </div>
                     </div>
@@ -63,7 +65,7 @@
                     <div class="block-works-item-tag clearfix">
                       <img src="../img/Icono_3.png">
                       <div>
-                        <strong>3-Rellena tus datos</strong>
+                        <p>3-Rellena tus datos</p>
                         <p>Completa tus datos, Ios de tu mascota, los detalles del reporte y listo.</p>
                       </div>
                     </div>
@@ -72,7 +74,7 @@
                     <div class="block-works-item-tag clearfix">
                       <img src="../img/Icono_4.png">
                       <div>
-                        <strong>4 - Volante al instante</strong>
+                        <p>4 - Volante al instante</p>
                         <p>Adicional, se genera un volante que puedes imprimir y/o compartir en redes sociales.</p>
                       </div>
                     </div>

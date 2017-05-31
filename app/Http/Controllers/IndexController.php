@@ -14,7 +14,7 @@ class IndexController extends Controller {
         $parameters = array(
             'userid' => FALSE
         );
-        $reports = Report::getDataReports($parameters, TRUE, 50, 'mascotas/perdidos');
+        $reports = Report::getPublicReports($parameters, TRUE, 50, 'mascotas/perdidos');
         $departments = Ubigeo::getDataDepartments();
         $cities = Ubigeo::getDataCities(null);
         $districts = Ubigeo::getDataDistricts(null);

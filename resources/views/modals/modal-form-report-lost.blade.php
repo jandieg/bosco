@@ -1,3 +1,78 @@
+<style>
+
+      #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }
+
+      #infowindow-content .title {
+        font-weight: bold;
+      }
+
+      #infowindow-content {
+        display: none;
+      }
+
+      #map #infowindow-content {
+        display: inline;
+      }
+
+      .pac-card {
+        margin: 10px 10px 0 0;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        font-family: Roboto;
+      }
+
+      .pac-container {
+        padding-bottom: 12px;
+        margin-right: 12px;
+        z-index:20000 !important;
+      }
+
+      .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+      }
+
+      .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-top:0px;
+        width:100% !important;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+
+      #title {
+        color: #fff;
+        background-color: #4d90fe;
+        font-size: 25px;
+        font-weight: 500;
+        padding: 6px 12px;
+      }
+      #target {
+        width: 345px;
+      }
+</style>
 <div id="form-report-lost" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
   <div class="modal-form-report modal-content">
     <div class="modal-header">
@@ -5,17 +80,17 @@
       <div class="modal-form-report-menu">
         <ul class="text-center">
           <li id="report_tab_1"><span id="tab-1" data-tab="tab-1" class="tab-on"><em>1</em>Mascota</span></li>
-          <li onclick="Map_correction();"><span id="tab-2" data-tab="tab-2"><em>2</em>Reporte</span></li>
-          <li><span id="tab-3" data-tab="tab-3"><em>3</em>Dueño</span></li>
+          <li id="report_tab_2" onclick="Map_correction();"><span id="tab-2" data-tab="tab-2"><em>2</em>Reporte</span></li>
+          <li id="report_tab_3"><span id="tab-3" data-tab="tab-3"><em>3</em>Dueño</span></li>
         </ul>
       </div>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" style='height:420px;'>
       <form id="form-report-lost-form" action="" method="post">
         <div class="row">
           <div id="form-report-lost-tab-1" class="form-report-lost-tab">
             <div class="col-lg-6 col-md-6">
-              <div class="form-group" style="margin-bottom: 32px;">
+              <div class="form-group">
                 <label>Estado</label>
                 <div class="pet-type">
                     <input type="radio" name="pet_status" id="pet_lost_radio" value="lost">
@@ -31,10 +106,11 @@
               </div>
               <div class="form-group" style="margin-bottom: 32px;">
                 <label>Raza</label>
-                <select class="form-control" name="lost_pet_race" id="lost_pet_race">
+                <input type="text" name="lost_pet_race" id="lost_pet_race" class="form-control">
+                <!--select class="form-control" name="lost_pet_race" id="lost_pet_race">
                   <option value="dog">Perro</option>
                   <option value="cat">Gato</option>
-                </select>
+                </select-->
               </div>
               <div class="form-group">
                 <label>Género</label>
@@ -64,7 +140,7 @@
             </div>
             <div class="col-lg-12 col-md-12 center-block">
               <div class="form-group form-actions">
-                <button type="button" data-tab="tab-2" class="btn btn-primary btn-button btn-lg btn-next">Siguiente</button>
+                <button id="goto_map_tab" type="button" data-tab="tab-2" class="btn btn-primary btn-button btn-lg btn-next">Siguiente</button>
               </div>
             </div>
           </div>
@@ -82,14 +158,15 @@
                 </div>
               </div>
               <div class="form-group">
-                <label>Cómo se perdió tu mascota:</label><span class="help-block">(150 caracteres max)</span>
-                <textarea name="lost_pet_report_description" maxlength=150 id="lost_pet_report_description" class="form-control" rows="8"></textarea>
+                <label>Descripción del reporte</label>
+                <p class="help-block">(150 caracteres max)</p>
+                <textarea name="lost_pet_report_description" id="lost_pet_report_description" class="form-control" rows="8"></textarea>
               </div>
             </div>
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
                 <label>Última vez visto</label>
-                <input type="text" disabled id="pac-input" class="form-control">
+                <div id='pac-input-div'><input type="text" id="pac-input" class="form-control"></div>
                 <input type="hidden" name="lost_pet_last_address" id="pac-address" class="form-control">
                 <input type="hidden" name="lost_pet_department" id="pac-department" class="form-control">
                 <input type="hidden" name="lost_pet_city" id="pac-city" class="form-control">
@@ -97,8 +174,7 @@
                 <input type="hidden" name="lost_pet_latitude" id="pac-latitude" class="form-control">
                 <input type="hidden" name="lost_pet_longitude" id="pac-longitude" class="form-control">
                 <input type="hidden" name="lost_pet_postal_code" id="pac-postal_code" class="form-control">
-                <!--iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.7172994695616!2d-77.07001798571204!3d-11.99405284418647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105ce576243f53f%3A0xaae76d5bd5892e99!2sArguedas%2C+Lima+15301!5e0!3m2!1ses-419!2spe!4v1464324577124" width="100%" height="206" frameborder="0" style="border:0" allowfullscreen></iframe-->
-                <div id="pet-lost-map" style="width:100%;">
+                <div id="pet-lost-map" style="width:100%;height:300px;">
                  </div>
               </div>
             </div>
@@ -111,23 +187,26 @@
           <div id="form-report-lost-tab-3" class="form-report-lost-tab hide">
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
-                <label>Nombre del dueño</label>
-                <input type="text" name="lost_pet_owner_name" disabled="disabled" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
+                <label>Nombre de dueño</label>
+                <input type="text" name="lost_pet_owner_name" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
               </div>
               <div class="form-group">
-                <label>Número de teléfono</label>
-                <input type="tel" name="lost_pet_contact_name" disabled="disabled" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
+                <label>Nombre de contacto</label>
+                <input type="text" name="lost_pet_contact_name" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
               </div>
               <div class="form-group">
-                <label>Recompensa</label>  <p class="description-block" style="float:right; color:#E63A38;margin:0">Opcional*</p>
-                <input type="numeric" name="lost_pet_reward" id="lost_pet_reward" placeholder="S/." class="form-control">
-               
+                <label>Recompensa</label>
+                <div style='margin-top:20px;'>
+                <span class="help-block" style="text-align:right;width:30px;">S/.</span>
+                <input type="text" name="lost_pet_reward" id="lost_pet_reward" class="form-control numeric" style='padding-left:40px;margin-top:-35px;'>
+                </div>
+                <p class="description-block">Opcional*</p>
               </div>
             </div>
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
-                <label>Mail de contacto</label>
-                <input type="text" name="lost_pet_contact_email" disabled="disabled" class="form-control" value="{{ Auth::user()? Auth::user()->email:'' }}">
+                <label>Email de contacto #1</label>
+                <input type="text" name="lost_pet_contact_email" class="form-control" value="{{ Auth::user()? Auth::user()->email:'' }}">
               </div>
             </div>
             <div class="col-lg-12 col-md-12 center-block">

@@ -19,7 +19,7 @@ class CreateReportsTable extends Migration
             $table->timestamp('date');
             $table->string('description', 255);
             $table->string('status', 45);
-            $table->decimal('reward', 6,2);
+            $table->integer('reward');
             $table->string('code_qr', 255);
             $table->timestamps();
 //            $table->foreign('pet_id')->references('id')->on('pets')->onUpdate('CASCADE');

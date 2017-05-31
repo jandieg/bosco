@@ -43,21 +43,21 @@
         <div class="form-group">
           <select id="ubigeo-city" class="form-control" name="city">
             <option value="" selected="">Ciudad</option>
-            @if($cities)
+            <!--@if($cities)
             @foreach($cities as $city)
             <option value="{{ $city['city'] }}">{{ $city['city'] }}</option>
             @endforeach
-            @endif
+            @endif-->
           </select>
         </div>
         <div class="form-group">
           <select id="ubigeo-district" class="form-control" name="district">
             <option value="" selected="">Distrito</option>
-            @if($cities)
+            <!--@if($cities)
             @foreach($districts as $district)
             <option value="{{ $district['district'] }}">{{ $district['district'] }}</option>
             @endforeach
-            @endif
+            @endif-->
           </select>
         </div>
         <div class="form-group form-actions pull-right">

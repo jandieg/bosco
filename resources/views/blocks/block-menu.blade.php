@@ -1,4 +1,4 @@
-<header>
+<header style='z-index:1000;'><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
 
   <!-- Header Top -->
   <div class="header-top">
@@ -25,10 +25,10 @@
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav text-center">
                   <li class="first">
-                    <a href="{{ url('/mascotas')}}" {{ (Request::is('mascotas') || Request::is('mascotas/*'))  ? ' class = "active"' : null }}>Mascotas perdidas</a>
+                    <a href="{{ url('/mascotas')}}" {{ (Request::is('mascotas') || Request::is('mascotas/*'))  ? ' class = "active"' : null }}>Mascotas</a>
                   </li>
                   <li>
-                    <a href="{{ url('/como-funciona')}}" {{ (Request::is('como-funciona') || Request::is('como-funciona/*'))  ? ' class = "active"' : null }}>¿Quiénes somos?</a>
+                    <a href="{{ url('/como-funciona')}}" {{ (Request::is('como-funciona') || Request::is('como-funciona/*'))  ? ' class = "active"' : null }}>¿Como funciona?</a>
                   </li>
                   <li class="last">
                    <!-- <a href="{{ url('/ayuda')}}" {{ (Request::is('ayuda') || Request::is('ayuda/*'))  ? ' class = "active"' : null }}>Ayuda</a>-->

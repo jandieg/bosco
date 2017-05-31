@@ -8,39 +8,69 @@
     <title>Perdido</title>
     <link rel="stylesheet" type="text/css" href="{{ url('css/yui-reset.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('css/bosco.css') }}">
+    <style>
+    html{
+    	margin:0px;
+    }
+    .pdf-report-phone {
+	position: relative;
+	background-color: rgba(0, 0, 0, 0.4);
+	color: #fff;
+	display: block;
+	font-size:40px;
+	padding-top:5px;
+	line-height: 1;
+	height: 55px;
+	padding-bottom:25px;
+	margin-top: -140px;
+	text-align: center;
+	width: 100%;
+	z-index: 1040;
+	}
+	.modal-report-detail-footer {
+	  position: fixed;
+	  background-color:white;
+	  top:1020px;
+	  height:55px;
+	  border-top: 2px solid #d6d6d6;
+	}	
+	.logo-gray {
+	  background: url('../img/sprite.png') no-repeat 0 -39px;
+	  height: 26px;
+	  width: 90px;
+	}
+    </style>
 </head>
-<body>
+<body style='background-color:white;margin:0px;'>
 
-<div style="width:100%;margin:0 auto;">
+<div style="width:800px;height:1100px;margin:0 auto;">
       <div class="modal-report-detail-left" style="width:100%;">
-        <div class="modal-report-detail-image">
-          <div class="modal-report-title" style="height:80px;">
-            <h3 style="padding-top: 20px;padding-bottom: 20px;border-bottom: 1px solid white;">Perdido</h3>
-            <!--<div class="modal-report-data" style="z-index: 100;">-->
-               <h4>Nombre: <span class="report-detail-lost-name">{{ $report['name'] }}</span>&nbsp;&nbsp;&nbsp;
-                   Género: <span class="report-detail-lost-gender">{{ $report['gender'] }}</span>&nbsp;&nbsp;&nbsp;
-                   Raza: <span class="report-detail-lost-race">{{ $report['race'] }}</span>
-               </h4>
-            <!--</div>-->
+        <div class="pdf-report-detail-image">
+          <div class="pdf-report-title" style="height:170px;">
+            <p style="padding-top:80px;padding-bottom:20px;border-bottom: 2px solid white;font-size:100px;text-align:center;">Perdido</p>
+            <p style="padding-top:10px;">
+               <span style="font-size:20px;">Nombre: </span><span style="font-size:24px;">{{ $report['name'] }}&nbsp;|&nbsp;</span>
+               <span style="font-size:20px;">Género: </span><span style="font-size:24px;">{{ $report['gender'] }}&nbsp;|&nbsp;</span>
+               <span style="font-size:20px;">Raza: </span><span style="font-size:24px;">{{ $report['race'] }}</span>
+            </p>
           </div>
-          <span class="report-detail-lost-image">
-            <img src="{{ asset('images/pets/'.$report['image']) }}" style="width:100%;">
-          </span>
-          <!--<span class="report-detail-lost-phone">-->
-            <a class="report-phone" href="#" style="font-size: 36px;padding-top:15px;opacity: 0.5;height:25px;">{{ $report['user_phone'] }}</a>
-          <!--</span>-->
+          <div style='text-align:right;height:49px;float:right;background-color:black;color:white;margin-top:1px;padding:20px 20px 0px 20px;'>
+          <span style="font-size:24px;">recompansa:&nbsp;</span><span style="font-size:27px;">S/.&nbsp;{{ $report['reward'] }}</span>
+          </div>
+          <img src="{{ asset('images/pets/'.$report['image']) }}" style="width:100%;top:-51px;">
+          <div class='pdf-report-phone'><img src="{{ url('/img/phone.png')}}" style="padding-top:25px;width:40px;height:auto;">&nbsp;&nbsp;{{ $report['user_phone'] }}</div>
         </div>
-        <div class="modal-report-detail-data clearfix" style="height:75px;">
-          <div style="padding:10px;width:50%;float:left;font-size: 20px;">
-              <img src="{{ url('/img/calendar.png')}}" style="padding:5px;">{{ $report['date'] }}
+        <div class="pdf-report-detail-data clearfix" style="position:relative;background-color:white;height:75px;padding-top:0px;top:-55px;" >
+          <div style="width:50%;float:left;font-size: 20px;">
+              <img src="{{ url('/img/calendar.png')}}" style="padding-left:30px;padding-top:28px;">&nbsp;&nbsp;{{ $report['date'] }}
           </div>
-          <div style="padding:10px;width:50%;float:right;font-size: 20px;">
-              <img src="{{ url('/img/location.png')}}" style="padding:5px;">{{ $report['address'] }}
+          <div style="width:50%;float:right;font-size: 20px;">
+              <img src="{{ url('/img/location.png')}}" style="padding-left:20px;padding-top:28px;">&nbsp;&nbsp;{{ $report['address'] }}
           </div>
         </div>
         <div class="modal-report-detail-footer">
           <div class="logo-gray" style="padding-right: 2px;"></div>
-          <p style="margin-right: 100px;font-size: 16px;">¡Compartiendo la publicación ayudas a reunir una familia! Ayuda a encontrar mascotas perdidas y reportar mascotas encontradas entrando a www.bosco.pe</p>
+          <p style="margin-right: 100px;font-size: 20px;">¡Compartiendo la publicación ayudas a reunir una familia! Ayuda a encontrar mascotas perdidas y reportar mascotas encontradas entrando a www.bosco.pe</p>
         </div>
       </div>
 </div>
