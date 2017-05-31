@@ -45,7 +45,7 @@
                     <div class="block-works-item-tag clearfix">
                       <img src="../img/Icono_1.png">
                       <div>
-                        <p>1 - Mascotas perdidas</p>
+                        <strong>1 - Mascotas perdidas</strong>
                         <p>Ingresa a la secci...... mascotas perdidas" en la parte superior.</p>
                       </div>
                     </div>
@@ -54,7 +54,7 @@
                     <div class="block-works-item-tag clearfix">
                       <img src="../img/Icono_2.png">
                       <div>
-                        <p>2 - Selecciona el tipo de reporte</p>
+                        <strong>2 - Selecciona el tipo de reporte</strong>
                         <p>Selecciona el tipo de reporte a generar; mascota perdida o mascota encontrada.</p>
                       </div>
                     </div>
@@ -63,7 +63,7 @@
                     <div class="block-works-item-tag clearfix">
                       <img src="../img/Icono_3.png">
                       <div>
-                        <p>3-Rellena tus datos</p>
+                        <strong>3-Rellena tus datos</strong>
                         <p>Completa tus datos, Ios de tu mascota, los detalles del reporte y listo.</p>
                       </div>
                     </div>
@@ -72,7 +72,7 @@
                     <div class="block-works-item-tag clearfix">
                       <img src="../img/Icono_4.png">
                       <div>
-                        <p>4 - Volante al instante</p>
+                        <strong>4 - Volante al instante</strong>
                         <p>Adicional, se genera un volante que puedes imprimir y/o compartir en redes sociales.</p>
                       </div>
                     </div>
