@@ -2733,7 +2733,7 @@ footer .block-socialnetwork li a.link-instagran {
     margin-top: -10px;
   }
   .block-video {
-    height: 250px;
+    height: 100vh;
   }
   .block-video-content {
     padding-top: 80px;
