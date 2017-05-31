@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-datetimepicker.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bosco.css') }}">
+	<link rel="apple-touch-icon" href="img/Icono.jpg">
   </head>
   <body id="home-page">
 
