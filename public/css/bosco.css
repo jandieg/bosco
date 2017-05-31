@@ -1080,21 +1080,23 @@ a.btn-video:hover {
   border-bottom: 2px solid #1AA344 !important;
 }
 
-.block-reports li a.report-lost-add{
-  background: #F9F9F9;
-  display: inline-block;
-  height: 380px;
-  padding-top: 160px;
-  text-align: center;
-  width: 206px;
+.block-reports li a.report-lost-add {
+    background: #F9F9F9;
+    display: inline-block;
+    height: 380px;
+    padding-top: 160px;
+    text-align: center;
+    width: 206px;
+    color: #B4C0C6;
 }
 .block-reports li a.report-found-add {
-  background: #F9F9F9;
-  display: inline-block;
-  height: 380px;
-  padding-top: 160px;
-  text-align: center;
-  width: 206px;
+    background: #F9F9F9;
+    display: inline-block;
+    height: 380px;
+    padding-top: 160px;
+    text-align: center;
+    width: 206px;
+    color: #B4C0C6;
 }
 .block-reports li a.report-lost-add em {
   border: 3px solid #b7b7b7;
@@ -1240,7 +1242,7 @@ a.btn-video:hover {
 }
 
 .block-help {
-  background-image: url("../img/bg-subscription.png");
+  
   position: relative;
   background-size: 100%;
 }
@@ -1274,9 +1276,10 @@ a.btn-video:hover {
 }
 
 .block-help .block-help-container .block-help-title h5{
-  padding-top: 30px;
+  padding-top: 10px;
   padding-left: 10%;
   padding-right: 10%;
+  font-size:15px;
 }
 
 .block-help .block-help-container .block-help-content {
@@ -1318,10 +1321,19 @@ a.btn-video:hover {
   color: #717171;
 }
 
-.block-help .block-help-container .block-help-start{
-  line-height: 13vh;
-  text-align: center;
- }
+.block-help-content .col-lg-9.col-lg-offset-2.col-md-9.col-md-offset-2.col-sm-10.col-sm-offset-2 {
+    margin-left: 8%;
+    width: 90%;
+}
+
+.block-help-content .col-lg-3.col-md-6.col-sm-6 {
+    padding-right: 55px;
+}
+
+.block-help .block-help-container .block-help-start {
+    line-height: 13vh;
+    text-align: center;
+}
 
 .block-help .block-help-container .block-help-start a,
 .block-recent .block-recent-more a
@@ -1416,7 +1428,7 @@ a.btn-video:hover {
   margin: auto;    
   /*height:auto;*/
   max-width: 370px;
-  max-height: 740px;
+  height: 580px;
 }
 
 .modal-content h4 {

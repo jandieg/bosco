@@ -9,7 +9,7 @@
         <div id="contact-us" class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
           <h3>¡Contáctenos!</h3>
           <div class="page-content-detail">
-            <p>¿Tienes alguna sugerencia? Cuéntanosla escribiendonos a <a href="mailto:sugerencias@bosco.pe">sugerencias@bosco.pe</a></p>
+            <p>¿Tienes alguna sugerencia? Cuéntanosla por este medio o  escribiendonos a <a href="mailto:sugerencias@bosco.pe">sugerencias@bosco.pe</a></p>
           </div>
           <div class="form-contact clearfix">
             <div class="col-lg-6 col-md-6">

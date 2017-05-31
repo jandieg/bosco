@@ -82,9 +82,8 @@
                 </div>
               </div>
               <div class="form-group">
-                <label>Descripción del reporte</label>
-                <p class="help-block">(150 caracteres max)</p>
-                <textarea name="lost_pet_report_description" id="lost_pet_report_description" class="form-control" rows="8"></textarea>
+                <label>Cómo se perdió tu mascota:</label><span class="help-block">(150 caracteres max)</span>
+                <textarea name="lost_pet_report_description" maxlength=150 id="lost_pet_report_description" class="form-control" rows="8"></textarea>
               </div>
             </div>
             <div class="col-lg-6 col-md-6">
@@ -112,23 +111,22 @@
           <div id="form-report-lost-tab-3" class="form-report-lost-tab hide">
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
-                <label>Nombre de dueño</label>
+                <label>Nombre del dueño</label>
                 <input type="text" name="lost_pet_owner_name" disabled="disabled" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
               </div>
               <div class="form-group">
-                <label>Nombre de contacto</label>
-                <input type="text" name="lost_pet_contact_name" disabled="disabled" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
+                <label>Número de teléfono</label>
+                <input type="tel" name="lost_pet_contact_name" disabled="disabled" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
               </div>
               <div class="form-group">
-                <label>Recompensa</label>
-                <p class="help-block">(en soles)</p>
-                <input type="text" name="lost_pet_reward" id="lost_pet_reward" class="form-control">
-                <p class="description-block">Opcional*</p>
+                <label>Recompensa</label>  <p class="description-block" style="float:right; color:#E63A38;margin:0">Opcional*</p>
+                <input type="numeric" name="lost_pet_reward" id="lost_pet_reward" placeholder="S/." class="form-control">
+               
               </div>
             </div>
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
-                <label>Email de contacto #1</label>
+                <label>Mail de contacto</label>
                 <input type="text" name="lost_pet_contact_email" disabled="disabled" class="form-control" value="{{ Auth::user()? Auth::user()->email:'' }}">
               </div>
             </div>

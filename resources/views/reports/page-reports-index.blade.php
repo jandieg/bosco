@@ -22,7 +22,7 @@
                 <li>
                     <a data-toggle="modal" href='#' class="report-lost-add">
                     <em>+</em>
-                    <p>Reportar encontrado</p>
+                    <p>Reportar perdidos</p>
                   </a>
                 </li>
               @if(!empty($reports['lost']['data']))
