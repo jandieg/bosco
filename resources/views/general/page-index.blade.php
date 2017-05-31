@@ -1,4 +1,4 @@
-@extends('layouts.home')
+﻿@extends('layouts.home')
 @section('content')
 <section id="content" class="bg-home">
   <div id="page-home" class="container-fluid">
@@ -46,7 +46,7 @@
                       <img src="../img/Icono_1.png">
                       <div>
                         <strong>1 - Mascotas perdidas</strong>
-                        <p>Ingresa a la secci...... mascotas perdidas" en la parte superior.</p>
+                        <p>Ingresa a la sección mascotas perdidas" en la parte superior.</p>
                       </div>
                     </div>
                   </div>

@@ -25,10 +25,10 @@
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav text-center">
                   <li class="first">
-                    <a href="{{ url('/mascotas')}}" {{ (Request::is('mascotas') || Request::is('mascotas/*'))  ? ' class = "active"' : null }}>Mascotas</a>
+                    <a href="{{ url('/mascotas')}}" {{ (Request::is('mascotas') || Request::is('mascotas/*'))  ? ' class = "active"' : null }}>Mascotas perdidas</a>
                   </li>
                   <li>
-                    <a href="{{ url('/como-funciona')}}" {{ (Request::is('como-funciona') || Request::is('como-funciona/*'))  ? ' class = "active"' : null }}>¿Como funciona?</a>
+                    <a href="{{ url('/como-funciona')}}" {{ (Request::is('como-funciona') || Request::is('como-funciona/*'))  ? ' class = "active"' : null }}>¿Quiénes somos?</a>
                   </li>
                   <li class="last">
                    <!-- <a href="{{ url('/ayuda')}}" {{ (Request::is('ayuda') || Request::is('ayuda/*'))  ? ' class = "active"' : null }}>Ayuda</a>-->
