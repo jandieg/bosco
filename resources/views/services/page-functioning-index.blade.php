@@ -5,7 +5,7 @@
 
     <!-- Block  -->
     <div class="row">
-      <div class="block-team">
+      <div class="block-team">      
         <div class="block-team-background"></div>
         <div class="block-team-content">
           <h2>El equipo</h2>

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -77,7 +76,7 @@ class AuthController extends Controller
             'name' => $request->get('name'),
             'email' => $request->get('email'),
         );
-        /*Mail::send('auth.emails.registration-success', $param, function (Message $message) use($param) {
+        \Mail::send('auth.emails.registration-success', $param, function (Message $message) use($param) {
             $message->to( $param['email'], $param['name'])
                 ->from('info@bosco.pe', 'Bosco')
                 ->subject('Bienvenido a Bosco');
@@ -90,7 +89,7 @@ class AuthController extends Controller
         $apiKey = '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';
         //$apiKey = 'xxx';
         $sg = new \SendGrid($apiKey);
-        $response = $sg->client->mail()->send()->post($mail);*/
+        $response = $sg->client->mail()->send()->post($mail);
         Auth::attempt(['email'=>$request->get('email'), 'password'=>$request->get('password')],$request->get('remember'));            
         return response()->json([
                 'status' => true,

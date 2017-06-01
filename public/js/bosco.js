@@ -607,45 +607,6 @@ function initMap() {
             alert('Hay varias direcciones con el mismo nombre que el texto de entrada');
             return;
         }
-        /*
-        // Clear out the old markers.
-        markers.forEach(function (marker) {
-            marker.setMap(null);
-        });
-        markers = [];
-
-        // For each place, get the icon, name and location.
-        var bounds = new google.maps.LatLngBounds();
-        places.forEach(function (place) {
-            if (!place.geometry) {
-                console.log("Returned place contains no geometry");
-                return;
-            }
-            var icon = {
-                url: place.icon,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(25, 25)
-            };
-
-            // Create a marker for each place.
-            markers.push(new google.maps.Marker({
-                map: lost_map,
-                icon: icon,
-                title: place.name,
-                position: place.geometry.location,
-                type: ['route']
-            }));
-
-            if (place.geometry.viewport) {
-                // Only geocodes have viewport.
-                bounds.union(place.geometry.viewport);
-            } else {
-                bounds.extend(place.geometry.location);
-            }
-        });
-        lost_map.fitBounds(bounds);*/
     });
 }
 function displayLocation(latitude, longitude, map) {
@@ -726,7 +687,17 @@ $('.prev-gallery-btn').hide();
 $('.next-gallery-btn').show();
 $('.next-gallery-btn').css('left', pos_next_btn);
 $('.gallery-preview-area').css('left', pos_preview_area);
-
+//window resize event
+$(window).resize(function () {
+    w_view = $(window).width() * 0.8;
+    cnt_pets = parseInt(w_view / 205);
+    w_gallery = cnt_pets * 205 + 95;
+    pos_preview_area = cnt_pets * 205;
+    pos_next_btn = cnt_pets * 205 + 35;
+    $('#block-home-gallery').width(w_gallery);
+    $('.next-gallery-btn').css('left', pos_next_btn);
+    $('.gallery-preview-area').css('left', pos_preview_area);
+});
 //homepage slider animation
 $('.prev-gallery-btn').click(function () {
     $('.next-gallery-btn').show();
@@ -750,18 +721,6 @@ $('.next-gallery-btn').click(function () {
             $('.next-gallery-btn').hide();
         }
     });
-});
-
-//window resize event
-$(window).resize(function () {
-    w_view = $(window).width() * 0.8;
-    cnt_pets = parseInt(w_view / 205);
-    w_gallery = cnt_pets * 205 + 95;
-    pos_preview_area = cnt_pets * 205;
-    pos_next_btn = cnt_pets * 205 + 35;
-    $('#block-home-gallery').width(w_gallery);
-    $('.next-gallery-btn').css('left', pos_next_btn);
-    $('.gallery-preview-area').css('left', pos_preview_area);
 });
 //image preview  flag - 0:found 1:lost
 function cropper_Modal() {
@@ -798,15 +757,6 @@ function previewImage(input) {
             window.setTimeout(function () {
                 $(".alert-message").fadeOut(300);
             }, 2000);
-            if (upload_flag == 0) {
-                // $('.upload-image-found-preview .preview-img').css('background-image','url(' + e.target.result + ')');
-                $('.found-upload').parent().hide();
-                $('.upload-image-found-preview').css('display', 'inline-block');
-            } else {
-                // $('.upload-image-lost-preview .preview-img').css('background-image','url(' + e.target.result + ')');
-                $('.lost-upload').parent().hide();
-                $('.upload-image-lost-preview').css('display', 'inline-block');
-            }
         }
         reader.readAsDataURL(input.files[0]);
     }
@@ -962,17 +912,6 @@ function edit_pet_detail(id, status)
                 var margin_top = $("#form-report-lost").find('.modal-content').outerHeight() / 2;
                 $("#form-report-lost").find('.modal-content').css('top', '50vh');
                 $("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
-//                if (lost_marker)
-//                    lost_marker.setMap(null);
-//                lost_marker = new google.maps.Marker({
-//                    position: {lat: latitude, lng: longitude},
-//                    draggable: true,
-//                    animation: google.maps.Animation.DROP,
-//                });
-//                lost_marker.setMap(lost_map);
-//                lost_map.addListener('click', toggleBounce);
-//                lost_map.setCenter(new google.maps.LatLng(latitude, longitude));
-//                lost_map.setZoom(15);
             }
         }
     });
