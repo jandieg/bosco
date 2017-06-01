@@ -205,7 +205,7 @@ locationsCountry.on('change', function (e) {
         success: function (data) {
             if (data.result) {
                 $('#ubigeo-city').html(data.options).fadeIn();
-                $('#ubigeo-district').html('<option value="" default="">Distrito</option>').fadeIn();
+                $('#ubigeo-district').html('<option value="" default style="display:none;">Distrito</option>').fadeIn();
                 $('#ubigeo-city').addClass('error');
                 $('#ubigeo-district').addClass('error');
             }

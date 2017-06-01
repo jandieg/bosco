@@ -15,7 +15,7 @@ class ubigeoController extends Controller
       $val = $_GET['department'];
       $cities = Ubigeo::getDataCities($val);
       if (!empty($cities)) {
-        $options = '<option value="" default="">Ciudad</option>' . "\n";
+        $options = '<option value="" default style="display:none;">Ciudad</option>' . "\n";
         foreach ($cities as $key => $value) {
           $options .= '<option value="' . $value['city'] . '">' . $value['city'] . '</option>' . "\n";
         }
@@ -33,7 +33,7 @@ class ubigeoController extends Controller
       $val = $_GET['city'];
       $districts = Ubigeo::getDataDistricts($val);
       if (!empty($districts)) {
-        $options = '<option value="" default="">Distrito</option>' . "\n";
+        $options = '<option value="" default style="display:none;">Distrito</option>' . "\n";
         foreach ($districts as $key => $value) {
           $options .= '<option value="' . $value['district'] . '">' . $value['district'] . '</option>' . "\n";
         }
