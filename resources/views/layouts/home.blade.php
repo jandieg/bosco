@@ -38,4 +38,5 @@
     @section('js')@show
 
   </body>
+  <script>alert('Test')</script>
 </html>
