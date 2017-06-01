@@ -7,7 +7,7 @@
 
         <div class="form-group">
           <select id="ubigeo-department" class="form-control" name="department" required="" aria-required="true">
-            <option value="" default>Departamento</option>
+            <option value="" default style="display:none;">Departamento</option>
 <!--            <option value="Amazonas">Amazonas</option>
             <option value="Ancash">Ancash</option>
             <option value="Apurimac">Apurimac</option>
@@ -42,7 +42,7 @@
         </div>
         <div class="form-group">
           <select id="ubigeo-city" class="form-control" name="city">
-            <option value="" default>Ciudad</option>
+            <option value="" default style="display:none;">Ciudad</option>
             <!--@if($cities)
             @foreach($cities as $city)
             <option value="{{ $city['city'] }}">{{ $city['city'] }}</option>
@@ -52,7 +52,7 @@
         </div>
         <div class="form-group">
           <select id="ubigeo-district" class="form-control" name="district">
-            <option value="" default>Distrito</option>
+            <option value="" default style="display:none;">Distrito</option>
             <!--@if($cities)
             @foreach($districts as $district)
             <option value="{{ $district['district'] }}">{{ $district['district'] }}</option>
