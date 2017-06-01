@@ -191,8 +191,8 @@
                 <input type="text" name="lost_pet_owner_name" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
               </div>
               <div class="form-group">
-                <label>Nombre de contacto</label>
-                <input type="text" name="lost_pet_contact_name" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
+                <label>Número de contacto</label>
+                <input type="numeric" name="lost_pet_contact_name" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
               </div>
               <div class="form-group">
                 <label>Recompensa</label>
@@ -205,7 +205,7 @@
             </div>
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
-                <label>Email de contacto #1</label>
+                <label>Email de contacto</label>
                 <input type="text" name="lost_pet_contact_email" class="form-control" value="{{ Auth::user()? Auth::user()->email:'' }}">
               </div>
             </div>
