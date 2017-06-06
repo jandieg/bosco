@@ -811,7 +811,10 @@ $('#cropper-confirm').on('click', function () {
         croppedCanvas = $('#cropper-image').cropper('getCroppedCanvas');
     }
     $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + croppedCanvas.toDataURL() + ')');
+    $('.upload-image-lost-preview').show();
+    $('#lost_pet_file').parent().hide();
     $('#modal-cropper .modal-header button').trigger('click');
+    
 });
 $('#modal-cropper').on('shown.bs.modal', function () {
     var $dataX = $('#dataX');
