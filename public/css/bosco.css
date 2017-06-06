@@ -1214,12 +1214,12 @@ a.btn-video:hover {
   line-height: 26px;
 }
 
-.block-team{
-  height: 80vh;
-  /*background-image: url("../images/colored_about_us_item_1.png");*/
-  position: relative;
-  background-size: cover;
-  font-family: "Montserrat Ultra Light", Arial, "Georgia", serif;
+.block-team {
+    height: 80vh;
+    background: linear-gradient( rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url("../images/colored_about_us_item_1.jpg");
+    position: relative;
+    background-size: cover;
+    font-family: "Montserrat Ultra Light", Arial, "Georgia", serif;
 }
 
 .block-team .block-team-background {
@@ -2162,7 +2162,6 @@ a.btn-video:hover {
 
 footer {
   background: #063042;
-  border: 1px solid #7b8680;
   bottom: -105px;
   height: 105px;
   padding: 20px;

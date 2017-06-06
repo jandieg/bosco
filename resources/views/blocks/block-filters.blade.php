@@ -61,7 +61,7 @@
           </select>
         </div>
         <div class="form-group form-actions pull-right">
-          <a href="#" onclick="search_results();" class="btn btn-primary">Reportar</a>
+          <a href="/mis-reportes" class="btn btn-primary">Reportar</a>
         </div>
       </form>
     </div>

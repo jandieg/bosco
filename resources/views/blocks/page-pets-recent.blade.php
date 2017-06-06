@@ -60,7 +60,7 @@
           </select>
         </div>
         <div class="form-group form-actions">
-          <a data-toggle="modal" href="#" onclick="search_results();" class="btn btn-primary">Reportar</a>
+          <a data-toggle="modal" href="/mis-reportes" class="btn btn-primary">Reportar</a>
         </div>
       </form>
     </div>

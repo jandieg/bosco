@@ -37,7 +37,7 @@
         <div class="block-help-container">
           <div class="block-help-title">
             <h2>Ayudamos a encontrar mascotas perdidas en 4 pasos</h2>
-            <h5>Bosco ayuda a encontrar mascotas perdidas y tambien a reportar aquelias encontradas en la calle</h5>
+            <h5>Bosco ayuda a encontrar mascotas perdidas y tambien a reportar aquellas encontradas en la calle</h5>
           </div>
           <div class="block-help-content">
               <div class="col-lg-9 col-lg-offset-2 col-md-9 col-md-offset-2 col-sm-10 col-sm-offset-2">
@@ -80,7 +80,7 @@
               </div>
           </div>
           <div class="block-help-start">
-            <a href="" class="btn btn-lg btn-default">Empezar</a>
+            <a href="/mascotas" class="btn btn-lg btn-default">Empezar</a>
           </div>
         </div>
       </div>
