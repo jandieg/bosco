@@ -7,10 +7,10 @@
           <h5 class="modal-title" id="modalLabel">Crop the image</h5>
         </div>
         <div class="modal-body">
-          <div style="width:100%">
+          <div style="width:80%;margin:0px auto;">
             <img id="cropper-image" src="">
           </div>
-          <div class="docs-data">
+          <div class="docs-data" style="display:none;">
             <div style="display:flex;">
               <div class="input-group input-group-sm options-left col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <label class="input-group-addon" for="dataX">X</label>
