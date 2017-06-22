@@ -15,7 +15,7 @@
             </div>
           </div>
           <span class="report-detail-lost-image">
-            <img src="{{ asset('images/report_detail_image.png') }}">
+            <img src="{{ asset('images/report_detail_image.png') }}" style="width:100%;">
           </span>
           <span class="report-detail-lost-phone">
             <a class="report-phone" href="tel:969 003 009">969 003 009</a>
@@ -31,13 +31,14 @@
         </div>
       </div>
       <div class="modal-report-detail-right">
+      	<div style='vertical-align:middle;'>
         <div class="modal-report-info">
           <p class="share-facebook">
             <em></em>
             <span class="check-on"></span><span class="check-off hide"></span>
             Facebook
           </p>
-          <p class="share-instagran">
+          <!--p class="share-instagran">
             <em></em>
             <span class="check-on"></span><span class="check-off hide"></span>
             Instagran
@@ -46,12 +47,12 @@
             <em></em>
             <span class="check-off"></span><span class="check-on hide"></span>
             Twitter
-          </p>
-          <div class="modal-report-button">
-            <a href="#" class="btn btn-primary btn-block btn-button">Compartir</a>
+          </p-->
+          <div class="modal-report-button"  id="post_social_div">
+            <button class="btn btn-primary btn-block btn-button">Compartir</button>
           </div>
         </div>
-        <div class="modal-report-info">
+        <div class="modal-report-info"">
           <div class="modal-report-button" id="download_report">
             <a href="#" class="btn btn-download-lost btn-button btn-block btn-blue">Descargar volante</a>
           </div>
@@ -59,6 +60,7 @@
             <a href="#" class="btn btn-download-lost btn-button btn-block btn-blue">JPG</a>
             <a href="#" class="btn btn-download-lost btn-button btn-block btn-blue">PDF</a>
           </div>
+        </div>
         </div>
       </div>
     </div>

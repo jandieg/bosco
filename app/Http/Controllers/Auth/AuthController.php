@@ -118,6 +118,12 @@ class AuthController extends Controller
         ])->scopes([
             'email'
         ])->redirect();
+        /*$user = Socialite::driver('facebook')->fields([
+            'first_name', 'last_name', 'email', 'gender'
+        ])->scopes([
+            'email'
+        ]);
+        return $user->redirect();*/
     }
 
     /**

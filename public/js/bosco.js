@@ -1,3 +1,37 @@
+window.fbAsyncInit = function() {
+	FB.init({
+	    appId      : '1925180084394238',
+	    xfbml      : true,
+	    version    : 'v2.9'
+	});
+};
+
+(function(d, s, id){
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) {return;}
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_US/sdk.js";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+function postFacebook(id) {
+	FB.login(function(response) {
+	    console.log(response);
+	    userID=response.authResponse.userID;
+	    accessToken=response.authResponse.accessToken;
+	        $.ajax({
+		        type: "GET",
+		        url: window.location.origin + '/facebook-post',
+		        dataType: 'json',
+		        cache: false,
+		        data: {report_id:id, user_id: userID, access_Token: accessToken},
+		        success: function (result) {
+		        }
+		        });
+	    FB.api('/'+userID+'/feed', 'post', {message: 'Hello, pet world!'});
+	} , {scope:'email,manage_pages,publish_actions,publish_pages'});
+}
+
 $('.numeric').keyup(function () { 
     this.value = this.value.replace(/[^0-9\.]/g,'');
 });
@@ -124,7 +158,7 @@ function gallery_item_over(id, status) {
         data: {report_id: id, status: status},
         success: function (data) {
             if (data.result) {
-                $('.pet-detail-image').html('<img src="/images/pets/' + data.pet.pet_image + '">');
+                $('.pet-detail-image').html('<img src="/images/pets/' + data.pet.pet_image + '" style="width:100%;">');
                 $('.pet-detail-location').html(data.pet.address);
                 $('.owner-detail-phone').html('<a class="report-phone" href="tel:' + data.pet.user_phone + '">' + data.pet.user_phone + '</a>');
                 $('.owner-detail-name').html(data.pet.user_name);
@@ -185,8 +219,10 @@ function item_detail_view(id) {
                 $('.report-detail-lost-race').html(data.report.race);
                 $('.report-detail-lost-gender').html(data.report.gender);
                 $('.report-detail-lost-date').html(data.report.date);
+                $('#post_social_div').html('<button onclick="postFacebook('+id+')" class="btn btn-primary btn-block btn-button">Compartir</button>');
                 $('#download_report_div').children().first().attr('href', data.path + '/descargar-volante/jpg/?reportid=' + id);
                 $('#download_report_div').children().last().attr('href', data.path + '/descargar-volante/pdf/?reportid=' + id);
+                $('#report_id').val(id);
                 modal_center();
             }
         }
@@ -977,7 +1013,16 @@ function modal_center()
 {
     $('.modal-content').each(function () {
         var margin_top = $(this).outerHeight() / 2;
-        $(this).css('top', '50vh');
-        $(this).css('margin-top', '-' + margin_top + 'px');
+        var screen_height=$(window).outerHeight() /2;
+        console.log(screen_height+">"+margin_top);
+        if(screen_height>margin_top )
+        {
+		$(this).css('top', '50vh');
+		$(this).css('margin-top', '-' + margin_top + 'px');
+        }
+        else
+        {
+        	$(this).removeAttr('style');
+        }
     });
 }

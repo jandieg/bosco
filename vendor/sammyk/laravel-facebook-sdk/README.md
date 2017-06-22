@@ -1,30 +1,34 @@
 # Laravel Facebook SDK
 
 [![Build Status](https://img.shields.io/travis/SammyK/LaravelFacebookSdk.svg)](https://travis-ci.org/SammyK/LaravelFacebookSdk)
-[![Latest Stable Version](https://img.shields.io/badge/Latest%20Stable-2.2-blue.svg)](https://packagist.org/packages/sammyk/laravel-facebook-sdk)
+[![Latest Stable Version](https://img.shields.io/packagist/v/sammyk/laravel-facebook-sdk.svg?maxAge=2592000)](https://packagist.org/packages/sammyk/laravel-facebook-sdk)
 [![Total Downloads](https://img.shields.io/packagist/dt/sammyk/laravel-facebook-sdk.svg)](https://packagist.org/packages/sammyk/laravel-facebook-sdk)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/SammyK/LaravelFacebookSdk/blob/master/LICENSE)
 
 
-A fully unit-tested package for easily integrating the [Facebook SDK v5](https://developers.facebook.com/docs/php/gettingstarted/5.0.0) into Laravel 5.0.
+A fully unit-tested package for easily integrating the [Facebook SDK v5](https://developers.facebook.com/docs/php/gettingstarted/5.0.0) into Laravel and Lumen 5.0, 5.1, 5.2, & 5.3.
 
 ----
 
-**This is package for Laravel 5.0**
+**This is package for Laravel and Lumen 5.0, 5.1, 5.2, & 5.3**
 
-[![Laravel 5.0](http://sammyk.s3.amazonaws.com/open-source/laravel-facebook-sdk/laravel-5.png)](http://laravel.com/docs/5.0)
+[![Laravel 5](http://sammyk.s3.amazonaws.com/open-source/laravel-facebook-sdk/laravel-5.png)](http://laravel.com/docs)
 
-- _For Laravel 5.1, [see the 3.0 branch](https://github.com/SammyK/LaravelFacebookSdk/tree/3.0)._
+[![Lumen 5](http://sammyk.s3.amazonaws.com/open-source/laravel-facebook-sdk/lumen-5.png)](https://lumen.laravel.com/docs)
+
 - _For Laravel 4.2, [see the 1.3 branch](https://github.com/SammyK/LaravelFacebookSdk/tree/1.3)._
 
 ----
 
 - [Installation](#installation)
+- [User Login From Redirect Example](#user-login-from-redirect-example)
+- [Making Requests To Facebook](#making-requests-to-facebook)
 - [Facebook Login](#facebook-login)
 - [Saving Data From Facebook In The Database](#saving-data-from-facebook-in-the-database)
 - [Logging The User Into Laravel](#logging-the-user-into-laravel)
 - [Working With Multiple Apps](#working-with-multiple-apps)
 - [Error Handling](#error-handling)
+- [Troubleshooting](#troubleshooting)
 - [Testing](#testing)
 - [Contributing](#contributing)
 - [Credits](#credits)
@@ -56,7 +60,7 @@ Add the Laravel Facebook SDK package to your `composer.json` file.
 ```json
 {
     "require": {
-        "sammyk/laravel-facebook-sdk": "~2.0"
+        "sammyk/laravel-facebook-sdk": "^3.0"
     }
 }
 ```
@@ -68,8 +72,14 @@ In your app config, add the `LaravelFacebookSdkServiceProvider` to the providers
 
 ```php
 'providers' => [
-    'SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider',
+    SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
     ];
+```
+
+For **Lumen**, add the provider to your `bootstrap/app.php` file.
+
+```php
+$app->register(SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class);
 ```
 
 
@@ -79,7 +89,7 @@ If you want to make use of the facade, add it to the aliases array in your app c
 
 ```php
 'aliases' => [
-    'Facebook' => 'SammyK\LaravelFacebookSdk\FacebookFacade',
+    'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class,
     ];
 ```
 
@@ -91,8 +101,10 @@ But there are [much better ways](#ioc-container) to use this package that [don't
 The IoC container will automatically resolve the `LaravelFacebookSdk` dependencies for you. You can grab an instance of `LaravelFacebookSdk` from the IoC container in a number of ways.
 
 ```php
-// Directly from App::make();
+// Directly from the IoC
 $fb = App::make('SammyK\LaravelFacebookSdk\LaravelFacebookSdk');
+// Or in PHP >= 5.5
+$fb = app(SammyK\LaravelFacebookSdk\LaravelFacebookSdk::class);
 
 // From a constructor
 class FooClass {
@@ -117,13 +129,15 @@ Route::get('/facebook/login', function(SammyK\LaravelFacebookSdk\LaravelFacebook
 
 ### Configuration File
 
-After [creating an app in Facebook](https://developers.facebook.com/apps), you'll need to provide the app ID and secret. First publish the configuration file.
+After [creating an app in Facebook](https://developers.facebook.com/apps), you'll need to provide the app ID and secret. In Laravel you can publish the configuration file with `artisan`.
 
 ```bash
 $ php artisan vendor:publish --provider="SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider" --tag="config"
 ```
 
-> **Where's the file?** Laravel 5 will publish the config file to `config/laravel-facebook-sdk.php`.
+> **Where's the file?** Laravel 5 will publish the config file to `/config/laravel-facebook-sdk.php`.
+
+In **Lumen** you'll need to manually copy the config file from `/src/config/laravel-facebook-sdk.php` to your config folder in your base project directory. Lumen doesn't have a `/config` folder by default so you'll need to create it if you haven't already.
 
 
 #### Required config values
@@ -138,23 +152,6 @@ FACEBOOK_APP_SECRET=SomeFooAppSecret
 ```
 
 
-### Syncing Graph nodes with Laravel models
-
-If you have a `facebook_user_id` column in your user's table, you can add the `SyncableGraphNodeTrait` to your `User` model to have the user node from the Graph API automatically sync with your model.
-
-```php
-class User extends Eloquent implements UserInterface {
-    use SammyK\LaravelFacebookSdk\SyncableGraphNodeTrait;
-    
-    protected static $graph_node_field_aliases = [
-        'id' => 'facebook_user_id',
-    ];
-}
-```
-
-More info on [saving data from Facebook in the database](#saving-data-from-facebook-in-the-database).
-
-
 ## User Login From Redirect Example
 
 Here's a full example of how you might log a user into your app using the [redirect method](#login-from-redirect).
@@ -162,6 +159,8 @@ Here's a full example of how you might log a user into your app using the [redir
 This example also demonstrates how to [exchange a short-lived access token with a long-lived access token](https://www.sammyk.me/access-token-handling-best-practices-in-facebook-php-sdk-v4) and save the user to your `users` table if the entry doesn't exist.
 
 Finally it will log the user in using Laravel's built-in user authentication.
+
+> **Sessions in Lumen:** The "login from redirect" functionality relies on sessions to store a [CSRF token](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet). Since sessions don't exist in Lumen 5.2+, you'll need to obtain an access token using a [different method](#facebook-login). For testing you can just grab an access token from the [Graph API Explorer](https://developers.facebook.com/tools/explorer/) (make sure to select your app from the "Application" drop down).
 
 ``` php
 // Generate a login URL
@@ -240,6 +239,30 @@ Route::get('/facebook/callback', function(SammyK\LaravelFacebookSdk\LaravelFaceb
     return redirect('/')->with('message', 'Successfully logged in with Facebook');
 });
 ```
+
+For more details on the ways to authenticate a user, see [Facebook Login](#facebook-login).
+
+
+## Making Requests To Facebook
+
+Requests to Facebook are made via the [Graph API](https://developers.facebook.com/docs/graph-api). This package is a Laravel wrapper for the official [Facebook PHP SDK v5](https://developers.facebook.com/docs/reference/php) so all the methods available to the official SDK are also available in this package.
+
+### Get User Info
+
+The following snippet will retrieve a [User node](https://developers.facebook.com/docs/graph-api/reference/user/) representing the logged in user.
+
+```php
+try {
+  $response = $fb->get('/me?fields=id,name,email', 'user-access-token');
+} catch(\Facebook\Exceptions\FacebookSDKException $e) {
+  dd($e->getMessage());
+}
+
+$userNode = $response->getGraphUser();
+printf('Hello, %s!', $userNode->getName());
+```
+
+[See more about the `get()` method.](https://developers.facebook.com/docs/php/Facebook/5.0.0#get)
 
 
 ## Facebook Login
@@ -343,7 +366,7 @@ By default the JavaScript SDK will not set a cookie, so you have to explicitly e
 FB.init({
   appId      : 'your-app-id',
   cookie     : true,
-  version    : 'v2.5'
+  version    : 'v2.9'
 });
 ```
 
@@ -369,7 +392,7 @@ Route::get('/facebook/javascript', function(SammyK\LaravelFacebookSdk\LaravelFac
 
 ### Login From App Canvas
 
-> **TokenMismatchException:** By default your canvas app will throw a `TokenMismatchException` when you try to view it in Facebook. [See how to fix this issue](#getting-a-tokenmismatchexception-with-canvas-apps).
+> **TokenMismatchException:** Default Laravel installations will throw a `TokenMismatchException` when you try to view your app in Facebook. [See how to fix this issue](#getting-a-tokenmismatchexception-with-canvas-apps).
 
 If your app lives within the context of a Facebook app canvas, you can obtain an access token from the signed request that is `POST`'ed to your app on the first page load.
 
@@ -378,7 +401,7 @@ If your app lives within the context of a Facebook app canvas, you can obtain an
 Use the SDK's canvas helper to obtain the access token from the signed request data.
 
 ```php
-Route::get('/facebook/canvas', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
+Route::match(['get', 'post'], '/facebook/canvas', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
     try {
         $token = $fb->getCanvasHelper()->getAccessToken();
     } catch (Facebook\Exceptions\FacebookSDKException $e) {
@@ -396,14 +419,14 @@ Route::get('/facebook/canvas', function(SammyK\LaravelFacebookSdk\LaravelFaceboo
 
 ### Login From Page Tab
 
-> **TokenMismatchException:** By default your Page tab will throw a `TokenMismatchException` when you try to view it in Facebook. [See how to fix this issue](#getting-a-tokenmismatchexception-with-canvas-apps).
+> **TokenMismatchException:** Default Laravel installations will throw a `TokenMismatchException` when you try to view your page tab in Facebook. [See how to fix this issue](#getting-a-tokenmismatchexception-with-canvas-apps).
 
 If your app lives within the context of a Facebook Page tab, that is the same as an app canvas and the "Login From App Canvas" method will also work to obtain an access token. But a Page tab also has additional data in the signed request.
 
 The SDK provides a Page tab helper to obtain an access token from the signed request data within the context of a Page tab.
 
 ```php
-Route::get('/facebook/page-tab', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
+Route::match(['get', 'post'], '/facebook/page-tab', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
     try {
         $token = $fb->getPageTabHelper()->getAccessToken();
     } catch (Facebook\Exceptions\FacebookSDKException $e) {
@@ -589,7 +612,7 @@ class Event extends Eloquent
 {
     use SyncableGraphNodeTrait;
     
-    protected static $facebook_field_aliases = [
+    protected static $graph_node_field_aliases = [
         'id' => 'facebook_id',
         'place.location.city' => 'city',
         'place.location.state' => 'state',
@@ -616,7 +639,7 @@ class Event extends Eloquent
 {
     use SyncableGraphNodeTrait;
     
-    protected $graph_node_date_time_to_string_format = 'c'; # ISO 8601 date
+    protected static $graph_node_date_time_to_string_format = 'c'; # ISO 8601 date
 }
 ```
 
@@ -736,7 +759,7 @@ Route::get('/example', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb
     $fb2 = $fb->newInstance([
       'app_id' => env('FACEBOOK_APP_ID2'),
       'app_secret' => env('FACEBOOK_APP_SECRET2'),
-      'default_graph_version' => 'v2.5',
+      'default_graph_version' => 'v2.9',
       // . . .
     ]);
 });
@@ -764,15 +787,46 @@ try {
 The LaravelFacebookSdk does not throw any custom exceptions.
 
 
+## Troubleshooting
+
+
 ### Getting a TokenMismatchException with canvas apps
 
 If your app is being served from within the context of an app canvas or Page tab, you'll likely see a `TokenMismatchException` error when you try to view the app on Facebook. This is because Facebook will render your app by sending a POST request to it with a `signed_request` param and since Laravel 5 has [CSRF](http://en.wikipedia.org/wiki/Cross-site_request_forgery) protection that is enabled for every non-read request, the error is triggered. 
 
 Although it's possible to disable this feature completely, it's certainly not recommended as CSRF protection is an important security feature to have on your site and it should be enabled on every route by default.
 
-I followed a blog post that explained how to [disable CSRF protection for specific routes in Laravel 5](http://www.camroncade.com/disable-csrf-for-specific-routes-laravel-5/).
+#### Disable CSRF on endpoints in Laravel 5.1 & 5.2
 
-I edited my `app\Http\Middleware\VerifyCsrfToken.php` file and added an `excludedRoutes()` method to it. Then I just created an array of routes that were endpoints to my canvas app or page tab. My complete file looks like this:
+Add an exception to your canvas endpoint to the `$except` array in your `app\Http\Middleware\VerifyCsrfToken.php` file.
+
+```php
+<?php
+
+namespace App\Http\Middleware;
+
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+
+class VerifyCsrfToken extends BaseVerifier
+{
+    /**
+     * The URIs that should be excluded from CSRF verification.
+     *
+     * @var array
+     */
+    protected $except = [
+        'facebook/canvas',
+        'facebook/page-tab',
+        // ... insert all your canvas endpoints here
+    ];
+}
+```
+
+#### Disable CSRF on endpoints in Laravel 5.0
+
+In Laravel 5.0 it was a bit trickier to disable CSRF verification but there is an article that explains how to [disable CSRF protection for specific routes in Laravel 5.0](http://www.camroncade.com/disable-csrf-for-specific-routes-laravel-5/).
+
+In your `app\Http\Middleware\VerifyCsrfToken.php` file, add an `excludedRoutes()` method. Then create an array of routes that are endpoints to you canvas app or page tab. The complete file looks like this:
 
 ```php
 <?php namespace App\Http\Middleware;
@@ -826,6 +880,16 @@ class VerifyCsrfToken extends BaseVerifier
 }
 ```
 
+#### Getting a QueryException when saving a User
+
+If you're using MySQL, you might get a `QueryException` when saving a user to the database with `createOrUpdateGraphNode()`.
+
+```
+QueryException in Connection.php line 754:
+SQLSTATE[HY000]: General error: 1364 Field 'password' doesn't have a default value
+```
+
+This is because by default, strict mode is enabled which sets [`sql_mode` to include `STRICT_TRANS_TABLES`](https://dev.mysql.com/doc/refman/5.6/en/sql-mode.html). Since we don't need a password for users logging in with Facebook, this field will be empty. A workaround to this error is to set `strict` to `false` for the MySQL diver in your `config/database.php` file.
 
 ## Testing
 

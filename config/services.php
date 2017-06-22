@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | This file is for storing the credentials for third party services such
-    | as Stripe, Mailgun, Mandrill, and others. This file provides a sane
+    | as Stripe, Mailgun, SparkPost and others. This file provides a sane
     | default location for this type of information, allowing packages
     | to have a conventional place to find your various credentials.
     |
@@ -36,12 +36,13 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => '654315044733493',
-        'client_secret' => '720967bfa1755b4a95c8182eaf0c18ef',
+        'client_id' => '1925180084394238',
+        'client_secret' => 'da958c1ac0b309878170007900977f29',
         'redirect' => 'http://bosco.pe/iniciar-sesion/fb/callback',
     ],
 
     'sendgrid' => [
         'api_key' => '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',
     ],
+
 ];

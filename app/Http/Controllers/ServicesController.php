@@ -20,4 +20,9 @@ class ServicesController extends Controller
     {
       return view('services.page-functioning-app',['user'=>Auth::check()?Auth::user():null]);
     }
+    
+    public function privacy()
+    {
+      return view('general.page-politicas');
+    }
 }

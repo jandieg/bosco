@@ -1,25 +1,65 @@
 # CHANGELOG
 
-## 2.2.0 - November 12, 2015
+## 3.4.2 - April 20, 2017
 
-- Added ability to create new instances of `LaravelFacebookSdk` with a [different app settings](https://github.com/SammyK/LaravelFacebookSdk/tree/2.0#working-with-multiple-apps).
+- Bumped the Graph API version in the config to [v2.9](https://developers.facebook.com/docs/apps/changelog).
+
+## 3.4.1 - October 12, 2016
+
+- Bumped the Graph API version in the config to [v2.8](https://developers.facebook.com/docs/apps/changelog).
+
+## 3.4.0 - August 25, 2016
+
+- Add support for Laravel 5.3
+
+## 3.3.3 - August 22, 2016
+
+- Updated the Facebook PHP SDK package name from `facebook/php-sdk-v4` to the new name `facebook/graph-sdk`.
+
+## 3.3.2 - August 6, 2016
+
+- Bumped the Graph API version in the config [v2.7](https://developers.facebook.com/docs/apps/changelog).
+
+## 3.3.1 - April 12, 2016
+
+- Bumped the Graph API version in the config [v2.6](https://developers.facebook.com/docs/apps/changelog).
+
+## 3.3.0 - February 9, 2016
+
+- Added support for Lumen and Laravel 5.2.
 
 
-## 2.1.0 - September 3, 2015
+## 3.2.1 - February 8, 2016
 
-- Added [fillable fields](https://github.com/SammyK/LaravelFacebookSdk/tree/2.0#specifying-fillable-fields) feature.
-- Added [array dot notation to field mapping](https://github.com/SammyK/LaravelFacebookSdk/tree/2.0#nested-field-mapping).
-- Added feature to convert [`DateTime` to string format](https://github.com/SammyK/LaravelFacebookSdk/tree/2.0#date-formats).
+- Updated the config and url type hints to reference interfaces instead of concrete implementations.
 
 
-## 2.0.4 - July 21, 2015
+## 3.2.0 - November 12, 2015
+
+- Added ability to create new instances of `LaravelFacebookSdk` with a [different app settings](https://github.com/SammyK/LaravelFacebookSdk/tree/3.0#working-with-multiple-apps).
+
+
+## 3.1.0 - September 3, 2015
+
+- Added [fillable fields](https://github.com/SammyK/LaravelFacebookSdk/tree/3.0#specifying-fillable-fields) feature.
+- Added [array dot notation to field mapping](https://github.com/SammyK/LaravelFacebookSdk/tree/3.0#nested-field-mapping).
+- Added feature to convert [`DateTime` to string format](https://github.com/SammyK/LaravelFacebookSdk/tree/3.0#date-formats).
+
+
+## 3.0.2 - July 21, 2015
 
 - Removed `@dev` flag from Facebook PHP SDK since v5 was released. Yay!
 
 
-## 2.0.3 - July 8, 2015
+## 3.0.1 - July 8, 2015
 
 - Updated the Graph API version references to latest v2.4.
+- Tiny fix in tests when strict errors are displayed.
+
+
+## 3.0.0 - June 23, 2015
+
+- Added support for Laravel 5.1.
 
 
 ## 2.0.2 - May 14, 2015

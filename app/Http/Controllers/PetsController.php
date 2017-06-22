@@ -45,7 +45,7 @@ class PetsController extends Controller {
         $departments = Ubigeo::getDataDepartments();
         $cities = Ubigeo::getDataCities(null);
         $districts = Ubigeo::getDataDistricts(null);
-        $reports = Report::getDataReports($parameters, TRUE, 10, 'mascotas/perdidos');
+        $reports = Report::getPublicReports($parameters, TRUE, 10, 'mascotas/perdidos');
         return view('pets.page-pets-lost', [
             'reports' => $reports,
             'departments'=>$departments,

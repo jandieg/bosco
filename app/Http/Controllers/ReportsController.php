@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Socialite\Facades\Socialite;
+use facebook\graph_sdk;
 
 class ReportsController extends Controller {
 
@@ -209,12 +211,7 @@ class ReportsController extends Controller {
         file_put_contents($html_file, $contents);
         $pdf_file = storage_path() . '/report.pdf';
 	PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Segoe UI Black']);
-//        $pdf = PDF::loadView('pdf/download-report-lost', ['report' => $report])->setPaper('a4', 'portrait')->save($pdf_file);
         $pdf = PDF::loadView('pdf/download-report-lost', ['report' => $report])->setPaper('a4', 'portrait')->save($pdf_file);
-        /*App::finish(function($request, $response) use ($pdf_file)
-        {
-            unlink($pdf_file);
-        });*/
         if($status=='pdf') 
             return response()->download($pdf_file);
         elseif($status=='jpg') 
@@ -224,12 +221,60 @@ class ReportsController extends Controller {
             //$imagick ->setresolution(150, 150);
             $imagick->readImage($pdf_file);
             $imagick->setImageFormat('jpg');
-	    //$imagick->resampleImage(288,288,imagick::FILTER_UNDEFINED,1);
             $imagick ->setImageCompressionQuality(100);
-            $jpg_file = storage_path() . '/report.jpg';
+            $jpg_file = public_path() . '/report.jpg';
+            if(file_exists($jpg_file)) unlink($jpg_file);
+            $jpg_url = url('report.jpg');
             $imagick->writeImages($jpg_file, false); 
             return response()->download($jpg_file);
         }
+    }
+    public function postFacebook(Request $request) {
+        $id = $request->get('report_id');
+        $user_id = $request->get('user_id');
+        $access_token = $request->get('access_token ');
+        $report = Report::getDataReport($id);
+        $view = \Illuminate\Support\Facades\View::make('pdf/download-report-lost', ['report' => $report]);
+        $contents = $view->render();
+        $html_file = storage_path() . '/report.html';
+        file_put_contents($html_file, $contents);
+        $pdf_file = storage_path() . '/report.pdf';
+	PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Segoe UI Black']);
+        $pdf = PDF::loadView('pdf/download-report-lost', ['report' => $report])->setPaper('a4', 'portrait')->save($pdf_file);
+        $font_file= storage_path() . '/fonts/3b9f85024beb281bbf09edb78103a64d.ttf';
+        $imagick = new Imagick();
+        $imagick->readImage($pdf_file);
+        $imagick->setImageFormat('jpg');
+	$imagick ->setImageCompressionQuality(100);
+        $jpg_file = public_path() . '/report.jpg';
+        if(file_exists($jpg_file)) unlink($jpg_file);
+        $jpg_url = url('report.jpg');
+        $imagick->writeImages($jpg_file, false); 
+    	/*$fb = new \Facebook\Facebook([
+	  'app_id' => env('FACEBOOK_APP_ID'),
+	  'app_secret' => env('FACEBOOK_APP_SECRET'),
+	  'default_graph_version' => 'v2.9'
+	]);
+	try {
+	  $fb_response = $fb->post('/'.$user_id.'/feed',
+	        array(
+	            "message" => "I lost a pet",
+	            "link" => "http://bosco.pe/",
+	            "picture" => $jpg_url,
+	            "name" => "Oh my!",
+	            "caption" => "www.example.com",
+	            "description" => "Description example"
+	        ),$access_token);
+	} catch(\Facebook\Exceptions\FacebookResponseException $e) {
+	  // When Graph returns an error
+	  echo 'Graph returned an error: ' . $e->getMessage();
+	  exit;
+	} catch(\Facebook\Exceptions\FacebookSDKException $e) {
+	  // When validation fails or other local issues
+	  echo 'Facebook SDK returned an error: ' . $e->getMessage();
+	  exit;
+	}*/
+        return response()->json(true);
     }
     public function saveReport($received_data, $base64photo) {
         $status = $received_data['pet_status'];

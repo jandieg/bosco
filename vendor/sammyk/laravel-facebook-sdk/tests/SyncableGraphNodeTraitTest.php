@@ -5,9 +5,9 @@ use SammyK\LaravelFacebookSdk\SyncableGraphNodeTrait;
 
 class FakeModel extends \Illuminate\Database\Eloquent\Model
 {
-    public static function firstByAttributes($data)
+    public static function firstOrNew(array $attributes)
     {
-        if( $data['facebook_id'] !== '1' ) {
+        if( $attributes['facebook_id'] !== '1' ) {
             return null;
         }
 
@@ -158,6 +158,7 @@ class FacebookableTraitTest extends \PHPUnit_Framework_TestCase
     public function testMultiDimensionalArraysCanBeAccessedWithDotNotation()
     {
         $my_user_model = new MyUserModel();
+
         $user_node = new GraphNode([
           'id' => '1',
           'location' => [
@@ -166,6 +167,7 @@ class FacebookableTraitTest extends \PHPUnit_Framework_TestCase
           ],
         ]);
         $user_object = $my_user_model::createOrUpdateGraphNode($user_node);
+
         $this->assertEquals($user_object['location.city'], 'Chicago');
         $this->assertEquals($user_object['location.zip'], '60604');
     }
@@ -173,28 +175,33 @@ class FacebookableTraitTest extends \PHPUnit_Framework_TestCase
     public function testDateTimeEntitiesGetConvertedProperly()
     {
         $my_user_model = new MyUserModel();
+
         $user_node = new GraphNode([
           'id' => '1',
           'start_time' => '2016-01-03T17:30:00-0500',
         ]);
         $user_object = $my_user_model::createOrUpdateGraphNode($user_node);
+
         $this->assertEquals($user_object['start_time'], '2016-01-03 17:30:00');
     }
 
     public function testDateTimeEntitiesCanHaveCustomStringFormats()
     {
         $my_user_model = new MyCustomDateFormatModel();
+
         $user_node = new GraphNode([
           'id' => '1',
           'start_time' => '2016-01-03T17:30:00-0500',
         ]);
         $user_object = $my_user_model::createOrUpdateGraphNode($user_node);
+
         $this->assertEquals($user_object['start_time'], '2016-01-03T17:30:00-05:00');
     }
 
     public function testOnlyWhiteListedFieldsWillBeSaved()
     {
         $my_user_model = new MyFillableOnlyFields();
+
         $user_node = new GraphNode([
           'id' => '1',
           'start_time' => '2016-01-03T17:30:00-0500',
@@ -202,6 +209,7 @@ class FacebookableTraitTest extends \PHPUnit_Framework_TestCase
           'bar' => 'I should not exist',
         ]);
         $user_object = $my_user_model::createOrUpdateGraphNode($user_node);
+
         $this->assertEquals($user_object['facebook_id'], '1');
         $this->assertNull($user_object['start_time']);
         $this->assertEquals($user_object['keep_me'], 'I should exist');

@@ -38,7 +38,7 @@ class Report extends Model
             $reports = Report::orderBy('id', 'desc')->limit($numPerItem)->get();            
         if (!empty($reports)) {            
             foreach ($reports as $report) {
-                if($user->id!=$report->pet->owner_id) continue;
+                if($user && $user->id!=$report->pet->owner_id) continue;
                 $date_time=explode(' ',$report->date);
                 $report_date=$date_time[0];
                 $report_date=date("d M Y", strtotime($report_date));

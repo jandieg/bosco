@@ -724,7 +724,7 @@ a.btn-video:hover {
   background: #fff;
   border-bottom: 1px solid #D0D1D1;
   display: inline-block;
-  height: 300px;
+  height: 280px;
   width: 184px;
 }
 
@@ -1433,9 +1433,8 @@ a.btn-video:hover {
   background: #fff;
   border-radius: 10px;
   margin: auto;    
-  /*height:auto;*/
+  height:auto;
   max-width: 370px;
-  max-height: 580px;
 }
 
 .modal-content h4 {
@@ -1693,6 +1692,7 @@ a.btn-video:hover {
 .modal-report-detail-right {
   float: right;
   width: 37.2%;
+  vertical-align:middle;
 }
 
 .modal-report-info {

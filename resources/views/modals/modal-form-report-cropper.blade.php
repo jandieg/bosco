@@ -4,7 +4,7 @@
       <div class="modal-content">
         <div class="modal-header" style="border-bottom: 1px solid #e5e5e5;padding: 18px 30px;">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h5 class="modal-title" id="modalLabel">Crop the image</h5>
+          <h5 class="modal-title" id="modalLabel">Recortar la foto</h5>
         </div>
         <div class="modal-body">
           <div style="width:80%;margin:0px auto;">
@@ -38,8 +38,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" id="cropper-confirm">Confirm</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-default" id="cropper-confirm">Confirmar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
         </div>
       </div>
     </div>

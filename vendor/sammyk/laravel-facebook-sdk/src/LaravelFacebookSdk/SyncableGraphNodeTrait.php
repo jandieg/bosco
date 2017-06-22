@@ -69,7 +69,7 @@ trait SyncableGraphNodeTrait
      */
     public static function firstOrNewGraphNode(array $attributes)
     {
-        if (is_null($facebook_object = static::firstByAttributes($attributes))) {
+        if (is_null($facebook_object = static::firstOrNew($attributes))) {
             $facebook_object = new static();
         }
 
@@ -132,11 +132,13 @@ trait SyncableGraphNodeTrait
         if (property_exists($model_name, 'graph_node_date_time_to_string_format')) {
             $date_format = static::$graph_node_date_time_to_string_format;
         }
+
         foreach ($data as $key => $value) {
             if ($value instanceof \DateTime) {
                 $data[$key] = $value->format($date_format);
             }
         }
+
         return $data;
     }
 
@@ -152,6 +154,7 @@ trait SyncableGraphNodeTrait
         if (!property_exists($model_name, 'graph_node_fillable_fields')) {
             return true;
         }
+
         return in_array($key, static::$graph_node_fillable_fields);
     }
 }

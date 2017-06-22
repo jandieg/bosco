@@ -1,17 +1,19 @@
-# Laravel Socialite
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-socialite.svg"></p>
 
-[![Build Status](https://travis-ci.org/laravel/socialite.svg)](https://travis-ci.org/laravel/socialite)
-[![Total Downloads](https://poser.pugx.org/laravel/socialite/d/total.svg)](https://packagist.org/packages/laravel/socialite)
-[![Latest Stable Version](https://poser.pugx.org/laravel/socialite/v/stable.svg)](https://packagist.org/packages/laravel/socialite)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/socialite/v/unstable.svg)](https://packagist.org/packages/laravel/socialite)
-[![License](https://poser.pugx.org/laravel/socialite/license.svg)](https://packagist.org/packages/laravel/socialite)
-[![Dependency Status](https://www.versioneye.com/php/laravel:socialite/dev-master/badge?style=flat)](https://www.versioneye.com/php/laravel:socialite/dev-master)
+<p align="center">
+<a href="https://travis-ci.org/laravel/socialite"><img src="https://travis-ci.org/laravel/socialite.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/socialite"><img src="https://poser.pugx.org/laravel/socialite/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/socialite"><img src="https://poser.pugx.org/laravel/socialite/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/socialite"><img src="https://poser.pugx.org/laravel/socialite/license.svg" alt="License"></a>
+</p>
 
 ## Introduction
 
 Laravel Socialite provides an expressive, fluent interface to OAuth authentication with Facebook, Twitter, Google, LinkedIn, GitHub and Bitbucket. It handles almost all of the boilerplate social authentication code you are dreading writing.
 
 **We are not accepting new adapters.**
+
+Adapters for other platforms are listed at the community driven [Socialite Providers](https://socialiteproviders.github.io/) website.
 
 ## License
 
@@ -21,7 +23,7 @@ Laravel Socialite is open-sourced software licensed under the [MIT license](http
 
 In addition to typical, form based authentication, Laravel also provides a simple, convenient way to authenticate with OAuth providers using [Laravel Socialite](https://github.com/laravel/socialite). Socialite currently supports authentication with Facebook, Twitter, LinkedIn, Google, GitHub and Bitbucket.
 
-To get started with Socialite, add to your `composer.json` file as a dependency:
+To get started with Socialite, use Composer to add the package to your project's dependencies:
 
     composer require laravel/socialite
 
@@ -62,7 +64,7 @@ namespace App\Http\Controllers\Auth;
 
 use Socialite;
 
-class AuthController extends Controller
+class LoginController extends Controller
 {
     /**
      * Redirect the user to the GitHub authentication page.
@@ -88,18 +90,25 @@ class AuthController extends Controller
 }
 ```
 
-The `redirect` method takes care of sending the user to the OAuth provider, while the `user` method will read the incoming request and retrieve the user's information from the provider. Before redirecting the user, you may also set "scopes" on the request using the `scope` method. This method will overwrite all existing scopes:
+The `redirect` method takes care of sending the user to the OAuth provider, while the `user` method will read the incoming request and retrieve the user's information from the provider. Before redirecting the user, you may also add additional "scopes" on the request using the `scopes` method. This method will merge all existing scopes with the ones you supply:
 
 ```php
 return Socialite::driver('github')
             ->scopes(['scope1', 'scope2'])->redirect();
 ```
 
+You can overwrite all exisiting scopes using the `setScopes` method:
+
+```php
+return Socialite::driver('github')
+            ->setScopes(['scope1', 'scope2'])->redirect();
+```
+
 Of course, you will need to define routes to your controller methods:
 
 ```php
-Route::get('auth/github', 'Auth\AuthController@redirectToProvider');
-Route::get('auth/github/callback', 'Auth\AuthController@handleProviderCallback');
+Route::get('login/github', 'Auth\LoginController@redirectToProvider');
+Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
 ```
 
 A number of OAuth providers support optional parameters in the redirect request. To include any optional parameters in the request, call the `with` method with an associative array:
@@ -110,6 +119,15 @@ return Socialite::driver('google')
 ```
 
 When using the `with` method, be careful not to pass any reserved keywords such as `state` or `response_type`.
+
+#### Stateless Authentication
+
+The `stateless` method may be used to disable session state verification. This is useful when adding social authentication to an API:
+
+```php
+return Socialite::driver('google')->stateless()->user();
+```
+
 
 #### Retrieving User Details
 
@@ -133,4 +151,12 @@ $user->getNickname();
 $user->getName();
 $user->getEmail();
 $user->getAvatar();
+```
+
+#### Retrieving User Details From Token
+
+If you already have a valid access token for a user, you can retrieve their details using the `userFromToken` method:
+
+```php
+$user = Socialite::driver('github')->userFromToken($token);
 ```
