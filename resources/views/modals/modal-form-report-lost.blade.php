@@ -47,6 +47,16 @@
       }
 
       #pac-input {
+        width: 100%; 
+        height: 36px; 
+        padding: 6px 12px; 
+        background-color: #fff;
+        border: 1px solid #ccd0d2;
+        border-radius: 4px;
+        box-shadow: inset 0 1x 1px rgba(0,0,0,.075);
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+      }
+      /*{
         background-color: #fff;
         font-family: Roboto;
         font-size: 15px;
@@ -56,11 +66,17 @@
         padding: 0 11px 0 13px;
         text-overflow: ellipsis;
         width: 400px;
-      }
+      }*/
 
       #pac-input:focus {
+        border-color: #98cbe8; 
+        outline: 0; 
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(152,203,232,.6)
+      }/*{
         border-color: #4d90fe;
-      }
+      }*/
+
+      
 
       #title {
         color: #fff;
