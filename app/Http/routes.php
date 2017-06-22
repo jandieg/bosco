@@ -25,6 +25,7 @@ Route::group(['prefix'=>'api','middleware' => ['auth:api']], function(){
 Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'IndexController@index');
     Route::get('terminos-y-condiciones', 'IndexController@getTermsConditions');
+    Route::get('politicas-y-privacidad', 'IndexController@getPoliticsAndPrivacy');
     Route::get('ayuda', 'IndexController@getHelp');
     Route::get('contactanos', 'IndexController@getContactUs');
     Route::get('mascotas', 'PetsController@getPetsLost');

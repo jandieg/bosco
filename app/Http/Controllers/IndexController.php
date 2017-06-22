@@ -36,6 +36,10 @@ class IndexController extends Controller {
         return view('general.page-terms-conditions', ['user' => Auth::check() ? Auth::user() : null]);
     }
 
+    public function getPoliticsAndPrivacy() {
+        return view('general.page-politicas', ['user' => Auth::check() ? Auth::user() : null]);
+    }
+
     public function getHelp() {
 
         return view('general.page-help', ['user' => Auth::check() ? Auth::user() : null]);
