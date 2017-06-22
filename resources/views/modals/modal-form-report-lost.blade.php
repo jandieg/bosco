@@ -101,7 +101,7 @@
         </ul>
       </div>
     </div>
-    <div class="modal-body" style='height:420px;'>
+    <div class="modal-body" style='height:420px; overflow-y: auto;'>
       <form id="form-report-lost-form" action="" method="post">
         <div class="row">
           <div id="form-report-lost-tab-1" class="form-report-lost-tab">
