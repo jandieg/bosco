@@ -325,8 +325,8 @@ reportLostAdd.on('click', function (e) {
     var margin_top = $("#form-report-lost").find('.modal-content').outerHeight() / 2;
     $("#form-report-lost").find('.modal-content').css('top', '50vh');
     $("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
-    Initialize_Report();
-    var pac_html = "<input type='text' id='pac-input'></input>";
+    Initialize_Report(); 
+    var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
     $("#pac-input-div").html(pac_html);
 });
 var reportFoundAdd = $('.report-found-add');
@@ -339,15 +339,15 @@ reportFoundAdd.on('click', function (e) {
     $("#form-report-lost").find('.modal-content').css('top', '50vh');
     $("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
     Initialize_Report()
-    var pac_html = "<input type='text' id='pac-input'></input>";
+    var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
     $("#pac-input-div").html(pac_html);
 });
 $('#report_tab_1').on('click', function () {
-    var pac_html = "<input type='text' id='pac-input'></input>";
+    var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
     $("#pac-input-div").html(pac_html);
 });
 $('#report_tab_3').on('click', function () {
-    var pac_html = "<input type='text' id='pac-input'></input>";
+    var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
     $("#pac-input-div").html(pac_html);
 });
 function Initialize_Report()

@@ -182,7 +182,7 @@
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
                 <label>Última vez visto</label>
-                <div id='pac-input-div'><input type="text" id="pac-input" class="form-control"></div>
+                <div id='pac-input-div'><input type="text" id="pac-input" class="form-control" placeholder="Ingresa la dirección donde se perdió o arrastra el PIN"></div>
                 <input type="hidden" name="lost_pet_last_address" id="pac-address" class="form-control">
                 <input type="hidden" name="lost_pet_department" id="pac-department" class="form-control">
                 <input type="hidden" name="lost_pet_city" id="pac-city" class="form-control">
