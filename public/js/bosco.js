@@ -23,12 +23,18 @@ function postFacebook(id) {
 		        type: "GET",
 		        url: window.location.origin + '/facebook-post',
 		        dataType: 'json',
+                async: false,
 		        cache: false,
 		        data: {report_id:id, user_id: userID, access_Token: accessToken},
 		        success: function (result) {
 		        }
 		        });
-	    FB.api('/'+userID+'/feed', 'post', {message: 'Hello, pet world!'});
+	    FB.api('/'+userID+'/photos', 'post', 
+        {   url: window.location.origin + '/report.jpg',
+            caption: 'Mascota Extraviada',
+            access_token: accessToken
+        }
+        );
 	} , {scope:'email,manage_pages,publish_actions,publish_pages'});
 }
 
