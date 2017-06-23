@@ -55,7 +55,7 @@
             </p>
           </div>
           <div style='text-align:right;height:49px;float:right;background-color:black;color:white;margin-top:1px;padding:20px 20px 0px 20px;'>
-          <span style="font-size:24px;">recompansa:&nbsp;</span><span style="font-size:27px;">S/.&nbsp;{{ $report['reward'] }}</span>
+          <span style="font-size:24px;">recompensa:&nbsp;</span><span style="font-size:27px;">S/.&nbsp;{{ $report['reward'] }}</span>
           </div>
           <img src="{{ asset('images/pets/'.$report['image']) }}" style="width:100%;top:-51px;">
           <div class='pdf-report-phone'><img src="{{ url('/img/phone.png')}}" style="padding-top:25px;width:40px;height:auto;">&nbsp;&nbsp;{{ $report['user_phone'] }}</div>
