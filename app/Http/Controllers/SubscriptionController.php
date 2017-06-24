@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SubscriptionRequest;
-use App\Subscriber;
+use App\Email;
 
 
 class SubscriptionController extends Controller
@@ -11,11 +11,11 @@ class SubscriptionController extends Controller
     public function index(SubscriptionRequest $request)
     {
         if($request->isMethod('POST'))
-        {
-            $subscriber = new Subscriber();
-            $subscriber->email = $request->get('email');
-            $subscriber->save();
-            return response()->json(['status'=>true,'message'=>'Gracias por suscribirse.']);
+        {                    
+            $email = new Email();
+            $email->email = $request->get('email');
+            $email->save();
+            return response()->json(['status'=>true,'message'=>'Gracias por suscribirse.']);        
         }
     }
 }

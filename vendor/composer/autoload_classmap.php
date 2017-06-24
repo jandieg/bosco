@@ -8,6 +8,8 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Commands\\Inspire' => $baseDir . '/app/Console/Commands/Inspire.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\Correo' => $baseDir . '/app/Correo.php',
+    'App\\Email' => $baseDir . '/app/Email.php',
     'App\\Events\\Event' => $baseDir . '/app/Events/Event.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\HistoryLocated' => $baseDir . '/app/HistoryLocated.php',
@@ -60,6 +62,7 @@ return array(
     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
     'Carbon\\Exceptions\\InvalidDateException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
+    'CreateEmailsTable' => $baseDir . '/database/migrations/2017_06_24_030857_create_emails_table.php',
     'CreateHistoryLocatedTable' => $baseDir . '/database/migrations/2016_07_13_235318_create_history_located_table.php',
     'CreateHistoryLocationsTable' => $baseDir . '/database/migrations/2016_07_13_234237_create_history_locations_table.php',
     'CreateLocationsTable' => $baseDir . '/database/migrations/2016_07_13_234999_create_locations_table.php',

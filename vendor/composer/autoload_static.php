@@ -350,6 +350,8 @@ class ComposerStaticInit3a714c17b98d2b183ebc97376e8eb807
     public static $classMap = array (
         'App\\Console\\Commands\\Inspire' => __DIR__ . '/../..' . '/app/Console/Commands/Inspire.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Correo' => __DIR__ . '/../..' . '/app/Correo.php',
+        'App\\Email' => __DIR__ . '/../..' . '/app/Email.php',
         'App\\Events\\Event' => __DIR__ . '/../..' . '/app/Events/Event.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\HistoryLocated' => __DIR__ . '/../..' . '/app/HistoryLocated.php',
@@ -402,6 +404,7 @@ class ComposerStaticInit3a714c17b98d2b183ebc97376e8eb807
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
         'Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
+        'CreateEmailsTable' => __DIR__ . '/../..' . '/database/migrations/2017_06_24_030857_create_emails_table.php',
         'CreateHistoryLocatedTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_13_235318_create_history_located_table.php',
         'CreateHistoryLocationsTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_13_234237_create_history_locations_table.php',
         'CreateLocationsTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_13_234999_create_locations_table.php',
