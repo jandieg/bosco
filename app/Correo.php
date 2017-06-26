@@ -17,7 +17,7 @@ class Correo {
         $content = new \SendGrid\Content("text/plain", "Estimado ".$nombre.", gracias por registrarte en Bosco.");
         $mail = new \SendGrid\Mail($from, $subject, $to, $content);
         //$apiKey = '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';
-        $apiKey = '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';
+        $apiKey = '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';
         //$apiKey = 'xxx';
         $sg = new \SendGrid($apiKey);
         $response = $sg->client->mail()->send()->post($mail);        
