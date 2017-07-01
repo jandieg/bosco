@@ -779,8 +779,8 @@ function previewImage(input) {
             $('#cropper-image').attr('src', e.target.result);
             //$('#btn-cropper').trigger('click');
             cropper_Modal();
-            $('.alert-message').text('Al subir la foto.. se alinea con esta linea');
-            var w_window = $(window).width();
+            //$('.alert-message').text('Al subir la foto.. se alinea con esta linea');
+            /*var w_window = $(window).width();
             var w_alert = 350;
             if (w_window > 400) {
                 w_alert = 350;
@@ -798,7 +798,7 @@ function previewImage(input) {
             $('.alert-message').fadeIn(100);
             window.setTimeout(function () {
                 $(".alert-message").fadeOut(300);
-            }, 2000);
+            }, 2000);*/
         }
         reader.readAsDataURL(input.files[0]);
     }
