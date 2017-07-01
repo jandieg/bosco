@@ -422,9 +422,11 @@ reportDetailFound.on('click', function (e) {
 var submitReport = $('.btn-submit-report');
 submitReport.on('click', function (e) {
     e.preventDefault();
+    submitReport.html('Cargando...');
     var cropcanvas = $('#cropper-image').cropper('getCroppedCanvas');
     if($(".preview-img").css('background-image')=='' && !cropcanvas && $('#report_id').val()=='') {
-	alert('Elija una imagen del animal doméstico en su computadora, por favor');
+    submitReport.html('Finalizar');
+	alert('Elija una imagen del animal doméstico en su computadora, por favor');    
 	$("#form-report-lost-tab-1").removeClass('hide');
 	$("#form-report-lost-tab-2").addClass('hide');
 	$("#form-report-lost-tab-3").addClass('hide');
@@ -435,6 +437,7 @@ submitReport.on('click', function (e) {
     }
     var address = $("#pac-address").val();
     if (!address) {
+        submitReport.html('Finalizar');
         alert('Seleccionar área en el mapa, por favor');
         $("#form-report-lost-tab-1").addClass('hide');
         $("#form-report-lost-tab-2").removeClass('hide');
@@ -449,17 +452,20 @@ submitReport.on('click', function (e) {
         croppng = cropcanvas.toDataURL("image/png");
     else
         croppng = '';
+    
+    
     $.ajax({
         type: "POST",
         url: window.location.origin + '/mis-reportes-registrar',
         dataType: 'json',
         cache: false,
+        async: false,
         data: $('#form-report-lost-form').serialize() + "&pngimageData=" + croppng + "&address=" + address,
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (result) {
-            if (result) {
+            if (result) {                
                 window.location.reload();
             }
         }
