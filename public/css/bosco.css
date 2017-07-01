@@ -1429,7 +1429,18 @@ a.btn-video:hover {
 .modal{
     height:100%;
 }
+
+@media screen and (min-width: 768px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
 .modal-content {
+  vertical-align: middle;
   background: #fff;
   border-radius: 10px;
   margin: auto;    
