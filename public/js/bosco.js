@@ -833,8 +833,9 @@ $('#cropper-confirm').on('click', function () {
     var h = parseInt($('#dataHeight').val());
     var w = parseInt($('#dataWidth').val());
     var cropper = $('#cropper-image').cropper('getCroppedCanvas');
+
     var croppedCanvas;
-    if (w > 600 && h > 600) {
+    /*if (w > 600 && h > 600) {
         croppedCanvas = $('#cropper-image').cropper('getCroppedCanvas', {
             width: 600,
             height: 600
@@ -851,11 +852,44 @@ $('#cropper-confirm').on('click', function () {
         });
     } else {
         croppedCanvas = $('#cropper-image').cropper('getCroppedCanvas');
+    }*/
+
+    thumbWidth = 800;
+
+    if (w > 800) {
+        canvas = document.createElement('canvas');
+        var ctx = canvas.getContext("2d");
+        newWidth = Math.floor(w*(0.61));
+
+        if (newWidth < thumbWidth) {
+            newWidth = thumbWidth;
+        }
+
+        newHeight = Math.floor(h/w*newWidth);
+
+        if (newWidth >= thumbWidth) {
+            canvas.width = newWidth;
+            canvas.height = newHeight;
+
+            ctx.drawImage(cropper, 0, 0, newWidth, newHeight);
+
+            cropper.src = canvas.toDataURL();
+            cropper.width = newWidth;
+        }
+        $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + canvas.toDataURL() + ')');
+        $('.upload-image-lost-preview').show();
+        $('#lost_pet_file').parent().hide();
+        $('#modal-cropper .modal-header button').trigger('click');
+    } else {
+        $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + cropper.toDataURL() + ')');
+        $('.upload-image-lost-preview').show();
+        $('#lost_pet_file').parent().hide();
+        $('#modal-cropper .modal-header button').trigger('click');
     }
-    $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + croppedCanvas.toDataURL() + ')');
-    $('.upload-image-lost-preview').show();
-    $('#lost_pet_file').parent().hide();
-    $('#modal-cropper .modal-header button').trigger('click');
+    
+
+
+    
     
 });
 $('#modal-cropper').on('shown.bs.modal', function () {
