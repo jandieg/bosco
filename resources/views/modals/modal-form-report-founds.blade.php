@@ -25,8 +25,8 @@
               <div class="form-group">
                 <label>Género</label>
                 <select class="form-control" name="gender">
-                  <option value="male">Macho</option>
-                  <option value="female">Hembra</option>
+                  <option value="macho">Macho</option>
+                  <option value="hembra">Hembra</option>
                 </select>
               </div>
             </div>
