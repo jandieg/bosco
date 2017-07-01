@@ -101,6 +101,51 @@ $('#form-report-lost .modal-form-report-menu li span').click(function () {
 
 $('#form-report-lost .modal-form-report .form-actions .btn-next').click(function () {
     var tab = $(this).data('tab');
+    if (tab == "tab-2") {
+        if ($("#lost_pet_name").val().length == 0) {
+            alert('Debe ingresar el nombre de la mascota' + $("#lost_pet_name").text());
+            return false;
+        }
+
+        if ($("#lost_pet_race").val().length == 0) {
+            alert('Debe ingresar la raza de la mascota');
+            return false;
+        }
+
+        if ($("#lost_pet_description").val().length == 0) {
+            alert('Debe ingresar la descripcion de la mascota');
+            return false;
+        }
+
+        var cropper = $('#cropper-image').cropper('getCroppedCanvas');        
+        if (cropper == null) {
+            alert('Debe ingresar la imagen de la mascota');
+            return false;
+        }
+    }
+
+    if (tab == "tab-3") {
+        if ($("#datepicker").val().length == 0) {
+            alert('Debe ingresar la fecha de desaparicion de la mascota');
+            return false;
+        }
+
+        if ($("#timepicker").val().length == 0) {
+            alert('Debe ingresar la hora de desaparicion de la mascota');
+            return false;
+        }
+
+        if ($("#lost_pet_report_description").val().length == 0) {
+            alert('Debe ingresar la descripcion del reporte');
+            return false;
+        }   
+
+        if ($("#pac-city").val().length == 0) {
+            alert('Debe seleccionar la ubicacion');
+            return false;
+        }             
+    }
+
     $('#form-report-lost .modal-form-report-menu li span').removeClass('tab-on');
     $('#form-report-lost .modal-form-report-menu li span#' + tab).addClass('tab-on');
     $('#form-report-lost .modal-form-report .form-report-lost-tab').addClass('hide');
@@ -422,6 +467,22 @@ reportDetailFound.on('click', function (e) {
 var submitReport = $('.btn-submit-report');
 submitReport.on('click', function (e) {
     e.preventDefault();
+    if ($("input[name='lost_pet_owner_name']").val().length == 0) {
+        alert("Debe ingresar el nombre del propietario");
+        return false;
+    }
+
+    if ($("input[name='lost_pet_contact_name']").val().length == 0) {
+        alert("Debe ingresar el numero de contacto");
+        return false;
+    }
+    
+    if ($("input[name='lost_pet_contact_email']").val().length == 0) {
+        alert("Debe ingresar el correo del contacto");
+        return false;
+    }
+
+
     submitReport.html('Cargando...');
     var cropcanvas = $('#cropper-image').cropper('getCroppedCanvas');
     if($(".preview-img").css('background-image')=='' && !cropcanvas && $('#report_id').val()=='') {
