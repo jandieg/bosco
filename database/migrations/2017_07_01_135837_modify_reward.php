@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ModifyPetsLanguage extends Migration
+class ModifyReward extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class ModifyPetsLanguage extends Migration
      */
     public function up()
     {
-        Schema::table('pets', function (Blueprint $table) {
+        Schema::table('reports', function (Blueprint $table) {
             //
-         //   $table->enum('gender', ['macho','hembra'])->change();
+            $table->integer('reward')->nullable()->change();
         });
     }
 
@@ -26,7 +26,7 @@ class ModifyPetsLanguage extends Migration
      */
     public function down()
     {
-        Schema::table('pets', function (Blueprint $table) {
+        Schema::table('reports', function (Blueprint $table) {
             //
         });
     }

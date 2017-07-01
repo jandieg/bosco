@@ -1437,10 +1437,13 @@ a.btn-video:hover {
     content: " ";
     height: 100%;
   }
+  .modal-content {
+    vertical-align: middle;
+  }
 }
 
 .modal-content {
-  vertical-align: middle;
+  
   background: #fff;
   border-radius: 10px;
   margin: auto;    
