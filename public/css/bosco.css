@@ -25,6 +25,27 @@
 }
 
 @font-face {
+  font-family: 'Arial';
+  src: url('../fonts/arial/arial.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Arial-bold';
+  src: url('../fonts/arial/arial-bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Arial-black';
+  src: url('../fonts/arial-black/arial-black.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Montserrat Light';
   src: url('../fonts/montserrat/montserrat-light.eot');
   src: url('../fonts/montserrat/montserrat-light.eot?#iefix') format('embedded-opentype'),
@@ -1555,6 +1576,10 @@ a.btn-video:hover {
   text-align: center;
   text-transform: uppercase;
 }
+
+.modal-report-title {
+  font-size: 32px;
+}
 .pdf-report-detail-image .pdf-report-title {
   background: #E73737;
   color: #fff;
@@ -1577,9 +1602,11 @@ a.btn-video:hover {
 }
 
 .modal-report-detail-image .modal-report-title h3 {
-  font-size: 50px;
+  font-size: 60px;
   margin: 0;
   padding: 0;
+  margin-top: -20px;
+  font-weight: bold;
 }
 
 .modal-report-data {
@@ -1591,6 +1618,8 @@ a.btn-video:hover {
   position: absolute;
   width: 90%;
   z-index: 9999;
+  padding-top: 0;
+  margin-top:0;
 }
 
 .modal-report-data ul {
@@ -1610,6 +1639,13 @@ a.btn-video:hover {
   text-align: center;
   text-transform: none;
 }
+
+.report-detail-lost-name, .report-detail-lost-gender,.report-detail-lost-race{
+  font-size: 16px !important;
+  font-weight: bold !important;
+}
+
+
 
 .modal-report-data li.last {
   border-right: none;

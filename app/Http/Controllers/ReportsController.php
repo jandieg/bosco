@@ -210,7 +210,8 @@ class ReportsController extends Controller {
         $html_file = storage_path() . '/report.html';
         file_put_contents($html_file, $contents);
         $pdf_file = storage_path() . '/report.pdf';
-	PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Segoe UI Black']);
+	//PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Segoe UI Black']);
+    PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Arial']);
         $pdf = PDF::loadView('pdf/download-report-lost', ['report' => $report])->setPaper('a4', 'portrait')->save($pdf_file);
         if($status=='pdf') 
             return response()->download($pdf_file);

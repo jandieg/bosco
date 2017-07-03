@@ -92,4 +92,14 @@
   'montserrat ultra light' => array(
     'normal' => $fontDir . '\8e542bcafdf357bce71b7b8278b8d491',
   ),
+  'arial' => array(
+    'normal' => $fontDir . '/e7536d65d53f999162283f9f95457e3c',
+  ),
+  'arial-black' => array(
+    'normal' => $fontDir . '/6a6b46ac100764b1a8bb4fbc63e01d27',
+  ),
+  'arial-bold' => array(
+    'bold' => $fontDir . '/e7536d65d53f999162283f9f95457e3c',
+    'normal' => $fontDir . '/2282401b521645ca655d3efe207a8d0d',
+  ),
 ) ?>
