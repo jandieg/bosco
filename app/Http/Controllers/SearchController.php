@@ -19,13 +19,17 @@ class SearchController extends Controller {
         $department= $request->get('department');
         $city = $request->get('city ');
         $district = $request->get('district');
-        if($district) $ubigeo= \App\Ubigeo::where('district',$district)->first();
-        if($city) $ubigeo=\App\Ubigeo::where('district',$district)->where('city',$city)->first();
-        if($department) $ubigeo=\App\Ubigeo::where('district',$district)->where('city',$city)->where('department',$department)->first();
-        if($district) 
+        if($district && $district != "Todos") $ubigeo= \App\Ubigeo::where('district',$district)->first();
+        if($city  && $city != "Todos") $ubigeo=\App\Ubigeo::where('district',$district)->where('city',$city)->first();
+        if($department && $department != "Todos") $ubigeo=\App\Ubigeo::where('district',$district)->where('city',$city)->where('department',$department)->first();
+        if($district && $district != "Todos") 
             $locations= \App\Location::where('ubigeo_id', $ubigeo->id)->get(); 
         else
-            $locations= \App\Location::get(); 
+            $locations= \App\Location::get();
+        
+
+
+
         foreach ($locations as $location){ 
             $reports=Report::where('last_location_id', $location->id)->get();
             foreach ($reports as $report){

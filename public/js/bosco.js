@@ -283,21 +283,73 @@ var locationsCountry = $('#ubigeo-department');
 locationsCountry.on('change', function (e) {
     e.preventDefault();
     var $this = $(this);
-    $.ajax({
-        type: "GET",
-        url: window.location.origin + '/ubigeo-ciudades',
-        dataType: 'json',
-        cache: false,
-        data: {department: $this.val()},
-        success: function (data) {
-            if (data.result) {
-                $('#ubigeo-city').html(data.options).fadeIn();
-                $('#ubigeo-district').html('<option value="" default style="display:none;">Distrito</option>').fadeIn();
-                $('#ubigeo-city').addClass('error');
-                $('#ubigeo-district').addClass('error');
+    console.log($this.val());
+    if ($this.val() == "Todos") {
+        $("#ubigeo-city").html('<option value="" default style="display:none;">-----</option>').fadeIn();
+        $("#ubigeo-district").html('<option value="" default style="display:none;">-----</option>').fadeIn();
+        $('#ubigeo-city').addClass('error');
+        $('#ubigeo-district').addClass('error');
+        var department = "Todos";
+        var city = "";
+        var district = "";
+        $.ajax({
+            type: "GET",
+            url: window.location.origin + '/search-pets',
+            dataType: 'json',
+            cache: false,
+            data: { department: department, city: city, district: district },
+            success: function (data) {
+                var li_html = '';
+                if (data.data) {
+                    var gallery_class_name, gallery_event;
+                    if ($('ul.pets-list')) {
+                        gallery_class_name = 'gallery-item-hover';
+                        gallery_event = "gallery_item_over";
+                    }
+                    if ($('ul.pets-list').parent().attr('id') == 'home_gallery_ul_parent') {
+                        gallery_class_name = 'gallery-div-hover';
+                        gallery_event = "item_detail_view";
+                    }
+                    for (var i = 0; i < data.data.length; i++) {
+                        li_html += '<li><a data-toggle="modal"><img src="/images/pets/' + data.data[i]['image'] + '">';
+                        li_html += '<div class="gallery-item-hover" onclick="gallery_item_over(' + data.data[i]['id'] + ')">';
+                        li_html += '<p>' + data.data[i]['description'] + '</p>';
+                        li_html += '</div>';
+                        li_html += '<div class="gallery-item-detail">';
+                        li_html += '<h2>' + data.data[i]['name'] + '</h2>';
+                        li_html += '<p class="gallery-item-birthday">' + data.data[i]['date'] + '</p>';
+                        li_html += '<p class="gallery-item-location">' + data.data[i]['address'] + '</p>';
+                        li_html += '</div>';
+                        li_html += '</a>';
+                        li_html += '</li>';
+                    }
+                    if ($('ul.pets-list'))
+                        $('ul.pets-list').html(li_html);
+                    if ($('ul.pets-list'))
+                        $('ul.pets-list').html(li_html);
+                }
             }
-        }
-    });
+        });
+    } else {
+        $.ajax({
+            type: "GET",
+            url: window.location.origin + '/ubigeo-ciudades',
+            dataType: 'json',
+            cache: false,
+            data: { department: $this.val() },
+            success: function (data) {
+                if (data.result) {
+                    $('#ubigeo-city').html(data.options).fadeIn();
+                    $("#ubigeo-city").append('<option value="Todos">Todos</option>');
+                    $('#ubigeo-district').html('<option value="" default style="display:none;">Distrito</option>').fadeIn();                    
+                    $("#ubigeo-district").append('<option value="Todos">Todos</option>');
+                    $('#ubigeo-city').addClass('error');
+                    $('#ubigeo-district').addClass('error');
+                }
+            }
+        });
+    }
+    
 
 
 });
@@ -306,25 +358,77 @@ var locationsCity = $('#ubigeo-city');
 locationsCity.on('change', function (e) {
     e.preventDefault();
     var $this = $(this);
-    $.ajax({
-        type: "GET",
-        url: window.location.origin + '/ubigeo-distritos',
-        dataType: 'json',
-        cache: false,
-        data: {city: $this.val()},
-        success: function (data) {
-            if (data.result) {
-                $('#ubigeo-district').html(data.options).fadeIn();
-                $('#ubigeo-district').addClass('error');
+    if ($this.val() == "Todos") {
+        $("#ubigeo-district").html('<option value="" default style="display:none;">-----</option>').fadeIn();
+        var department = $('#ubigeo-department').val();
+        var city = "Todos";
+        var district = "";
+        $.ajax({
+            type: "GET",
+            url: window.location.origin + '/search-pets',
+            dataType: 'json',
+            cache: false,
+            data: { department: department, city: city, district: district },
+            success: function (data) {
+                var li_html = '';
+                if (data.data) {
+                    var gallery_class_name, gallery_event;
+                    if ($('ul.pets-list')) {
+                        gallery_class_name = 'gallery-item-hover';
+                        gallery_event = "gallery_item_over";
+                    }
+                    if ($('ul.pets-list').parent().attr('id') == 'home_gallery_ul_parent') {
+                        gallery_class_name = 'gallery-div-hover';
+                        gallery_event = "item_detail_view";
+                    }
+                    for (var i = 0; i < data.data.length; i++) {
+                        li_html += '<li><a data-toggle="modal"><img src="/images/pets/' + data.data[i]['image'] + '">';
+                        li_html += '<div class="gallery-item-hover" onclick="gallery_item_over(' + data.data[i]['id'] + ')">';
+                        li_html += '<p>' + data.data[i]['description'] + '</p>';
+                        li_html += '</div>';
+                        li_html += '<div class="gallery-item-detail">';
+                        li_html += '<h2>' + data.data[i]['name'] + '</h2>';
+                        li_html += '<p class="gallery-item-birthday">' + data.data[i]['date'] + '</p>';
+                        li_html += '<p class="gallery-item-location">' + data.data[i]['address'] + '</p>';
+                        li_html += '</div>';
+                        li_html += '</a>';
+                        li_html += '</li>';
+                    }
+                    if ($('ul.pets-list'))
+                        $('ul.pets-list').html(li_html);
+                    if ($('ul.pets-list'))
+                        $('ul.pets-list').html(li_html);
+                }
             }
-        }
-    });
+        });
+    } else {
+        $.ajax({
+            type: "GET",
+            url: window.location.origin + '/ubigeo-distritos',
+            dataType: 'json',
+            cache: false,
+            data: { city: $this.val() },
+            success: function (data) {
+                if (data.result) {
+                    $('#ubigeo-district').html(data.options).fadeIn();
+                    $("#ubigeo-district").append('<option value="Todos">Todos</option>');
+                    $('#ubigeo-district').addClass('error');
+                }
+            }
+        });
+    }
+    
 });
 
 var locationsDistrict = $('#ubigeo-district');
 locationsDistrict.on('change', function (e) {
     var department = '';
     var city = '';
+    if ($("#ubigeo-district").val() == "Todos") {
+        var department = $("#ubigeo-department").val();
+        var city = $("#ubigeo-city").val();
+    } 
+    
     var district = $('#ubigeo-district').val();
     $.ajax({
         type: "GET",
