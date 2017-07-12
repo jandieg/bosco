@@ -108,3 +108,10 @@
   </div>
 </section>
 @endsection
+
+@if (session('openLogin'))
+    
+    <script>
+        alert('Por favor logueese primero');      
+    </script>
+@endif
