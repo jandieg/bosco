@@ -399,6 +399,7 @@ locationsCountry.on('change', function (e) {
 
 });
 
+
 var locationsCity = $('#ubigeo-city');
 locationsCity.on('change', function (e) {
     e.preventDefault();

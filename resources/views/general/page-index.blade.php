@@ -110,8 +110,9 @@
 @endsection
 
 @if (session('openLogin'))
-    
     <script>
-        alert('Por favor logueese primero');      
+    document.addEventListener("DOMContentLoaded", function() {    
+      document.querySelector('[href="#form-user"]').click();
+    });
     </script>
 @endif
