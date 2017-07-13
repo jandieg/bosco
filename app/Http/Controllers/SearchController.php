@@ -20,11 +20,11 @@ class SearchController extends Controller {
         $city = $request->get('city');
         $district = $request->get('district');
         
-        if($department && $department != "Todos") $ubigeo=\App\Ubigeo::where('department',$department)->first();
-        if($city  && $city != "Todos") $ubigeo=\App\Ubigeo::where('city',$city)->first();
-        if($district && $district != "Todos") $ubigeo= \App\Ubigeo::where('district',$district)->first();
+        if($department && $department != "Todos") $ubigeo=\App\Ubigeo::where('department',$department)->pluck('id')->toArray();
+        if($city  && $city != "Todos") $ubigeo=\App\Ubigeo::where('city',$city)->pluck('id')->toArray();
+        if($district && $district != "Todos") $ubigeo= \App\Ubigeo::where('district',$district)->pluck('id')->toArray();
         if (($department && $department != "Todos") || $district)
-            $locations= \App\Location::where('ubigeo_id', $ubigeo->id)->get(); 
+            $locations= \App\Location::whereIn('ubigeo_id', $ubigeo)->get(); 
         else
             $locations= \App\Location::get();
 
