@@ -17,17 +17,16 @@ class SearchController extends Controller {
     public function search(Request $request) {       
         $data=[];
         $department= $request->get('department');
-        $city = $request->get('city ');
+        $city = $request->get('city');
         $district = $request->get('district');
+        
+        if($department && $department != "Todos") $ubigeo=\App\Ubigeo::where('department',$department)->first();
+        if($city  && $city != "Todos") $ubigeo=\App\Ubigeo::where('city',$city)->first();
         if($district && $district != "Todos") $ubigeo= \App\Ubigeo::where('district',$district)->first();
-        if($city  && $city != "Todos") $ubigeo=\App\Ubigeo::where('district',$district)->where('city',$city)->first();
-        if($department && $department != "Todos") $ubigeo=\App\Ubigeo::where('district',$district)->where('city',$city)->where('department',$department)->first();
-        if($district && $district != "Todos") 
+        if (($department && $department != "Todos") || $district)
             $locations= \App\Location::where('ubigeo_id', $ubigeo->id)->get(); 
         else
             $locations= \App\Location::get();
-        
-
 
 
         foreach ($locations as $location){ 

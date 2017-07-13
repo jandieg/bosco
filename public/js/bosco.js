@@ -348,6 +348,51 @@ locationsCountry.on('change', function (e) {
                 }
             }
         });
+
+
+        var department = $this.val();
+        var city = "";
+        var district = "";
+        $.ajax({
+            type: "GET",
+            url: window.location.origin + '/search-pets',
+            dataType: 'json',
+            cache: false,
+            data: { department: department, city: city, district: district },
+            success: function (data) {
+                var li_html = '';
+                if (data.data) {
+                    var gallery_class_name, gallery_event;
+                    if ($('ul.pets-list')) {
+                        gallery_class_name = 'gallery-item-hover';
+                        gallery_event = "gallery_item_over";
+                    }
+                    if ($('ul.pets-list').parent().attr('id') == 'home_gallery_ul_parent') {
+                        gallery_class_name = 'gallery-div-hover';
+                        gallery_event = "item_detail_view";
+                    }
+                    for (var i = 0; i < data.data.length; i++) {
+                        li_html += '<li><a data-toggle="modal"><img src="/images/pets/' + data.data[i]['image'] + '">';
+                        li_html += '<div class="gallery-item-hover" onclick="gallery_item_over(' + data.data[i]['id'] + ')">';
+                        li_html += '<p>' + data.data[i]['description'] + '</p>';
+                        li_html += '</div>';
+                        li_html += '<div class="gallery-item-detail">';
+                        li_html += '<h2>' + data.data[i]['name'] + '</h2>';
+                        li_html += '<p class="gallery-item-birthday">' + data.data[i]['date'] + '</p>';
+                        li_html += '<p class="gallery-item-location">' + data.data[i]['address'] + '</p>';
+                        li_html += '</div>';
+                        li_html += '</a>';
+                        li_html += '</li>';
+                    }
+                    if ($('ul.pets-list'))
+                        $('ul.pets-list').html(li_html);
+                    if ($('ul.pets-list'))
+                        $('ul.pets-list').html(li_html);
+                }
+            }
+        });
+
+
     }
     
 
@@ -413,6 +458,48 @@ locationsCity.on('change', function (e) {
                     $('#ubigeo-district').html(data.options).fadeIn();
                     $("#ubigeo-district").append('<option value="Todos">Todos</option>');
                     $('#ubigeo-district').addClass('error');
+                }
+            }
+        });
+
+        var department = $('#ubigeo-department').val();
+        var city = $this.val();
+        var district = "";
+        $.ajax({
+            type: "GET",
+            url: window.location.origin + '/search-pets',
+            dataType: 'json',
+            cache: false,
+            data: { department: department, city: city, district: district },
+            success: function (data) {
+                var li_html = '';
+                if (data.data) {
+                    var gallery_class_name, gallery_event;
+                    if ($('ul.pets-list')) {
+                        gallery_class_name = 'gallery-item-hover';
+                        gallery_event = "gallery_item_over";
+                    }
+                    if ($('ul.pets-list').parent().attr('id') == 'home_gallery_ul_parent') {
+                        gallery_class_name = 'gallery-div-hover';
+                        gallery_event = "item_detail_view";
+                    }
+                    for (var i = 0; i < data.data.length; i++) {
+                        li_html += '<li><a data-toggle="modal"><img src="/images/pets/' + data.data[i]['image'] + '">';
+                        li_html += '<div class="gallery-item-hover" onclick="gallery_item_over(' + data.data[i]['id'] + ')">';
+                        li_html += '<p>' + data.data[i]['description'] + '</p>';
+                        li_html += '</div>';
+                        li_html += '<div class="gallery-item-detail">';
+                        li_html += '<h2>' + data.data[i]['name'] + '</h2>';
+                        li_html += '<p class="gallery-item-birthday">' + data.data[i]['date'] + '</p>';
+                        li_html += '<p class="gallery-item-location">' + data.data[i]['address'] + '</p>';
+                        li_html += '</div>';
+                        li_html += '</a>';
+                        li_html += '</li>';
+                    }
+                    if ($('ul.pets-list'))
+                        $('ul.pets-list').html(li_html);
+                    if ($('ul.pets-list'))
+                        $('ul.pets-list').html(li_html);
                 }
             }
         });
