@@ -33,6 +33,7 @@
             <option value="Tumbes">Tumbes</option>
             <option value="Ucayali">Ucayali</option>-->
             @if($departments)
+            <option value="Todos">Todos</option>
             @foreach($departments as $department)
             <option value="{{ $department['department'] }}">{{ $department['department'] }}</option>
             @endforeach
