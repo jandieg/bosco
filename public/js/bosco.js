@@ -244,6 +244,10 @@ function gallery_item_over(id, status) {
         }
     });
 }
+
+function item_finded_pet(id) {
+    console.log(id);
+}
 function item_detail_view(id) {
     $("#report-detail-lost").modal().show();
     $("#report-detail-lost").find('a').show();
@@ -1094,48 +1098,19 @@ $('#cropper-confirm').on('click', function () {
     var cropper = $('#cropper-image').cropper('getCroppedCanvas');
 
     var croppedCanvas;
-    /*if (w > 600 && h > 600) {
-        croppedCanvas = $('#cropper-image').cropper('getCroppedCanvas', {
-            width: 600,
-            height: 600
-        });
-    } else if (w > 600) {
-        croppedCanvas = $('#cropper-image').cropper('getCroppedCanvas', {
-            width: 600,
-            height: h
-        });
-    } else if (h > 600) {
-        cropped = $('#cropper-image').cropper('getCroppedCanvas', {
-            width: w,
-            height: 600
-        });
-    } else {
-        croppedCanvas = $('#cropper-image').cropper('getCroppedCanvas');
-    }*/
-
     thumbWidth = 800;
-
     if (w > 800) {
         canvas = document.createElement('canvas');
         var ctx = canvas.getContext("2d");
-        newWidth = Math.floor(w*(0.61));
-
-        if (newWidth < thumbWidth) {
-            newWidth = thumbWidth;
-        }
-
+        newWidth = thumbWidth;        
         newHeight = Math.floor(h/w*newWidth);
+        canvas.width = newWidth;
+        canvas.height = newHeight;
 
-        if (newWidth >= thumbWidth) {
-            canvas.width = newWidth;
-            canvas.height = newHeight;
-
-            ctx.drawImage(cropper, 0, 0, newWidth, newHeight);
-
-            cropper.src = canvas.toDataURL();
-            cropper.width = newWidth;
-        }
-        $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + canvas.toDataURL() + ')');
+        ctx.drawImage(cropper, 0, 0, newWidth, newHeight);
+        var data = canvas.toDataURL("image/jpeg");
+    
+        $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + data + ')');
         $('.upload-image-lost-preview').show();
         $('#lost_pet_file').parent().hide();
         $('#modal-cropper .modal-header button').trigger('click');

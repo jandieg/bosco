@@ -38,7 +38,7 @@
                 </div>
                 <div class="report-buttons">
                   <a data-toggle="modal" class="btn btn-primary btn-block" onclick="item_detail_view({{ $item['id'] }});">Generar volante</a>
-                  <a data-toggle="modal" href="#" class="btn btn-primary btn-green btn-block">Encontrado</a>
+                  <a data-toggle="modal" href="#" class="btn btn-primary btn-green btn-block" onclick="item_finded_pet({{ $item['id']}});">Encontrado</a>
                 </div> 
                 <img class="edit_menu" src="{{ asset('img/icon-edit-red.png') }}"/>
                 <div class="edit_menu_div">   
