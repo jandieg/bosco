@@ -15,7 +15,7 @@
             </div>
           </div>
           <span class="report-detail-lost-image">
-            <img src="{{ asset('images/report_detail_image.png') }}" style="width:100%;">
+            <img  style="image-rendering: pixelated;" src="{{ asset('images/report_detail_image.png') }}" style="width:100%;">
           </span>
           <span class="report-detail-lost-phone">
             <a class="report-phone" href="tel:969 003 009">969 003 009</a>
@@ -27,7 +27,7 @@
         </div>
         <div class="modal-report-detail-footer">
           <div class="logo-gray"></div>
-          <p>¡Compartiendo la publicación ayudas a reunir una familia! Ayuda a encontrar mascotas perdidas y reportar mascotas encontradas entrando a www.bosco.pe</p>
+          <p>Reporta mascotas perdidas o encontradas entrando a www.bosco.pe.</p>
         </div>
       </div>
       <div class="modal-report-detail-right">

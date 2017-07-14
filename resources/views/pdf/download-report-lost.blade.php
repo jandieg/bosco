@@ -54,16 +54,16 @@
             font-size:100px;text-align:center; font-family: Arial-bold !important;
             ">Perdido</p>
             <p style="padding-top:5px;">
-               <span style="font-size:20px;">Nombre: </span><span style="font-size:22px; font-family: Arial-bold !important;">{{ $report['name'] }}&nbsp;|&nbsp;</span>
-               <span style="font-size:20px;">Género: </span><span style="font-size:22px; font-family: Arial-bold !important;">{{ $report['gender'] }}&nbsp;|&nbsp;</span>
-               <span style="font-size:20px;">Raza: </span><span style="font-size:22px; font-family: Arial-bold !important;">{{ $report['race'] }}</span>
+               <span style="font-size:20px; text-transform:capitalize;">Nombre: </span><span style="font-size:22px; font-family: Arial-bold !important;  text-transform:capitalize;">{{ $report['name'] }}&nbsp;|&nbsp;</span>
+               <span style="font-size:20px; text-transform:capitalize;">Género: </span><span style="font-size:22px; font-family: Arial-bold !important; text-transform:capitalize;">{{ $report['gender'] }}&nbsp;|&nbsp;</span>
+               <span style="font-size:20px; text-transform:capitalize;">Raza: </span><span style="font-size:22px; font-family: Arial-bold !important; text-transform:capitalize;">{{ $report['race'] }}</span>
             </p>
           </div>
           <div style='text-align:right;height:49px;float:right;background-color:black;color:white;margin-top:1px;padding:20px 20px 0px 20px; background-color: rgba(0, 0, 0, 0.4);'>
           <span style="font-size:24px;">Recompensa:&nbsp;</span><span style="font-size:26px; font-family: Arial-bold !important;">S/.&nbsp;{{ $report['reward'] }}</span>
           </div>
           <img src="{{ asset('images/pets/'.$report['image']) }}" style="width:100%;top:-51px;">
-          <div class='pdf-report-phone'><img src="{{ url('/img/phone.png')}}" style="padding-top:25px;width:40px;height:auto;">&nbsp;&nbsp;{{ $report['user_phone'] }}</div>
+          <div class='pdf-report-phone'><img style="image-rendering: pixelated;" src="{{ url('/img/phone.png')}}" style="padding-top:25px;width:40px;height:auto;">&nbsp;&nbsp;{{ $report['user_phone'] }}</div>
         </div>
         <div class="pdf-report-detail-data clearfix" style="position:relative;background-color:white;height:75px;padding-top:0px;top:-55px;" >
           <div style="width:50%;float:left;font-size: 20px;">
@@ -75,7 +75,7 @@
         </div>
         <div class="modal-report-detail-footer">
           <div class="logo-gray" style="padding-right: 2px;"></div>
-          <p style="margin-right: 100px;font-size: 20px;">¡Compartiendo la publicación ayudas a reunir una familia! Ayuda a encontrar mascotas perdidas y reportar mascotas encontradas entrando a www.bosco.pe</p>
+          <p style="margin-right: 100px;font-size: 20px;">Reporta mascotas perdidas o encontradas entrando a www.bosco.pe.</p>
         </div>
       </div>
 </div>

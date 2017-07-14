@@ -100,12 +100,30 @@ class Report extends Model
 
     public static function getDataReport($id)
     {
+        $meses = array(
+            "01" => "Enero",
+            "02" => "Febrero",
+            "03" => "Marzo",
+            "04" => "Abril",
+            "05" => "Mayo",
+            "06" => "Junio",
+            "07" => "Julio",
+            "08" => "Agosto",
+            "09" => "Septiembre",
+            "10" => "Octubre",
+            "11" => "Noviembre",
+            "12" => "Diciembre"
+        );
         $data = [];
         $user= Auth::user();
         $report = Report::where('id',$id)->first();
         $user = User::where('id',$report->pet->owner_id)->first();        
         $date_time=explode(' ',$report->date);
         $report_date=$date_time[0];
+        $dia = date("d", strtotime($report_date));        
+        $anho = date("Y", strtotime($report_date));        
+        $mesnum = date("m", strtotime($report_date));        
+        $mes = $meses[$mesnum];
         $report_date=date("d M Y", strtotime($report_date));        
         $address=str_replace("Distrito de ","",$report->location->address);
         $address=str_replace("Provincia de ","",$address);
@@ -118,7 +136,7 @@ class Report extends Model
             'race' => $report->pet->race, 
             'gender' => $report->pet->gender, 
             'reward' => $report->reward,
-            'date' => $report_date." ".$date_time[1],
+            'date' => $dia . " " . $mes . " " . $anho,
             'address' => $address, 
             'description' => $report->pet->description, 
             'image' => $report->pet->photos[0]->url

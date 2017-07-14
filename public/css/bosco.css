@@ -1620,6 +1620,7 @@ a.btn-video:hover {
   z-index: 9999;
   padding-top: 0;
   margin-top:0;
+  margin-bottom: 5px;
 }
 
 .modal-report-data ul {
@@ -1745,7 +1746,7 @@ a.btn-video:hover {
 .modal-report-detail-footer .logo-gray {
   float: right;
   margin-left: 30px;
-  margin-top: 2px;
+  margin-bottom: 10px;
 }
 
 .modal-report-detail-right {
