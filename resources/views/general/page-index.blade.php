@@ -9,7 +9,7 @@
         <div class="arrow-down"></div>
         <div class="block-video-content">
           <p>Un amor tan grande, no merece ser separado</p>
-          <a href="#" class="btn btn-video">Ver Video</a>
+          <a href="mis-reportes" class="btn btn-video">Reportar mascota</a>
         </div>
       </div>
     </div>
@@ -80,7 +80,7 @@
               </div>
           </div>
           <div class="block-help-start">
-            <a href="/mascotas" class="btn btn-lg btn-default">Empezar</a>
+            &nbsp;
           </div>
         </div>
       </div>
