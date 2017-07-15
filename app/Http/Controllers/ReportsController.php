@@ -76,9 +76,9 @@ class ReportsController extends Controller {
         $city = $request->get('city');
         $district = $request->get('district');
         $address = $department + " " + $city + " " + $district + " " + $street;
-        $latitude = $request->get('lost_pet_latitude');
-        $longitude = $request->get('lost_pet_longitude');
-        $postal_code= $request->get('lost_pet_postal_code');
+        $latitude = $request->get('pet-lost-lat');
+        $longitude = $request->get('pet-lost-lng');
+        $postal_code= "15001";//$request->get('lost_pet_postal_code');
         $reward = $request->get('lost_pet_reward');
         $contact_name = $request->get('lost_pet_contact_name');
         $contact_email = $request->get('lost_pet_contact_email');

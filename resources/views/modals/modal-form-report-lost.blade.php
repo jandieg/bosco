@@ -231,7 +231,9 @@
                   <input maxlength="50" type="text" class="form-control" id="street" placeholder="Calle / avenida" autocapitalize="words" required />               
                   </label>
                  </div>                                 
-                </div>                    
+                </div>        
+                <input type ="hidden" id="lat" name="pet-lost-lat" />
+                <input type ="hidden" id="lng" name="pet-lost-lng" />            
                 <div id="pet-lost-map" style="width:100%;height:300px;">
                  </div>
               </div>

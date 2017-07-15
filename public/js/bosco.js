@@ -746,7 +746,7 @@ submitReport.on('click', function (e) {
         cache: false,
         async: false,
         data: $('#form-report-lost-form').serialize() + "&pngimageData=" + croppng 
-        + "&department" + department + "&city" + city + "&district" + district + "&street" + street,
+        + "&department=" + department + "&city=" + city + "&district=" + district + "&street=" + street,
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
@@ -1033,6 +1033,8 @@ function geocodeAddressDep() {
         geocoder.geocode({ 'address': address + ',Peru' }, function (results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
                 lost_map.panTo(results[0].geometry.location);
+                $("#lat").val(results[0].geometry.location.lat);
+                $("#lng").val(results[0].geometry.location.lng);
                 lost_marker.setPosition(results[0].geometry.location);
                 lost_marker.setAnimation(google.maps.Animation.BOUNCE);
                 setTimeout(function () {
@@ -1073,6 +1075,8 @@ function geocodeAddressCity() {
         geocoder.geocode({ 'address': address + ',Peru' }, function (results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
                 lost_map.panTo(results[0].geometry.location);
+                $("#lat").val(results[0].geometry.location.lat);
+                $("#lng").val(results[0].geometry.location.lng);
                 lost_marker.setPosition(results[0].geometry.location);
                 lost_marker.setAnimation(google.maps.Animation.BOUNCE);
                 setTimeout(function () {
@@ -1094,7 +1098,8 @@ function geocodeAddress() {
     if (!isNull(address)) {
         geocoder.geocode({ 'address': address + ',Peru' }, function (results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
-                
+                $("#lat").val(results[0].geometry.location.lat);
+                $("#lng").val(results[0].geometry.location.lng);
                 lost_map.panTo(results[0].geometry.location);
                 lost_marker.setPosition(results[0].geometry.location);
                 lost_marker.setAnimation(google.maps.Animation.BOUNCE);
