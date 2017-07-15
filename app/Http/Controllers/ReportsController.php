@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 //use App;
 use App\Report;
+use App\Ubigeo;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use PDF;
@@ -20,8 +21,10 @@ class ReportsController extends Controller {
     public function index() {
         $reports['lost'] = Report::getDataReports(['status' => 'lost', 'userid' => Auth::id()], FALSE);
         $reports['found'] = Report::getDataReports(['status' => 'found', 'userid' => Auth::id()], FALSE);
+        $departments = Ubigeo::getDataDepartments();
         return view('reports.page-reports-index', [
             'reports' => $reports,
+            'departments' => $departments,
             'user' => Auth::user()
                 ]
         );
@@ -68,10 +71,11 @@ class ReportsController extends Controller {
         $gender = $request->get('lost_pet_gender');
         $description = $request->get('lost_pet_description');
         $report_description = $request->get('lost_pet_report_description');
-        $address = $request->get('address');
-        $department = $request->get('lost_pet_department');
-        $city = $request->get('lost_pet_city');
-        $district = $request->get('lost_pet_district');
+        $street = $request->get('street');
+        $department = $request->get('department');
+        $city = $request->get('city');
+        $district = $request->get('district');
+        $address = $department + " " + $city + " " + $district + " " + $street;
         $latitude = $request->get('lost_pet_latitude');
         $longitude = $request->get('lost_pet_longitude');
         $postal_code= $request->get('lost_pet_postal_code');
@@ -114,6 +118,7 @@ class ReportsController extends Controller {
                     'department' =>$department,
                     'city' => $city,
                     'district' => $district,
+                    'street' => $street,
                     'ubigeo_code' => $postal_code,
                     'created_at' =>Date('Y-m-d H:i:s'),
                     'updated_at' =>Date('Y-m-d H:i:s')
