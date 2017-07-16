@@ -48,6 +48,7 @@
             <span class="check-off"></span><span class="check-on hide"></span>
             Twitter
           </p-->
+		  <textarea placeholder="Escribe aquí un mensaje a la comunidad de Facebook" name="fb_comment" id="fb_comment" class="form-control" rows="5"></textarea>
           <div class="modal-report-button"  id="post_social_div">
             <button class="btn btn-primary btn-block btn-button">Compartir</button>
           </div>

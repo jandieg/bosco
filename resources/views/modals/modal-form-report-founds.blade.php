@@ -43,8 +43,7 @@
               </div>
               <div class="form-group">
                 <label>Descripción de mascota</label>
-                <p class="help-block">(150 caracteres max)</p>
-                <textarea class="form-control" rows="5"></textarea>
+                <textarea  placeholder="150 caracteres max" class="form-control" rows="5"></textarea>
               </div>
             </div>
             <div class="col-lg-12 col-md-12 center-block">
@@ -69,8 +68,7 @@
               </div>
               <div class="form-group">
                 <label>Descripción de mascota</label>
-                <p class="help-block">(150 caracteres max)</p>
-                <textarea class="form-control" rows="8"></textarea>
+                <textarea  placeholder="150 caracteres max" class="form-control" rows="8"></textarea>
               </div>
             </div>
             <div class="col-lg-6 col-md-6">
@@ -94,8 +92,8 @@
                 <input name="user[name]" type="text" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
               </div>
               <div class="form-group">
-                <label>Número de contacto</label>
-                <input name="user[phone]" type="phone" class="form-control" value="{{ Auth::user()? Auth::user()-> name:'' }}">
+                <label>Teléfono de contacto</label>
+                <input name="user[phone]" type="phone" class="form-control" value="">
               </div>
               <div class="form-group">
                 <label>Recompensa</label>
