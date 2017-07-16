@@ -71,11 +71,11 @@ class ReportsController extends Controller {
         $gender = $request->get('lost_pet_gender');
         $description = $request->get('lost_pet_description');
         $report_description = $request->get('lost_pet_report_description');
-        $street = $request->get('street');
+        $street = $request->get('pet-lost-calle');
         $department = $request->get('department');
         $city = $request->get('city');
         $district = $request->get('district');
-        $address = $department + " " + $city + " " + $district + " " + $street;
+        $address = $district . " " . $street;
         $latitude = $request->get('pet-lost-lat');
         $longitude = $request->get('pet-lost-lng');
         $postal_code= "15001";//$request->get('lost_pet_postal_code');
@@ -111,7 +111,7 @@ class ReportsController extends Controller {
                 'updated_at' =>Date('Y-m-d H:i:s')
             ];
             $result = \App\Photo::insert($photo_data);
-            $ubigeos = \App\Ubigeo::where('department',$department)->where('city',$city)->where('district',$district)->get()->count();
+            $ubigeos = \App\Ubigeo::where('department',$department)->where('city',$city)->where('district',$district)->where('street', $street)->get()->count();
             if(!$ubigeos)
             {
                 $ubigeo_data = [
@@ -162,12 +162,12 @@ class ReportsController extends Controller {
             if($img)
             {
                 //$file_name= basename($url);
-                $img = str_replace('data:image/png;base64,', '', $img);
+                $img = str_replace('data:image/jpeg;base64,', '', $img);
                 $img = str_replace(' ', '+', $img);
                 $data = base64_decode($img);
-                file_put_contents("images/pets/".$report->pet_id.".png", $data);
+                file_put_contents("images/pets/".$report->pet_id.".jpg", $data);
                 $photo_data = [
-                    'url' => $report->pet_id.".png",
+                    'url' => $report->pet_id.".jpg",
                     'updated_at' =>Date('Y-m-d H:i:s')
                 ];
                 $result = \App\Photo::where('pet_id',$report->pet_id)->update($photo_data);

@@ -730,7 +730,8 @@ submitReport.on('click', function (e) {
     var department = $("#dep").val();
     var city = $("#city").val();
     var district = $("#dist").val();
-    var street = $("#street").val();
+    var street = $("#street").text();
+    console.log(street);
     var croppng;
     /*if (cropcanvas)
         croppng = cropcanvas.toDataURL("image/png");

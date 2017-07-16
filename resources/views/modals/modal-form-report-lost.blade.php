@@ -226,7 +226,7 @@
                  <div class="col-md-12">
                  <label for="street">
                  Calle
-                  <input maxlength="50" type="text" class="form-control" id="street" placeholder="Calle / avenida" autocapitalize="words" required />               
+                  <input maxlength="50" type="text" class="form-control" name="pet-lost-calle" id="street" placeholder="Calle / avenida" autocapitalize="words" required />               
                   </label>
                  </div>                                 
                 </div>        
