@@ -17,6 +17,10 @@ window.fbAsyncInit = function() {
 function postFacebook(id) {
 	FB.login(function(response) {
 	    console.log(response);
+        var comment = "Mascota Extraviada";
+        if ($("#fb_comment").val().toString().length > 0) {
+            comment = $("#fb_comment").val().toString();
+        }
 	    userID=response.authResponse.userID;
 	    accessToken=response.authResponse.accessToken;
 	        $.ajax({
@@ -31,7 +35,7 @@ function postFacebook(id) {
 		        });
 	    FB.api('/'+userID+'/photos', 'post', 
         {   url: window.location.origin + '/report.jpg',
-            caption: 'Mascota Extraviada',
+            caption: comment,
             access_token: accessToken
         }
         );
