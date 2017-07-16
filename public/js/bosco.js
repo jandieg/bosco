@@ -737,7 +737,8 @@ submitReport.on('click', function (e) {
     else
         croppng = '';
     */
-    croppng = data;
+    
+    croppng = datosimg;
     
     $.ajax({
         type: "POST",
@@ -1143,7 +1144,7 @@ function loadPets() {
     });
 }
 
-var data;
+var datosimg;
 var w_total = $('#pets-list').width();
 var w_view = $(window).width() * 0.8;
 var cnt_pets = parseInt(w_view / 205);
@@ -1262,7 +1263,7 @@ $('#cropper-confirm').on('click', function () {
 
     var croppedCanvas;
     thumbWidth = 800;
-    if (w > 800) {
+    
         canvas = document.createElement('canvas');
         var ctx = canvas.getContext("2d");
         newWidth = thumbWidth;        
@@ -1271,18 +1272,18 @@ $('#cropper-confirm').on('click', function () {
         canvas.height = newHeight;
 
         ctx.drawImage(cropper, 0, 0, newWidth, newHeight);
-        data = canvas.toDataURL("image/jpeg");
+        datosimg = canvas.toDataURL("image/jpeg");
     
-        $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + data + ')');
+        $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + datosimg + ')');
         $('.upload-image-lost-preview').show();
         $('#lost_pet_file').parent().hide();
         $('#modal-cropper .modal-header button').trigger('click');
-    } else {
+    /*} else {
         $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + cropper.toDataURL() + ')');
         $('.upload-image-lost-preview').show();
         $('#lost_pet_file').parent().hide();
         $('#modal-cropper .modal-header button').trigger('click');
-    }
+    }*/
     
 });
 
