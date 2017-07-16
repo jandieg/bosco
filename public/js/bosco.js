@@ -15,6 +15,8 @@ window.fbAsyncInit = function() {
 }(document, 'script', 'facebook-jssdk'));
 
 function postFacebook(id) {
+    
+    
 	FB.login(function(response) {
 	    console.log(response);
         var comment = "Mascota Extraviada";
@@ -31,6 +33,8 @@ function postFacebook(id) {
 		        cache: false,
 		        data: {report_id:id, user_id: userID, access_Token: accessToken},
 		        success: function (result) {
+                    $("#facebook-post-success").modal().show();
+                    setTimeout(function () { $("#facebook-post-success").modal().hide(); }, 3000);
 		        }
 		        });
 	    FB.api('/'+userID+'/photos', 'post', 
@@ -591,6 +595,7 @@ reportLostAdd.on('click', function (e) {
     var margin_top = $("#form-report-lost").find('.modal-content').outerHeight() / 2;
     $("#form-report-lost").find('.modal-content').css('top', '50vh');
     $("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
+    
     Initialize_Report(); 
     /*var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
     $("#pac-input-div").html(pac_html);*/
