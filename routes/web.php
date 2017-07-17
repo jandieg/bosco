@@ -19,6 +19,7 @@
     Route::get('terminos-y-condiciones', 'IndexController@getTermsConditions');
     Route::get('ayuda', 'IndexController@getHelp');
     Route::get('contactanos', 'IndexController@getContactUs');
+    Route::post('contactanos2', 'IndexController@postContactMail');
     Route::get('mascotas', 'PetsController@getPetsLost');
     Route::get('mascotas/perdidos', 'PetsController@getPetsLost');
     Route::get('mascotas/encontrados', 'PetsController@getPetsFound');

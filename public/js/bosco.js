@@ -701,6 +701,25 @@ reportDetailFound.on('click', function (e) {
         }
     });
 });
+
+var submitContact = $('.btn-submit-contact');
+submitContact.on('click', function(e){
+    e.preventDefault();    
+    $.ajax({ 
+        type: "POST",
+        url: window.location.origin + '/contactanos2',
+        cache: false,
+        async: false,
+        dataType: 'json',
+        data: $('#form-contact-us-form').serialize(),
+        success: function (result) {
+            if (result) {
+                alert('Correo enviado exitosamente');
+                window.location.reload();
+            }
+        }
+    });
+});
 var submitReport = $('.btn-submit-report');
 submitReport.on('click', function (e) {
     e.preventDefault();

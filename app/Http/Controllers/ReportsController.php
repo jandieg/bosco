@@ -22,12 +22,21 @@ class ReportsController extends Controller {
         $reports['lost'] = Report::getDataReports(['status' => 'lost', 'userid' => Auth::id()], FALSE);
         $reports['found'] = Report::getDataReports(['status' => 'found', 'userid' => Auth::id()], FALSE);
         $departments = Ubigeo::getDataDepartments();
-        return view('reports.page-reports-index', [
-            'reports' => $reports,
-            'departments' => $departments,
-            'user' => Auth::user()
-                ]
-        );
+        if (count($departments)) {
+            return view('reports.page-reports-index', [
+                'reports' => $reports,
+                'departments' => $departments,
+                'user' => Auth::user()
+                    ]
+            );
+        } else {
+            return view('reports.page-reports-index', [
+                'reports' => $reports,              
+                'user' => Auth::user()
+                    ]
+            );
+        }
+        
     }
     public function delete_report(Request $request)
     {
@@ -62,6 +71,7 @@ class ReportsController extends Controller {
             ]);
         }
     }
+    
 
     public function sendReport(Request $request) {        
         $report_id= $request->get('report_id');
