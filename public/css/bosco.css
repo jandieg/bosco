@@ -1456,6 +1456,7 @@ a.btn-video:hover {
      display: inline-block;
     text-align: right;
     vertical-align: middle;
+    width: 90vw !important;
     
   }
 }
@@ -1517,6 +1518,10 @@ a.btn-video:hover {
   border-radius: 4px;
   font-size: 12px;
   padding: 13px;
+}
+
+#form-user .modal-content {
+  width: 90vw !important;
 }
 
 .btn-facebook {

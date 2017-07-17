@@ -6,6 +6,13 @@ window.fbAsyncInit = function() {
 	});
 };
 
+var bMobile =   // will be true if running on a mobile device
+    navigator.userAgent.indexOf("Mobile") !== -1 ||
+    navigator.userAgent.indexOf("iPhone") !== -1 ||
+    navigator.userAgent.indexOf("Android") !== -1 ||
+    navigator.userAgent.indexOf("Windows Phone") !== -1;
+
+
 (function(d, s, id){
 	var js, fjs = d.getElementsByTagName(s)[0];
 	if (d.getElementById(id)) {return;}
@@ -193,6 +200,9 @@ $('#form-report-founds .modal-form-report .form-actions .btn-next').click(functi
     $('#form-report-founds-' + tab).removeClass('hide');
     hideMapComponents();
 });
+
+    
+   
 
 $('#form-user .modal-footer a').click(function () {
     var form = $(this).data('form');
@@ -1459,15 +1469,48 @@ function modal_center()
     $('.modal-content').each(function () {
         var margin_top = $(this).outerHeight() / 2;
         var screen_height=$(window).outerHeight() /2;
+        
         //console.log(screen_height+">"+margin_top);
         if(screen_height>margin_top )
         {
+
 		$(this).css('top', '50vh');
 		$(this).css('margin-top', '-' + margin_top + 'px');
         }
         else
         {
         	$(this).removeAttr('style');
+        }
+
+        if (bMobile) {
+
+            
+            $(this).css('position', 'absolute');
+            $(this).css('height', '90vh !important');
+            $(this).css('top', '1vh');
+            $(this).css('margin-top', '5vh');
+            //$(this).css('left', '1vw');
+            
+            
+            //$(this).css('left', '10vw');
+            var margin_left = $(this).outerWidth(true)/2;
+            var screen_width = $(window).width()/2;
+            
+            
+            var width_modal = $(this).width() / 2;
+            var diff = 0;
+            if (width_modal <= 1) {
+                diff = screen_width / 2 - width_modal;
+            } else {
+                diff = screen_width - width_modal;
+            }
+            
+            
+            diff = Number(diff) - 17;      
+            console.log(diff);
+            $(this).css('margin-left', diff + 'px');
+            $(this).css('display', 'block');
+            //$(this).css('margin-left', '5vw');
         }
     });
 }
