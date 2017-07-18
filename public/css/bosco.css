@@ -1457,17 +1457,6 @@ a.btn-video:hover {
 }
 
 
-@media screen and (max-width: 768px) {
-  .report-item-content {
-    width: 75% !important;
-  }
-  .report-buttons {
-    width: 75% !important;
-  }
-  .edit_menu {
-    left: 128px !important;
-  }
-}
 .modal-content {
 	background: #fff;
 	border-radius: 10px;
