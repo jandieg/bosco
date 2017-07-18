@@ -693,8 +693,8 @@ reportLostAdd.on('click', function (e) {
     $("#form-report-lost #pet_lost_radio").prop("checked", true);
     $("#form-report-lost #name_div").show();
     var margin_top = $("#form-report-lost").find('.modal-content').outerHeight() / 2;
-    $("#form-report-lost").find('.modal-content').css('top', '50vh');
-    $("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
+   // $("#form-report-lost").find('.modal-content').css('top', '50vh');
+    //$("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
     
     Initialize_Report(); 
     /*var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
@@ -707,8 +707,9 @@ reportFoundAdd.on('click', function (e) {
     //$("#form-report-lost #name_div").hide();
     $("#form-report-lost").modal().show();
     var margin_top = $("#form-report-lost").find('.modal-content').outerHeight() / 2;
-    $("#form-report-lost").find('.modal-content').css('top', '50vh');
-    $("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
+    //$("#form-report-lost").find('.modal-content').css('top', '50vh');
+    //$("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
+    
     Initialize_Report()
     var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
     $("#pac-input-div").html(pac_html);
@@ -1575,6 +1576,8 @@ $(window).on('mouseover', function () {
 })
 function modal_center()
 {
+    /*
+    console.log(navigator.userAgent.toString());
     $('.modal-content').each(function () {
         var margin_top = $(this).outerHeight() / 2;
         var screen_height=$(window).outerHeight() /2;
@@ -1592,12 +1595,14 @@ function modal_center()
         }
 
         if (bMobile) {
-
+            console.log('esta en movil');
             
             $(this).css('position', 'absolute');
             $(this).css('height', '90vh !important');
-            $(this).css('top', '1vh');
-            $(this).css('margin-top', '5vh');
+            if ($(this).children().first().hasClass('form-user')) {
+                $(this).css('top', '1vh');
+                $(this).css('margin-top', '10vh');
+            }
             //$(this).css('left', '1vw');
             
             
@@ -1618,8 +1623,9 @@ function modal_center()
             diff = Number(diff) - 17;      
             console.log(diff);
             $(this).css('margin-left', diff + 'px');
+            $(this).css('margin-left', '5vw');
             $(this).css('display', 'block');
             //$(this).css('margin-left', '5vw');
         }
-    });
+    });*/
 }
