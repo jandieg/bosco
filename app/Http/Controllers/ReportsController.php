@@ -139,8 +139,8 @@ class ReportsController extends Controller {
                 'updated_at' =>Date('Y-m-d H:i:s')
             ];
             $result = \App\Photo::insert($photo_data);
-            $ubigeos = \App\Ubigeo::where('department',$department)->where('city',$city)->where('district',$district)->where('street', $street)->get()->count();
-            if(!$ubigeos)
+            $ubigeo = \App\Ubigeo::where('department',$department)->where('city',$city)->where('district',$district)->first();
+            /*if(!$ubigeos)
             {
                 $ubigeo_data = [
                     'department' =>$department,
@@ -152,8 +152,13 @@ class ReportsController extends Controller {
                     'updated_at' =>Date('Y-m-d H:i:s')
                 ];        
                 $result = \App\Ubigeo::insert($ubigeo_data);
+            }*/
+            if (! is_object($ubigeo)) {
+                $ubigeo_id=DB::table('ubigeos')->max('id');
+            } else {
+                $ubigeo_id=$ubigeo->id;
             }
-            $ubigeo_id=DB::table('ubigeos')->max('id');
+            
             $location_data = [
                 'address' =>$address,
                 'latitude' => $latitude,
@@ -200,20 +205,13 @@ class ReportsController extends Controller {
                 ];
                 $result = \App\Photo::where('pet_id',$report->pet_id)->update($photo_data);
             }
-            $ubigeos = \App\Ubigeo::where('department',$department)->where('city',$city)->where('district',$district)->get()->count();
-            if(!$ubigeos)
-            {
-                $ubigeo_data = [
-                    'department' =>$department,
-                    'city' => $city,
-                    'district' => $district,
-                    'ubigeo_code' => $postal_code,
-                    'created_at' =>Date('Y-m-d H:i:s'),
-                    'updated_at' =>Date('Y-m-d H:i:s')
-                ];        
-                $result = \App\Ubigeo::insert($ubigeo_data);
+            $ubigeo = \App\Ubigeo::where('department',$department)->where('city',$city)->where('district',$district)->first();
+
+            if (! is_object($ubigeo)) {
+                $ubigeo_id=DB::table('ubigeos')->max('id');    
+            } else {
+                $ubigeo_id=$ubigeo->id;    
             }
-            $ubigeo_id=DB::table('ubigeos')->max('id');    
             $location_data = [
                 'address' =>$address,
                 'latitude' => $latitude,

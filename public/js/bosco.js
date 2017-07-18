@@ -21,6 +21,17 @@ var bMobile =   // will be true if running on a mobile device
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
+function resetScrollPos(selector) {
+    var divs = document.querySelectorAll(selector);
+    for (var p = 0; p < divs.length; p++) {
+        if (Boolean(divs[p].style.transform)) { //for IE(10) and firefox
+            divs[p].style.transform = 'translate3d(0px, 0px, 0px)';
+        } else { //for chrome and safari
+            divs[p].style['-webkit-transform'] = 'translate3d(0px, 0px, 0px)';
+        }
+    }
+}
+
 function postFacebook(id) {
     
     
@@ -116,6 +127,10 @@ $('#form-report-lost .modal-form-report-menu li span').click(function () {
 
 $('#form-report-lost .modal-form-report .form-actions .btn-next').click(function () {
     var tab = $(this).data('tab');
+    resetScrollPos('.modal-body');
+    $(".modal-body").scrollTop(0);
+    //$(".modal-content").scrollTop(0);
+
     if (tab == "tab-2") {
         if ($("#lost_pet_name").val().length == 0) {
             alert('Debe ingresar el nombre de la mascota' + $("#lost_pet_name").text());
@@ -869,7 +884,8 @@ submitReport.on('click', function (e) {
     */
     
     croppng = datosimg;
-    
+    $('#cropper-image').cropper('clear');
+    $('#cropper-image').cropper('destroy');
     $.ajax({
         type: "POST",
         url: window.location.origin + '/mis-reportes-registrar',
