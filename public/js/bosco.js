@@ -1417,7 +1417,7 @@ $('#cropper-confirm').on('click', function () {
     var croppedCanvas;
     thumbWidth = 800;
     
-        canvas = document.createElement('canvas');
+        var canvas = document.createElement('canvas');
         var ctx = canvas.getContext("2d");
         newWidth = thumbWidth;        
         newHeight = Math.floor(h/w*newWidth);
@@ -1426,6 +1426,8 @@ $('#cropper-confirm').on('click', function () {
 
         ctx.drawImage(cropper, 0, 0, newWidth, newHeight);
         datosimg = canvas.toDataURL("image/jpeg");
+        $('#cropper-image').cropper('clear');
+        $('#cropper-image').cropper('destroy');
     
         $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + datosimg + ')');
         $('.upload-image-lost-preview').show();
