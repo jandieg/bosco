@@ -71,6 +71,30 @@ class ReportsController extends Controller {
             ]);
         }
     }
+
+    public function postEncontrado(Request $request) {
+        $report_id = $request->get('id');
+        $img = $request->get('pngimageData');
+        $report = \App\Report::where('id',$report_id)->first();
+        $report_data = [
+            'status' => 'found',
+            'updated_at' =>Date('Y-m-d H:i:s')
+        ];
+        $result = \App\Report::where('id',$report_id)->update($report_data);
+        /*if ($img) {
+            //$file_name= basename($url);
+            $img = str_replace('data:image/jpeg;base64,', '', $img);
+            $img = str_replace(' ', '+', $img);
+            $data = base64_decode($img);
+            file_put_contents("images/pets/".$report->pet_id.".jpg", $data);
+            $photo_data = [
+                'url' => $report->pet_id.".jpg",
+                'updated_at' =>Date('Y-m-d H:i:s')
+            ];
+            $result = \App\Photo::where('pet_id',$report->pet_id)->update($photo_data);
+        }*/
+        return json_encode(true);
+    }
     
 
     public function sendReport(Request $request) {        

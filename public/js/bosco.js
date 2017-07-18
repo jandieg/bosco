@@ -279,7 +279,97 @@ function gallery_item_over(id, status) {
 }
 
 function item_finded_pet(id) {
-    console.log(id);
+    $(this).siblings().css('pointer-events','none');
+    var pet = $("#_" + id);
+    var url = pet.attr('src');
+    var img = new Image();
+    img.src = url;
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext("2d");
+    var pic_real_width, pic_real_height;
+    $("<img/>") // se hace una copia en memoria de la imagen para no lidiar con el css que reduce a 206
+        .attr("src", $(pet).attr("src"))
+        .load(function() {
+            pic_real_width = this.width;   
+            pic_real_height = this.height; 
+            canvas.width = pic_real_width;
+            canvas.height = pic_real_height;
+            ctx.drawImage(img, 0, 0, pic_real_width, pic_real_width);
+            ctx.fillStyle = "green";
+            ctx.globalAlpha = 0.5;
+            ctx.fillRect(0, 0, pic_real_width, pic_real_height);
+            var textoWidth  = pic_real_width * 0.3;
+            var textoHeight = pic_real_height * 0.6;
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = "white";
+            ctx.font = "65px Arial";
+            ctx.fillText('Encontrado', textoWidth, textoHeight);
+            
+            ctx.beginPath();
+            ctx.arc(pic_real_width * 0.5, pic_real_height * 0.45, 40, 0, 2 * Math.PI);
+            ctx.closePath();
+            //ctx.fill();
+            ctx.lineWidth = 8;
+            ctx.strokeStyle = "white";
+            ctx.stroke();
+            ctx.fillStyle = "white";
+            
+            // Draw the left eye
+            // 20 - 10
+            ctx.beginPath();
+            ctx.arc((pic_real_width * 0.5) - 15, (pic_real_height * 0.45) - 15, 8, 0, 2 * Math.PI);
+            ctx.closePath();
+            ctx.fill();
+
+
+            // Draw the right eye
+            // +19 - 10
+            ctx.beginPath();
+            ctx.arc((pic_real_width * 0.5) + 14, (pic_real_height * 0.45) - 15, 8, 0, 2 * Math.PI);
+            ctx.closePath();
+            ctx.fill();
+
+            // Draw the mouth
+            //0+5
+            /*ctx.beginPath();            
+            ctx.arc((pic_real_width * 0.5), (pic_real_height * 0.45) + 5, 26, Math.PI, 2 * Math.PI, true);
+            ctx.closePath();
+            ctx.strokeStyle = "white";
+            ctx.fill();*/
+            ctx.beginPath()
+            ctx.moveTo((pic_real_width * 0.5) - 15, pic_real_height * 0.45);
+            ctx.bezierCurveTo((pic_real_width * 0.5) - 15, (pic_real_height * 0.45) + 20,
+                (pic_real_width * 0.5) + 14, (pic_real_height * 0.45) + 20,
+                (pic_real_width * 0.5) + 14, pic_real_height * 0.45);
+            ctx.strokeStyle = "white";
+            ctx.stroke();
+
+            pet.attr('src', canvas.toDataURL('image/jpeg')); 
+
+            var processjpg = canvas.toDataURL('image/jpeg');
+            $("._item_" + id).css('pointer-events', 'none !important');
+            $("._item_" + id).attr('disabled', true);
+
+
+            $.ajax({
+                type: "POST",
+                url: window.location.origin + '/mis-reportes-encontrado',
+                dataType: 'json',
+                cache: false,
+                async: false,
+                data: "id=" + id + "&pngimageData=" + processjpg,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (result) {
+                    if (result) {
+                        console.log('encontrado exitosamente');
+                    }
+                }
+            });  
+        });
+   
+    
 }
 function item_detail_view(id) {
     $("#report-detail-lost").modal().show();

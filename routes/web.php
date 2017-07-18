@@ -45,6 +45,7 @@
         Route::get('mis-reportes-detalle-encontrado', 'ReportsController@getReportsDetailFound');
         // AJax Send ReportPost
         Route::post('mis-reportes-registrar', 'ReportsController@sendReport');
+        Route::post('mis-reportes-encontrado', 'ReportsController@postEncontrado');
     });
 
     // Ajax Ubigeo
