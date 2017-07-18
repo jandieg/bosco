@@ -113,6 +113,7 @@
     <script>
     document.addEventListener("DOMContentLoaded", function() {    
       document.querySelector('[href="#form-user"]').click();
+      document.querySelector('.block-help-container').style.height = 'auto';
     });
     </script>
 @endif
