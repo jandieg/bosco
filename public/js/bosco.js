@@ -1044,6 +1044,7 @@ function initMap() {
 
     lost_marker = new google.maps.Marker({        
         map: lost_map,
+        draggable: true,
         animation: google.maps.Animation.DROP
     }); 
     detail_marker.setMap(detail_map);
@@ -1051,7 +1052,13 @@ function initMap() {
         lat = e.latLng.lat();
         lon = e.latLng.lng();
         //displayLocation(lat, lon, detail_map);
-    });        // Create the search box and link it to the UI element.
+    });      
+    google.maps.event.addListener(lost_marker, 'click', function(e){
+        $("#lat").val(e.latLng.lat());
+        $("#lng").val(e.latLng.lng());
+    });
+    
+      // Create the search box and link it to the UI element.
     /*var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);*/
   //  lost_map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
