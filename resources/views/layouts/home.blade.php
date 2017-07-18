@@ -25,6 +25,7 @@
     @include('modals.modal-reports-detail-founds')
     @include('modals.modal-form-report-lost')
     @include('modals.modal-form-report-founds')
+    @include('modals.modal-facebook-post-success')
 
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>

@@ -179,17 +179,62 @@
             </div>
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
+              
                 <label>Última vez visto</label>
-                <div id='pac-input-div'><input type="text" id="pac-input" class="form-control" placeholder="Ingresa la dirección donde se perdió o arrastra el PIN"></div>
+                <!--
+                <div id='pac-input-div'><input type="text" id="pac-input" class="form-control" placeholder="Ingresa la dirección donde se perdió o arrastra el PIN" name="lost_pet_input"></div>
                 <input type="hidden" name="lost_pet_last_address" id="pac-address" class="form-control">
                 <input type="hidden" name="lost_pet_department" id="pac-department" class="form-control">
                 <input type="hidden" name="lost_pet_city" id="pac-city" class="form-control">
                 <input type="hidden" name="lost_pet_district" id="pac-district" class="form-control">
                 <input type="hidden" name="lost_pet_latitude" id="pac-latitude" class="form-control">
                 <input type="hidden" name="lost_pet_longitude" id="pac-longitude" class="form-control">
-                <input type="hidden" name="lost_pet_postal_code" id="pac-postal_code" class="form-control">
+                <input type="hidden" name="lost_pet_postal_code" id="pac-postal_code" class="form-control"> -->
+                <div class="inputsAddress">
+               
+               <div class="form-group">
+                <div class="col-md-4 col-sm-12">
+                <label for="department">Departamento
+                  <select id="dep" class="form-control">
+                      @if(isset($departments) && $departments)
+                      <option value="">Seleccione</option>
+                      @foreach($departments as $department)
+                      <option value="{{ $department['department'] }}">{{ $department['department'] }}</option>
+                      @endforeach
+                      @endif
+                  </select>
+                  </label>
+                </div>                                             
+                <div class="col-md-4 col-sm-12">
+                <label for="city">
+                Ciudad
+                  <select id="city" class="form-control">
+                    <option value="callao">Seleccione</option>
+                  </select>                
+                  </label>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                <label for="distric">
+                  Distrito               
+                  <select id="dist" class="form-control">
+                    <option value="">Seleccione</option>  
+                  </select>
+                  </label>
+               </div>                
+                </div>           
+                 <div class="form-group">
+                 <div class="col-md-12">
+                 <label for="street">
+                 Calle
+                  <input maxlength="50" type="text" class="form-control" name="pet-lost-calle" id="street" placeholder="Calle / avenida" autocapitalize="words" required />               
+                  </label>
+                 </div>                                 
+                </div>        
+                <input type ="hidden" id="lat" name="pet-lost-lat" />
+                <input type ="hidden" id="lng" name="pet-lost-lng" />            
                 <div id="pet-lost-map" style="width:100%;height:300px;">
                  </div>
+              </div>
               </div>
             </div>
             <div class="col-lg-12 col-md-12 center-block">

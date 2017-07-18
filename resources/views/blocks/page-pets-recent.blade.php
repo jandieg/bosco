@@ -61,7 +61,7 @@
           </select>
         </div>
         <div class="form-group form-actions">
-          <a data-toggle="modal" href="/mis-reportes" class="btn btn-primary">Reportar</a>
+          <a data-toggle="modal" href="http://bosco.pe/mis-reportes" class="btn btn-primary">Reportar</a>
         </div>
       </form>
     </div>

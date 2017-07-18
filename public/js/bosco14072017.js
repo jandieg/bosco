@@ -6,13 +6,6 @@ window.fbAsyncInit = function() {
 	});
 };
 
-var bMobile =   // will be true if running on a mobile device
-    navigator.userAgent.indexOf("Mobile") !== -1 ||
-    navigator.userAgent.indexOf("iPhone") !== -1 ||
-    navigator.userAgent.indexOf("Android") !== -1 ||
-    navigator.userAgent.indexOf("Windows Phone") !== -1;
-
-
 (function(d, s, id){
 	var js, fjs = d.getElementsByTagName(s)[0];
 	if (d.getElementById(id)) {return;}
@@ -22,14 +15,8 @@ var bMobile =   // will be true if running on a mobile device
 }(document, 'script', 'facebook-jssdk'));
 
 function postFacebook(id) {
-    
-    
 	FB.login(function(response) {
 	    console.log(response);
-        var comment = "Mascota Extraviada";
-        if ($("#fb_comment").val().toString().length > 0) {
-            comment = $("#fb_comment").val().toString();
-        }
 	    userID=response.authResponse.userID;
 	    accessToken=response.authResponse.accessToken;
 	        $.ajax({
@@ -40,13 +27,11 @@ function postFacebook(id) {
 		        cache: false,
 		        data: {report_id:id, user_id: userID, access_Token: accessToken},
 		        success: function (result) {
-                    $("#facebook-post-success").modal().show();
-                    setTimeout(function () { $("#facebook-post-success").modal().hide(); }, 3000);
 		        }
 		        });
 	    FB.api('/'+userID+'/photos', 'post', 
         {   url: window.location.origin + '/report.jpg',
-            caption: comment,
+            caption: 'Mascota Extraviada',
             access_token: accessToken
         }
         );
@@ -155,25 +140,10 @@ $('#form-report-lost .modal-form-report .form-actions .btn-next').click(function
             return false;
         }   
 
-        if ($("#dep").val().length == 0) {
-            alert('Debe seleccionar departamento');
-            return false;
-        }
-
-        if ($("#city").val().length == 0) {
+        if ($("#pac-city").val().length == 0) {
             alert('Debe seleccionar la ubicacion');
             return false;
-        }
-
-        if ($("#dist").val().length == 0) {
-            alert('Debe seleccionar distrito');
-            return false;
-        }
-
-        if ($("#street").val().length == 0) {
-            alert('Debe seleccionar la calle');
-            return false;
-        }          
+        }             
     }
 
     $('#form-report-lost .modal-form-report-menu li span').removeClass('tab-on');
@@ -200,9 +170,6 @@ $('#form-report-founds .modal-form-report .form-actions .btn-next').click(functi
     $('#form-report-founds-' + tab).removeClass('hide');
     hideMapComponents();
 });
-
-    
-   
 
 $('#form-user .modal-footer a').click(function () {
     var form = $(this).data('form');
@@ -279,97 +246,7 @@ function gallery_item_over(id, status) {
 }
 
 function item_finded_pet(id) {
-    $(this).siblings().css('pointer-events','none');
-    var pet = $("#_" + id);
-    var url = pet.attr('src');
-    var img = new Image();
-    img.src = url;
-    var canvas = document.createElement('canvas');
-    var ctx = canvas.getContext("2d");
-    var pic_real_width, pic_real_height;
-    $("<img/>") // se hace una copia en memoria de la imagen para no lidiar con el css que reduce a 206
-        .attr("src", $(pet).attr("src"))
-        .load(function() {
-            pic_real_width = this.width;   
-            pic_real_height = this.height; 
-            canvas.width = pic_real_width;
-            canvas.height = pic_real_height;
-            ctx.drawImage(img, 0, 0, pic_real_width, pic_real_width);
-            ctx.fillStyle = "green";
-            ctx.globalAlpha = 0.5;
-            ctx.fillRect(0, 0, pic_real_width, pic_real_height);
-            var textoWidth  = pic_real_width * 0.3;
-            var textoHeight = pic_real_height * 0.6;
-            ctx.globalAlpha = 1;
-            ctx.fillStyle = "white";
-            ctx.font = "65px Arial";
-            ctx.fillText('Encontrado', textoWidth, textoHeight);
-            
-            ctx.beginPath();
-            ctx.arc(pic_real_width * 0.5, pic_real_height * 0.45, 40, 0, 2 * Math.PI);
-            ctx.closePath();
-            //ctx.fill();
-            ctx.lineWidth = 8;
-            ctx.strokeStyle = "white";
-            ctx.stroke();
-            ctx.fillStyle = "white";
-            
-            // Draw the left eye
-            // 20 - 10
-            ctx.beginPath();
-            ctx.arc((pic_real_width * 0.5) - 15, (pic_real_height * 0.45) - 15, 8, 0, 2 * Math.PI);
-            ctx.closePath();
-            ctx.fill();
-
-
-            // Draw the right eye
-            // +19 - 10
-            ctx.beginPath();
-            ctx.arc((pic_real_width * 0.5) + 14, (pic_real_height * 0.45) - 15, 8, 0, 2 * Math.PI);
-            ctx.closePath();
-            ctx.fill();
-
-            // Draw the mouth
-            //0+5
-            /*ctx.beginPath();            
-            ctx.arc((pic_real_width * 0.5), (pic_real_height * 0.45) + 5, 26, Math.PI, 2 * Math.PI, true);
-            ctx.closePath();
-            ctx.strokeStyle = "white";
-            ctx.fill();*/
-            ctx.beginPath()
-            ctx.moveTo((pic_real_width * 0.5) - 15, pic_real_height * 0.45);
-            ctx.bezierCurveTo((pic_real_width * 0.5) - 15, (pic_real_height * 0.45) + 20,
-                (pic_real_width * 0.5) + 14, (pic_real_height * 0.45) + 20,
-                (pic_real_width * 0.5) + 14, pic_real_height * 0.45);
-            ctx.strokeStyle = "white";
-            ctx.stroke();
-
-            pet.attr('src', canvas.toDataURL('image/jpeg')); 
-
-            var processjpg = canvas.toDataURL('image/jpeg');
-            $("._item_" + id).css('pointer-events', 'none !important');
-            $("._item_" + id).attr('disabled', true);
-
-
-            $.ajax({
-                type: "POST",
-                url: window.location.origin + '/mis-reportes-encontrado',
-                dataType: 'json',
-                cache: false,
-                async: false,
-                data: "id=" + id + "&pngimageData=" + processjpg,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function (result) {
-                    if (result) {
-                        console.log('encontrado exitosamente');
-                    }
-                }
-            });  
-        });
-   
-    
+    console.log(id);
 }
 function item_detail_view(id) {
     $("#report-detail-lost").modal().show();
@@ -695,10 +572,9 @@ reportLostAdd.on('click', function (e) {
     var margin_top = $("#form-report-lost").find('.modal-content').outerHeight() / 2;
     $("#form-report-lost").find('.modal-content').css('top', '50vh');
     $("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
-    
     Initialize_Report(); 
-    /*var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
-    $("#pac-input-div").html(pac_html);*/
+    var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
+    $("#pac-input-div").html(pac_html);
 });
 var reportFoundAdd = $('.report-found-add');
 reportFoundAdd.on('click', function (e) {
@@ -734,34 +610,27 @@ function Initialize_Report()
     $('#lost_pet_description').val('');
     $('#datepicker').val('');
     $('#timepicker').val('');
-    /*$('#pac-input').val('');
+    $('#pac-input').val('');
     $('#pac-address').val('');
     $('#pac-department').val('');
     $('#pac-city').val('');
     $('#pac-district').val('');
     $('#pac-postal_code').val('');
     $('#pac-latitude').val('');
-    $('#pac-longitude').val('');*/
+    $('#pac-longitude').val('');
     $('#lost_pet_report_description').val('');
     $('#lost_pet_reward').val('');
     if (lost_marker)
         lost_marker.setMap(null);
-    /*lost_marker = new google.maps.Marker({
-        position: {lat: latitude, lng: longitude},
+    lost_marker = new google.maps.Marker({
+        position: {lat: init_latitude, lng: init_longitude},
         draggable: true,
         animation: google.maps.Animation.DROP,
     });
-    */
-
-    geocoder = new google.maps.Geocoder();
     lost_marker.setMap(lost_map);
-    //lost_map.addListener('click', toggleBounce);
+    lost_map.addListener('click', toggleBounce);
     lost_map.setCenter(new google.maps.LatLng(latitude, longitude));
     lost_map.setZoom(15);
-    $('.inputsAddress input').filter('[required]').keyup(startPoll);
-    $('#dist').on('change', geocodeAddress);
-    $('#city').on('change', geocodeAddressCity);
-    $('#dep').on('change', geocodeAddressDep);
 }
 
 var reportDetailFound = $('.report-detail-found');
@@ -787,25 +656,6 @@ reportDetailFound.on('click', function (e) {
                 $('.report-detail-found-date').html(data.pet.date);
                 $('.btn-download-found').attr('href', data.path + '/descargar-volante/encontrado/?reportid=' + $this.data('id'));
                 modal_center();
-            }
-        }
-    });
-});
-
-var submitContact = $('.btn-submit-contact');
-submitContact.on('click', function(e){
-    e.preventDefault();    
-    $.ajax({ 
-        type: "POST",
-        url: window.location.origin + '/contactanos2',
-        cache: false,
-        async: false,
-        dataType: 'json',
-        data: $('#form-contact-us-form').serialize(),
-        success: function (result) {
-            if (result) {
-                alert('Correo enviado exitosamente');
-                window.location.reload();
             }
         }
     });
@@ -842,8 +692,8 @@ submitReport.on('click', function (e) {
 	$("#tab-3").removeClass('tab-on');
 	return false;
     }
-    //var address = $("#pac-address").val();
-    /*if (!address) {
+    var address = $("#pac-address").val();
+    if (!address) {
         submitReport.html('Finalizar');
         alert('Seleccionar área en el mapa, por favor');
         $("#form-report-lost-tab-1").addClass('hide');
@@ -853,21 +703,13 @@ submitReport.on('click', function (e) {
         $("#tab-2").addClass('tab-on');
         $("#tab-3").removeClass('tab-on');
         return false;
-    }*/
-
-    var department = $("#dep").val();
-    var city = $("#city").val();
-    var district = $("#dist").val();
-    var street = $("#street").text();
-    console.log(street);
+    }
     var croppng;
-    /*if (cropcanvas)
+    if (cropcanvas)
         croppng = cropcanvas.toDataURL("image/png");
     else
         croppng = '';
-    */
     
-    croppng = datosimg;
     
     $.ajax({
         type: "POST",
@@ -875,8 +717,7 @@ submitReport.on('click', function (e) {
         dataType: 'json',
         cache: false,
         async: false,
-        data: $('#form-report-lost-form').serialize() + "&pngimageData=" + croppng 
-        + "&department=" + department + "&city=" + city + "&district=" + district + "&street=" + street,
+        data: $('#form-report-lost-form').serialize() + "&pngimageData=" + croppng + "&address=" + address,
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
@@ -977,9 +818,6 @@ var detail_marker, found_marker, lost_marker;
 var init_latitude, init_longitude;
 var latitude, longitude;
 var map_initial = false;
-var timer;
-var geocoder;
-
 function initMap() {
     var lat,lon;
     init_latitude = -12.038601;
@@ -989,9 +827,7 @@ function initMap() {
         zoom: 15,
         disableDefaultUI: true
     });
-
-    
-    /*google.maps.event.addListener(lost_map, 'rightclick', function (e) {
+    google.maps.event.addListener(lost_map, 'rightclick', function (e) {
         lat = e.latLng.lat();
         lon = e.latLng.lng();
         lost_marker.setMap(null);
@@ -1013,7 +849,6 @@ function initMap() {
         });
         displayLocation(lat, lon, lost_map);
     });
-    */
     detail_map = new google.maps.Map(document.getElementById('pet-detail-map'), {
         center: {lat: init_latitude, lng: init_longitude},
         zoom: 15,
@@ -1024,30 +859,25 @@ function initMap() {
         draggable: true,
         animation: google.maps.Animation.DROP,
     });
-
-    lost_marker = new google.maps.Marker({        
-        map: lost_map,
-        animation: google.maps.Animation.DROP
-    }); 
     detail_marker.setMap(detail_map);
     google.maps.event.addListener(detail_marker, 'click', function (e) {
         lat = e.latLng.lat();
         lon = e.latLng.lng();
         //displayLocation(lat, lon, detail_map);
     });        // Create the search box and link it to the UI element.
-    /*var input = document.getElementById('pac-input');
-    var searchBox = new google.maps.places.SearchBox(input);*/
-  //  lost_map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    lost_map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     // Bias the SearchBox results towards current map's viewport.
-  /*  lost_map.addListener('bounds_changed', function () {
+    lost_map.addListener('bounds_changed', function () {
         searchBox.setBounds(lost_map.getBounds());
     });
-*/
+
     var markers = [];
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
-  /*  searchBox.addListener('places_changed', function () {
+    searchBox.addListener('places_changed', function () {
         var places = searchBox.getPlaces();
 
         if (places.length == 0) {
@@ -1082,10 +912,8 @@ function initMap() {
             alert('Hay varias direcciones con el mismo nombre que el texto de entrada');
             return;
         }
-    });*/
+    });
 }
-
-
 function displayLocation(latitude, longitude, map) {
     var geocoder;
     geocoder = new google.maps.Geocoder();
@@ -1121,130 +949,10 @@ function displayLocation(latitude, longitude, map) {
             }
     );
 }
-
-function startPoll() {
-    if (timer == undefined) {
-        timer = setInterval(geocodeAddress, 2000);
-        geocodeAddress();
-    }
-}
-
-function isNull(v) {
-    return !v || v == '';
-}
-
-function geocodeAddressDep() {
-    $this = $("#dep")
-    $.ajax({
-        type: "GET",
-        url: window.location.origin + '/ubigeo-ciudades',
-        dataType: 'json',
-        cache: false,
-        data: { department: $this.val() },
-        success: function (data) {
-            if (data.result) {
-                $('#city').html(data.options).fadeIn();
-                $("#city").append('<option value="">Ciudad</option>');
-                $('#dist').html('<option value="" default style="display:none;">Distrito</option>').fadeIn();
-                $("#dist").append('<option value="">Distrito</option>');
-                $('#city').addClass('error');
-                $('dist').addClass('error');
-            }
-        }
-    });
-
-    var address = $('#street').val();
-    if (!isNull(address)) address += ' ' + $('#num').val();
-    if (!isNull($('#urb').val())) address += ',' + $('#urb').val();
-    if (!isNull($("#dist option:selected").text())) address += ',' + $("#dist option:selected").text();
-    if ($("#city option:selected").text()) address += ',' + $("#city option:selected").text();
-
-    if (!isNull(address)) {
-        geocoder.geocode({ 'address': address + ',Peru' }, function (results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
-                lost_map.panTo(results[0].geometry.location);
-                $("#lat").val(results[0].geometry.location.lat);
-                $("#lng").val(results[0].geometry.location.lng);
-                lost_marker.setPosition(results[0].geometry.location);
-                lost_marker.setAnimation(google.maps.Animation.BOUNCE);
-                setTimeout(function () {
-                    lost_marker.setAnimation(null);
-                }, 2000);
-            }
-        });
-    }
-}
-
-
-function geocodeAddressCity() {
-    $this = $("#city");
-
-    $.ajax({
-        type: "GET",
-        url: window.location.origin + '/ubigeo-distritos',
-        dataType: 'json',
-        cache: false,
-        data: { city: $this.val() },
-        success: function (data) {
-            if (data.result) {
-                $('#dist').html(data.options).fadeIn();
-                $("#dist").append('<option value="">Distrito</option>');
-                $('#dist').addClass('error');
-            }
-        }
-    });
-
-
-    var address = $('#street').val();
-    if (!isNull(address)) address += ' ' + $('#num').val();
-    if (!isNull($('#urb').val())) address += ',' + $('#urb').val();
-    if (!isNull($("#dist option:selected").text())) address += ',' + $("#dist option:selected").text();
-    if ($("#city option:selected").text()) address += ',' + $("#city option:selected").text();
-
-    if (!isNull(address)) {
-        geocoder.geocode({ 'address': address + ',Peru' }, function (results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
-                lost_map.panTo(results[0].geometry.location);
-                $("#lat").val(results[0].geometry.location.lat);
-                $("#lng").val(results[0].geometry.location.lng);
-                lost_marker.setPosition(results[0].geometry.location);
-                lost_marker.setAnimation(google.maps.Animation.BOUNCE);
-                setTimeout(function () {
-                    lost_marker.setAnimation(null);
-                }, 2000);
-            }
-        });
-    }
-}
-
-function geocodeAddress() {
-
-    var address = $('#street').val();
-    if (!isNull(address)) address += ' ' + $('#num').val();
-    if (!isNull($('#urb').val())) address += ',' + $('#urb').val();
-    if (!isNull($("#dist option:selected").text())) address += ',' + $("#dist option:selected").text();
-    if ($("#city option:selected").text()) address += ',' + $("#city option:selected").text();
-
-    if (!isNull(address)) {
-        geocoder.geocode({ 'address': address + ',Peru' }, function (results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
-                $("#lat").val(results[0].geometry.location.lat);
-                $("#lng").val(results[0].geometry.location.lng);
-                lost_map.panTo(results[0].geometry.location);
-                lost_marker.setPosition(results[0].geometry.location);
-                lost_marker.setAnimation(google.maps.Animation.BOUNCE);
-                setTimeout(function () {
-                    lost_marker.setAnimation(null);
-                }, 2000);
-            }
-        });
-    }
-}
-
-/*$("#pac-input").on("blur", function () {
+$("#pac-input").on("blur", function () {
     var address = $(this).val();
     $("#pac-address").val(address);
-});*/
+});
 function extractFromAdress(components, type) {
     for (var i = 0; i < components.length; i++)
         for (var j = 0; j < components[i].types.length; j++)
@@ -1273,7 +981,6 @@ function loadPets() {
     });
 }
 
-var datosimg;
 var w_total = $('#pets-list').width();
 var w_view = $(window).width() * 0.8;
 var cnt_pets = parseInt(w_view / 205);
@@ -1392,7 +1099,7 @@ $('#cropper-confirm').on('click', function () {
 
     var croppedCanvas;
     thumbWidth = 800;
-    
+    if (w > 800) {
         canvas = document.createElement('canvas');
         var ctx = canvas.getContext("2d");
         newWidth = thumbWidth;        
@@ -1401,21 +1108,21 @@ $('#cropper-confirm').on('click', function () {
         canvas.height = newHeight;
 
         ctx.drawImage(cropper, 0, 0, newWidth, newHeight);
-        datosimg = canvas.toDataURL("image/jpeg");
-    
-        $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + datosimg + ')');
+        
+        
+        $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + canvas.toDataURL("image/jpeg") + ')');
         $('.upload-image-lost-preview').show();
         $('#lost_pet_file').parent().hide();
         $('#modal-cropper .modal-header button').trigger('click');
-    /*} else {
+    } else {
         $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + cropper.toDataURL() + ')');
         $('.upload-image-lost-preview').show();
         $('#lost_pet_file').parent().hide();
         $('#modal-cropper .modal-header button').trigger('click');
-    }*/
+    }
+    
     
 });
-
 $('#modal-cropper').on('shown.bs.modal', function () {
     var $dataX = $('#dataX');
     var $dataY = $('#dataY');
@@ -1578,48 +1285,15 @@ function modal_center()
     $('.modal-content').each(function () {
         var margin_top = $(this).outerHeight() / 2;
         var screen_height=$(window).outerHeight() /2;
-        
-        //console.log(screen_height+">"+margin_top);
+        console.log(screen_height+">"+margin_top);
         if(screen_height>margin_top )
         {
-
 		$(this).css('top', '50vh');
 		$(this).css('margin-top', '-' + margin_top + 'px');
         }
         else
         {
         	$(this).removeAttr('style');
-        }
-
-        if (bMobile) {
-
-            
-            $(this).css('position', 'absolute');
-            $(this).css('height', '90vh !important');
-            $(this).css('top', '1vh');
-            $(this).css('margin-top', '5vh');
-            //$(this).css('left', '1vw');
-            
-            
-            //$(this).css('left', '10vw');
-            var margin_left = $(this).outerWidth(true)/2;
-            var screen_width = $(window).width()/2;
-            
-            
-            var width_modal = $(this).width() / 2;
-            var diff = 0;
-            if (width_modal <= 1) {
-                diff = screen_width / 2 - width_modal;
-            } else {
-                diff = screen_width - width_modal;
-            }
-            
-            
-            diff = Number(diff) - 17;      
-            console.log(diff);
-            $(this).css('margin-left', diff + 'px');
-            $(this).css('display', 'block');
-            //$(this).css('margin-left', '5vw');
         }
     });
 }

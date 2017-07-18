@@ -27,7 +27,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('terminos-y-condiciones', 'IndexController@getTermsConditions');
     Route::get('politicas-y-privacidad', 'IndexController@getPoliticsAndPrivacy');
     Route::get('ayuda', 'IndexController@getHelp');
-    Route::get('contactanos', 'IndexController@getContactUs');
+    Route::get('contactanos', 'IndexController@getContactUs');    
     Route::get('mascotas', 'PetsController@getPetsLost');
     Route::get('mascotas/perdidos', 'PetsController@getPetsLost');
     Route::get('mascotas/encontrados', 'PetsController@getPetsFound');

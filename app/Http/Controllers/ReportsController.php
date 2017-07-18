@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 //use App;
 use App\Report;
+use App\Ubigeo;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use PDF;
@@ -20,11 +21,22 @@ class ReportsController extends Controller {
     public function index() {
         $reports['lost'] = Report::getDataReports(['status' => 'lost', 'userid' => Auth::id()], FALSE);
         $reports['found'] = Report::getDataReports(['status' => 'found', 'userid' => Auth::id()], FALSE);
-        return view('reports.page-reports-index', [
-            'reports' => $reports,
-            'user' => Auth::user()
-                ]
-        );
+        $departments = Ubigeo::getDataDepartments();
+        if (count($departments)) {
+            return view('reports.page-reports-index', [
+                'reports' => $reports,
+                'departments' => $departments,
+                'user' => Auth::user()
+                    ]
+            );
+        } else {
+            return view('reports.page-reports-index', [
+                'reports' => $reports,              
+                'user' => Auth::user()
+                    ]
+            );
+        }
+        
     }
     public function delete_report(Request $request)
     {
@@ -60,6 +72,31 @@ class ReportsController extends Controller {
         }
     }
 
+    public function postEncontrado(Request $request) {
+        $report_id = $request->get('id');
+        $img = $request->get('pngimageData');
+        $report = \App\Report::where('id',$report_id)->first();
+        $report_data = [
+            'status' => 'found',
+            'updated_at' =>Date('Y-m-d H:i:s')
+        ];
+        $result = \App\Report::where('id',$report_id)->update($report_data);
+        /*if ($img) {
+            //$file_name= basename($url);
+            $img = str_replace('data:image/jpeg;base64,', '', $img);
+            $img = str_replace(' ', '+', $img);
+            $data = base64_decode($img);
+            file_put_contents("images/pets/".$report->pet_id.".jpg", $data);
+            $photo_data = [
+                'url' => $report->pet_id.".jpg",
+                'updated_at' =>Date('Y-m-d H:i:s')
+            ];
+            $result = \App\Photo::where('pet_id',$report->pet_id)->update($photo_data);
+        }*/
+        return json_encode(true);
+    }
+    
+
     public function sendReport(Request $request) {        
         $report_id= $request->get('report_id');
         $status = $request->get('pet_status');
@@ -68,13 +105,14 @@ class ReportsController extends Controller {
         $gender = $request->get('lost_pet_gender');
         $description = $request->get('lost_pet_description');
         $report_description = $request->get('lost_pet_report_description');
-        $address = $request->get('address');
-        $department = $request->get('lost_pet_department');
-        $city = $request->get('lost_pet_city');
-        $district = $request->get('lost_pet_district');
-        $latitude = $request->get('lost_pet_latitude');
-        $longitude = $request->get('lost_pet_longitude');
-        $postal_code= $request->get('lost_pet_postal_code');
+        $street = $request->get('pet-lost-calle');
+        $department = $request->get('department');
+        $city = $request->get('city');
+        $district = $request->get('district');
+        $address = $city . " " . $district;
+        $latitude = $request->get('pet-lost-lat');
+        $longitude = $request->get('pet-lost-lng');
+        $postal_code= "15001";//$request->get('lost_pet_postal_code');
         $reward = $request->get('lost_pet_reward');
         $contact_name = $request->get('lost_pet_contact_name');
         $contact_email = $request->get('lost_pet_contact_email');
@@ -96,7 +134,7 @@ class ReportsController extends Controller {
             ];
             $result = \App\Pet::insert($pet_data);
             $pet_id=DB::table('pets')->max('id');
-            $img = str_replace('data:image/png;base64,', '', $img);
+            $img = str_replace('data:image/jpeg;base64,', '', $img);
             $img = str_replace(' ', '+', $img);
             $data = base64_decode($img);
             file_put_contents("images/pets/".$pet_id.".jpg", $data);
@@ -107,13 +145,14 @@ class ReportsController extends Controller {
                 'updated_at' =>Date('Y-m-d H:i:s')
             ];
             $result = \App\Photo::insert($photo_data);
-            $ubigeos = \App\Ubigeo::where('department',$department)->where('city',$city)->where('district',$district)->get()->count();
+            $ubigeos = \App\Ubigeo::where('department',$department)->where('city',$city)->where('district',$district)->where('street', $street)->get()->count();
             if(!$ubigeos)
             {
                 $ubigeo_data = [
                     'department' =>$department,
                     'city' => $city,
                     'district' => $district,
+                    'street' => $street,
                     'ubigeo_code' => $postal_code,
                     'created_at' =>Date('Y-m-d H:i:s'),
                     'updated_at' =>Date('Y-m-d H:i:s')
@@ -157,12 +196,12 @@ class ReportsController extends Controller {
             if($img)
             {
                 //$file_name= basename($url);
-                $img = str_replace('data:image/png;base64,', '', $img);
+                $img = str_replace('data:image/jpeg;base64,', '', $img);
                 $img = str_replace(' ', '+', $img);
                 $data = base64_decode($img);
-                file_put_contents("images/pets/".$report->pet_id.".png", $data);
+                file_put_contents("images/pets/".$report->pet_id.".jpg", $data);
                 $photo_data = [
-                    'url' => $report->pet_id.".png",
+                    'url' => $report->pet_id.".jpg",
                     'updated_at' =>Date('Y-m-d H:i:s')
                 ];
                 $result = \App\Photo::where('pet_id',$report->pet_id)->update($photo_data);

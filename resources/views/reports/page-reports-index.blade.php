@@ -29,7 +29,7 @@
             @foreach($reports['lost']['data'] as $item)
               <li>
                 <div class="report-item-content">                  
-                  <img src="{{ asset('images/pets/' . $item['image']) }}" style="width:206px;height:206px;"/>
+                  <img src="{{ asset('images/pets/' . $item['image']) }}" style="width:206px;height:206px;" id="_{{ $item['id']}}"/>
                   <div class="report-item-detail">
                     <h2>{{ $item['name'] }}</h2>
                     <p class="report-item-birthday">{{ $item['date'] }}</p>
@@ -37,8 +37,8 @@
                   </div>
                 </div>
                 <div class="report-buttons">
-                  <a data-toggle="modal" class="btn btn-primary btn-block" onclick="item_detail_view({{ $item['id'] }});">Generar volante</a>
-                  <a data-toggle="modal" href="#" class="btn btn-primary btn-green btn-block" onclick="item_finded_pet({{ $item['id']}});">Encontrado</a>
+                  <a data-toggle="modal" class="btn btn-primary btn-block _item_{{ $item['id'] }}" onclick="item_detail_view({{ $item['id'] }});">Generar volante</a>
+                  <a data-toggle="modal" href="#" class="btn btn-primary btn-green btn-block _item_{{ $item['id'] }}" onclick="item_finded_pet({{ $item['id']}});">Encontrado</a>
                 </div> 
                 <img class="edit_menu" src="{{ asset('img/icon-edit-red.png') }}"/>
                 <div class="edit_menu_div">   

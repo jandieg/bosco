@@ -8,9 +8,9 @@
             <h3>Perdido</h3>
             <div class="modal-report-data">
               <ul class="text-center">
-                <li>Nombre: <span class="report-detail-lost-name">Lara</span></li>
-                <li>Género: <span class="report-detail-lost-gender">Femenino</span></li>
-                <li class="last">Raza: <span class="report-detail-lost-race">Pastor alemán</span></li>
+                <li>Nombre: <span class="report-detail-lost-name" style=" text-transform:capitalize;">Lara</span></li>
+                <li>Género: <span class="report-detail-lost-gender" style=" text-transform:capitalize;">Femenino</span></li>
+                <li class="last">Raza: <span class="report-detail-lost-race" style=" text-transform:capitalize;">Pastor alemán</span></li>
               </ul>
             </div>
           </div>
