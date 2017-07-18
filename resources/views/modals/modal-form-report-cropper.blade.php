@@ -1,6 +1,6 @@
 <div class="container">
   <div class="modal fade" id="modal-cropper" aria-labelledby="modalLabel" role="dialog" tabindex="-1" data-width="400" style="z-index: 9999;">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header" style="border-bottom: 1px solid #e5e5e5;padding: 18px 30px;">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
