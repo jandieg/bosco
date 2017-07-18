@@ -21,6 +21,17 @@ var bMobile =   // will be true if running on a mobile device
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
+function resetScrollPos(selector) {
+    var divs = document.querySelectorAll(selector);
+    for (var p = 0; p < divs.length; p++) {
+        if (Boolean(divs[p].style.transform)) { //for IE(10) and firefox
+            divs[p].style.transform = 'translate3d(0px, 0px, 0px)';
+        } else { //for chrome and safari
+            divs[p].style['-webkit-transform'] = 'translate3d(0px, 0px, 0px)';
+        }
+    }
+}
+
 function postFacebook(id) {
     
     
@@ -116,6 +127,10 @@ $('#form-report-lost .modal-form-report-menu li span').click(function () {
 
 $('#form-report-lost .modal-form-report .form-actions .btn-next').click(function () {
     var tab = $(this).data('tab');
+    resetScrollPos('.modal-body');
+    $(".modal-body").scrollTop(0);
+    //$(".modal-content").scrollTop(0);
+
     if (tab == "tab-2") {
         if ($("#lost_pet_name").val().length == 0) {
             alert('Debe ingresar el nombre de la mascota' + $("#lost_pet_name").text());
@@ -693,8 +708,8 @@ reportLostAdd.on('click', function (e) {
     $("#form-report-lost #pet_lost_radio").prop("checked", true);
     $("#form-report-lost #name_div").show();
     var margin_top = $("#form-report-lost").find('.modal-content').outerHeight() / 2;
-    $("#form-report-lost").find('.modal-content').css('top', '50vh');
-    $("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
+   // $("#form-report-lost").find('.modal-content').css('top', '50vh');
+    //$("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
     
     Initialize_Report(); 
     /*var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
@@ -707,8 +722,9 @@ reportFoundAdd.on('click', function (e) {
     //$("#form-report-lost #name_div").hide();
     $("#form-report-lost").modal().show();
     var margin_top = $("#form-report-lost").find('.modal-content').outerHeight() / 2;
-    $("#form-report-lost").find('.modal-content').css('top', '50vh');
-    $("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
+    //$("#form-report-lost").find('.modal-content').css('top', '50vh');
+    //$("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
+    
     Initialize_Report()
     var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
     $("#pac-input-div").html(pac_html);
@@ -868,7 +884,8 @@ submitReport.on('click', function (e) {
     */
     
     croppng = datosimg;
-    
+    $('#cropper-image').cropper('clear');
+    $('#cropper-image').cropper('destroy');
     $.ajax({
         type: "POST",
         url: window.location.origin + '/mis-reportes-registrar',
@@ -1027,6 +1044,7 @@ function initMap() {
 
     lost_marker = new google.maps.Marker({        
         map: lost_map,
+        draggable: true,
         animation: google.maps.Animation.DROP
     }); 
     detail_marker.setMap(detail_map);
@@ -1034,7 +1052,13 @@ function initMap() {
         lat = e.latLng.lat();
         lon = e.latLng.lng();
         //displayLocation(lat, lon, detail_map);
-    });        // Create the search box and link it to the UI element.
+    });      
+    google.maps.event.addListener(lost_marker, 'click', function(e){
+        $("#lat").val(e.latLng.lat());
+        $("#lng").val(e.latLng.lng());
+    });
+    
+      // Create the search box and link it to the UI element.
     /*var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);*/
   //  lost_map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
@@ -1575,6 +1599,8 @@ $(window).on('mouseover', function () {
 })
 function modal_center()
 {
+    /*
+    console.log(navigator.userAgent.toString());
     $('.modal-content').each(function () {
         var margin_top = $(this).outerHeight() / 2;
         var screen_height=$(window).outerHeight() /2;
@@ -1592,12 +1618,14 @@ function modal_center()
         }
 
         if (bMobile) {
-
+            console.log('esta en movil');
             
             $(this).css('position', 'absolute');
             $(this).css('height', '90vh !important');
-            $(this).css('top', '1vh');
-            $(this).css('margin-top', '5vh');
+            if ($(this).children().first().hasClass('form-user')) {
+                $(this).css('top', '1vh');
+                $(this).css('margin-top', '10vh');
+            }
             //$(this).css('left', '1vw');
             
             
@@ -1618,8 +1646,9 @@ function modal_center()
             diff = Number(diff) - 17;      
             console.log(diff);
             $(this).css('margin-left', diff + 'px');
+            $(this).css('margin-left', '5vw');
             $(this).css('display', 'block');
             //$(this).css('margin-left', '5vw');
         }
-    });
+    });*/
 }

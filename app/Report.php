@@ -38,7 +38,7 @@ class Report extends Model
             $reports = Report::orderBy('id', 'desc')->limit($numPerItem)->get();            
         if (!empty($reports)) {            
             foreach ($reports as $report) {
-                if($user && $user->id!=$report->pet->owner_id) continue;
+                if(is_object($user) && $user && $user->id!=$report->pet->owner_id) continue;
                 $date_time=explode(' ',$report->date);
                 $report_date=$date_time[0];
                 $report_date=date("d M Y", strtotime($report_date));
@@ -75,23 +75,26 @@ class Report extends Model
             $reports = Report::orderBy('id', 'desc')->limit($numPerItem)->get();            
         if (!empty($reports)) {            
             foreach ($reports as $report) {
-                $date_time=explode(' ',$report->date);
-                $report_date=$date_time[0];
-                $report_date=date("d M Y", strtotime($report_date));
-                $address=str_replace("Distrito de ","",$report->location->address);
-                $address=str_replace("Provincia de ","",$address);
-                $data[] = [
-                    'id' => $report->id,
-                    'status' => $report->status,
-                    'pet_id'=>$report->pet->id,
-                    'name' => $report->pet->name, 
-                    'race' => $report->pet->race, 
-                    'gender' => $report->pet->gender, 
-                    'date' => $report_date." ".$date_time[1],
-                    'address' => $address, 
-                    'description' => $report->pet->description, 
-                    'image' => $report->pet->photos[0]->url
-                ];
+                if (is_object($report->location)) {
+                    $date_time=explode(' ',$report->date);
+                    $report_date=$date_time[0];
+                    $report_date=date("d M Y", strtotime($report_date));
+                    $address=str_replace("Distrito de ","",$report->location->address);
+                    $address=str_replace("Provincia de ","",$address);
+                    $data[] = [
+                        'id' => $report->id,
+                        'status' => $report->status,
+                        'pet_id'=>$report->pet->id,
+                        'name' => $report->pet->name, 
+                        'race' => $report->pet->race, 
+                        'gender' => $report->pet->gender, 
+                        'date' => $report_date." ".$date_time[1],
+                        'address' => $address, 
+                        'description' => $report->pet->description, 
+                        'image' => $report->pet->photos[0]->url
+                    ];
+                }
+                
             }
         }
 

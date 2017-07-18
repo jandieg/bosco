@@ -196,7 +196,7 @@
                 <div class="col-md-4 col-sm-12">
                 <label for="department">Departamento
                   <select id="dep" class="form-control">
-                      @if(isset($departments) && $departments)
+                      @if(isset($departments))
                       <option value="">Seleccione</option>
                       @foreach($departments as $department)
                       <option value="{{ $department['department'] }}">{{ $department['department'] }}</option>
