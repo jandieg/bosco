@@ -1026,6 +1026,12 @@ a.btn-video:hover {
 .block-reports-lost {
   border-right: 1px solid #b7b7b7;
 }
+@media only screen and (max-width: 768px) {
+	.block-reports-lost {
+		border-right: 0;
+	}
+}
+
 
 .block-reports li {
   display: block;
@@ -1450,16 +1456,6 @@ a.btn-video:hover {
     height:100%;
 }
 
-@media screen and (max-width: 768px) { 
-  
-  .modal-content {
-     display: inline-block;
-    text-align: right;
-    vertical-align: middle;
-    width: 90vw !important;
-    
-  }
-}
 
 @media screen and (max-width: 768px) {
   .report-item-content {
@@ -1473,12 +1469,11 @@ a.btn-video:hover {
   }
 }
 .modal-content {
-  
-  background: #fff;
-  border-radius: 10px;
-  margin: auto;    
-  height:auto;
-  max-width: 370px;
+	background: #fff;
+	border-radius: 10px;
+	margin: auto;
+	height: auto;
+	margin-top: 10vw;
 }
 
 .modal-content h4 {
@@ -2023,7 +2018,6 @@ a.btn-video:hover {
   color: #808caa;
   font-size: 10px;
   margin-top: -17px;
-  text-align: right;
 }
 
 .modal-form-report #form-report-lost-tab-3 .form-actions, 
@@ -2073,7 +2067,6 @@ a.btn-video:hover {
 #pet-detail .modal-content {
   background: #F1F1F2;
   color: #a8a8a8;
-  /*margin: 50px auto;*/
   max-width: 812px;
   padding-bottom: 10px;
   padding-top: 10px;

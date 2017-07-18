@@ -16,7 +16,7 @@
     <!-- Block Reports -->
     <div class="row">
       <div class="block-reports-content col-lg-12">
-        <div id="block-reports-lost" class="block-reports block-reports-lost col-lg-6 col-md-6 col-sm-6 col-xs-6 clearfix">
+        <div id="block-reports-lost" class="block-reports block-reports-lost col-lg-6 col-md-6 col-sm-6 col-xs-12 clearfix">
           <div class="view-content">
             <ul class="text-left">
                 <li>
@@ -55,7 +55,7 @@
             </ul>
           </div>
         </div>
-        <div id="block-reports-founds" class="block-reports block-reports-founds col-lg-6 col-md-6 col-sm-6 col-xs-6 clearfix">
+        <div id="block-reports-founds" class="block-reports block-reports-founds col-lg-6 col-md-6 col-sm-6 col-xs-12 clearfix">
           <div class="view-content">
             <ul class="text-left">
                 <li>
