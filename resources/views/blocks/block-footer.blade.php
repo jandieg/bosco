@@ -10,7 +10,7 @@
       <!-- Block Menu -->
       <div class="col-lg-7 col-md-8 block-menu">
         <ul class="text-center">
-          <li class="first"><a href="#">Preguntas frecuentes</a></li>
+          <!--<li class="first"><a href="#">Preguntas frecuentes</a></li>-->
           <li><a href="{{url('/politicas-y-privacidad')}}">Políticas y privacidad</a></li>
           <li><a href="{{url('/terminos-y-condiciones')}}">Términos y condiciones</a></li>
           <li class="last"><a href="{{url('/contactanos')}}">Contáctanos</a></li>

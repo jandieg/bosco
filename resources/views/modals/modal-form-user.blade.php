@@ -1,4 +1,5 @@
-<div id="form-user" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
+  <div id="form-user" class="modal fade" id="modal-cropper" aria-labelledby="modalLabel" role="dialog" tabindex="-1" data-width="400" style="z-index: 9999;display:none">
+    <div class="modal-dialog modal-sm">
   <div class="modal-content">
     <div id="form-user-login" class="form-user">
       <div class="modal-header">
@@ -27,7 +28,7 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div style="margin-top:10px;">
+                  <div style="margin-top:10px;display:none">
                     <a target="_blank" href="{{ url('recuperar-contrasena') }}">Olvidé contraseña</a>
                   </div>
                 </div>
@@ -95,4 +96,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

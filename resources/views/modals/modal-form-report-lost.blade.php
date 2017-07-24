@@ -110,9 +110,9 @@
                 <label>Estado</label>
                 <div class="pet-type">
                     <input type="radio" name="pet_status" id="pet_lost_radio" value="lost">
-                    <label for="pet_lost_radio">Perdió</label>
+                    <label for="pet_lost_radio">Perdido</label>
                     <input type="radio" name="pet_status" id="pet_found_radio" value="found">
-                    <label for="pet_found_radio">Encontró</label>
+                    <label for="pet_found_radio">Encontrado</label>
                 </div>
                     <input type="hidden" name="report_id" id="report_id">
               </div>
