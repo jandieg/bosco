@@ -1178,10 +1178,11 @@ function geocodeAddressDep() {
     });
 
     var address = $('#street').val();
-    if (!isNull(address)) address += ' ' + $('#num').val();
-    if (!isNull($('#urb').val())) address += ',' + $('#urb').val();
+    /*if (!isNull(address)) address += ' ' + $('#num').val();
+    if (!isNull($('#urb').val())) address += ',' + $('#urb').val();*/
     if (!isNull($("#dist option:selected").text())) address += ',' + $("#dist option:selected").text();
     if ($("#city option:selected").text()) address += ',' + $("#city option:selected").text();
+    if ($("#dep option:selected").text()) address += ',' + $("#dep option:selected").text();
 
     if (!isNull(address)) {
         geocoder.geocode({ 'address': address + ',Peru' }, function (results, status) {
@@ -1220,10 +1221,11 @@ function geocodeAddressCity() {
 
 
     var address = $('#street').val();
-    if (!isNull(address)) address += ' ' + $('#num').val();
-    if (!isNull($('#urb').val())) address += ',' + $('#urb').val();
+    /*if (!isNull(address)) address += ' ' + $('#num').val();
+    if (!isNull($('#urb').val())) address += ',' + $('#urb').val();*/
     if (!isNull($("#dist option:selected").text())) address += ',' + $("#dist option:selected").text();
     if ($("#city option:selected").text()) address += ',' + $("#city option:selected").text();
+    if ($("#dep option:selected").text()) address += ',' + $("#dep option:selected").text();
 
     if (!isNull(address)) {
         geocoder.geocode({ 'address': address + ',Peru' }, function (results, status) {
@@ -1244,13 +1246,14 @@ function geocodeAddressCity() {
 function geocodeAddress() {
 
     var address = $('#street').val();
-    if (!isNull(address)) address += ' ' + $('#num').val();
-    if (!isNull($('#urb').val())) address += ',' + $('#urb').val();
+    //if (!isNull(address)) address += ' ' + $('#num').val();
+    //if (!isNull($('#urb').val())) address += ',' + $('#urb').val();
     if (!isNull($("#dist option:selected").text())) address += ',' + $("#dist option:selected").text();
     if ($("#city option:selected").text()) address += ',' + $("#city option:selected").text();
+    if ($("#dep option:selected").text()) address += ',' + $("#dep option:selected").text();
 
     if (!isNull(address)) {
-        console.log('la calle es ' + address);
+        
         geocoder.geocode({ 'address': address + ',Peru' }, function (results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
                 $("#lat").val(results[0].geometry.location.lat);
