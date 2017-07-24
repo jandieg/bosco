@@ -1158,7 +1158,9 @@ function isNull(v) {
 }
 
 function geocodeAddressDep() {
-    $this = $("#dep")
+    $this = $("#dep");
+    $("#city").attr('disabled', true);
+    $("#dist").attr('disabled', true);
     $.ajax({
         type: "GET",
         url: window.location.origin + '/ubigeo-ciudades',
@@ -1167,6 +1169,8 @@ function geocodeAddressDep() {
         data: { department: $this.val() },
         success: function (data) {
             if (data.result) {
+                $("#city").attr('disabled', false);
+                $("#dist").attr('disabled', false);
                 $('#city').html(data.options).fadeIn();
                 $("#city").append('<option value="">Ciudad</option>');
                 $('#dist').html('<option value="" default style="display:none;">Distrito</option>').fadeIn();
@@ -1203,7 +1207,7 @@ function geocodeAddressDep() {
 
 function geocodeAddressCity() {
     $this = $("#city");
-
+    $("#dist").attr('disabled', true);
     $.ajax({
         type: "GET",
         url: window.location.origin + '/ubigeo-distritos',
@@ -1212,6 +1216,7 @@ function geocodeAddressCity() {
         data: { city: $this.val() },
         success: function (data) {
             if (data.result) {
+                $("#dist").attr('disabled', false);
                 $('#dist').html(data.options).fadeIn();
                 $("#dist").append('<option value="">Distrito</option>');
                 $('#dist').addClass('error');
