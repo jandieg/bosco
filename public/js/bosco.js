@@ -132,12 +132,12 @@ $('#form-report-lost .modal-form-report .form-actions .btn-next').click(function
     //$(".modal-content").scrollTop(0);
 
     if (tab == "tab-2") {
-        if ($("#lost_pet_name").val().length == 0) {
+        if ($("#lost_pet_name").val().length == 0 && $("#pet_found_radio").val() == "lost") {
             alert('Debe ingresar el nombre de la mascota' + $("#lost_pet_name").text());
             return false;
         }
 
-        if ($("#lost_pet_race").val().length == 0) {
+        if ($("#lost_pet_race").val().length == 0 && $("#pet_found_radio").val() == "lost") {
             alert('Debe ingresar la raza de la mascota');
             return false;
         }
@@ -165,7 +165,7 @@ $('#form-report-lost .modal-form-report .form-actions .btn-next').click(function
             return false;
         }
 
-        if ($("#lost_pet_report_description").val().length == 0) {
+        if ($("#lost_pet_report_description").val().length == 0 && $("#pet_found_radio").val() == "lost") {
             alert('Debe ingresar la descripcion del reporte');
             return false;
         }   
@@ -726,6 +726,9 @@ reportFoundAdd.on('click', function (e) {
     //$("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
     
     Initialize_Report()
+    $('.encontrado').hide();
+    $("#tab-3").html("<em>3</em>" +$("#el_dueno").val().toString());
+    
     var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
     $("#pac-input-div").html(pac_html);
 });

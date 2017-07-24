@@ -116,11 +116,11 @@
                 </div>
                     <input type="hidden" name="report_id" id="report_id">
               </div>
-              <div class="form-group" id="name_div" style="margin-bottom: 32px;">
+              <div class="form-group encontrado" id="name_div" style="margin-bottom: 32px;">
                 <label>Nombre</label>
                 <input type="text" name="lost_pet_name" id="lost_pet_name" class="form-control">
               </div>
-              <div class="form-group" style="margin-bottom: 32px;">
+              <div class="form-group  encontrado" style="margin-bottom: 32px;">
                 <label>Raza</label>
                 <input type="text" name="lost_pet_race" id="lost_pet_race" class="form-control">
                 <!--select class="form-control" name="lost_pet_race" id="lost_pet_race">
@@ -128,7 +128,7 @@
                   <option value="cat">Gato</option>
                 </select-->
               </div>
-              <div class="form-group">
+              <div class="form-group  encontrado">
                 <label>Género</label>
                 <select class="form-control" name="lost_pet_gender" id="lost_pet_gender">
                   <option value="macho">Macho</option>
@@ -172,7 +172,7 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group encontrado">
                 <label>¿Cómo se perdió?</label>               
                 <textarea placeholder="150 caracteres max" name="lost_pet_report_description" id="lost_pet_report_description" class="form-control" rows="8"></textarea>
               </div>
@@ -247,7 +247,7 @@
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
                 <label>Nombre de dueño</label>
-                <input type="text" name="lost_pet_owner_name" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
+                <input type="text" id="el_dueno" name="lost_pet_owner_name" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
               </div>
               <div class="form-group">
                 <label>Teléfono de contacto</label>

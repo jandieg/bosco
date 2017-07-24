@@ -95,10 +95,20 @@ class ReportsController extends Controller {
         $report_id= $request->get('report_id');
         $status = $request->get('pet_status');
         $name = $request->get('lost_pet_name');
+        if (strlen($name) == 0) {
+            $name = '';
+        }
         $race = $request->get('lost_pet_race');
+        if (strlen($race) == 0) {
+            $race = '';
+        }
         $gender = $request->get('lost_pet_gender');
+        
         $description = $request->get('lost_pet_description');
         $report_description = $request->get('lost_pet_report_description');
+        if (strlen($report_description) == 0) {
+            $report_description = '';
+        }
         $street = $request->get('pet-lost-calle');
         $department = $request->get('department');
         $city = $request->get('city');
