@@ -1250,6 +1250,7 @@ function geocodeAddress() {
     if ($("#city option:selected").text()) address += ',' + $("#city option:selected").text();
 
     if (!isNull(address)) {
+        console.log('la calle es ' + address);
         geocoder.geocode({ 'address': address + ',Peru' }, function (results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
                 $("#lat").val(results[0].geometry.location.lat);
