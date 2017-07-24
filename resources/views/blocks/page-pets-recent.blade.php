@@ -81,7 +81,7 @@
             </div>
             <div class="gallery-item-detail">
               <h2>{{ $item['name'] }}</h2>
-              <p class="gallery-item-birthday">{{ $item['date'] }}</p>
+              <p class="gallery-item-birthday">{{ date_format(date_create($item['date']), 'd M Y') }}</p>
               <p class="gallery-item-location">{{ $item['address'] }}</p>
             </div>
           </a>

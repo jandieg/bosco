@@ -32,7 +32,7 @@
                   <img src="{{ asset('images/pets/' . $item['image']) }}" style="width:206px;height:206px;" id="_{{ $item['id']}}"/>
                   <div class="report-item-detail">
                     <h2>{{ $item['name'] }}</h2>
-                    <p class="report-item-birthday">{{ $item['date'] }}</p>
+                    <p class="report-item-birthday">{{ date_format(date_create($item['date']), 'd M Y') }}</p>
                     <p class="report-item-location">{{ $item['address'] }}</p>
                   </div>
                 </div>
@@ -71,7 +71,7 @@
                   <img src="{{ asset('images/pets/' . $item['image']) }}"  style="width:206px;height:206px;"/>
                   <div class="report-item-detail">
                     <h2>{{ $item['name'] }}</h2>
-                    <p class="report-item-birthday">{{ $item['date'] }}</p>
+                    <p class="report-item-birthday">{{ date_format(date_create($item['date']), 'd M Y') }}</p>
                     <p class="report-item-location">{{ $item['address'] }}</p>
                   </div>
                 </div>
