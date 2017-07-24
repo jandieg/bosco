@@ -13,9 +13,13 @@
                 <li class="last">Raza: <span class="report-detail-lost-race" style=" text-transform:capitalize;">Pastor alemán</span></li>
               </ul>
             </div>
-          </div>
+          </div>          
+          <span style='text-align:right;height:40px;float:right;color:white;margin-top:1px;padding:20px 20px 0px 20px; background-color: rgba(0, 0, 0, 0.4); position: relative;' class="report-detail-reward">
+          <span style="font-size:22px;">Recompensa:&nbsp;</span><span class="report-detail-lost-reward" style="font-size:24px; font-family: Arial !important; font-weight: bold;">S/.&nbsp;</span>
+          </span>
           <span class="report-detail-lost-image">
-            <img  style="image-rendering: pixelated;" src="{{ asset('images/report_detail_image.png') }}" style="width:100%;">
+          
+            <img  style="image-rendering: pixelated;" src="{{ asset('images/report_detail_image.png') }}" style="width:100%; margin-top:-55px;">
           </span>
           <span class="report-detail-lost-phone">
             <a class="report-phone" href="tel:969 003 009">969 003 009</a>

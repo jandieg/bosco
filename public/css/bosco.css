@@ -1636,6 +1636,11 @@ a.btn-video:hover {
 
 .modal-report-detail-image img {
   max-width: 100%;
+  margin-top: -55px;
+}
+
+span.report-detail-reward {
+  left: inherit;
 }
 
 .modal-report-detail-image a.report-phone {
@@ -2290,6 +2295,7 @@ footer .block-socialnetwork li a.link-instagran {
 
 
 @media only screen and (min-width : 767px) {
+  
   #home-page .block-menu a {
     color: #fff;
   }
@@ -2705,12 +2711,17 @@ footer .block-socialnetwork li a.link-instagran {
   .modal-report-data {
     position: static;
   }
+  .report-detail-reward{
+    left: 100px;
+  }
+  
 }
 
 @media only screen and (max-width : 680px) {
   .modal-report-detail-image img{
 
   }
+  
 }
 
 @media only screen and (max-width : 640px) {
@@ -2736,6 +2747,7 @@ footer .block-socialnetwork li a.link-instagran {
 }
 
 @media only screen and (max-width : 584px) {
+ 
   .modal-report .modal-body {
     padding: 15px;
   }
@@ -2755,6 +2767,9 @@ footer .block-socialnetwork li a.link-instagran {
   .modal-report-info {
     margin-left: 0;
     width: 100%;
+  }
+  .report-detail-reward{
+    left:100px;
   }
 }
 

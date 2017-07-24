@@ -396,6 +396,7 @@ function item_detail_view(id) {
     $('.report-detail-lost-race').html('');
     $('.report-detail-lost-gender').html('');
     $('.report-detail-lost-date').html('');
+    $('.report-detail-lost-reward').html('');
     modal_center();
     $.ajax({
         type: "GET",
@@ -412,6 +413,7 @@ function item_detail_view(id) {
                 $('.report-detail-lost-race').html(data.report.race);
                 $('.report-detail-lost-gender').html(data.report.gender);
                 $('.report-detail-lost-date').html(data.report.date);
+                $('.report-detail-lost-reward').html('S/.&nbsp;'+data.report.reward);
                 $('#post_social_div').html('<button onclick="postFacebook('+id+')" class="btn btn-primary btn-block btn-button">Compartir</button>');
                 $('#download_report_div').children().first().attr('href', data.path + '/descargar-volante/jpg/?reportid=' + id);
                 $('#download_report_div').children().last().attr('href', data.path + '/descargar-volante/pdf/?reportid=' + id);

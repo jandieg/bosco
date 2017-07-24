@@ -139,21 +139,26 @@ class AuthController extends Controller
      */
     public function handleProviderCallback(Request $request)
     {
-        $user_fb = $this->validateProvider('facebook');
-        if($user_fb->getEmail()==''){ throw new Exception('email'); }
-        $user = User::where('email',$user_fb->getEmail())->first();
-        if(empty($user->id)){
+        try {
+            $user_fb = $this->validateProvider('facebook');
+            if($user_fb->getEmail()==''){ throw new Exception('email'); }
+            $user = User::where('email',$user_fb->getEmail())->first();
+            if(empty($user->id)){
 
-            $user = User::create([
-                'name' => $user_fb['first_name'],
-                'last_name' => $user_fb['last_name'],
-                'email' => $user_fb->getEmail(),
-            	'api_token' => str_random(60),
-                'password' => bcrypt(''),
-            ]);
+                $user = User::create([
+                    'name' => $user_fb['first_name'],
+                    'last_name' => $user_fb['last_name'],
+                    'email' => $user_fb->getEmail(),
+                    'api_token' => str_random(60),
+                    'password' => bcrypt(''),
+                ]);
+            }
+            Auth::login($user);
+            return response()->redirectTo('mis-reportes');
+        } catch(\BadMethodCallException $e) {
+            return response()->redirectTo('mascotas');
         }
-        Auth::login($user);
-        return response()->redirectTo('mis-reportes');
+        
     }
 
     public function validateProvider($provider){
@@ -166,6 +171,9 @@ class AuthController extends Controller
             //tw cancel permission
             return response()->redirectTo('mascotas');
         } catch(\OAuthException $e){
+            //fb cancel login
+            return response()->redirectTo('mascotas');
+        } catch(\BadMethodCallException $e){
             //fb cancel login
             return response()->redirectTo('mascotas');
         } catch (\Exception $e) {
