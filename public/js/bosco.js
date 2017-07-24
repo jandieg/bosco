@@ -1178,10 +1178,11 @@ function geocodeAddressDep() {
     });
 
     var address = $('#street').val();
-    if (!isNull(address)) address += ' ' + $('#num').val();
-    if (!isNull($('#urb').val())) address += ',' + $('#urb').val();
+    /*if (!isNull(address)) address += ' ' + $('#num').val();
+    if (!isNull($('#urb').val())) address += ',' + $('#urb').val();*/
     if (!isNull($("#dist option:selected").text())) address += ',' + $("#dist option:selected").text();
     if ($("#city option:selected").text()) address += ',' + $("#city option:selected").text();
+    if ($("#dep option:selected").text()) address += ',' + $("#dep option:selected").text();
 
     if (!isNull(address)) {
         geocoder.geocode({ 'address': address + ',Peru' }, function (results, status) {
@@ -1220,10 +1221,11 @@ function geocodeAddressCity() {
 
 
     var address = $('#street').val();
-    if (!isNull(address)) address += ' ' + $('#num').val();
-    if (!isNull($('#urb').val())) address += ',' + $('#urb').val();
+    /*if (!isNull(address)) address += ' ' + $('#num').val();
+    if (!isNull($('#urb').val())) address += ',' + $('#urb').val();*/
     if (!isNull($("#dist option:selected").text())) address += ',' + $("#dist option:selected").text();
     if ($("#city option:selected").text()) address += ',' + $("#city option:selected").text();
+    if ($("#dep option:selected").text()) address += ',' + $("#dep option:selected").text();
 
     if (!isNull(address)) {
         geocoder.geocode({ 'address': address + ',Peru' }, function (results, status) {
@@ -1244,12 +1246,14 @@ function geocodeAddressCity() {
 function geocodeAddress() {
 
     var address = $('#street').val();
-    if (!isNull(address)) address += ' ' + $('#num').val();
-    if (!isNull($('#urb').val())) address += ',' + $('#urb').val();
+    //if (!isNull(address)) address += ' ' + $('#num').val();
+    //if (!isNull($('#urb').val())) address += ',' + $('#urb').val();
     if (!isNull($("#dist option:selected").text())) address += ',' + $("#dist option:selected").text();
     if ($("#city option:selected").text()) address += ',' + $("#city option:selected").text();
+    if ($("#dep option:selected").text()) address += ',' + $("#dep option:selected").text();
 
     if (!isNull(address)) {
+        
         geocoder.geocode({ 'address': address + ',Peru' }, function (results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
                 $("#lat").val(results[0].geometry.location.lat);
@@ -1417,7 +1421,7 @@ $('#cropper-confirm').on('click', function () {
     var croppedCanvas;
     thumbWidth = 800;
     
-        canvas = document.createElement('canvas');
+        var canvas = document.createElement('canvas');
         var ctx = canvas.getContext("2d");
         newWidth = thumbWidth;        
         newHeight = Math.floor(h/w*newWidth);
@@ -1426,6 +1430,8 @@ $('#cropper-confirm').on('click', function () {
 
         ctx.drawImage(cropper, 0, 0, newWidth, newHeight);
         datosimg = canvas.toDataURL("image/jpeg");
+        $('#cropper-image').cropper('clear');
+        $('#cropper-image').cropper('destroy');
     
         $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + datosimg + ')');
         $('.upload-image-lost-preview').show();
