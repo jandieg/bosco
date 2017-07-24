@@ -19,7 +19,7 @@ use facebook\graph_sdk;
 class ReportsController extends Controller {
 
     public function index() {
-        $reports['lost'] = Report::getDataReports(['status' => 'lost', 'userid' => Auth::id()], FALSE);
+        $reports['lost'] = Report::getDataReports(['status' => 'lost', 'found' => '0', 'userid' => Auth::id()], FALSE);
         $reports['found'] = Report::getDataReports(['status' => 'found', 'userid' => Auth::id()], FALSE);
         $departments = Ubigeo::getDataDepartments();
         
@@ -71,7 +71,7 @@ class ReportsController extends Controller {
         $img = $request->get('pngimageData');
         $report = \App\Report::where('id',$report_id)->first();
         $report_data = [
-            'status' => 'found',
+            'found' => '1',
             'updated_at' =>Date('Y-m-d H:i:s')
         ];
         $result = \App\Report::where('id',$report_id)->update($report_data);

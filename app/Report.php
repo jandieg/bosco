@@ -31,6 +31,7 @@ class Report extends Model
         $data = [];
         $status = (isset($parameters['status'])) ? $parameters['status'] : FALSE;
         $userId = (isset($parameters['userid'])) ? $parameters['userid'] : FALSE;
+        $flagFound = (isset($parameters['found'])) ? $parameters['found'] : FALSE;
         $user= Auth::user();
         if($status) 
             $reports = Report::where('status',$status)->orderBy('id', 'desc')->limit($numPerItem)->get();
@@ -39,6 +40,7 @@ class Report extends Model
         if (!empty($reports)) {            
             foreach ($reports as $report) {
                 if(is_object($user) && $user && $user->id!=$report->pet->owner_id) continue;
+                if (! $flagFound && $report->found == 1) continue;
                 $date_time=explode(' ',$report->date);
                 $report_date=$date_time[0];
                 $report_date=date("d M Y", strtotime($report_date));
