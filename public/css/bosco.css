@@ -2026,8 +2026,8 @@ a.btn-video:hover {
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 150px;
-  bottom: 5px;
+  left: 100px;
+  top: 5px;
   cursor: pointer;
   background-color: #093042;
   padding: 4px;
@@ -2037,8 +2037,8 @@ a.btn-video:hover {
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 150px;
-  bottom: 5px;
+  left: 100px;
+  top: 5px;
   cursor: pointer;
   background-color: #e73737;
   padding: 4px;
