@@ -467,6 +467,7 @@ locationsCountry.on('change', function (e) {
                         li_html += '</a>';
                         li_html += '</li>';
                     }
+                    li_html += '<li><div class="block-recent-more pull-right"><a href= "/mascotas" class="btn btn-lg btn-default" > Ver mas</a ></div ></li>';
                     if ($('ul.pets-list'))
                         $('ul.pets-list').html(li_html);
                     if ($('ul.pets-list'))
@@ -558,7 +559,7 @@ locationsCity.on('change', function (e) {
             url: window.location.origin + '/search-pets',
             dataType: 'json',
             cache: false,
-            data: { department: department, city: city, district: district },
+            data: { department: department, city: city, district: district, limitado: 20 },
             success: function (data) {
                 var li_html = '';
                 if (data.data) {
@@ -584,6 +585,7 @@ locationsCity.on('change', function (e) {
                         li_html += '</a>';
                         li_html += '</li>';
                     }
+                    li_html += '<li><div class="block-recent-more pull-right"><a href= "/mascotas" class="btn btn-lg btn-default" > Ver mas</a ></div ></li>';
                     if ($('ul.pets-list'))
                         $('ul.pets-list').html(li_html);
                     if ($('ul.pets-list'))
@@ -615,7 +617,7 @@ locationsCity.on('change', function (e) {
             url: window.location.origin + '/search-pets',
             dataType: 'json',
             cache: false,
-            data: { department: department, city: city, district: district },
+            data: { department: department, city: city, district: district, limitado: 20 },
             success: function (data) {
                 var li_html = '';
                 if (data.data) {
@@ -667,7 +669,7 @@ locationsDistrict.on('change', function (e) {
         url: window.location.origin + '/search-pets',
         dataType: 'json',
         cache: false,
-        data: {department: department, city: city, district: district},
+        data: { department: department, city: city, district: district, limitado: 20},
         success: function (data) {
             var li_html = '';
             if (data.data) {
@@ -694,6 +696,7 @@ locationsDistrict.on('change', function (e) {
                     li_html += '</a>';
                     li_html += '</li>';
                 }
+                li_html += '<li><div class="block-recent-more pull-right"><a href= "/mascotas" class="btn btn-lg btn-default" > Ver mas</a ></div ></li>';
                 if ($('ul.pets-list'))
                     $('ul.pets-list').html(li_html);
                 if ($('ul.pets-list'))
@@ -1312,7 +1315,8 @@ function loadPets() {
 }
 
 var datosimg;
-var w_total = $('#pets-list').width();
+//var w_total = $('#pets-list').width();
+var w_total = $('.pets-list').width();
 var w_view = $(window).width() * 0.8;
 var cnt_pets = parseInt(w_view / 205);
 var w_gallery = cnt_pets * 205 + 95;
@@ -1335,21 +1339,39 @@ $(window).resize(function () {
     $('.gallery-preview-area').css('left', pos_preview_area);
 });
 //homepage slider animation
-$('.prev-gallery-btn').click(function () {
-    $('.next-gallery-btn').show();
+$('.next-gallery-btn').click(function () {
+    
+    $('.prev-gallery-btn').show();
     var prev_pos_gallery = $('.pets-list').position().left;
-    if (Number(prev_pos_gallery + w_gallery) > -15)
-        prev_pos_gallery = -10 - w_gallery;
-    $('.pets-list').animate({left: prev_pos_gallery + w_gallery + 'px'}, 1000, function () {
-        prev_pos_gallery += w_gallery;
-        if (Number(prev_pos_gallery) > -15)
+    
+    if (Number(w_gallery*3) + prev_pos_gallery > -15) {
+        prev_pos_gallery -= w_gallery / 7; //una septima parte de lo que muestre en pantalla
+    }
+        
+    $('.pets-list').animate({ left: prev_pos_gallery + 'px' }, 1000, function () {
+        //prev_pos_gallery += w_gallery;
+        
+        if (Number(w_gallery * 3) + prev_pos_gallery < -15)
+            $('.next-gallery-btn').hide();
+    });
+});
+
+$('.prev-gallery-btn').click(function(){
+    $('.next-gallery').show();
+    var prev_pos_gallery = $('.pets-list').position().left;
+    if (prev_pos_gallery < -15) 
+        prev_pos_gallery += w_gallery/7; //una septima parte corre para mas velocidad
+    $('.pets-list').animate({ left: prev_pos_gallery + 'px' }, 1000, function () {
+        if (prev_pos_gallery > -15)
             $('.prev-gallery-btn').hide();
     });
 });
 
-$('.next-gallery-btn').click(function () {
+/*$('.next-gallery-btn').click(function () {
+    
     $('.prev-gallery-btn').show();
     var prev_pos_gallery = $('.pets-list').position().left;
+    
     if (Math.abs(prev_pos_gallery - w_gallery * 2) > w_total)
         prev_pos_gallery = -w_total + w_gallery * 2;
     $('.pets-list').animate({left: prev_pos_gallery - w_gallery + 'px'}, 1000, function () {
@@ -1357,7 +1379,7 @@ $('.next-gallery-btn').click(function () {
             $('.next-gallery-btn').hide();
         }
     });
-});
+});*/
 //image preview  flag - 0:found 1:lost
 function cropper_Modal() {
     $("#modal-cropper").modal().show();

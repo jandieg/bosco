@@ -19,6 +19,10 @@ class SearchController extends Controller {
         $department= $request->get('department');
         $city = $request->get('city');
         $district = $request->get('district');
+        $limitado = false;
+        if (isset($request->get('limitado'))) {
+            $limitado = $request->get('limitado');
+        }
         
         if($department && $department != "Todos") $ubigeo=\App\Ubigeo::where('department',$department)->pluck('id')->toArray();
         if($city  && $city != "Todos") $ubigeo=\App\Ubigeo::where('city',$city)->pluck('id')->toArray();
@@ -30,8 +34,14 @@ class SearchController extends Controller {
 
 
         foreach ($locations as $location){ 
-            $reports=Report::where('last_location_id', $location->id)->get();
+            if (! $limitado) {
+                $reports=Report::where('last_location_id', $location->id)->get();
+            } else {
+                $reports=Report::where('last_location_id', $location->id)->limit($limitado)->get();
+            }
+            
             foreach ($reports as $report){
+                
                 $pet=\App\Pet::where('id', $report->pet_id)->first();
                 $photos= \App\Photo::where('pet_id', $report->pet_id)->get();
                 $data[] = [

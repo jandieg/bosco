@@ -87,6 +87,11 @@
           </a>
         </li>
             @endforeach
+            <li>
+              <div class="block-recent-more pull-right">
+                <a href="/mascotas" class="btn btn-lg btn-default">Ver mas</a>
+              </div>
+            </li>
           @endif
       </ul>
       <div class="next-gallery-btn">></div>
