@@ -1557,6 +1557,7 @@ a.btn-video:hover {
   position: relative;
   text-align: center;
   text-transform: uppercase;
+  text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
 
 .modal-report-title {
@@ -1588,11 +1589,11 @@ a.btn-video:hover {
   margin: 0;
   padding: 0;
   margin-top: -20px;
-  font-weight: bold;
+  font-weight: 900;
 }
 
 .modal-report-data {
-  border-top: 1px solid #F49A9B;
+  border-top: 2px solid #FFFFFF;
   bottom: 0;
   left: 0;
   margin: 7px 5% 0;
@@ -1603,6 +1604,8 @@ a.btn-video:hover {
   padding-top: 0;
   margin-top:0;
   margin-bottom: 5px;
+  text-shadow: rgba(0,0,0,.01) 0 0 1px;
+
 }
 
 .modal-report-data ul {
@@ -1657,6 +1660,8 @@ span.report-detail-reward {
   text-align: center;
   width: 100%;
   z-index: 1040;
+  text-shadow: rgba(0,0,0,.01) 0 0 1px;
+
 }
 .pdf-report-detail-image .report-phone {
   background-color: rgba(0, 0, 0, 0.4);

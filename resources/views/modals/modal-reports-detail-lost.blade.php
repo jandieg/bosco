@@ -8,14 +8,16 @@
             <h3>Perdido</h3>
             <div class="modal-report-data">
               <ul class="text-center">
-                <li>Nombre: <span class="report-detail-lost-name" style=" text-transform:capitalize;">Lara</span></li>
-                <li>Género: <span class="report-detail-lost-gender" style=" text-transform:capitalize;">Femenino</span></li>
+                <li>Nombre: <span class="report-detail-lost-name" style=" text-transform:capitalize;">Lara</span></li><span style="font-size: 16px; font-weight: 900;">|</span>
+                <li>Género: <span class="report-detail-lost-gender" style=" text-transform:capitalize;">Femenino</span></li><span style="font-size: 16px; font-weight: 900;">|</span>
                 <li class="last">Raza: <span class="report-detail-lost-race" style=" text-transform:capitalize;">Pastor alemán</span></li>
               </ul>
             </div>
           </div>          
-          <span style='text-align:right;height:40px;float:right;color:white;margin-top:1px;padding:20px 20px 0px 20px; background-color: rgba(0, 0, 0, 0.4); position: relative;' class="report-detail-reward">
-          <span style="font-size:22px;">Recompensa:&nbsp;</span><span class="report-detail-lost-reward" style="font-size:24px; font-family: Arial !important; font-weight: bold;">S/.&nbsp;</span>
+          <span style='text-align:right;height:40px;float:right;color:white;margin-top:0px;padding:20px 20px 10px 20px; background-color: rgba(0, 0, 0, 0.4); position: relative;' class="report-detail-reward">
+            <div style="text-align: center; margin-top: -10px;">
+          <span style="font-size:12px;">Recompensa:&nbsp;</span><span class="report-detail-lost-reward" style="font-size:14px; font-family: Arial !important; font-weight: bold;">S/.&nbsp;</span>
+          </div>
           </span>
           <span class="report-detail-lost-image">
           
