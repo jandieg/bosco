@@ -20,7 +20,7 @@ class SearchController extends Controller {
         $city = $request->get('city');
         $district = $request->get('district');
         $limitado = false;
-        if (isset($request->get('limitado'))) {
+        if ($request->get('limitado') != null) {
             $limitado = $request->get('limitado');
         }
         

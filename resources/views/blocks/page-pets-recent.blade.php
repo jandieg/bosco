@@ -5,7 +5,7 @@
       <form id="form-pets-filters" class="form-inline" action="http://bosco.pe/filter/mascotas/perdidos" method="POST" novalidate="novalidate">
 
         <div class="form-group">
-          <select id="ubigeo-department" class="form-control" name="department" required="" aria-required="true">
+          <select id="ubigeo-department2" class="form-control" name="department" required="" aria-required="true">
               <option value="" default style="display:none;">Departamento</option>
 <!--            <option value="Amazonas">Amazonas</option>
             <option value="Ancash">Ancash</option>
@@ -41,7 +41,7 @@
           </select>
         </div>
         <div class="form-group">
-          <select id="ubigeo-city" class="form-control" name="city">
+          <select id="ubigeo-city2" class="form-control" name="city">
             <option value="" default style="display:none;">Ciudad</option>
             <!--@if($cities)
             @foreach($cities as $city)
@@ -51,7 +51,7 @@
           </select>
         </div>
         <div class="form-group">
-          <select id="ubigeo-district" class="form-control" name="district">
+          <select id="ubigeo-district2" class="form-control" name="district">
             <option value="" default style="display:none;">Distrito</option>
            <!-- @if($cities)
             @foreach($districts as $district)
