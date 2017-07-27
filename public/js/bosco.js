@@ -1026,10 +1026,12 @@ reportFoundAdd.on('click', function (e) {
     var margin_top = $("#form-report-lost").find('.modal-content').outerHeight() / 2;
     //$("#form-report-lost").find('.modal-content').css('top', '50vh');
     //$("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
-    
-    Initialize_Report()
     $('.encontrado').hide();
-    $("#tab-3").html("<em>3</em>" +$("#el_dueno").val().toString());
+    $("#tab-3").html("<em>3</em>" + $("#el_dueno").val().toString());
+    Initialize_Report();
+    
+    
+    
     
     var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
     $("#pac-input-div").html(pac_html);
@@ -1073,7 +1075,7 @@ function Initialize_Report()
         animation: google.maps.Animation.DROP,
     });
     */
-
+    
     geocoder = new google.maps.Geocoder();
     lost_marker.setMap(lost_map);
     //lost_map.addListener('click', toggleBounce);
