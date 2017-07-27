@@ -468,7 +468,7 @@ locationsCountry.on('change', function (e) {
                         li_html += '</a>';
                         li_html += '</li>';
                     }
-                    li_html += '<li><div class="block-recent-more pull-right"><a href= "/mascotas" class="btn btn-lg btn-default" > Ver mas</a ></div ></li>';
+                    
                     if ($('ul.pets-list'))
                         $('ul.pets-list').html(li_html);
                     if ($('ul.pets-list'))
@@ -713,7 +713,7 @@ locationsCity.on('change', function (e) {
                         li_html += '</a>';
                         li_html += '</li>';
                     }
-                    li_html += '<li><div class="block-recent-more pull-right"><a href= "/mascotas" class="btn btn-lg btn-default" > Ver mas</a ></div ></li>';
+                    
                     if ($('ul.pets-list'))
                         $('ul.pets-list').html(li_html);
                     if ($('ul.pets-list'))
