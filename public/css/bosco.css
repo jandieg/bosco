@@ -1664,12 +1664,22 @@ span.report-detail-reward {
 
 }
 
-@media only screen and (max-width : 767px) {
+@media only screen and (max-width : 900px) {
   .modal-report-detail-image a.report-phone {
-    background: url('../img/sprite_vertical.png') no-repeat 80px -635px;  
+    background: url('../img/sprite_vertical.png') no-repeat 100px -635px;  
+    background-color: rgba(0, 0, 0, 0.4);
   }
 
 }
+
+@media only screen and (max-width : 762px) {
+  .modal-report-detail-image a.report-phone {
+    background: url('../img/sprite_vertical.png') no-repeat 60px -635px;  
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+}
+
 
 .pdf-report-detail-image .report-phone {
   background-color: rgba(0, 0, 0, 0.4);
