@@ -146,8 +146,8 @@ $('#form-report-lost .modal-form-report .form-actions .btn-next').click(function
             alert('Debe ingresar la descripcion de la mascota');
             return false;
         }
-
-        var cropper = $('#cropper-image').cropper('getCroppedCanvas');        
+        
+        var cropper = $('.preview-img').attr('style');//$('#cropper-image').cropper('getCroppedCanvas');        
         if (cropper == null) {
             alert('Debe ingresar la imagen de la mascota');
             return false;
