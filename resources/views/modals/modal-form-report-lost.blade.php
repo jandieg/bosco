@@ -97,7 +97,7 @@
         <ul class="text-center">
           <li id="report_tab_1"><span id="tab-1" data-tab="tab-1" class="tab-on"><em>1</em>Mascota</span></li>
           <li id="report_tab_2" onclick="Map_correction();"><span id="tab-2" data-tab="tab-2"><em>2</em>Reporte</span></li>
-          <li id="report_tab_3"><span id="tab-3" data-tab="tab-3"><em>3</em>Dueño</span></li>
+          <li id="report_tab_3"><span id="tab-3" data-tab="tab-3"><em>3</em>Tus datos</span></li>
         </ul>
       </div>
     </div>
@@ -117,7 +117,7 @@
                     <input type="hidden" name="report_id" id="report_id">
               </div>
               <div class="form-group encontrado" id="name_div" style="margin-bottom: 32px;">
-                <label>Nombre</label>
+                <label>Nombre de mascota</label>
                 <input type="text" name="lost_pet_name" id="lost_pet_name" class="form-control">
               </div>
               <div class="form-group  encontrado" style="margin-bottom: 32px;">

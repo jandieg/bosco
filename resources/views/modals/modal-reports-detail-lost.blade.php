@@ -59,7 +59,7 @@
             <button class="btn btn-primary btn-block btn-button">Compartir</button>
           </div>
         </div>
-        <div class="modal-report-info"">
+        <div class="modal-report-info">
           <div class="modal-report-button" id="download_report">
             <a href="#" class="btn btn-download-lost btn-button btn-block btn-blue">Descargar volante</a>
           </div>
