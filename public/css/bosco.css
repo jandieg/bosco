@@ -2746,7 +2746,9 @@ footer .block-socialnetwork li a.link-instagran {
 
 @media only screen and (max-width : 680px) {
   .modal-report-detail-image img{
-
+    image-rendering: pixelated;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimizeQuality;
   }
   
 }
@@ -2780,6 +2782,7 @@ footer .block-socialnetwork li a.link-instagran {
   }
   .modal-report-detail-image img {
     width: 100%;
+    image-rendering: pixelated;
   }
   .modal-report-detail-left {
     float: none;

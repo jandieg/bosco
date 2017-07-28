@@ -62,7 +62,9 @@
           <div style='text-align:right;height:49px;float:right;background-color:black;color:white;margin-top:1px;padding:20px 20px 0px 20px; background-color: rgba(0, 0, 0, 0.4);'>
           <span style="font-size:24px;">Recompensa:&nbsp;</span><span style="font-size:26px; font-family: Arial-bold !important;">S/.&nbsp;{{ $report['reward'] }}</span>
           </div>
-          <img src="{{ asset('images/pets/'.$report['image']) }}" style="width:100%;top:-51px;">
+          <img src="{{ asset('images/pets/'.$report['image']) }}" style="width:100%;top:-51px; image-rendering: optimizeQuality;
+image-rendering: optimizeSpeed;
+image-rendering: -moz-crisp-edges; image-rendering: ">
           <div class='pdf-report-phone'><img style="image-rendering: pixelated;" src="{{ url('/img/phone.png')}}" style="padding-top:25px;width:40px;height:auto;">&nbsp;&nbsp;{{ $report['user_phone'] }}</div>
         </div>
         <div class="pdf-report-detail-data clearfix" style="position:relative;background-color:white;height:75px;padding-top:0px;top:-55px;" >

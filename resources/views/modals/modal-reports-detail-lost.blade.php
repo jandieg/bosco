@@ -21,7 +21,13 @@
           </span>
           <span class="report-detail-lost-image">
           
-            <img  style="image-rendering: pixelated;" src="{{ asset('images/report_detail_image.png') }}" style="width:100%; margin-top:-55px;">
+            <img   src="{{ asset('images/report_detail_image.png') }}" style="width:100%; margin-top:-55px;
+            image-rendering: pixelated; 
+            image-rendering: optimizeQuality;
+            image-rendering: optimizeSpeed;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+            ">
           </span>
           <span class="report-detail-lost-phone">
             <span class="report-phone" href="tel:969 003 009">969 003 009</span>

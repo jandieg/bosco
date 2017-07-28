@@ -1027,12 +1027,8 @@ reportFoundAdd.on('click', function (e) {
     //$("#form-report-lost").find('.modal-content').css('top', '50vh');
     //$("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
     $('.encontrado').hide();
-    $("#tab-3").html("<em>3</em>" + $("#el_dueno").val().toString());
-    Initialize_Report();
-    
-    
-    
-    
+    $("#tab-3").html("<em>3</em>Tus Datos");
+    Initialize_Report();                
     var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
     $("#pac-input-div").html(pac_html);
 });
@@ -1086,6 +1082,17 @@ function Initialize_Report()
     $('#city').on('change', geocodeAddressCity);
     $('#dep').on('change', geocodeAddressDep);
 }
+
+var reportTypeChange = $('input[type=radio][name=pet_status]');
+reportTypeChange.on('change', function() {
+    if ($(this).val() == "found") {
+        $('.encontrado').hide();
+        $("#tab-3").html("<em>3</em>Tus Datos");
+    } else {
+        $(".encontrado").show();
+        $("#tab-3").html("<em>3</em>Dueño");
+    }    
+});
 
 var reportDetailFound = $('.report-detail-found');
 reportDetailFound.on('click', function (e) {
@@ -1873,6 +1880,12 @@ function edit_pet_detail(id, status)
                 $('#pac-input').val(data.pet.location_address);
                 $('#pac-address').val(data.pet.location_address);
                 $('#pac-department').val(data.pet.ubigeo_department);
+                $("#dep").val(data.pet.ubigeo_department);
+                geocodeAddressDep()
+                $("#city").val(data.pet.ubigeo_city);
+                geocodeAddressCity();
+                $("#district").val(data.pet.ubigeo_district);
+                geocodeAddress();
                 $('#pac-city').val(data.pet.ubigeo_city);
                 $('#pac-district').val(data.pet.ubigeo_district);
                 $('#pac-postal_code').val(data.pet.ubigeo_code);
