@@ -118,7 +118,7 @@ class ReportsController extends Controller {
         $longitude = $request->get('pet-lost-lng');
         $postal_code= "15001";//$request->get('lost_pet_postal_code');
         $reward = $request->get('lost_pet_reward');
-        $contact_name = $request->get('lost_pet_contact_name');
+        $contact_phone = $request->get('lost_pet_contact_name');
         $contact_email = $request->get('lost_pet_contact_email');
         $date = $request->get('lost_pet_date');
         $date=date("Y-m-d", strtotime($date));
@@ -187,7 +187,8 @@ class ReportsController extends Controller {
                 'description' => $report_description,
                 'status' => $status,
                 'created_at' =>Date('Y-m-d H:i:s'),
-                'updated_at' =>Date('Y-m-d H:i:s')
+                'updated_at' =>Date('Y-m-d H:i:s'),
+                'phone' => $contact_phone
             ];
             $result = \App\Report::insert($report_data);
         }
@@ -236,7 +237,8 @@ class ReportsController extends Controller {
                 'reward' => $reward,
                 'description' => $report_description,
                 'status' => $status,
-                'updated_at' =>Date('Y-m-d H:i:s')
+                'updated_at' =>Date('Y-m-d H:i:s'),
+                'phone' => $contact_phone
             ];
             $result = \App\Report::where('id',$report_id)->update($report_data);
         }

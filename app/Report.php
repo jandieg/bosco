@@ -132,20 +132,38 @@ class Report extends Model
         $report_date=date("d M Y", strtotime($report_date));        
         $address=str_replace("Distrito de ","",$report->location->address);
         $address=str_replace("Provincia de ","",$address);
-        $data = [
-            'id' => $report->id,
-            'status' => $report->status,
-            'pet_id'=>$report->pet->id,
-            'user_phone'=>$user->phone,
-            'name' => $report->pet->name, 
-            'race' => $report->pet->race, 
-            'gender' => $report->pet->gender, 
-            'reward' => $report->reward,
-            'date' => $dia . " " . $mes . " " . $anho,
-            'address' => $address, 
-            'description' => $report->pet->description, 
-            'image' => $report->pet->photos[0]->url
-        ];
+        if (! empty($report->phone)) {
+            $data = [
+                'id' => $report->id,
+                'status' => $report->status,
+                'pet_id'=>$report->pet->id,
+                'user_phone'=>$report->phone,
+                'name' => $report->pet->name, 
+                'race' => $report->pet->race, 
+                'gender' => $report->pet->gender, 
+                'reward' => (! empty($report->reward))?$report->reward:'',
+                'date' => $dia . " " . $mes . " " . $anho,
+                'address' => $address, 
+                'description' => $report->pet->description, 
+                'image' => $report->pet->photos[0]->url
+            ];
+        } else {
+            $data = [
+                'id' => $report->id,
+                'status' => $report->status,
+                'pet_id'=>$report->pet->id,
+                'user_phone'=>$user->phone,
+                'name' => $report->pet->name, 
+                'race' => $report->pet->race, 
+                'gender' => $report->pet->gender, 
+                'reward' => $report->reward,
+                'date' => $dia . " " . $mes . " " . $anho,
+                'address' => $address, 
+                'description' => $report->pet->description, 
+                'image' => $report->pet->photos[0]->url
+            ];
+        }
+        
 //        var_dump($report);exit;
         return $data;
     }

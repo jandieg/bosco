@@ -24,7 +24,7 @@
             <img  style="image-rendering: pixelated;" src="{{ asset('images/report_detail_image.png') }}" style="width:100%; margin-top:-55px;">
           </span>
           <span class="report-detail-lost-phone">
-            <a class="report-phone" href="tel:969 003 009">969 003 009</a>
+            <span class="report-phone" href="tel:969 003 009">969 003 009</span>
           </span>
         </div>
         <div class="modal-report-detail-data clearfix">

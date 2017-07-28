@@ -408,7 +408,7 @@ function item_detail_view(id) {
             if (data.result) {
                 $('.report-detail-lost-image').html('<img src="/images/pets/' + data.report.image + '" style="width:500px;height:500px;">');
                 $('.report-detail-lost-address').html(data.report.address);
-                $('.report-detail-lost-phone').html('<a class="report-phone" href="tel:' + data.report.user_phone + '">' + data.report.user_phone + '</a>');
+                $('.report-detail-lost-phone').html('<a class="report-phone" href="tel:' + data.report.user_phone + '">' + data.report.user_phone + '</a');
                 $('.report-detail-lost-name').html(data.report.name);
                 $('.report-detail-lost-race').html(data.report.race);
                 $('.report-detail-lost-gender').html(data.report.gender);
@@ -1882,6 +1882,7 @@ function edit_pet_detail(id, status)
                 $('#pac-longitude').val(longitude);
                 $('#lost_pet_report_description').val(data.pet.report_description);
                 $('#lost_pet_reward').val(data.pet.owner_reward);
+                $('#lost_pet_contact_phone').val(data.pet.owner_phone);
                 var margin_top = $("#form-report-lost").find('.modal-content').outerHeight() / 2;
                 $("#form-report-lost").find('.modal-content').css('top', '50vh');
                 $("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');

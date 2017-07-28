@@ -73,6 +73,7 @@ class Pet extends Model
             'ubigeo_city' => $ubigeo->city,
             'ubigeo_district' => $ubigeo->district,
             'ubigeo_code' => $ubigeo->ubigeo_code,
+            'owner_phone' => $report->phone, 
             'label' => $status=='lost'?'Última vez visto por:':'Encontrado en:'
         ];
         

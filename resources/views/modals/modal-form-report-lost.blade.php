@@ -251,7 +251,7 @@
               </div>
               <div class="form-group">
                 <label>Teléfono de contacto</label>
-                <input type="numeric" name="lost_pet_contact_name" class="form-control" value="">
+                <input type="numeric" name="lost_pet_contact_name" id="lost_pet_contact_phone" class="form-control" value="{{ Auth::user()? Auth::user()->phone:'' }}">
               </div>
               <div class="form-group">
                 <label>Recompensa</label>
