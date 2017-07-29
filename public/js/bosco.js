@@ -416,7 +416,7 @@ function item_detail_view(id) {
                 $('.report-detail-lost-reward').html('S/.&nbsp;'+data.report.reward);
                 $('#post_social_div').html('<button onclick="postFacebook('+id+')" class="btn btn-primary btn-block btn-button">Compartir</button>');
                 $('#download_report_div').children().first().attr('href', data.path + '/descargar-volante/jpg/?reportid=' + id);
-                $('#download_report_div').children().last().attr('href', data.path + '/descargar-volante/pdf/?reportid=' + id);
+                //$('#download_report_div').children().last().attr('href', data.path + '/descargar-volante/pdf/?reportid=' + id);
                 $('#report_id').val(id);
                 modal_center();
             }
@@ -1290,7 +1290,7 @@ submitLogin.submit(function (e) {
         }
     });
 });
-
+/*
 $("#download_report").on("mouseover", function () {
     $("#download_report_div").removeClass('hide');
 })
@@ -1300,7 +1300,7 @@ $("#download_report").parent().on("mouseleave", function () {
 })
 $("#download_report_div").on("mouseleave", function () {
     $("#download_report_div").addClass('hide');
-})
+})*/
 //});
 
 var detail_map, found_map, lost_map;
