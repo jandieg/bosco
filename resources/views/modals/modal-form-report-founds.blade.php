@@ -6,7 +6,7 @@
         <ul class="text-center">
           <li><span id="tab-1" data-tab="tab-1" class="tab-on"><em>1</em>Mascota</span></li>
           <li><span id="tab-2" data-tab="tab-2"><em>2</em>Reporte</span></li>
-          <li><span id="tab-3" data-tab="tab-3"><em>3</em>Dueño</span></li>
+          <li><span id="tab-3" data-tab="tab-3"><em>3</em>Tus datos</span></li>
         </ul>
       </div>
     </div>

@@ -14,7 +14,7 @@
       </div>
       <div class="pet-detail-right">
         <div class="pet-detail-info-group">
-          <h3 id="is-owner">Dueño</h3>
+          <h3 id="is-owner">Datos</h3>
           <p><label>Nombre</label><span class="owner-detail-name"></span></p>
           <p><label>Contacto</label><span class="owner-detail-phone"></span></p>
           <p><label>Email</label><span class="owner-detail-email"></span></p>
