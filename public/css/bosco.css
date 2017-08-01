@@ -1,7 +1,14 @@
 /*
  * @author: marco torres
  */
-
+/*@mixin vertical-align($position: relative) {
+  position: $position;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+*/
 @font-face {
   font-family: 'Cocon';
   src: url('../fonts/cocon/cocon-regular.eot');
@@ -483,9 +490,12 @@ a.btn-video:hover {
 }
 
 .block-video-content {
+  
   color: #fff;
   padding-top: 21%;
   text-align: center;
+  top: 50%;
+  
 }
 
 .block-video-content p {
@@ -2379,7 +2389,15 @@ footer .block-socialnetwork li a.link-instagran {
     height: 500px;
   }
   .block-video-content {
-    padding-top: 180px;
+    /*padding-top: 180px;*/
+        
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+    padding: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
   .block-about-us .block-about-us-item h3 {
     font-size: 22px;
@@ -2427,9 +2445,9 @@ footer .block-socialnetwork li a.link-instagran {
   .block-video {
     height: 400px;
   }
-  .block-video-content {
+  /*.block-video-content {
     padding-top: 150px;
-  }
+  }*/
   .block-about-us .block-about-us-item h3 {
     font-size: 20px;
     margin-top: 7%;
@@ -2757,8 +2775,17 @@ footer .block-socialnetwork li a.link-instagran {
   .block-video {
     height: 300px;
   }
-  .block-video-content {
-    padding-top: 100px;
+  .block-video-content{
+    /*padding-top: 100px;*/
+        
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+    padding: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
   .block-partners {
     height: auto;
@@ -2831,7 +2858,16 @@ footer .block-socialnetwork li a.link-instagran {
     height: 100vh;
   }
   .block-video-content {
-    padding-top: 80px;
+    /*padding-top: 80px;*/
+        
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+    padding: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
   .block-video-content p {
     font-size: 16px;
@@ -2906,7 +2942,15 @@ footer .block-socialnetwork li a.link-instagran {
     height: 200px;
   }
   .block-video-content {
-    padding-top: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+    padding: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /*padding-top: 30px;*/
   }
   .block-video-content p {
     font-size: 16px;
