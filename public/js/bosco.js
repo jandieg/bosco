@@ -1013,6 +1013,9 @@ reportLostAdd.on('click', function (e) {
    // $("#form-report-lost").find('.modal-content').css('top', '50vh');
     //$("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
     
+    $('.encontrado').show();
+    $('.encontrado').show();
+    $("#tab-3").html("<em>3</em>Dueño");
     Initialize_Report(); 
     /*var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
     $("#pac-input-div").html(pac_html);*/

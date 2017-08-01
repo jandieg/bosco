@@ -142,6 +142,8 @@ class ReportsController extends Controller {
             $img = str_replace(' ', '+', $img);
             $data = base64_decode($img);
             file_put_contents("images/pets/".$pet_id.".jpg", $data);
+            
+
             $photo_data = [
                 'pet_id' => $pet_id,
                 'url' => $pet_id.".jpg",
