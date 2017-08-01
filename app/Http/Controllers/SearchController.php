@@ -35,9 +35,9 @@ class SearchController extends Controller {
 
         foreach ($locations as $location){ 
             if (! $limitado) {
-                $reports=Report::where('last_location_id', $location->id)->get();
+                $reports=Report::where('last_location_id', $location->id)->where('found', 0)->get();
             } else {
-                $reports=Report::where('last_location_id', $location->id)->limit($limitado)->get();
+                $reports=Report::where('last_location_id', $location->id)->where('found', 0)->limit($limitado)->get();
             }
             
             foreach ($reports as $report){

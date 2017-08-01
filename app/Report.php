@@ -72,9 +72,9 @@ class Report extends Model
         $userId = (isset($parameters['userid'])) ? $parameters['userid'] : FALSE;
         $user= Auth::user();
         if($status) 
-            $reports = Report::where('status',$status)->orderBy('id', 'desc')->limit($numPerItem)->get();
+            $reports = Report::where('status',$status)->where('found', 0)->orderBy('id', 'desc')->limit($numPerItem)->get();
         else
-            $reports = Report::orderBy('id', 'desc')->limit($numPerItem)->get();            
+            $reports = Report::where('found', 0)->orderBy('id', 'desc')->limit($numPerItem)->get();            
         if (!empty($reports)) {            
             foreach ($reports as $report) {
                 if (is_object($report->location)) {
