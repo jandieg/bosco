@@ -262,7 +262,7 @@ function gallery_item_over(id, status) {
                 $('.owner-detail-phone').html('<a class="report-phone" href="tel:' + data.pet.user_phone + '">' + data.pet.user_phone + '</a>');
                 $('.owner-detail-name').html(data.pet.user_name);
                 $('.owner-detail-email').html(data.pet.user_email);
-                $('.owner-detail-reward').html(data.pet.owner_reward);
+                $('.owner-detail-reward').html('S/. ' + data.pet.owner_reward);
                 $('.pet-detail-name').html(data.pet.pet_name);
                 $('.pet-detail-race').html(data.pet.pet_race);
                 $('.pet-detail-gender').html(data.pet.pet_gender);
