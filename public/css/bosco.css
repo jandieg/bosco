@@ -743,6 +743,7 @@ a.btn-video:hover {
   letter-spacing: 0.5px;
   padding: 10px;
   width: 205px;
+  padding-left: 0px;
 }
 
 .block-gallery li a {
@@ -2376,7 +2377,7 @@ footer .block-socialnetwork li a.link-instagran {
     margin-right: 10px;
   }
   .pets-list {
-    margin-left: auto;
+    margin-left: 0px;
     margin-right: auto;
     max-width: 1039px;
   }
