@@ -42,6 +42,7 @@ class SearchController extends Controller {
             
             foreach ($reports as $report){
                 
+                
                 $pet=\App\Pet::where('id', $report->pet_id)->first();
                 $photos= \App\Photo::where('pet_id', $report->pet_id)->get();
                 $data[] = [
@@ -52,7 +53,7 @@ class SearchController extends Controller {
                     'race' => $pet->race, 
                     'gender' => $pet->gender, 
                     'description' => $pet->description, 
-                    'date' => $report->date,
+                    'date' => date_format(date_create($report->date), 'd M Y'),
                     'address' => $location->address, 
                     'image' => $photos[0]->url
                 ];

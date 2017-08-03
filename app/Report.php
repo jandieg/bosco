@@ -90,7 +90,7 @@ class Report extends Model
                         'name' => $report->pet->name, 
                         'race' => $report->pet->race, 
                         'gender' => $report->pet->gender, 
-                        'date' => $report_date." ".$date_time[1],
+                        'date' => $report_date,
                         'address' => $address, 
                         'description' => $report->pet->description, 
                         'image' => $report->pet->photos[0]->url
