@@ -2046,6 +2046,12 @@ span.report-detail-reward {
   margin-top: -17px;
 }
 
+.modal-form-report .description-block-reward {
+  color: red;
+  font-size: 10px;
+}
+
+
 .modal-form-report #form-report-lost-tab-3 .form-actions, 
 .modal-form-report #form-report-founds-tab-3 .form-actions {
   margin-top: 53px;

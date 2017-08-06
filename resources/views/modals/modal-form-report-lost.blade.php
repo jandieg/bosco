@@ -254,12 +254,11 @@
                 <input type="numeric" name="lost_pet_contact_name" id="lost_pet_contact_phone" class="form-control" value="{{ Auth::user()? Auth::user()->phone:'' }}">
               </div>
               <div class="form-group">
-                <label>Recompensa</label>
+                <label><div style="float:left;">Recompensa</div><div style="float:right;" class="description-block-reward">Opcional*</div></label>
                 <div style='margin-top:20px;'>
                 <span class="help-block" style="text-align:right;width:30px;">S/.</span>
                 <input type="text" name="lost_pet_reward" id="lost_pet_reward" class="form-control numeric" style='padding-left:40px;margin-top:-35px;'>
-                </div>
-                <p class="description-block">Opcional*</p>
+                </div>                
               </div>
             </div>
             <div class="col-lg-6 col-md-6">
