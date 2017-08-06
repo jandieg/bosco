@@ -243,7 +243,7 @@ $('#datepicker').datetimepicker({
     format: "DD MMMM YYYY"
 });
 $('#timepicker').datetimepicker({
-    format: "H:mm"
+    format: "H:mm a"
 });
 
 function gallery_item_over(id, status) {
