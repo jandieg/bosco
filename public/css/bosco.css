@@ -451,8 +451,8 @@ input[type="submit"] {
 
 .block-filters .form-actions a:hover, 
 input[type="submit"]:hover {
-  border-color: #063042;
-  background: #063042;
+  border-color: #333;
+  background: #333;
 }
 
 /* Block Video */
@@ -484,8 +484,8 @@ a.btn-video {
 }
 
 a.btn-video:hover {
-  border-color: #063042;
-  background-color: #063042;
+  border-color: #333;
+  background-color: #333;
   color: #fff;
 }
 
