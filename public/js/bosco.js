@@ -67,7 +67,21 @@ function postFacebook(id) {
 $('.numeric').keyup(function () { 
     this.value = this.value.replace(/[^0-9\.]/g,'');
 });
-$(".link-user > span").on('click', function () {
+
+$(".link-user > span").mouseenter(function(){
+    
+    $('.link-user > span').removeClass('active');
+    $(this).addClass('active');
+    
+});
+
+$(".link-user > span").mouseleave(function () {
+    if ($(this).hasClass('active')) {
+        $(this).removeClass('active');
+    } 
+});
+
+/*$(".link-user > span").mouseover( function () {
     if ($(this).hasClass('active')) {
         $(this).removeClass('active');
     } else {
@@ -83,7 +97,7 @@ $(".nav li > a").on('click', function () {
         $('.nav li > a').parent().removeClass('active');
         $(this).parent().addClass('active');
     }
-});
+});*/
 
 $(".works-desktop #block-works-web > a").click(function (e) {
     e.preventDefault();
