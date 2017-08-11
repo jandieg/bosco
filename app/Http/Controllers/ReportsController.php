@@ -9,6 +9,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use PDF;
 use Imagick;
+use ImagickPixel;
+use ImagickDraw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -142,7 +144,170 @@ class ReportsController extends Controller {
             $img = str_replace(' ', '+', $img);
             $data = base64_decode($img);
             file_put_contents("images/pets/".$pet_id.".jpg", $data);
+            $im = new Imagick("images/pets/".$pet_id.".jpg");
+            $lienzo = new Imagick();
+            $lienzo->newImage(800, 1136, "none");
+            $headerLienzo = new Imagick();
+            $headerLienzo->newImage(800, 168, new ImagickPixel('red'));
+            $headerLienzo->setImageFormat("jpg");
+            $textoPerdido = new \ImagickDraw();
+            $textoPerdido->setFontSize(80);
+            $textoPerdido->setFillColor(new ImagickPixel('white'));
+            $textoPerdido->annotation(200, 90, 'PERDIDO');
+            $headerLienzo->drawImage($textoPerdido);
+            $textoNombre = new \ImagickDraw();
+            $textoNombre->setFontSize(20);
+            $textoNombre->setFillColor(new ImagickPixel('white'));
+            $textoNombre->annotation(100, 155, 'Nombre:');                                                                   
+            $headerLienzo->drawImage($textoNombre);
+            $valorNombre = new \ImagickDraw();
+            $valorNombre->setFontSize(24);
+            $valorNombre->setFillColor(new ImagickPixel('white'));
+            $valorNombre->annotation(180, 155, ucfirst($name));                                                                   
+            $headerLienzo->drawImage($valorNombre);  
+            $draw = new \ImagickDraw();
+            $draw->setStrokeColor(new ImagickPixel('white'));
+            $draw->setFillColor(new ImagickPixel('white'));
+            $draw->setStrokeWidth(2);
+            $draw->setFontSize(72);
+            $draw->line(325, 135, 325, 155);
+            $headerLienzo->drawImage($draw);
+            $textoGenero = new \ImagickDraw();
+            $textoGenero->setFontSize(20);
+            $textoGenero->setFillColor(new ImagickPixel('white'));
+            $textoGenero->annotation(340, 155, 'Género:');                                                                               
+            $headerLienzo->drawImage($textoGenero);  
+            $valorGenero = new \ImagickDraw();
+            $valorGenero->setFontSize(24);
+            $valorGenero->setFillColor(new ImagickPixel('white'));
+            if (strlen($gender) == 5) {
+                $valorGenero->annotation(415, 155, "M");                                                                               
+            } else {
+                $valorGenero->annotation(415, 155, "F");                                                                               
+            }            
+            $headerLienzo->drawImage($valorGenero);      
+            $draw = new \ImagickDraw();
+            $draw->setStrokeColor(new ImagickPixel('white'));
+            $draw->setFillColor(new ImagickPixel('white'));
+            $draw->setStrokeWidth(2);
+            $draw->setFontSize(72);
+            $draw->line(450, 135, 450, 155);
+            $headerLienzo->drawImage($draw);
+            $textoRaza = new \ImagickDraw();
+            $textoRaza->setFontSize(20);
+            $textoRaza->setFillColor(new ImagickPixel('white'));
+            $textoRaza->annotation(485, 155, 'Raza:');  
+            $headerLienzo->drawImage($textoRaza);    
+            $valorRaza = new \ImagickDraw();
+            $valorRaza->setFontSize(24);
+            $valorRaza->setFillColor(new ImagickPixel('white'));
+            $valorRaza->annotation(545, 155, ucfirst($race));  
+            $headerLienzo->drawImage($valorRaza);    
+            $draw = new \ImagickDraw();
+            $draw->setStrokeColor(new ImagickPixel('white'));
+            $draw->setFillColor(new ImagickPixel('white'));
+            $draw->setStrokeWidth(2);
+            $draw->setFontSize(72);
+            $draw->line(30, 125, 770, 125);
+            $headerLienzo->drawImage($draw);
+            $footerLienzo = new Imagick();
+            $footerLienzo->newImage(800, 168, new ImagickPixel('white'));
+            $calendarImg = new Imagick("img/calendar.png");
+            $footerLienzo->compositeimage($calendarImg->getimage(), Imagick::COMPOSITE_DEFAULT, 30, 30);
+            $meses = array(
+                "01" => "Enero",
+                "02" => "Febrero",
+                "03" => "Marzo",
+                "04" => "Abril",
+                "05" => "Mayo",
+                "06" => "Junio",
+                "07" => "Julio",
+                "08" => "Agosto",
+                "09" => "Septiembre",
+                "10" => "Octubre",
+                "11" => "Noviembre",
+                "12" => "Diciembre"
+            );            
+            $dia = date("d", strtotime($date));        
+            $anho = date("Y", strtotime($date));        
+            $mesnum = date("m", strtotime($date));        
+            $mes = $meses[$mesnum];
+
+            $valorFecha = new \ImagickDraw();
+            $valorFecha->setFontSize(26);
+            $valorFecha->setFillColor(new ImagickPixel('gray'));
+            $valorFecha->annotation(65, 45, ucfirst($dia . ' ' . $mes . ' ' . $anho));  
+            $footerLienzo->drawImage($valorFecha);
+            $locationImg = new Imagick("img/location.png");
+            $footerLienzo->compositeimage($locationImg->getimage(), Imagick::COMPOSITE_DEFAULT, 430, 30);
+            $valorDireccion = new \ImagickDraw();
+            $valorDireccion->setFontSize(26);
+            $valorDireccion->setFillColor(new ImagickPixel('gray'));
+            $valorDireccion->annotation(475, 45, ucfirst($address));  
+            $footerLienzo->drawImage($valorDireccion);
+            $logoImg = new Imagick("img/logo_2.png");            
+            $footerLienzo->compositeimage($logoImg->getimage(), Imagick::COMPOSITE_DEFAULT, 680, 108);
+            $reportaTexto = new \ImagickDraw();
+            $reportaTexto->setFontSize(20);
+            $reportaTexto->setFillColor(new ImagickPixel('gray'));
+            $reportaTexto->annotation(15, 130, "Reporta mascotas perdidas o encontradas entrando a www.bosco.pe.");  
+            $footerLienzo->drawImage($reportaTexto);
+            $draw2 = new \ImagickDraw();
+            $draw2->setStrokeColor(new ImagickPixel('gray'));
+            $draw2->setFillColor(new ImagickPixel('gray'));
+            $draw2->setStrokeWidth(2);
+            $draw2->setFontSize(72);
+            $draw2->line(30, 100, 770, 100);
+            $footerLienzo->drawImage($draw2);
+            /*$rewardLienzo = new Imagick("recompensa_capa.png");
+            $rewardLienzo->newImage(300, 50, new ImagickPixel('white'));*/
+            $rewardLienzo = new ImagickDraw();
+            $rewardLienzo->setFillColor("rgb(0,0,0)");
+            $rewardLienzo->setFillOpacity(0.7);
+            $rewardLienzo->rectangle(500, 0, 800, 50);
+
+            $phoneLienzo = new ImagickDraw();
+            $phoneLienzo->setFillColor("rgb(0,0,0)");
+            $phoneLienzo->setFillOpacity(0.8);
+            $phoneLienzo->rectangle(0,700,800,800);
+
+            /*$rewardLienzo2 = new Imagick();
+            $rewardLienzo2->newImage(300,50, 'red');
+            $rewardLienzo2->setImageAlphaChannel(Imagick::ALPHACHANNEL_ACTIVATE); // make sure it has an alpha channel
+            $box=$rewardLienzo2->getImageRegion(0,0,300,50);
+            $box->setImageAlphaChannel(Imagick::ALPHACHANNEL_TRANSPARENT);
+            $rewardLienzo2->compositeImage($box,Imagick::COMPOSITE_REPLACE,300,50);*/
+            $im->drawImage($rewardLienzo);
+            $im->drawImage($phoneLienzo);
+            $phoneImg = new Imagick("img/phone.png");            
+            $im->compositeimage($phoneImg->getimage(), Imagick::COMPOSITE_DEFAULT, 180, 735);
+            $phoneTexto = new \ImagickDraw();
+            $phoneTexto->setFontSize(38);
+            $phoneTexto->setFillColor(new ImagickPixel('white'));
+            $phoneTexto->annotation(300, 760, $contact_phone);  
+            $im->drawImage($phoneTexto);    
+            //$rewardLienzo->setImageFormat('png');            
+            /*$im->compositeimage($rewardLienzo->getimage(), Imagick::COMPOSITE_COPY, 500, 0);*/
+            $im->setImageFormat("png");
+            $rewardTexto = new \ImagickDraw();
+            $rewardTexto->setFontSize(24);
+            $rewardTexto->setFillColor(new ImagickPixel('white'));
+            $rewardTexto->annotation(545, 35, "Recompensa: S/. ");  
+            $im->drawImage($rewardTexto);    
+            $rewardTextoValor = new \ImagickDraw();
+            $rewardTextoValor->setFontSize(28);
+            $rewardTextoValor->setFillColor(new ImagickPixel('white'));
+            $rewardTextoValor->annotation(745, 35, $reward);  
+            $im->drawImage($rewardTextoValor);    
+            //sample image. width is double to your actual card width which was 350px. set height as required
             
+            /* Add the Card to the blank image that we created */
+            $lienzo->compositeimage($headerLienzo->getimage(), Imagick::COMPOSITE_COPY, 0, 0);
+            $lienzo->compositeimage($im->getimage(), Imagick::COMPOSITE_COPY, 0, 168);
+            $lienzo->compositeimage($footerLienzo->getimage(), Imagick::COMPOSITE_COPY, 0, 968);
+            $lienzo->writeimage("images/pets/report_".$pet_id.".png");
+            $lienzo->destroy();
+
 
             $photo_data = [
                 'pet_id' => $pet_id,
@@ -183,7 +348,7 @@ class ReportsController extends Controller {
             $location_id=DB::table('locations')->max('id');
             $report_data = [
                 'pet_id' => $pet_id,
-                'date' =>$date." ".$time,
+                'date' =>date_format(\DateTime::createFromFormat("Y-m-d H:i a", $date." ".$time), "Y-m-d H:i"),
                 'last_location_id' => $location_id,
                 'reward' => $reward,
                 'description' => $report_description,
@@ -234,7 +399,7 @@ class ReportsController extends Controller {
             ];        
             $result = \App\Location::where('id',$report->last_location_id)->update($location_data);
             $report_data = [
-                'date' =>$date." ".$time,
+                'date' =>date_format(\DateTime::createFromFormat("Y-m-d H:i a", $date." ".$time), "Y-m-d H:i"),
 //                'last_location_id' => $location_id,
                 'reward' => $reward,
                 'description' => $report_description,
