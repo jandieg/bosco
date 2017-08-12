@@ -21,31 +21,23 @@
 <section id="content"> 
   <div class="container">
 
-     @include('blocks.block-filters',['type'=>'perdidos'])
+     @include('blocks.block-filters-lost',['type'=>'perdidos'])
 
     <!-- Block Images -->
+          <div class="alert alert-warning" style="display:none;" id="warning">
+            Location access is blocked for this application.
+          </div>
     <div class="row">
       <div id="block-gallery-lost" class="block-gallery clearfix">
         <div class="view-content">
-        @if(!empty($reports['data']))
+          <div class="alert alert-info" style="display:none;" id="noRecords">
+            No records available for given location.
+          </div>
+          <div class="alert alert-danger" style="display:none;" id="error">
+            Error occured while getting the data.
+          </div>
           <ul class="pets-list text-left">
-          @foreach($reports['data'] as $item)
-            <li>
-              <a data-toggle="modal"><!--href="#pet-detail"-->
-                <img src="{{ asset('images/pets/' . $item['image']) }}" />
-                <div class="gallery-item-hover" onclick="gallery_item_over({{ $item['id'] }})">
-                  {!! $item['description'] !!}
-                </div>
-                <div class="gallery-item-detail">
-                  <h2>{{ $item['name'] }}</h2>
-                  <p class="gallery-item-birthday">{{ $item['date'] }}</p>
-                  <p class="gallery-item-location">{{ $item['address'] }}</p>
-                </div>
-              </a>
-            </li>
-            @endforeach
           </ul>
-          @endif
         </div>
       </div>
     </div>

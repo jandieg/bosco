@@ -26,7 +26,7 @@
 
     Route::post('filter/mascotas/perdidos', 'PetsController@postPetsLost');
     Route::post('filter/mascotas/encontrados', 'PetsController@postPetsFound');
-    
+
     Route::get('como-funciona', 'ServicesController@index');
     Route::get('como-funciona/web', 'ServicesController@getFunctioningWeb');
     Route::get('como-funciona/app', 'ServicesController@getFunctioningApp');
@@ -52,15 +52,16 @@
     Route::get('ubigeo-ciudades', 'UbigeoController@getUbigeoCity');
     Route::get('ubigeo-distritos', 'UbigeoController@getUbigeoDistrict');
     Route::get('search-pets', 'SearchController@search');
+    Route::get('search-pets-by-location', 'SearchController@searchByLocation');
 
 
 
     Route::post('registro','Auth\AuthController@register');
     Route::post('login','Auth\AuthController@login');
     Route::get('cerrar-sesion','Auth\AuthController@logout');
-    
+
     Route::get('iniciar-sesion/fb', 'Auth\AuthController@redirectToProvider');
-    Route::get('iniciar-sesion/fb/callback', 'Auth\AuthController@handleProviderCallback');  
-    
-    
+    Route::get('iniciar-sesion/fb/callback', 'Auth\AuthController@handleProviderCallback');
+
+
     Route::get('politicas-y-privacidad', 'ServicesController@privacy');
