@@ -420,7 +420,7 @@ function item_detail_view(id) {
         data: {reportid: id},
         success: function (data) {
             if (data.result) {
-                $('.report-detail-lost-image').html('<img src="/images/pets/' + data.report.image + '" style="width:500px;height:500px;">');
+                $('.report-detail-lost-image').html('<img src="/images/pets/report_' + data.report.pet_id + '.png" style="width:500px;height:710px; width: auto; height: auto; display: block">');
                 $('.report-detail-lost-address').html(data.report.address);
                 $('.report-detail-lost-phone').html('<a class="report-phone" href="tel:' + data.report.user_phone + '">' + data.report.user_phone + '</a');
                 $('.report-detail-lost-name').html(data.report.name);
