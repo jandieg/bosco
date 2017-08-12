@@ -2,45 +2,7 @@
   <div class="modal-report modal-content clearfix">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
     <div class="modal-body">
-      <!--<div class="modal-report-detail-left">
-        <div class="modal-report-detail-image">
-          <div class="modal-report-title">
-            <h3>Perdido</h3>
-            <div class="modal-report-data">
-              <ul class="text-center">
-                <li>Nombre: <span class="report-detail-lost-name" style=" text-transform:capitalize;">Lara</span></li><span style="font-size: 16px; font-weight: 900;">|</span>
-                <li>Género: <span class="report-detail-lost-gender" style=" text-transform:capitalize;">Femenino</span></li><span style="font-size: 16px; font-weight: 900;">|</span>
-                <li class="last">Raza: <span class="report-detail-lost-race" style=" text-transform:capitalize;">Pastor alemán</span></li>
-              </ul>
-            </div>
-          </div>          
-          <span style='text-align:right;height:40px;float:right;color:white;margin-top:0px;padding:20px 20px 10px 20px; background-color: rgba(0, 0, 0, 0.4); position: relative;' class="report-detail-reward">
-            <div style="text-align: center; margin-top: -10px;">
-          <span style="font-size:12px;">Recompensa:&nbsp;</span><span class="report-detail-lost-reward" style="font-size:14px; font-family: Arial !important; font-weight: bold;">S/.&nbsp;</span>
-          </div>
-          </span>
-          <span class="report-detail-lost-image">
-          
-            <img   src="{{ asset('images/report_detail_image.png') }}" style="width:100%; margin-top:-55px;
-            image-rendering: pixelated; 
-            image-rendering: optimizeQuality;
-            image-rendering: optimizeSpeed;
-            image-rendering: -moz-crisp-edges;
-            image-rendering: -webkit-optimize-contrast;
-            ">
-          </span>
-          <span class="report-detail-lost-phone">
-            <span class="report-phone" href="tel:969 003 009">969 003 009</span>
-          </span>
-        </div>
-        <div class="modal-report-detail-data clearfix">
-          <p class="report-data-birthday report-detail-lost-date">06 Febrero 2016</p>
-          <p class="report-data-location report-detail-lost-address">Las coapibas, La Molina.</p>
-        </div>
-        <div class="modal-report-detail-footer">
-          <div class="logo-gray"></div>
-          <p>Reporta mascotas perdidas o encontradas entrando a www.bosco.pe.</p>
-        </div>-->
+   
         <div class="modal-report-detail-left">
         <span class="report-detail-lost-image">          
             <img   src="{{ asset('images/report_detail_image.png') }}" style="width:100%; height: 80vh; margin-top:0px;
