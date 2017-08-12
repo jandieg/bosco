@@ -92,19 +92,19 @@
 <div id="form-report-lost" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
   <div class="modal-form-report modal-content">
     <div class="modal-header" style="padding: 0px;">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <div class="modal-form-report-menu" style="background-color: red; color: white; font-size: 28px;">
+      <button type="button" style="margin:.3em" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <div class="modal-form-report-menu" style="background-color: red; color: white; font-size: 20px;border-top-right-radius:10px;border-top-left-radius:10px;padding:1em;">
         <!--<ul class="text-center">
           <li id="report_tab_1"><span id="tab-1" data-tab="tab-1" class="tab-on"><em>1</em>Mascota</span></li>
           <li id="report_tab_2" onclick="Map_correction();"><span id="tab-2" data-tab="tab-2"><em>2</em>Reporte</span></li>
           <li id="report_tab_3"><span id="tab-3" data-tab="tab-3"><em>3</em>Tus datos</span></li>
         </ul>-->
-        <div class="text-center" style="vertical-align: middle;">
+        <div class="text-center" style="vertical-align: middle">
           Reporta en tres pasos
         </div>
       </div>
     </div>
-    <div class="modal-body" style='height:420px; overflow-y: auto;'>
+    <div class="modal-body" style='height:80vh; overflow-y: auto;'>
       <form id="form-report-lost-form" action="" method="post">
         <div class="row">
           <!-- <div id="form-report-lost-tab-1" class="form-report-lost-tab"> cierre tab 1 -->
