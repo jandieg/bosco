@@ -13,17 +13,17 @@
 }
 @media (min-width: 768px) {
   .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
-    width: 38em;
+    width: 28em;
   }
 }
 @media (min-width: 992px) {
   .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
-    width: 38em;
+    width: 28em;
   }
 }
 @media (min-width: 1200px) {
   .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
-    width: 38em;
+    width: 28em;
   }
 }
 .bootstrap-datetimepicker-widget.dropdown-menu:before,
@@ -82,7 +82,7 @@
 .bootstrap-datetimepicker-widget .timepicker-hour,
 .bootstrap-datetimepicker-widget .timepicker-minute,
 .bootstrap-datetimepicker-widget .timepicker-second {
-  width: 54px;
+  width: 24px;
   font-weight: bold;
   font-size: 1.2em;
   margin: 0;
