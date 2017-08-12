@@ -1,4 +1,4 @@
-<!-- Block Filters -->
+﻿<!-- Block Filters -->
 <link href="../css/bootstrap-slider.min.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap-slider.min.js"></script>
@@ -32,7 +32,7 @@
                 <h3 class="modal-title">
                     <span id="distanceHeading">1000</span>&nbsp;metros
                 </h3>
-                <h4>Radio de busqueda desde la ubicasion selecionada</h4>
+                <h4>Radio de büsqueda desde la ubicación seleccionada</h4>
                 <br />
             </div>
             <div class="modal-body">
@@ -41,7 +41,7 @@
             </div>
             <div class="modal-footer">
                 <a id="distanceCancel" href="javascript:void(0)" class="pull-left text-warning" data-dismiss="modal">Cancelar</a>
-                <a id="distanceOk" href="javascript:void(0)" class="pull-right" data-dismiss="modal">Ablicar</a>
+                <a id="distanceOk" href="javascript:void(0)" class="pull-right" data-dismiss="modal">Aplicar</a>
             </div>
         </div>
     </div>

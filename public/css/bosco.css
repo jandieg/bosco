@@ -173,6 +173,14 @@ h3.title {
   /*text-align: center;*/
 }
 
+.titulo-reporte {
+  color: red;
+  font-size: 26px;
+  border-bottom: 0.5px solid  lightgray;
+  border-width: 100%;
+  padding-bottom: 10px;
+}
+
 /* Clearfix */
 
 .clearfix:after {
@@ -3116,7 +3124,7 @@ input[type='radio']:checked:before {
     position:relative;
     display: none;
     left:80px;
-    top:-360px;
+    top:-320px;
     width:140px;
     z-index: 25;
     /*height:200px;*/
@@ -3130,12 +3138,14 @@ input[type='radio']:checked:before {
     width:100%;
     height:100%;
     z-index: 25;
-    margin-top:-20px;
+    margin-top:-25px;
     padding-top: 20px;
 }
-
+.enlace {
+margin:0;
+}
 .enlace:hover{
-  background-color: lightgray !important;
+  background-color: #efefef !important;
 }
 
 .edit_menu_div p{
@@ -3145,13 +3155,12 @@ input[type='radio']:checked:before {
     padding: 10px 10px 10px 10px;
 }
 .edit_menu_div p span{
-    font-size: 16px;
+    font-size: 13px;
     margin-bottom:-5px;
 }
 .edit_icon{
     position:relative;
-    width:16px;
-    height:auto;
+    height:20px;
     padding-bottom:5px;
 }
 .pets-list li a img{
@@ -3163,52 +3172,3 @@ input[type='radio']:checked:before {
     height:184px;
 }
 
-@media screen and (min-width: 768px) {
-
-    .megamenu ul {
-        padding-bottom: 15px;
-    }
-
-    .megamenu > .dropdown-menu {
-        min-width: 400px;
-        min-height: 250px;
-    }
-}
-
-#distanceSlider .slider-handle {
-    background: #E63A38;
-    cursor: pointer;
-}
-
-#distanceSlider.slider-disabled .slider-handle {
-	background: #BEBEBE;
-}
-
-#distanceSlider .slider-selection {
-	background: #E63A38;
-}
-
-#distanceSlider.slider-disabled .slider-selection {
-	background: #BABABA;
-}
-
-#distanceSlider .slider-track-high {
-	background: #BABABA;
-}
-
-#distanceModal a {
-    font-size: 15px;
-}
-
-#distanceModal #distanceCancel {
-    color:#888;
-}
-
-#distanceModal #distanceOk {
-    color:#E63A38;
-}
-
-#distanceModal .modal-footer {
-    background-color: #fff;
-    padding: 30px;
-}

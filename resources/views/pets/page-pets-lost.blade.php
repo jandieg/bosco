@@ -31,7 +31,7 @@
       <div id="block-gallery-lost" class="block-gallery clearfix">
         <div class="view-content">
           <div class="alert alert-info" style="display:none;" id="noRecords">
-            No records available for given location.
+            No hay mascotas perdidas en este rango
           </div>
           <div class="alert alert-danger" style="display:none;" id="error">
             Error occured while getting the data.
