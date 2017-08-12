@@ -118,11 +118,11 @@
               </div>
               <div class="form-group encontrado" id="name_div" style="margin-bottom: 32px;">
                 <label>Nombre de mascota</label>
-                <input type="text" name="lost_pet_name" id="lost_pet_name" class="form-control">
+                <input type="text" name="lost_pet_name" id="lost_pet_name" class="form-control" maxlength="20">
               </div>
               <div class="form-group  encontrado" style="margin-bottom: 32px;">
                 <label>Raza</label>
-                <input type="text" name="lost_pet_race" id="lost_pet_race" class="form-control">
+                <input type="text" name="lost_pet_race" id="lost_pet_race" class="form-control" maxlength="20">
                 <!--select class="form-control" name="lost_pet_race" id="lost_pet_race">
                   <option value="dog">Perro</option>
                   <option value="cat">Gato</option>
