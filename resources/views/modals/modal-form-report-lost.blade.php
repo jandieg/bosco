@@ -184,7 +184,7 @@
                 </div>
               </div>
               <div class="form-group">              
-                <label>Última vez visto</label>                
+               <!-- <label>Última vez visto</label>                
                 <div class="inputsAddress">               
                <div class="form-group">
                 <div class="col-md-12">
@@ -217,9 +217,7 @@
                   </select>
                   </label>
                </div>    
-               </div>
-               <div class="form-group">
-                </div>           
+               </div>                      
                  <div class="form-group">
                  <div class="col-md-12">
                  <label for="street">
@@ -243,6 +241,14 @@
                 <label>¿Cómo se perdió?</label>               
                 <textarea placeholder="150 caracteres max" name="lost_pet_report_description" id="lost_pet_report_description" class="form-control" rows="4"></textarea>
               </div>-->
+              <label>Calle</label>
+                <div id='pac-input-div'><input type="text" id="pac-input" class="form-control" placeholder="Ingresa la dirección donde se perdió o arrastra el PIN"></div>
+                <input type="hidden" name="pet-lost-address" id="pac-address" class="form-control">                
+                <input type="hidden" name="pet-lost-lat" id="lat" class="form-control">
+                <input type="hidden" name="pet-lost-lng" id="lng" class="form-control">
+                <input type="hidden" name="lost_pet_postal_code" id="pac-postal_code" class="form-control">
+                <div id="pet-lost-map" style="width:100%;height:300px;">
+                 </div>
             </div>
             <!--<div class="col-lg-12 col-md-12 center-block">
               <div class="form-group form-actions">

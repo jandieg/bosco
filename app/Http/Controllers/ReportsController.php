@@ -115,7 +115,7 @@ class ReportsController extends Controller {
         $department = $request->get('department');
         $city = $request->get('city');
         $district = $request->get('district');
-        $address = $district . " " . $street;
+        $address = $request->get('pet-lost-address'); //$district . " " . $street;
         $latitude = $request->get('pet-lost-lat');
         $longitude = $request->get('pet-lost-lng');
         $postal_code= "15001";//$request->get('lost_pet_postal_code');
