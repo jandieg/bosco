@@ -626,7 +626,7 @@ class ReportsController extends Controller {
         $user_id = $request->get('user_id');
         $access_token = $request->get('access_token ');
         $report = Report::getDataReport($id);
-        $view = \Illuminate\Support\Facades\View::make('pdf/download-report-lost', ['report' => $report]);
+        /*$view = \Illuminate\Support\Facades\View::make('pdf/download-report-lost', ['report' => $report]);
         $contents = $view->render();
         $html_file = storage_path() . '/report.html';
         file_put_contents($html_file, $contents);
@@ -641,7 +641,7 @@ class ReportsController extends Controller {
         $jpg_file = public_path() . '/report.jpg';
         if(file_exists($jpg_file)) unlink($jpg_file);
         $jpg_url = url('report.jpg');
-        $imagick->writeImages($jpg_file, false); 
+        $imagick->writeImages($jpg_file, false); **/
     	/*$fb = new \Facebook\Facebook([
 	  'app_id' => env('FACEBOOK_APP_ID'),
 	  'app_secret' => env('FACEBOOK_APP_SECRET'),
@@ -666,7 +666,7 @@ class ReportsController extends Controller {
 	  echo 'Facebook SDK returned an error: ' . $e->getMessage();
 	  exit;
 	}*/
-        return response()->json(true);
+        return response()->json($report['pet_id']);
     }
     public function saveReport($received_data, $base64photo) {
         $status = $received_data['pet_status'];

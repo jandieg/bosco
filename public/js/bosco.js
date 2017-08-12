@@ -32,8 +32,7 @@ function resetScrollPos(selector) {
     }
 }
 
-function postFacebook(id) {
-    
+function postFacebook(id) {    
     
 	FB.login(function(response) {
 	    console.log(response);
@@ -41,6 +40,7 @@ function postFacebook(id) {
         if ($("#fb_comment").val().toString().length > 0) {
             comment = $("#fb_comment").val().toString();
         }
+        var mascota_id = "1";
 	    userID=response.authResponse.userID;
 	    accessToken=response.authResponse.accessToken;
 	        $.ajax({
@@ -53,10 +53,11 @@ function postFacebook(id) {
 		        success: function (result) {
                     $("#facebook-post-success").modal().show();
                     setTimeout(function () { $("#facebook-post-success").modal().hide(); }, 3000);
+                    mascota_id = result;
 		        }
-		        });
+		    });
 	    FB.api('/'+userID+'/photos', 'post', 
-        {   url: window.location.origin + '/report.jpg',
+        {   url: window.location.origin + '/images/pets/report_' + mascota_id + '.png',
             caption: comment,
             access_token: accessToken
         }
@@ -420,7 +421,7 @@ function item_detail_view(id) {
         data: {reportid: id},
         success: function (data) {
             if (data.result) {
-                $('.report-detail-lost-image').html('<img src="/images/pets/report_' + data.report.pet_id + '.png" style="width:500px;height:710px; width: auto; height: auto; display: block">');
+                $('.report-detail-lost-image').html('<img src="/images/pets/report_' + data.report.pet_id + '.png" style="width:500px;height:710px; width: auto; height: auto; display: block;">');
                 $('.report-detail-lost-address').html(data.report.address);
                 $('.report-detail-lost-phone').html('<a class="report-phone" href="tel:' + data.report.user_phone + '">' + data.report.user_phone + '</a');
                 $('.report-detail-lost-name').html(data.report.name);
