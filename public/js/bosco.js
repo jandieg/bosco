@@ -1161,6 +1161,48 @@ submitContact.on('click', function(e){
 var submitReport = $('.btn-submit-report');
 submitReport.on('click', function (e) {
     e.preventDefault();
+    
+    if ($("#lost_pet_name").val().length == 0 && $("#pet_found_radio").val() == "lost") {
+        alert('Debe ingresar el nombre de la mascota' + $("#lost_pet_name").text());
+        return false;
+    }
+
+    if ($("#lost_pet_race").val().length == 0 && $("#pet_found_radio").val() == "lost") {
+        alert('Debe ingresar la raza de la mascota');
+        return false;
+    }
+
+    if ($("#lost_pet_description").val().length == 0) {
+        alert('Debe ingresar la descripcion de la mascota');
+        return false;
+    }
+
+    var cropper = $('.preview-img').attr('style');//$('#cropper-image').cropper('getCroppedCanvas');        
+    if (cropper == null) {
+        alert('Debe ingresar la imagen de la mascota');
+        return false;
+    }    
+
+    if ($("#datepicker").val().length == 0) {
+        alert('Debe ingresar la fecha de desaparicion de la mascota');
+        return false;
+    }
+
+    if ($("#timepicker").val().length == 0) {
+        alert('Debe ingresar la hora de desaparicion de la mascota');
+        return false;
+    }
+
+    /*if ($("#lost_pet_report_description").val().length == 0 && $("#pet_found_radio").val() == "lost") {
+        alert('Debe ingresar la descripcion del reporte');
+        return false;
+    }*/
+
+    if ($("#street").val().length == 0) {
+        alert('Debe seleccionar la calle');
+        return false;
+    }
+    
     if ($("input[name='lost_pet_owner_name']").val().length == 0) {
         alert("Debe ingresar el nombre del propietario");
         return false;
@@ -1182,12 +1224,12 @@ submitReport.on('click', function (e) {
     if($(".preview-img").css('background-image')=='' && !cropcanvas && $('#report_id').val()=='') {
     submitReport.html('Finalizar');
 	alert('Elija una imagen del animal doméstico en su computadora, por favor');    
-	$("#form-report-lost-tab-1").removeClass('hide');
+	/*$("#form-report-lost-tab-1").removeClass('hide');
 	$("#form-report-lost-tab-2").addClass('hide');
 	$("#form-report-lost-tab-3").addClass('hide');
 	$("#tab-1").addClass('tab-on');
 	$("#tab-2").removeClass('tab-on');
-	$("#tab-3").removeClass('tab-on');
+	$("#tab-3").removeClass('tab-on');*/
 	return false;
     }
     //var address = $("#pac-address").val();
@@ -1836,12 +1878,12 @@ $('#modal-cropper').on('shown.bs.modal', function () {
 $('#form-report-lost').on('shown.bs.modal', function () {
 //    alert();
 }).on('hidden.bs.modal', function () {
-    $("#form-report-lost-tab-1").removeClass('hide');
+   /* $("#form-report-lost-tab-1").removeClass('hide');
     $("#form-report-lost-tab-2").addClass('hide');
     $("#form-report-lost-tab-3").addClass('hide');
     $("#tab-1").addClass('tab-on');
     $("#tab-2").removeClass('tab-on');
-    $("#tab-3").removeClass('tab-on');
+    $("#tab-3").removeClass('tab-on');*/
     });
 var menuOn;
 $('.edit_menu').on('mouseover', function () {

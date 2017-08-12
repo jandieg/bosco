@@ -173,6 +173,14 @@ h3.title {
   /*text-align: center;*/
 }
 
+.titulo-reporte {
+  color: red;
+  font-size: 26px;
+  border-bottom: 0.5px solid  lightgray;
+  border-width: 100%;
+  padding-bottom: 10px;
+}
+
 /* Clearfix */
 
 .clearfix:after {
