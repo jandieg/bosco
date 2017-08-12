@@ -1479,13 +1479,17 @@ function initMap() {
 	        google.maps.event.addListener(lost_marker, 'dragend', function (e) {
 	            lat = e.latLng.lat();
 	            lon = e.latLng.lng();
-	            displayLocation(lat, lon, lost_map);
+                $("#lat").val(lat);
+                $("#lng").val(lon);
+	            //displayLocation(lat, lon, lost_map);
 	        });
 	        lost_marker.setMap(lost_map);
 	        google.maps.event.addListener(lost_marker, 'dragend', function (e) {
 	            lat = e.latLng.lat();
 	            lon = e.latLng.lng();
-	            displayLocation(lat, lon, lost_map);
+                $("#lat").val(lat);
+                $("#lng").val(lon);
+	            //displayLocation(lat, lon, lost_map);
         	});        	
         	displayLocation(lat, lon, lost_map);
         }
