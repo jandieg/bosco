@@ -146,6 +146,11 @@ class ReportsController extends Controller {
             file_put_contents("images/pets/".$pet_id.".jpg", $data);
 
             //logica del lienzo del flyer
+            $metricaCaracter = 13.2;
+            $largoTotal = 22 + strlen($name) + strlen($race);
+            $centroActual = 11 + strlen($name);
+            $correccion = $largoTotal/2 - $centroActual;
+            $valorCorreccion = $correccion * $metricaCaracter;
             $im = new Imagick("images/pets/".$pet_id.".jpg");
             $lienzo = new Imagick();
             $lienzo->newImage(800, 1136, "none");
@@ -158,51 +163,67 @@ class ReportsController extends Controller {
             $textoPerdido->setFillColor(new ImagickPixel('white'));
             $textoPerdido->annotation(200, 90, 'PERDIDO');
             $headerLienzo->drawImage($textoPerdido);
+            $factorCorreccionTituloIzquierda = 279; 
+            $factorCorreccionTextoIzquierda = 362; 
+            $largoTextoIzquierda = strlen($name);
             $textoNombre = new \ImagickDraw();
             $textoNombre->setFontSize(22);
             $textoNombre->setStrokeWidth(2);
-            $textoNombre->setFillColor(new ImagickPixel('white'));
-            $textoNombre->annotation(15, 155, 'Nombre:');                                                                   
+            $textoNombre->setFillColor(new ImagickPixel('white'));        
+            //15
+            $textoNombre->annotation($factorCorreccionTituloIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion, 155, 'Nombre:');                                                                   
             $headerLienzo->drawImage($textoNombre);
             $valorNombre = new \ImagickDraw();
+            $valorNombre->setFontWeight(551);
             $valorNombre->setFontSize(24);
             $valorNombre->setStrokeWidth(2);
             $valorNombre->setFillColor(new ImagickPixel('white'));
-            $valorNombre->annotation(98, 155, ucfirst($name));                                                                   
+            //98
+            $valorNombre->annotation($factorCorreccionTextoIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion, 155, ucfirst($name));                                                                   
             $headerLienzo->drawImage($valorNombre);  
             $draw = new \ImagickDraw();
             $draw->setStrokeColor(new ImagickPixel('white'));
             $draw->setFillColor(new ImagickPixel('white'));
             $draw->setStrokeWidth(2);
             $draw->setFontSize(72);
-            $draw->line(363, 135, 363, 155);
+            $draw->line(363  - $valorCorreccion, 135, 363  - $valorCorreccion, 155);
             $headerLienzo->drawImage($draw);
             $textoRaza = new \ImagickDraw();
             $textoRaza->setFontSize(22);
             $textoRaza->setStrokeWidth(2);
             $textoRaza->setFillColor(new ImagickPixel('white'));
-            $textoRaza->annotation(365, 155, 'Raza:');  
+            $textoRaza->annotation(365 - $valorCorreccion, 155, 'Raza:');  
             $headerLienzo->drawImage($textoRaza);    
             $valorRaza = new \ImagickDraw();
             $valorRaza->setFontSize(24);
             $valorRaza->setStrokeWidth(2);
             $valorRaza->setFillColor(new ImagickPixel('white'));
-            $valorRaza->annotation(423, 155, ucfirst($race));  
-            $headerLienzo->drawImage($valorRaza);    
+            $valorRaza->setFontWeight(551);
+            $valorRaza->annotation(423 - $valorCorreccion, 155, ucfirst($race));  
+            $headerLienzo->drawImage($valorRaza);   
+            $factorCorreccionTextoDerecha = 773;
+            $factorCorreccionTituloDerecha = 693;
+            $factorCorreccionLineaDerecha = 690;
+            $largoTextoCentro = strlen($race);
+            $largoTextoCentroCorreccion = 20 - $largoTextoCentro; 
             $textoGenero = new \ImagickDraw();
             $textoGenero->setFontSize(22);
             $textoGenero->setStrokeWidth(2);
             $textoGenero->setFillColor(new ImagickPixel('white'));
-            $textoGenero->annotation(693, 155, 'Género:');                                                                               
+            //693
+            $textoGenero->annotation($factorCorreccionTituloDerecha - ($largoTextoCentroCorreccion * $metricaCaracter) - $valorCorreccion, 155, 'Género:');                                                                               
             $headerLienzo->drawImage($textoGenero);  
             $valorGenero = new \ImagickDraw();
             $valorGenero->setFontSize(24);
             $valorGenero->setStrokeWidth(2);
             $valorGenero->setFillColor(new ImagickPixel('white'));
+            $valorGenero->setFontWeight(551);
+            //773
+            $positionTextoDerecha = $factorCorreccionTextoDerecha - ($largoTextoCentroCorreccion * $metricaCaracter);
             if (strlen($gender) == 5) {
-                $valorGenero->annotation(773, 155, "M");                                                                               
+                $valorGenero->annotation($positionTextoDerecha - $valorCorreccion, 155, "M");                                                                               
             } else {
-                $valorGenero->annotation(773, 155, "F");                                                                               
+                $valorGenero->annotation($positionTextoDerecha - $valorCorreccion, 155, "F");                                                                               
             }            
             $headerLienzo->drawImage($valorGenero);      
             $draw = new \ImagickDraw();
@@ -210,7 +231,9 @@ class ReportsController extends Controller {
             $draw->setFillColor(new ImagickPixel('white'));
             $draw->setStrokeWidth(2);
             $draw->setFontSize(72);
-            $draw->line(690, 135, 690, 155);
+            //690
+            $positionLineaDerecha = $factorCorreccionLineaDerecha - ($largoTextoCentroCorreccion * $metricaCaracter);
+            $draw->line($positionLineaDerecha - $valorCorreccion, 135, $positionLineaDerecha - $valorCorreccion, 155);
             $headerLienzo->drawImage($draw);            
             $draw = new \ImagickDraw();
             $draw->setStrokeColor(new ImagickPixel('white'));
@@ -255,11 +278,11 @@ class ReportsController extends Controller {
             $valorDireccion->annotation(435, 45, ucfirst($address));  
             $footerLienzo->drawImage($valorDireccion);
             $logoImg = new Imagick("img/logo_2.png");            
-            $footerLienzo->compositeimage($logoImg->getimage(), Imagick::COMPOSITE_DEFAULT, 680, 108);
+            $footerLienzo->compositeimage($logoImg->getimage(), Imagick::COMPOSITE_DEFAULT, 660, 108);
             $reportaTexto = new \ImagickDraw();
             $reportaTexto->setFontSize(20);
             $reportaTexto->setFillColor(new ImagickPixel('gray'));
-            $reportaTexto->annotation(15, 130, "Reporta mascotas perdidas o encontradas entrando a www.bosco.pe.");  
+            $reportaTexto->annotation(25, 130, "Reporta mascotas perdidas o encontradas entrando a www.bosco.pe.");  
             $footerLienzo->drawImage($reportaTexto);
             $draw2 = new \ImagickDraw();
             $draw2->setStrokeColor(new ImagickPixel('gray'));
@@ -289,7 +312,7 @@ class ReportsController extends Controller {
             $im->drawImage($rewardLienzo);
             $im->drawImage($phoneLienzo);
             $phoneImg = new Imagick("img/phone.png");            
-            $im->compositeimage($phoneImg->getimage(), Imagick::COMPOSITE_DEFAULT, 180, 735);
+            $im->compositeimage($phoneImg->getimage(), Imagick::COMPOSITE_DEFAULT, 200, 735);
             $phoneTexto = new \ImagickDraw();
             $phoneTexto->setFontSize(38);
             $phoneTexto->setFillColor(new ImagickPixel('white'));
@@ -390,7 +413,12 @@ class ReportsController extends Controller {
                 $result = \App\Photo::where('pet_id',$report->pet_id)->update($photo_data);
             }
 
-            //logica del lienzo del flyer
+           //logica del lienzo del flyer
+            $metricaCaracter = 13.2;
+            $largoTotal = 22 + strlen($name) + strlen($race);
+            $centroActual = 11 + strlen($name);
+            $correccion = $largoTotal/2 - $centroActual;
+            $valorCorreccion = $correccion * $metricaCaracter;
             $im = new Imagick("images/pets/".$report->pet_id.".jpg");
             $lienzo = new Imagick();
             $lienzo->newImage(800, 1136, "none");
@@ -403,51 +431,68 @@ class ReportsController extends Controller {
             $textoPerdido->setFillColor(new ImagickPixel('white'));
             $textoPerdido->annotation(200, 90, 'PERDIDO');
             $headerLienzo->drawImage($textoPerdido);
+            $factorCorreccionTituloIzquierda = 279; 
+            $factorCorreccionTextoIzquierda = 362; 
+            $largoTextoIzquierda = strlen($name);
             $textoNombre = new \ImagickDraw();
             $textoNombre->setFontSize(22);
             $textoNombre->setStrokeWidth(2);
             $textoNombre->setFillColor(new ImagickPixel('white'));
-            $textoNombre->annotation(15, 155, 'Nombre:');                                                                   
+            //15
+            $textoNombre->annotation($factorCorreccionTituloIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion, 155, 'Nombre:');                                                                   
             $headerLienzo->drawImage($textoNombre);
             $valorNombre = new \ImagickDraw();
             $valorNombre->setFontSize(24);
             $valorNombre->setStrokeWidth(2);
             $valorNombre->setFillColor(new ImagickPixel('white'));
-            $valorNombre->annotation(98, 155, ucfirst($name));                                                                   
+            $valorNombre->setFontWeight(551);
+            //98
+            $valorNombre->annotation($factorCorreccionTextoIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion, 155, ucfirst($name));                                                                   
             $headerLienzo->drawImage($valorNombre);  
             $draw = new \ImagickDraw();
             $draw->setStrokeColor(new ImagickPixel('white'));
             $draw->setFillColor(new ImagickPixel('white'));
             $draw->setStrokeWidth(2);
             $draw->setFontSize(72);
-            $draw->line(363, 135, 363, 155);
+            $draw->line(363  - $valorCorreccion, 135, 363  - $valorCorreccion, 155);
             $headerLienzo->drawImage($draw);
             $textoRaza = new \ImagickDraw();
             $textoRaza->setFontSize(22);
             $textoRaza->setStrokeWidth(2);
             $textoRaza->setFillColor(new ImagickPixel('white'));
-            $textoRaza->annotation(365, 155, 'Raza:');  
+            $textoRaza->annotation(365 - $valorCorreccion, 155, 'Raza:');  
             $headerLienzo->drawImage($textoRaza);    
             $valorRaza = new \ImagickDraw();
             $valorRaza->setFontSize(24);
             $valorRaza->setStrokeWidth(2);
+            $valorRaza->setFontWeight(551);
             $valorRaza->setFillColor(new ImagickPixel('white'));
-            $valorRaza->annotation(423, 155, ucfirst($race));  
-            $headerLienzo->drawImage($valorRaza);    
+            $valorRaza->annotation(423 - $valorCorreccion, 155, ucfirst($race));  
+            $headerLienzo->drawImage($valorRaza);   
+            $factorCorreccionTextoDerecha = 773;
+            $factorCorreccionTituloDerecha = 693;
+            $factorCorreccionLineaDerecha = 690;
+            $largoTextoCentro = strlen($race);
+            $largoTextoCentroCorreccion = 20 - $largoTextoCentro; 
             $textoGenero = new \ImagickDraw();
             $textoGenero->setFontSize(22);
             $textoGenero->setStrokeWidth(2);
             $textoGenero->setFillColor(new ImagickPixel('white'));
-            $textoGenero->annotation(693, 155, 'Género:');                                                                               
+            $textoGenero->setFontWeight(551);
+            //693
+            $textoGenero->annotation($factorCorreccionTituloDerecha - ($largoTextoCentroCorreccion * $metricaCaracter) - $valorCorreccion, 155, 'Género:');                                                                               
             $headerLienzo->drawImage($textoGenero);  
             $valorGenero = new \ImagickDraw();
             $valorGenero->setFontSize(24);
             $valorGenero->setStrokeWidth(2);
+            $valorGenero->setFontWeight(551);
             $valorGenero->setFillColor(new ImagickPixel('white'));
+            //773
+            $positionTextoDerecha = $factorCorreccionTextoDerecha - ($largoTextoCentroCorreccion * $metricaCaracter);
             if (strlen($gender) == 5) {
-                $valorGenero->annotation(773, 155, "M");                                                                               
+                $valorGenero->annotation($positionTextoDerecha - $valorCorreccion, 155, "M");                                                                               
             } else {
-                $valorGenero->annotation(773, 155, "F");                                                                               
+                $valorGenero->annotation($positionTextoDerecha - $valorCorreccion, 155, "F");                                                                               
             }            
             $headerLienzo->drawImage($valorGenero);      
             $draw = new \ImagickDraw();
@@ -455,7 +500,9 @@ class ReportsController extends Controller {
             $draw->setFillColor(new ImagickPixel('white'));
             $draw->setStrokeWidth(2);
             $draw->setFontSize(72);
-            $draw->line(690, 135, 690, 155);
+            //690
+            $positionLineaDerecha = $factorCorreccionLineaDerecha - ($largoTextoCentroCorreccion * $metricaCaracter);
+            $draw->line($positionLineaDerecha - $valorCorreccion, 135, $positionLineaDerecha - $valorCorreccion, 155);
             $headerLienzo->drawImage($draw);            
             $draw = new \ImagickDraw();
             $draw->setStrokeColor(new ImagickPixel('white'));
@@ -500,11 +547,11 @@ class ReportsController extends Controller {
             $valorDireccion->annotation(435, 45, ucfirst($address));  
             $footerLienzo->drawImage($valorDireccion);
             $logoImg = new Imagick("img/logo_2.png");            
-            $footerLienzo->compositeimage($logoImg->getimage(), Imagick::COMPOSITE_DEFAULT, 680, 108);
+            $footerLienzo->compositeimage($logoImg->getimage(), Imagick::COMPOSITE_DEFAULT, 660, 108);
             $reportaTexto = new \ImagickDraw();
             $reportaTexto->setFontSize(20);
             $reportaTexto->setFillColor(new ImagickPixel('gray'));
-            $reportaTexto->annotation(15, 130, "Reporta mascotas perdidas o encontradas entrando a www.bosco.pe.");  
+            $reportaTexto->annotation(25, 130, "Reporta mascotas perdidas o encontradas entrando a www.bosco.pe.");  
             $footerLienzo->drawImage($reportaTexto);
             $draw2 = new \ImagickDraw();
             $draw2->setStrokeColor(new ImagickPixel('gray'));
@@ -534,7 +581,7 @@ class ReportsController extends Controller {
             $im->drawImage($rewardLienzo);
             $im->drawImage($phoneLienzo);
             $phoneImg = new Imagick("img/phone.png");            
-            $im->compositeimage($phoneImg->getimage(), Imagick::COMPOSITE_DEFAULT, 180, 735);
+            $im->compositeimage($phoneImg->getimage(), Imagick::COMPOSITE_DEFAULT, 200, 735);
             $phoneTexto = new \ImagickDraw();
             $phoneTexto->setFontSize(38);
             $phoneTexto->setFillColor(new ImagickPixel('white'));
