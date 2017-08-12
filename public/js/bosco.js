@@ -1051,8 +1051,8 @@ reportFoundAdd.on('click', function (e) {
     Initialize_Report();  
     hideMapComponents();
               
-    var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
-    $("#pac-input-div").html(pac_html);
+    /*var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
+    $("#pac-input-div").html(pac_html);*/
 });
 $('#report_tab_1').on('click', function () {
     var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
