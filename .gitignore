@@ -10,3 +10,13 @@ Homestead.yaml
 npm-debug.log
 .env
 /app/Correo.php
+/.vs/Bosco/v14/.suo
+/.vs/Bosco_VS2015/v14/.suo
+/.vs/config/applicationhost.config
+/.vscode/launch.json
+*.rar
+/Bosco_VS2015.sln
+/Bosco_VS2015.phpproj
+/Bosco.phpproj
+/.gitignore
+/.env

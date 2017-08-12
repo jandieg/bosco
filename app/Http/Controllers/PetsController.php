@@ -19,22 +19,7 @@ class PetsController extends Controller {
        $this->middleware('api');
     }
     public function getPetsLost() {
-        $parameters = array(
-            'status' => 'lost',
-            'userid' => FALSE
-        );
-        $reports = Report::getPublicReports($parameters, TRUE, 10, 'mascotas/perdidos');
-        $departments = Ubigeo::getDataDepartments();
-        $cities = Ubigeo::getDataCities(null);
-        $districts = Ubigeo::getDataDistricts(null);
-        return view('pets.page-pets-lost', [
-            'reports' => $reports,
-            'departments'=>$departments,
-            'cities'=>$cities,
-            'districts'=>$districts,
-            'user' => Auth::check() ? Auth::user() : null
-            ]   
-        );
+        return view('pets.page-pets-lost');
     }
 
     public function getPetsFound(Request $request) {
