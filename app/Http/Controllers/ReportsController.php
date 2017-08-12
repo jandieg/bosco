@@ -161,7 +161,12 @@ class ReportsController extends Controller {
             $textoPerdido->setFontSize(84);
             $textoPerdido->setStrokeWidth(3);
             $textoPerdido->setFillColor(new ImagickPixel('white'));
-            $textoPerdido->annotation(200, 90, 'PERDIDO');
+            if ($status== "found") {
+                $textoPerdido->annotation(100, 90, 'ENCONTRADO');
+            } else {
+                $textoPerdido->annotation(200, 90, 'PERDIDO');
+            }
+            
             $headerLienzo->drawImage($textoPerdido);
             $factorCorreccionTituloIzquierda = 279; 
             $factorCorreccionTextoIzquierda = 362; 
@@ -172,6 +177,7 @@ class ReportsController extends Controller {
             $textoNombre->setFillColor(new ImagickPixel('white'));        
             //15
             $textoNombre->annotation($factorCorreccionTituloIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion, 155, 'Nombre:');                                                                   
+            if ($status == "lost")
             $headerLienzo->drawImage($textoNombre);
             $valorNombre = new \ImagickDraw();
             $valorNombre->setFontWeight(551);
@@ -180,12 +186,14 @@ class ReportsController extends Controller {
             $valorNombre->setFillColor(new ImagickPixel('white'));
             //98
             $valorNombre->annotation($factorCorreccionTextoIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion, 155, ucfirst($name));                                                                   
+            if ($status == "lost")
             $headerLienzo->drawImage($valorNombre);  
             $draw = new \ImagickDraw();
             $draw->setStrokeColor(new ImagickPixel('white'));
             $draw->setFillColor(new ImagickPixel('white'));
             $draw->setStrokeWidth(2);
             $draw->setFontSize(72);
+            if ($status == "lost")
             $draw->line(363  - $valorCorreccion, 135, 363  - $valorCorreccion, 155);
             $headerLienzo->drawImage($draw);
             $textoRaza = new \ImagickDraw();
@@ -193,6 +201,7 @@ class ReportsController extends Controller {
             $textoRaza->setStrokeWidth(2);
             $textoRaza->setFillColor(new ImagickPixel('white'));
             $textoRaza->annotation(365 - $valorCorreccion, 155, 'Raza:');  
+            if ($status == "lost")
             $headerLienzo->drawImage($textoRaza);    
             $valorRaza = new \ImagickDraw();
             $valorRaza->setFontSize(24);
@@ -200,6 +209,7 @@ class ReportsController extends Controller {
             $valorRaza->setFillColor(new ImagickPixel('white'));
             $valorRaza->setFontWeight(551);
             $valorRaza->annotation(423 - $valorCorreccion, 155, ucfirst($race));  
+            if ($status == "lost")
             $headerLienzo->drawImage($valorRaza);   
             $factorCorreccionTextoDerecha = 773;
             $factorCorreccionTituloDerecha = 693;
@@ -212,6 +222,7 @@ class ReportsController extends Controller {
             $textoGenero->setFillColor(new ImagickPixel('white'));
             //693
             $textoGenero->annotation($factorCorreccionTituloDerecha - ($largoTextoCentroCorreccion * $metricaCaracter) - $valorCorreccion, 155, 'Género:');                                                                               
+            if ($status == "lost")
             $headerLienzo->drawImage($textoGenero);  
             $valorGenero = new \ImagickDraw();
             $valorGenero->setFontSize(24);
@@ -225,6 +236,7 @@ class ReportsController extends Controller {
             } else {
                 $valorGenero->annotation($positionTextoDerecha - $valorCorreccion, 155, "F");                                                                               
             }            
+            if ($status == "lost")
             $headerLienzo->drawImage($valorGenero);      
             $draw = new \ImagickDraw();
             $draw->setStrokeColor(new ImagickPixel('white'));
@@ -233,6 +245,7 @@ class ReportsController extends Controller {
             $draw->setFontSize(72);
             //690
             $positionLineaDerecha = $factorCorreccionLineaDerecha - ($largoTextoCentroCorreccion * $metricaCaracter);
+            if ($status == "lost")
             $draw->line($positionLineaDerecha - $valorCorreccion, 135, $positionLineaDerecha - $valorCorreccion, 155);
             $headerLienzo->drawImage($draw);            
             $draw = new \ImagickDraw();
