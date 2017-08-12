@@ -1842,12 +1842,26 @@ $('#form-report-lost').on('shown.bs.modal', function () {
     $("#tab-1").addClass('tab-on');
     $("#tab-2").removeClass('tab-on');
     $("#tab-3").removeClass('tab-on');
-});
+    });
+var menuOn;
 $('.edit_menu').on('mouseover', function () {
-    $(this).next().show();
+    $(this).next().show();    
+})
+$('.edit_menu').on('mouseleave', function () {
+   var that = $(this);
+    setTimeout(function () {
+        if (!menuOn) {
+            that.next().hide();
+            menuOn = false;
+        }
+    }, 500);
 })
 $('.edit_menu_div').on('mouseleave', function () {
     $(this).hide();
+    menuOn = false;
+})
+$('.edit_menu_div').on('mouseover', function () {
+    menuOn = true;
 })
 $('#pet_lost_radio').on('click', function () {
     $("#form-report-lost").find('#name_div').show();
