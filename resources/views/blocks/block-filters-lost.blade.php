@@ -14,8 +14,7 @@
                     <span class="input-group-addon no-right-border">
                         <i class="glyphicon glyphicon-map-marker"></i>
                     </span>
-                    <input id="location" type="text" class="form-control no-left-border large-addon" />
-                    <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
+                    <input id="location" placeholder="Escribir zona o distrito" type="text" class="form-control no-left-border large-addon" />
                     <span class="input-group-addon no-right-border no-right-border modal-handle"
                         data-toggle="modal" data-target="#distanceModal">
                         <i class="glyphicon glyphicon-resize-horizontal"></i>
