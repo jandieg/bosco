@@ -617,8 +617,7 @@ a.btn-video:hover {
   width: 32px;
 }
 
-
-	.block-about-us .block-about-us-item a .block-about-us-line {
+.block-about-us .block-about-us-item a .block-about-us-line {
   display: none;
 }
 
@@ -2373,7 +2372,7 @@ footer .block-socialnetwork li a.link-instagran {
   .nav li {
     display: inline-block;
     float: none;
-    padding: 0 4%;
+    padding: 0 5%;
   }
   .nav > li > a, 
   .nav > li > span {
@@ -3173,52 +3172,3 @@ margin:0;
     height:184px;
 }
 
-@media screen and (min-width: 768px) {
-
-	.megamenu ul {
-		padding-bottom: 15px;
-	}
-
-	.megamenu > .dropdown-menu {
-		min-width: 400px;
-		min-height: 250px;
-	}
-}
-
-#distanceSlider .slider-handle {
-	background: #E63A38;
-	cursor: pointer;
-}
-
-#distanceSlider.slider-disabled .slider-handle {
-	background: #BEBEBE;
-}
-
-#distanceSlider .slider-selection {
-	background: #E63A38;
-}
-
-#distanceSlider.slider-disabled .slider-selection {
-	background: #BABABA;
-}
-
-#distanceSlider .slider-track-high {
-	background: #BABABA;
-}
-
-#distanceModal a {
-	font-size: 15px;
-}
-
-#distanceModal #distanceCancel {
-	color: #888;
-}
-
-#distanceModal #distanceOk {
-	color: #E63A38;
-}
-
-#distanceModal .modal-footer {
-	background-color: #fff;
-	padding: 30px;
-}
