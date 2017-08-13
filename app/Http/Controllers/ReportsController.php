@@ -9,6 +9,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use PDF;
 use Imagick;
+use ImagickPixel;
+use ImagickDraw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -113,7 +115,7 @@ class ReportsController extends Controller {
         $department = $request->get('department');
         $city = $request->get('city');
         $district = $request->get('district');
-        $address = $district . " " . $street;
+        $address = $request->get('pet-lost-address'); //$district . " " . $street;
         $latitude = $request->get('pet-lost-lat');
         $longitude = $request->get('pet-lost-lng');
         $postal_code= "15001";//$request->get('lost_pet_postal_code');
@@ -142,7 +144,212 @@ class ReportsController extends Controller {
             $img = str_replace(' ', '+', $img);
             $data = base64_decode($img);
             file_put_contents("images/pets/".$pet_id.".jpg", $data);
+
+            //logica del lienzo del flyer
+            $metricaCaracter = 13.2;
+            $largoTotal = 22 + strlen($name) + strlen($race);
+            $centroActual = 11 + strlen($name);
+            $correccion = $largoTotal/2 - $centroActual;
+            $valorCorreccion = $correccion * $metricaCaracter;
+            $im = new Imagick("images/pets/".$pet_id.".jpg");
+            $lienzo = new Imagick();
+            $lienzo->newImage(800, 1136, "none");
+            $headerLienzo = new Imagick();
+            $headerLienzo->newImage(800, 168, new ImagickPixel('red'));
+            $headerLienzo->setImageFormat("jpg");
+            $textoPerdido = new \ImagickDraw();
+            $textoPerdido->setFontSize(84);
+            $textoPerdido->setStrokeWidth(3);
+            $textoPerdido->setFillColor(new ImagickPixel('white'));
+            if ($status== "found") {
+                $textoPerdido->annotation(100, 90, 'ENCONTRADO');
+            } else {
+                $textoPerdido->annotation(200, 90, 'PERDIDO');
+            }
             
+            $headerLienzo->drawImage($textoPerdido);
+            $factorCorreccionTituloIzquierda = 279; 
+            $factorCorreccionTextoIzquierda = 362; 
+            $largoTextoIzquierda = strlen($name);
+            $textoNombre = new \ImagickDraw();
+            $textoNombre->setFontSize(22);
+            $textoNombre->setStrokeWidth(2);
+            $textoNombre->setFillColor(new ImagickPixel('white'));        
+            //15
+            $textoNombre->annotation($factorCorreccionTituloIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion, 155, 'Nombre:');                                                                   
+            if ($status == "lost")
+            $headerLienzo->drawImage($textoNombre);
+            $valorNombre = new \ImagickDraw();
+            $valorNombre->setFontWeight(551);
+            $valorNombre->setFontSize(24);
+            $valorNombre->setStrokeWidth(2);
+            $valorNombre->setFillColor(new ImagickPixel('white'));
+            //98
+            $valorNombre->annotation($factorCorreccionTextoIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion, 155, ucfirst($name));                                                                   
+            if ($status == "lost")
+            $headerLienzo->drawImage($valorNombre);  
+            $draw = new \ImagickDraw();
+            $draw->setStrokeColor(new ImagickPixel('white'));
+            $draw->setFillColor(new ImagickPixel('white'));
+            $draw->setStrokeWidth(2);
+            $draw->setFontSize(72);
+            if ($status == "lost")
+            $draw->line(363  - $valorCorreccion, 135, 363  - $valorCorreccion, 155);
+            $headerLienzo->drawImage($draw);
+            $textoRaza = new \ImagickDraw();
+            $textoRaza->setFontSize(22);
+            $textoRaza->setStrokeWidth(2);
+            $textoRaza->setFillColor(new ImagickPixel('white'));
+            $textoRaza->annotation(365 - $valorCorreccion, 155, 'Raza:');  
+            if ($status == "lost")
+            $headerLienzo->drawImage($textoRaza);    
+            $valorRaza = new \ImagickDraw();
+            $valorRaza->setFontSize(24);
+            $valorRaza->setStrokeWidth(2);
+            $valorRaza->setFillColor(new ImagickPixel('white'));
+            $valorRaza->setFontWeight(551);
+            $valorRaza->annotation(423 - $valorCorreccion, 155, ucfirst($race));  
+            if ($status == "lost")
+            $headerLienzo->drawImage($valorRaza);   
+            $factorCorreccionTextoDerecha = 773;
+            $factorCorreccionTituloDerecha = 693;
+            $factorCorreccionLineaDerecha = 690;
+            $largoTextoCentro = strlen($race);
+            $largoTextoCentroCorreccion = 20 - $largoTextoCentro; 
+            $textoGenero = new \ImagickDraw();
+            $textoGenero->setFontSize(22);
+            $textoGenero->setStrokeWidth(2);
+            $textoGenero->setFillColor(new ImagickPixel('white'));
+            //693
+            $textoGenero->annotation($factorCorreccionTituloDerecha - ($largoTextoCentroCorreccion * $metricaCaracter) - $valorCorreccion, 155, 'Género:');                                                                               
+            if ($status == "lost")
+            $headerLienzo->drawImage($textoGenero);  
+            $valorGenero = new \ImagickDraw();
+            $valorGenero->setFontSize(24);
+            $valorGenero->setStrokeWidth(2);
+            $valorGenero->setFillColor(new ImagickPixel('white'));
+            $valorGenero->setFontWeight(551);
+            //773
+            $positionTextoDerecha = $factorCorreccionTextoDerecha - ($largoTextoCentroCorreccion * $metricaCaracter);
+            if (strlen($gender) == 5) {
+                $valorGenero->annotation($positionTextoDerecha - $valorCorreccion, 155, "M");                                                                               
+            } else {
+                $valorGenero->annotation($positionTextoDerecha - $valorCorreccion, 155, "F");                                                                               
+            }            
+            if ($status == "lost")
+            $headerLienzo->drawImage($valorGenero);      
+            $draw = new \ImagickDraw();
+            $draw->setStrokeColor(new ImagickPixel('white'));
+            $draw->setFillColor(new ImagickPixel('white'));
+            $draw->setStrokeWidth(2);
+            $draw->setFontSize(72);
+            //690
+            $positionLineaDerecha = $factorCorreccionLineaDerecha - ($largoTextoCentroCorreccion * $metricaCaracter);
+            if ($status == "lost")
+            $draw->line($positionLineaDerecha - $valorCorreccion, 135, $positionLineaDerecha - $valorCorreccion, 155);
+            $headerLienzo->drawImage($draw);            
+            $draw = new \ImagickDraw();
+            $draw->setStrokeColor(new ImagickPixel('white'));
+            $draw->setFillColor(new ImagickPixel('white'));
+            $draw->setStrokeWidth(2);
+            $draw->setFontSize(72);
+            $draw->line(30, 125, 770, 125);
+            $headerLienzo->drawImage($draw);
+            $footerLienzo = new Imagick();
+            $footerLienzo->newImage(800, 168, new ImagickPixel('white'));
+            $calendarImg = new Imagick("img/calendar.png");
+            $footerLienzo->compositeimage($calendarImg->getimage(), Imagick::COMPOSITE_DEFAULT, 80, 30);
+            $meses = array(
+                "01" => "Enero",
+                "02" => "Febrero",
+                "03" => "Marzo",
+                "04" => "Abril",
+                "05" => "Mayo",
+                "06" => "Junio",
+                "07" => "Julio",
+                "08" => "Agosto",
+                "09" => "Septiembre",
+                "10" => "Octubre",
+                "11" => "Noviembre",
+                "12" => "Diciembre"
+            );            
+            $dia = date("d", strtotime($date));        
+            $anho = date("Y", strtotime($date));        
+            $mesnum = date("m", strtotime($date));        
+            $mes = $meses[$mesnum];
+
+            $valorFecha = new \ImagickDraw();
+            $valorFecha->setFontSize(24);
+            $valorFecha->setFillColor(new ImagickPixel('gray'));
+            $valorFecha->annotation(90, 45, ucfirst($dia . ' ' . $mes . ' ' . $anho));  
+            $footerLienzo->drawImage($valorFecha);
+            $locationImg = new Imagick("img/location.png");
+            $footerLienzo->compositeimage($locationImg->getimage(), Imagick::COMPOSITE_DEFAULT, 400, 30);
+            $valorDireccion = new \ImagickDraw();
+            $valorDireccion->setFontSize(24);
+            $valorDireccion->setFillColor(new ImagickPixel('gray'));
+            $valorDireccion->annotation(435, 45, ucfirst($address));  
+            $footerLienzo->drawImage($valorDireccion);
+            $logoImg = new Imagick("img/logo_2.png");            
+            $footerLienzo->compositeimage($logoImg->getimage(), Imagick::COMPOSITE_DEFAULT, 660, 108);
+            $reportaTexto = new \ImagickDraw();
+            $reportaTexto->setFontSize(20);
+            $reportaTexto->setFillColor(new ImagickPixel('gray'));
+            $reportaTexto->annotation(25, 130, "Reporta mascotas perdidas o encontradas entrando a www.bosco.pe.");  
+            $footerLienzo->drawImage($reportaTexto);
+            $draw2 = new \ImagickDraw();
+            $draw2->setStrokeColor(new ImagickPixel('gray'));
+            $draw2->setFillColor(new ImagickPixel('gray'));
+            $draw2->setStrokeWidth(2);
+            $draw2->setFontSize(72);
+            $draw2->line(30, 100, 770, 100);
+            $footerLienzo->drawImage($draw2);
+            /*$rewardLienzo = new Imagick("recompensa_capa.png");
+            $rewardLienzo->newImage(300, 50, new ImagickPixel('white'));*/
+            $rewardLienzo = new ImagickDraw();
+            $rewardLienzo->setFillColor("rgb(0,0,0)");
+            $rewardLienzo->setFillOpacity(0.7);
+            $rewardLienzo->rectangle(500, 0, 800, 50);
+
+            $phoneLienzo = new ImagickDraw();
+            $phoneLienzo->setFillColor("rgb(0,0,0)");
+            $phoneLienzo->setFillOpacity(0.8);
+            $phoneLienzo->rectangle(0,700,800,800);
+
+            /*$rewardLienzo2 = new Imagick();
+            $rewardLienzo2->newImage(300,50, 'red');
+            $rewardLienzo2->setImageAlphaChannel(Imagick::ALPHACHANNEL_ACTIVATE); // make sure it has an alpha channel
+            $box=$rewardLienzo2->getImageRegion(0,0,300,50);
+            $box->setImageAlphaChannel(Imagick::ALPHACHANNEL_TRANSPARENT);
+            $rewardLienzo2->compositeImage($box,Imagick::COMPOSITE_REPLACE,300,50);*/
+            $im->drawImage($rewardLienzo);
+            $im->drawImage($phoneLienzo);
+            $phoneImg = new Imagick("img/phone.png");            
+            $im->compositeimage($phoneImg->getimage(), Imagick::COMPOSITE_DEFAULT, 200, 735);
+            $phoneTexto = new \ImagickDraw();
+            $phoneTexto->setFontSize(38);
+            $phoneTexto->setFillColor(new ImagickPixel('white'));
+            $phoneTexto->annotation(300, 760, $contact_phone);  
+            $im->drawImage($phoneTexto);    
+            $im->setImageFormat("png");
+            $rewardTexto = new \ImagickDraw();
+            $rewardTexto->setFontSize(24);
+            $rewardTexto->setFillColor(new ImagickPixel('white'));
+            $rewardTexto->annotation(535, 35, "Recompensa: S/. ");  
+            $im->drawImage($rewardTexto);    
+            $rewardTextoValor = new \ImagickDraw();
+            $rewardTextoValor->setFontSize(28);
+            $rewardTextoValor->setFillColor(new ImagickPixel('white'));
+            $rewardTextoValor->annotation(720, 35, $reward);  
+            $im->drawImage($rewardTextoValor);    
+            $lienzo->compositeimage($headerLienzo->getimage(), Imagick::COMPOSITE_COPY, 0, 0);
+            $lienzo->compositeimage($im->getimage(), Imagick::COMPOSITE_COPY, 0, 168);
+            $lienzo->compositeimage($footerLienzo->getimage(), Imagick::COMPOSITE_COPY, 0, 968);
+            $lienzo->writeimage("images/pets/report_".$pet_id.".png");
+            $lienzo->destroy();
+
+            //fin logica del lienzo
+
 
             $photo_data = [
                 'pet_id' => $pet_id,
@@ -183,7 +390,7 @@ class ReportsController extends Controller {
             $location_id=DB::table('locations')->max('id');
             $report_data = [
                 'pet_id' => $pet_id,
-                'date' =>$date." ".$time,
+                'date' =>date_format(\DateTime::createFromFormat("Y-m-d H:i a", $date." ".$time), "Y-m-d H:i"),
                 'last_location_id' => $location_id,
                 'reward' => $reward,
                 'description' => $report_description,
@@ -218,6 +425,200 @@ class ReportsController extends Controller {
                 ];
                 $result = \App\Photo::where('pet_id',$report->pet_id)->update($photo_data);
             }
+
+           //logica del lienzo del flyer
+            $metricaCaracter = 13.2;
+            $largoTotal = 22 + strlen($name) + strlen($race);
+            $centroActual = 11 + strlen($name);
+            $correccion = $largoTotal/2 - $centroActual;
+            $valorCorreccion = $correccion * $metricaCaracter;
+            $im = new Imagick("images/pets/".$report->pet_id.".jpg");
+            $lienzo = new Imagick();
+            $lienzo->newImage(800, 1136, "none");
+            $headerLienzo = new Imagick();
+            $headerLienzo->newImage(800, 168, new ImagickPixel('red'));
+            $headerLienzo->setImageFormat("jpg");
+            $textoPerdido = new \ImagickDraw();
+            $textoPerdido->setFontSize(84);
+            $textoPerdido->setStrokeWidth(3);
+            $textoPerdido->setFillColor(new ImagickPixel('white'));
+            $textoPerdido->annotation(200, 90, 'PERDIDO');
+            $headerLienzo->drawImage($textoPerdido);
+            $factorCorreccionTituloIzquierda = 279; 
+            $factorCorreccionTextoIzquierda = 362; 
+            $largoTextoIzquierda = strlen($name);
+            $textoNombre = new \ImagickDraw();
+            $textoNombre->setFontSize(22);
+            $textoNombre->setStrokeWidth(2);
+            $textoNombre->setFillColor(new ImagickPixel('white'));
+            //15
+            $textoNombre->annotation($factorCorreccionTituloIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion, 155, 'Nombre:');                                                                   
+            $headerLienzo->drawImage($textoNombre);
+            $valorNombre = new \ImagickDraw();
+            $valorNombre->setFontSize(24);
+            $valorNombre->setStrokeWidth(2);
+            $valorNombre->setFillColor(new ImagickPixel('white'));
+            $valorNombre->setFontWeight(551);
+            //98
+            $valorNombre->annotation($factorCorreccionTextoIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion, 155, ucfirst($name));                                                                   
+            $headerLienzo->drawImage($valorNombre);  
+            $draw = new \ImagickDraw();
+            $draw->setStrokeColor(new ImagickPixel('white'));
+            $draw->setFillColor(new ImagickPixel('white'));
+            $draw->setStrokeWidth(2);
+            $draw->setFontSize(72);
+            $draw->line(363  - $valorCorreccion, 135, 363  - $valorCorreccion, 155);
+            $headerLienzo->drawImage($draw);
+            $textoRaza = new \ImagickDraw();
+            $textoRaza->setFontSize(22);
+            $textoRaza->setStrokeWidth(2);
+            $textoRaza->setFillColor(new ImagickPixel('white'));
+            $textoRaza->annotation(365 - $valorCorreccion, 155, 'Raza:');  
+            $headerLienzo->drawImage($textoRaza);    
+            $valorRaza = new \ImagickDraw();
+            $valorRaza->setFontSize(24);
+            $valorRaza->setStrokeWidth(2);
+            $valorRaza->setFontWeight(551);
+            $valorRaza->setFillColor(new ImagickPixel('white'));
+            $valorRaza->annotation(423 - $valorCorreccion, 155, ucfirst($race));  
+            $headerLienzo->drawImage($valorRaza);   
+            $factorCorreccionTextoDerecha = 773;
+            $factorCorreccionTituloDerecha = 693;
+            $factorCorreccionLineaDerecha = 690;
+            $largoTextoCentro = strlen($race);
+            $largoTextoCentroCorreccion = 20 - $largoTextoCentro; 
+            $textoGenero = new \ImagickDraw();
+            $textoGenero->setFontSize(22);
+            $textoGenero->setStrokeWidth(2);
+            $textoGenero->setFillColor(new ImagickPixel('white'));
+            $textoGenero->setFontWeight(551);
+            //693
+            $textoGenero->annotation($factorCorreccionTituloDerecha - ($largoTextoCentroCorreccion * $metricaCaracter) - $valorCorreccion, 155, 'Género:');                                                                               
+            $headerLienzo->drawImage($textoGenero);  
+            $valorGenero = new \ImagickDraw();
+            $valorGenero->setFontSize(24);
+            $valorGenero->setStrokeWidth(2);
+            $valorGenero->setFontWeight(551);
+            $valorGenero->setFillColor(new ImagickPixel('white'));
+            //773
+            $positionTextoDerecha = $factorCorreccionTextoDerecha - ($largoTextoCentroCorreccion * $metricaCaracter);
+            if (strlen($gender) == 5) {
+                $valorGenero->annotation($positionTextoDerecha - $valorCorreccion, 155, "M");                                                                               
+            } else {
+                $valorGenero->annotation($positionTextoDerecha - $valorCorreccion, 155, "F");                                                                               
+            }            
+            $headerLienzo->drawImage($valorGenero);      
+            $draw = new \ImagickDraw();
+            $draw->setStrokeColor(new ImagickPixel('white'));
+            $draw->setFillColor(new ImagickPixel('white'));
+            $draw->setStrokeWidth(2);
+            $draw->setFontSize(72);
+            //690
+            $positionLineaDerecha = $factorCorreccionLineaDerecha - ($largoTextoCentroCorreccion * $metricaCaracter);
+            $draw->line($positionLineaDerecha - $valorCorreccion, 135, $positionLineaDerecha - $valorCorreccion, 155);
+            $headerLienzo->drawImage($draw);            
+            $draw = new \ImagickDraw();
+            $draw->setStrokeColor(new ImagickPixel('white'));
+            $draw->setFillColor(new ImagickPixel('white'));
+            $draw->setStrokeWidth(2);
+            $draw->setFontSize(72);
+            $draw->line(30, 125, 770, 125);
+            $headerLienzo->drawImage($draw);
+            $footerLienzo = new Imagick();
+            $footerLienzo->newImage(800, 168, new ImagickPixel('white'));
+            $calendarImg = new Imagick("img/calendar.png");
+            $footerLienzo->compositeimage($calendarImg->getimage(), Imagick::COMPOSITE_DEFAULT, 80, 30);
+            $meses = array(
+                "01" => "Enero",
+                "02" => "Febrero",
+                "03" => "Marzo",
+                "04" => "Abril",
+                "05" => "Mayo",
+                "06" => "Junio",
+                "07" => "Julio",
+                "08" => "Agosto",
+                "09" => "Septiembre",
+                "10" => "Octubre",
+                "11" => "Noviembre",
+                "12" => "Diciembre"
+            );            
+            $dia = date("d", strtotime($date));        
+            $anho = date("Y", strtotime($date));        
+            $mesnum = date("m", strtotime($date));        
+            $mes = $meses[$mesnum];
+
+            $valorFecha = new \ImagickDraw();
+            $valorFecha->setFontSize(24);
+            $valorFecha->setFillColor(new ImagickPixel('gray'));
+            $valorFecha->annotation(90, 45, ucfirst($dia . ' ' . $mes . ' ' . $anho));  
+            $footerLienzo->drawImage($valorFecha);
+            $locationImg = new Imagick("img/location.png");
+            $footerLienzo->compositeimage($locationImg->getimage(), Imagick::COMPOSITE_DEFAULT, 400, 30);
+            $valorDireccion = new \ImagickDraw();
+            $valorDireccion->setFontSize(24);
+            $valorDireccion->setFillColor(new ImagickPixel('gray'));
+            $valorDireccion->annotation(435, 45, ucfirst($address));  
+            $footerLienzo->drawImage($valorDireccion);
+            $logoImg = new Imagick("img/logo_2.png");            
+            $footerLienzo->compositeimage($logoImg->getimage(), Imagick::COMPOSITE_DEFAULT, 660, 108);
+            $reportaTexto = new \ImagickDraw();
+            $reportaTexto->setFontSize(20);
+            $reportaTexto->setFillColor(new ImagickPixel('gray'));
+            $reportaTexto->annotation(25, 130, "Reporta mascotas perdidas o encontradas entrando a www.bosco.pe.");  
+            $footerLienzo->drawImage($reportaTexto);
+            $draw2 = new \ImagickDraw();
+            $draw2->setStrokeColor(new ImagickPixel('gray'));
+            $draw2->setFillColor(new ImagickPixel('gray'));
+            $draw2->setStrokeWidth(2);
+            $draw2->setFontSize(72);
+            $draw2->line(30, 100, 770, 100);
+            $footerLienzo->drawImage($draw2);
+            /*$rewardLienzo = new Imagick("recompensa_capa.png");
+            $rewardLienzo->newImage(300, 50, new ImagickPixel('white'));*/
+            $rewardLienzo = new ImagickDraw();
+            $rewardLienzo->setFillColor("rgb(0,0,0)");
+            $rewardLienzo->setFillOpacity(0.7);
+            $rewardLienzo->rectangle(500, 0, 800, 50);
+
+            $phoneLienzo = new ImagickDraw();
+            $phoneLienzo->setFillColor("rgb(0,0,0)");
+            $phoneLienzo->setFillOpacity(0.8);
+            $phoneLienzo->rectangle(0,700,800,800);
+
+            /*$rewardLienzo2 = new Imagick();
+            $rewardLienzo2->newImage(300,50, 'red');
+            $rewardLienzo2->setImageAlphaChannel(Imagick::ALPHACHANNEL_ACTIVATE); // make sure it has an alpha channel
+            $box=$rewardLienzo2->getImageRegion(0,0,300,50);
+            $box->setImageAlphaChannel(Imagick::ALPHACHANNEL_TRANSPARENT);
+            $rewardLienzo2->compositeImage($box,Imagick::COMPOSITE_REPLACE,300,50);*/
+            $im->drawImage($rewardLienzo);
+            $im->drawImage($phoneLienzo);
+            $phoneImg = new Imagick("img/phone.png");            
+            $im->compositeimage($phoneImg->getimage(), Imagick::COMPOSITE_DEFAULT, 200, 735);
+            $phoneTexto = new \ImagickDraw();
+            $phoneTexto->setFontSize(38);
+            $phoneTexto->setFillColor(new ImagickPixel('white'));
+            $phoneTexto->annotation(300, 760, $contact_phone);  
+            $im->drawImage($phoneTexto);    
+            $im->setImageFormat("png");
+            $rewardTexto = new \ImagickDraw();
+            $rewardTexto->setFontSize(24);
+            $rewardTexto->setFillColor(new ImagickPixel('white'));
+            $rewardTexto->annotation(535, 35, "Recompensa: S/. ");  
+            $im->drawImage($rewardTexto);    
+            $rewardTextoValor = new \ImagickDraw();
+            $rewardTextoValor->setFontSize(28);
+            $rewardTextoValor->setFillColor(new ImagickPixel('white'));
+            $rewardTextoValor->annotation(720, 35, $reward);  
+            $im->drawImage($rewardTextoValor);    
+            $lienzo->compositeimage($headerLienzo->getimage(), Imagick::COMPOSITE_COPY, 0, 0);
+            $lienzo->compositeimage($im->getimage(), Imagick::COMPOSITE_COPY, 0, 168);
+            $lienzo->compositeimage($footerLienzo->getimage(), Imagick::COMPOSITE_COPY, 0, 968);
+            $lienzo->writeimage("images/pets/report_".$pet_id.".png");
+            $lienzo->destroy();
+
+            //fin logica del lienzo
+
             $ubigeo = \App\Ubigeo::where('department',$department)->where('city',$city)->where('district',$district)->first();
 
             if (! is_object($ubigeo)) {
@@ -234,7 +635,7 @@ class ReportsController extends Controller {
             ];        
             $result = \App\Location::where('id',$report->last_location_id)->update($location_data);
             $report_data = [
-                'date' =>$date." ".$time,
+                'date' =>date_format(\DateTime::createFromFormat("Y-m-d H:i a", $date." ".$time), "Y-m-d H:i"),
 //                'last_location_id' => $location_id,
                 'reward' => $reward,
                 'description' => $report_description,
@@ -250,7 +651,12 @@ class ReportsController extends Controller {
     public function getDownloadReport($status, Request $request) {
         $id = $request->get('reportid');
         $report = Report::getDataReport($id);
-        $view = \Illuminate\Support\Facades\View::make('pdf/download-report-lost', ['report' => $report]);
+        
+        $png_file = public_path().'/images/pets/report_' . $report['pet_id'] . ".png";
+        if(file_exists($png_file)) {
+            return response()->download($png_file);
+        }
+       /* $view = \Illuminate\Support\Facades\View::make('pdf/download-report-lost', ['report' => $report]);
         $contents = $view->render();
         $html_file = storage_path() . '/report.html';
         file_put_contents($html_file, $contents);
@@ -273,14 +679,14 @@ class ReportsController extends Controller {
             $jpg_url = url('report.jpg');
             $imagick->writeImages($jpg_file, false); 
             return response()->download($jpg_file);
-        }
+        }*/
     }
     public function postFacebook(Request $request) {
         $id = $request->get('report_id');
         $user_id = $request->get('user_id');
         $access_token = $request->get('access_token ');
         $report = Report::getDataReport($id);
-        $view = \Illuminate\Support\Facades\View::make('pdf/download-report-lost', ['report' => $report]);
+        /*$view = \Illuminate\Support\Facades\View::make('pdf/download-report-lost', ['report' => $report]);
         $contents = $view->render();
         $html_file = storage_path() . '/report.html';
         file_put_contents($html_file, $contents);
@@ -295,7 +701,7 @@ class ReportsController extends Controller {
         $jpg_file = public_path() . '/report.jpg';
         if(file_exists($jpg_file)) unlink($jpg_file);
         $jpg_url = url('report.jpg');
-        $imagick->writeImages($jpg_file, false); 
+        $imagick->writeImages($jpg_file, false); **/
     	/*$fb = new \Facebook\Facebook([
 	  'app_id' => env('FACEBOOK_APP_ID'),
 	  'app_secret' => env('FACEBOOK_APP_SECRET'),
@@ -320,7 +726,7 @@ class ReportsController extends Controller {
 	  echo 'Facebook SDK returned an error: ' . $e->getMessage();
 	  exit;
 	}*/
-        return response()->json(true);
+        return response()->json($report['pet_id']);
     }
     public function saveReport($received_data, $base64photo) {
         $status = $received_data['pet_status'];
