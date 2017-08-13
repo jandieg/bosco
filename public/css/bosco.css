@@ -158,6 +158,16 @@ input,
   text-align: center;
 }
 
+.header-reporte {
+  background-color: red; 
+  color: white; 
+  font-size: 24px; 
+  border-radius: 10px 10px 0px 0px;
+  -moz-border-radius: 10px 10px 0px 0px;
+  -webkit-border-radius: 10px 10px 0px 0px;
+  border: 0px solid #000000;
+}
+
 .form-submit:hover, 
 .form-reset:hover {
   background: #222222;

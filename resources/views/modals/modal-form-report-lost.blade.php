@@ -93,7 +93,7 @@
   <div class="modal-form-report modal-content">
     <div class="modal-header" style="padding: 0px;">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <div class="modal-form-report-menu" style="background-color: red; color: white; font-size: 24px;">
+      <div class="modal-form-report-menu header-reporte">
         <!--<ul class="text-center">
           <li id="report_tab_1"><span id="tab-1" data-tab="tab-1" class="tab-on"><em>1</em>Mascota</span></li>
           <li id="report_tab_2" onclick="Map_correction();"><span id="tab-2" data-tab="tab-2"><em>2</em>Reporte</span></li>
