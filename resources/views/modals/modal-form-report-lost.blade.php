@@ -257,6 +257,7 @@
             </div>-->
           <!--</div> cierre tab 2 -->
           <!--<div id="form-report-lost-tab-3" class="form-report-lost-tab hide"> cierro tab-->
+          </div>
             <div class="col-lg-12 col-md-12">
               <div class="form-group titulo-reporte">
                 Tus Datos
