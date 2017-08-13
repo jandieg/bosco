@@ -9,21 +9,26 @@
 <div class="row">
     <div class="block-filters clearfix">
         <div class="col-lg-12 col-md-12">
-            <div class="filter-image"></div>
-            <form id="form-pets-filters" class="" action="{{url('filter/mascotas/'.$type) }}" method="POST">
-                <div class="form-group col-md-6 col-lg-6">
-                    <input id="location" type="text" class="form-control" />
+            <div class="form-group col-md-8 col-lg-8">
+                <div class="input-group" id="location-group">
+                    <span class="input-group-addon no-right-border">
+                        <i class="glyphicon glyphicon-map-marker"></i>
+                    </span>
+                    <input id="location" type="text" class="form-control no-left-border large-addon" />
+                    <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
+                    <span class="input-group-addon no-right-border no-right-border modal-handle"
+                        data-toggle="modal" data-target="#distanceModal">
+                        <i class="glyphicon glyphicon-resize-horizontal"></i>
+                    </span>
+                    <input type="button" class="form-control no-left-border no-right-border modal-handle"
+                        value="Rango de busqueda" 
+                        data-toggle="modal" data-target="#distanceModal" />
+                    <span class="input-group-addon no-left-border modal-handle"
+                        data-toggle="modal" data-target="#distanceModal">
+                        <i class="caret"></i>
+                    </span>
                 </div>
-                <div class="form-group col-md-4 col-lg-4">
-                    <div class="dropdown megamenu">
-                        <button class="btn btn-large btn-block btn-default dropdown-toggle"
-                            type="button" data-toggle="modal" data-target="#distanceModal">
-                            Rango de busqueda
-                            <span class="caret"></span>
-                        </button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

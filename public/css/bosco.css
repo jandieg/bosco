@@ -3221,3 +3221,38 @@ margin:0;
 	background-color: #fff;
 	padding: 30px;
 }
+
+#location-group .input-group-addon > i {
+    color: #E63A38;
+}
+
+#location-group > .input-group-addon {
+    background-color: #fff;
+}
+
+.no-right-border {
+    border-right: 0;
+}
+
+.no-left-border {
+    border-left: 0;
+}
+
+#location-group > .large-addon {
+    min-width: 350px;
+}
+
+#location-group .modal-handle {
+    cursor: pointer;
+}
+
+#location-group input[type=button].modal-handle {
+    background-color: #fff;
+}
+
+    #location-group input[type=button].modal-handle:focus {
+        background-color: #fff;
+        outline: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
