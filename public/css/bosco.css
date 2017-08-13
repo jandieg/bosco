@@ -2420,7 +2420,7 @@ footer .block-socialnetwork li a.link-instagran {
     display: flex;
     justify-content: center;
     align-content: center;
-    height: 100vh;
+    /*height: 100vh;*/
     padding: 0;
     flex-direction: row;
     flex-wrap: wrap;
