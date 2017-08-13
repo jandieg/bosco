@@ -32,7 +32,8 @@ function resetScrollPos(selector) {
     }
 }
 
-function postFacebook(id) {    
+function postFacebook(id) {
+    
     
 	FB.login(function(response) {
 	    console.log(response);
@@ -40,7 +41,6 @@ function postFacebook(id) {
         if ($("#fb_comment").val().toString().length > 0) {
             comment = $("#fb_comment").val().toString();
         }
-        var mascota_id = "1";
 	    userID=response.authResponse.userID;
 	    accessToken=response.authResponse.accessToken;
 	        $.ajax({
@@ -53,11 +53,10 @@ function postFacebook(id) {
 		        success: function (result) {
                     $("#facebook-post-success").modal().show();
                     setTimeout(function () { $("#facebook-post-success").modal().hide(); }, 3000);
-                    mascota_id = result;
 		        }
-		    });
+		        });
 	    FB.api('/'+userID+'/photos', 'post', 
-        {   url: window.location.origin + '/images/pets/report_' + mascota_id + '.png',
+        {   url: window.location.origin + '/report.jpg',
             caption: comment,
             access_token: accessToken
         }
@@ -421,7 +420,7 @@ function item_detail_view(id) {
         data: {reportid: id},
         success: function (data) {
             if (data.result) {
-                $('.report-detail-lost-image').html('<img src="/images/pets/report_' + data.report.pet_id + '.png" style="width:500px;height:710px; width: auto; height: auto; display: block;">');
+                $('.report-detail-lost-image').html('<img src="/images/pets/' + data.report.image + '" style="width:500px;height:500px;">');
                 $('.report-detail-lost-address').html(data.report.address);
                 $('.report-detail-lost-phone').html('<a class="report-phone" href="tel:' + data.report.user_phone + '">' + data.report.user_phone + '</a');
                 $('.report-detail-lost-name').html(data.report.name);
@@ -1033,7 +1032,6 @@ reportLostAdd.on('click', function (e) {
     $("#tab-3").html("<em>3</em>Dueño");
     Initialize_Report(); 
     hideMapComponents();
-
     /*var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
     $("#pac-input-div").html(pac_html);*/
 });
@@ -1050,9 +1048,9 @@ reportFoundAdd.on('click', function (e) {
     $("#tab-3").html("<em>3</em>Tus Datos");
     Initialize_Report();  
     hideMapComponents();
-              
     /*var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
     $("#pac-input-div").html(pac_html);*/
+
 });
 $('#report_tab_1').on('click', function () {
     var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
@@ -1075,34 +1073,26 @@ function Initialize_Report()
     $('#lost_pet_description').val('');
     $('#datepicker').val('');
     $('#timepicker').val('');
-    $('#pac-input').val('');
+    /*$('#pac-input').val('');
     $('#pac-address').val('');
-    $("#lat").val('');
-    $("#lng").val('');
+    $('#pac-department').val('');
+    $('#pac-city').val('');
+    $('#pac-district').val('');
+    $('#pac-postal_code').val('');
+    $('#pac-latitude').val('');
+    $('#pac-longitude').val('');*/
     $('#lost_pet_report_description').val('');
     $('#lost_pet_reward').val('');
     if (lost_marker)
         lost_marker.setMap(null);
-    lost_marker = new google.maps.Marker({
-        position: { lat: init_latitude, lng: init_longitude },
-        draggable: true,
-        animation: google.maps.Animation.DROP,
-    });
-    lost_marker.setMap(lost_map);
-    lost_map.addListener('click', toggleBounce);
-    lost_map.setCenter(new google.maps.LatLng(latitude, longitude));
-    lost_map.setZoom(15);
-//    if (lost_marker)
-  //      lost_marker.setMap(null);
     /*lost_marker = new google.maps.Marker({
         position: {lat: latitude, lng: longitude},
         draggable: true,
         animation: google.maps.Animation.DROP,
     });
     */
-
     
-    /*geocoder = new google.maps.Geocoder();
+    geocoder = new google.maps.Geocoder();
     lost_marker.setMap(lost_map);
     //lost_map.addListener('click', toggleBounce);
     lost_map.setCenter(new google.maps.LatLng(latitude, longitude));
@@ -1110,10 +1100,8 @@ function Initialize_Report()
     $('.inputsAddress input').filter('[required]').keyup(startPoll);
     $('#dist').on('change', geocodeAddress);
     $('#city').on('change', geocodeAddressCity);
-    $('#dep').on('change', geocodeAddressDep);*/
+    $('#dep').on('change', geocodeAddressDep);
 }
-
-
 
 var reportTypeChange = $('input[type=radio][name=pet_status]');
 reportTypeChange.on('change', function() {
@@ -1175,48 +1163,6 @@ submitContact.on('click', function(e){
 var submitReport = $('.btn-submit-report');
 submitReport.on('click', function (e) {
     e.preventDefault();
-    
-    if ($("#lost_pet_name").val().length == 0 && $("#pet_found_radio").val() == "lost") {
-        alert('Debe ingresar el nombre de la mascota' + $("#lost_pet_name").text());
-        return false;
-    }
-
-    if ($("#lost_pet_race").val().length == 0 && $("#pet_found_radio").val() == "lost") {
-        alert('Debe ingresar la raza de la mascota');
-        return false;
-    }
-
-    if ($("#lost_pet_description").val().length == 0) {
-        alert('Debe ingresar la descripcion de la mascota');
-        return false;
-    }
-
-    var cropper = $('.preview-img').attr('style');//$('#cropper-image').cropper('getCroppedCanvas');        
-    if (cropper == null) {
-        alert('Debe ingresar la imagen de la mascota');
-        return false;
-    }    
-
-    if ($("#datepicker").val().length == 0) {
-        alert('Debe ingresar la fecha de desaparicion de la mascota');
-        return false;
-    }
-
-    if ($("#timepicker").val().length == 0) {
-        alert('Debe ingresar la hora de desaparicion de la mascota');
-        return false;
-    }
-
-    /*if ($("#lost_pet_report_description").val().length == 0 && $("#pet_found_radio").val() == "lost") {
-        alert('Debe ingresar la descripcion del reporte');
-        return false;
-    }*/
-
-    if ($("#pac-address").val().length == 0) {
-        alert('Debe seleccionar la calle');
-        return false;
-    }
-    
     if ($("input[name='lost_pet_owner_name']").val().length == 0) {
         alert("Debe ingresar el nombre del propietario");
         return false;
@@ -1238,12 +1184,12 @@ submitReport.on('click', function (e) {
     if($(".preview-img").css('background-image')=='' && !cropcanvas && $('#report_id').val()=='') {
     submitReport.html('Finalizar');
 	alert('Elija una imagen del animal doméstico en su computadora, por favor');    
-	/*$("#form-report-lost-tab-1").removeClass('hide');
+	$("#form-report-lost-tab-1").removeClass('hide');
 	$("#form-report-lost-tab-2").addClass('hide');
 	$("#form-report-lost-tab-3").addClass('hide');
 	$("#tab-1").addClass('tab-on');
 	$("#tab-2").removeClass('tab-on');
-	$("#tab-3").removeClass('tab-on');*/
+	$("#tab-3").removeClass('tab-on');
 	return false;
     }
     //var address = $("#pac-address").val();
@@ -1396,7 +1342,7 @@ function initMap() {
     });
 
     
-    google.maps.event.addListener(lost_map, 'rightclick', function (e) {
+    /*google.maps.event.addListener(lost_map, 'rightclick', function (e) {
         lat = e.latLng.lat();
         lon = e.latLng.lng();
         lost_marker.setMap(null);
@@ -1418,7 +1364,7 @@ function initMap() {
         });
         displayLocation(lat, lon, lost_map);
     });
-    
+    */
     detail_map = new google.maps.Map(document.getElementById('pet-detail-map'), {
         center: {lat: init_latitude, lng: init_longitude},
         zoom: 15,
@@ -1447,8 +1393,8 @@ function initMap() {
     });
     
       // Create the search box and link it to the UI element.
-    var input = document.getElementById('pac-input');    
-    var searchBox = new google.maps.places.SearchBox(input);
+    /*var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);*/
   //  lost_map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     // Bias the SearchBox results towards current map's viewport.
@@ -1459,7 +1405,7 @@ function initMap() {
     var markers = [];
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
-    searchBox.addListener('places_changed', function () {
+  /*  searchBox.addListener('places_changed', function () {
         var places = searchBox.getPlaces();
 
         if (places.length == 0) {
@@ -1479,17 +1425,13 @@ function initMap() {
 	        google.maps.event.addListener(lost_marker, 'dragend', function (e) {
 	            lat = e.latLng.lat();
 	            lon = e.latLng.lng();
-                $("#lat").val(lat);
-                $("#lng").val(lon);
-	            //displayLocation(lat, lon, lost_map);
+	            displayLocation(lat, lon, lost_map);
 	        });
 	        lost_marker.setMap(lost_map);
 	        google.maps.event.addListener(lost_marker, 'dragend', function (e) {
 	            lat = e.latLng.lat();
 	            lon = e.latLng.lng();
-                $("#lat").val(lat);
-                $("#lng").val(lon);
-	            //displayLocation(lat, lon, lost_map);
+	            displayLocation(lat, lon, lost_map);
         	});        	
         	displayLocation(lat, lon, lost_map);
         }
@@ -1498,7 +1440,7 @@ function initMap() {
             alert('Hay varias direcciones con el mismo nombre que el texto de entrada');
             return;
         }
-    });
+    });*/
 }
 
 
@@ -1520,16 +1462,14 @@ function displayLocation(latitude, longitude, map) {
                         var city = extractFromAdress(results[0].address_components, "locality");
                         var department = extractFromAdress(results[0].address_components, "administrative_area_level_2");
                         var country = extractFromAdress(results[0].address_components, "country");
-                        document.getElementById('pac-address').value = district + " " + street_number;
-                        /*document.getElementById('pac-department').value = department;
+                        document.getElementById('pac-input').value = street_number + " " + district + " " + city + " " + department;
+                        document.getElementById('pac-department').value = department;
                         document.getElementById('pac-city').value = city;
-                        document.getElementById('pac-district').value = district;*/
-                        $("#lat").val(latitude);
-                        $("#lng").val(longitude);
-                        /*document.getElementById('pac-address').value = street_number + " " + district + " " + city + " " + department;
+                        document.getElementById('pac-district').value = district;
+                        document.getElementById('pac-address').value = street_number + " " + district + " " + city + " " + department;
                         document.getElementById('pac-latitude').value = latitude;
                         document.getElementById('pac-longitude').value = longitude;
-                        document.getElementById('pac-postal_code').value = postal_code;*/
+                        document.getElementById('pac-postal_code').value = postal_code;
                     } else {
                         document.getElementById('pac-input').value.innerHTML = "address not found";
                     }
@@ -1647,10 +1587,10 @@ function geocodeAddress() {
     var address = $('#street').val();
     //if (!isNull(address)) address += ' ' + $('#num').val();
     //if (!isNull($('#urb').val())) address += ',' + $('#urb').val();
-   /* if (!isNull($("#dist option:selected").text())) address += ',' + $("#dist option:selected").text();
+    if (!isNull($("#dist option:selected").text())) address += ',' + $("#dist option:selected").text();
     if ($("#city option:selected").text()) address += ',' + $("#city option:selected").text();
     if ($("#dep option:selected").text()) address += ',' + $("#dep option:selected").text();
-*/
+
     if (!isNull(address)) {
         
         geocoder.geocode({ 'address': address + ',Peru' }, function (results, status) {
@@ -1668,10 +1608,10 @@ function geocodeAddress() {
     }
 }
 
-$("#pac-input").on("blur", function () {
+/*$("#pac-input").on("blur", function () {
     var address = $(this).val();
     $("#pac-address").val(address);
-});
+});*/
 function extractFromAdress(components, type) {
     for (var i = 0; i < components.length; i++)
         for (var j = 0; j < components[i].types.length; j++)
@@ -1898,32 +1838,18 @@ $('#modal-cropper').on('shown.bs.modal', function () {
 $('#form-report-lost').on('shown.bs.modal', function () {
 //    alert();
 }).on('hidden.bs.modal', function () {
-   /* $("#form-report-lost-tab-1").removeClass('hide');
+    $("#form-report-lost-tab-1").removeClass('hide');
     $("#form-report-lost-tab-2").addClass('hide');
     $("#form-report-lost-tab-3").addClass('hide');
     $("#tab-1").addClass('tab-on');
     $("#tab-2").removeClass('tab-on');
-    $("#tab-3").removeClass('tab-on');*/
-    });
-var menuOn;
+    $("#tab-3").removeClass('tab-on');
+});
 $('.edit_menu').on('mouseover', function () {
-    $(this).next().show();    
-})
-$('.edit_menu').on('mouseleave', function () {
-   var that = $(this);
-    setTimeout(function () {
-        if (!menuOn) {
-            that.next().hide();
-            menuOn = false;
-        }
-    }, 500);
+    $(this).next().show();
 })
 $('.edit_menu_div').on('mouseleave', function () {
     $(this).hide();
-    menuOn = false;
-})
-$('.edit_menu_div').on('mouseover', function () {
-    menuOn = true;
 })
 $('#pet_lost_radio').on('click', function () {
     $("#form-report-lost").find('#name_div').show();
