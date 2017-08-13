@@ -24,9 +24,8 @@
         }
     }
 
-    google.maps.event.addDomListener(window, 'load', initialize);
-    function initialize() {
-        var options = { country: 'pe' };
+    initMap = function () {
+        var options = { componentRestrictions: { country: 'pe' } };
         var autocomplete = new google.maps.places.Autocomplete(document.getElementById('location'), options);
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
             var place = autocomplete.getPlace();

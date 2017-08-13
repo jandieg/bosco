@@ -37,7 +37,7 @@
     <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/cropper.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bosco.js') }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFGaR0UF3iVMDALypSjPLXENovKdecVpo&libraries=places&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?language=es&key=AIzaSyDFGaR0UF3iVMDALypSjPLXENovKdecVpo&libraries=places&callback=initMap"
         async defer></script>
 
     @section('js')@show

@@ -1,9 +1,11 @@
 ﻿<!-- Block Filters -->
+@section('js')
 <link href="../css/bootstrap-slider.min.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap-slider.min.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script type="text/javascript" src="../js/mascotas.js"></script>
+@endsection
+
 <div class="row">
     <div class="block-filters clearfix">
         <div class="col-lg-12 col-md-12">
