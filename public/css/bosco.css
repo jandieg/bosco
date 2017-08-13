@@ -3248,6 +3248,7 @@ margin:0;
 
 #location-group input[type=button].modal-handle {
     background-color: #fff;
+    text-align: left;
 }
 
     #location-group input[type=button].modal-handle:focus {
