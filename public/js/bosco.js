@@ -1031,6 +1031,7 @@ reportLostAdd.on('click', function (e) {
     $('.encontrado').show();
     $("#tab-3").html("<em>3</em>Dueño");
     Initialize_Report(); 
+    hideMapComponents();
     /*var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
     $("#pac-input-div").html(pac_html);*/
 });
@@ -1045,17 +1046,11 @@ reportFoundAdd.on('click', function (e) {
     //$("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
     $('.encontrado').hide();
     $("#tab-3").html("<em>3</em>Tus Datos");
-<<<<<<< HEAD
     Initialize_Report();  
     hideMapComponents();
-              
     /*var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
     $("#pac-input-div").html(pac_html);*/
-=======
-    Initialize_Report();                
-    var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
-    $("#pac-input-div").html(pac_html);
->>>>>>> 511513fc3ae2ab5d5984eee6f1a7c19175bb56c7
+
 });
 $('#report_tab_1').on('click', function () {
     var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
