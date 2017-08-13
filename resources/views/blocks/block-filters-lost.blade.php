@@ -32,7 +32,7 @@
                 <h3 class="modal-title">
                     <span id="distanceHeading">1000</span>&nbsp;metros
                 </h3>
-                <h4>Radio de büsqueda desde la ubicación seleccionada</h4>
+                <h4>Radio de búsqueda desde la ubicación seleccionada</h4>
                 <br />
             </div>
             <div class="modal-body">

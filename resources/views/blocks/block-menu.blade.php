@@ -23,15 +23,19 @@
                 </button>
               </div>
               <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav text-center">
-                  <li class="first">
+                <ul class="nav navbar-nav text-center" >
+                  <li style="{{ (Request::is('/'))  ? 'display:none;' : '' }}">
+                <div>
+					<a href="{{ url('/mis-reportes')}}" style="border-radius: 30px;background-color: #E63A38;color:#fff;padding: 8px 12px;text-align: center;" >Reportar</a>
+					</div>
+                  </li>
+				  <li class="first" >
                     <a href="{{ url('/mascotas')}}" {{ (Request::is('mascotas') || Request::is('mascotas/*'))  ? ' class = "active"' : null }}>Mascotas perdidas</a>
                   </li>
-                  <li>
+                  <li >
                     <a href="{{ url('/como-funciona')}}" {{ (Request::is('como-funciona') || Request::is('como-funciona/*'))  ? ' class = "active"' : null }}>¿Quiénes somos?</a>
                   </li>
-                  <li class="last">
-                   <!-- <a href="{{ url('/ayuda')}}" {{ (Request::is('ayuda') || Request::is('ayuda/*'))  ? ' class = "active"' : null }}>Ayuda</a>-->
+                  <li class="last" >
                      <a href="{{url('/contactanos')}}">Contáctanos</a>
                   </li>
                   <li data-toggle="modal" class="menu-item-session">
