@@ -30,10 +30,9 @@ class ReportsController extends Controller {
             'departments' => $departments,
             'user' => Auth::user()
                 ]
-        );
-    
-    
+        );        
     }
+
     public function delete_report(Request $request)
     {
         $report_id = $request->get('report_id');
@@ -322,6 +321,7 @@ class ReportsController extends Controller {
             $box=$rewardLienzo2->getImageRegion(0,0,300,50);
             $box->setImageAlphaChannel(Imagick::ALPHACHANNEL_TRANSPARENT);
             $rewardLienzo2->compositeImage($box,Imagick::COMPOSITE_REPLACE,300,50);*/
+            if (strlen($reward) > 0) 
             $im->drawImage($rewardLienzo);
             $im->drawImage($phoneLienzo);
             $phoneImg = new Imagick("img/phone.png");            
@@ -336,11 +336,13 @@ class ReportsController extends Controller {
             $rewardTexto->setFontSize(24);
             $rewardTexto->setFillColor(new ImagickPixel('white'));
             $rewardTexto->annotation(535, 35, "Recompensa: S/. ");  
+            if (strlen($reward) > 0) 
             $im->drawImage($rewardTexto);    
             $rewardTextoValor = new \ImagickDraw();
             $rewardTextoValor->setFontSize(28);
             $rewardTextoValor->setFillColor(new ImagickPixel('white'));
             $rewardTextoValor->annotation(720, 35, $reward);  
+            if (strlen($reward) > 0) 
             $im->drawImage($rewardTextoValor);    
             $lienzo->compositeimage($headerLienzo->getimage(), Imagick::COMPOSITE_COPY, 0, 0);
             $lienzo->compositeimage($im->getimage(), Imagick::COMPOSITE_COPY, 0, 168);
