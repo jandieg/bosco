@@ -31,7 +31,7 @@
         </div>
     </div>
 </div>
-<div id="distanceModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+<div id="distanceModal" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
