@@ -1866,12 +1866,18 @@ $('#cropper-confirm').on('click', function () {
         datosimg = canvas.toDataURL("image/jpeg");
         $('#cropper-image').cropper('clear');
         $('#cropper-image').cropper('destroy');
+        $('#cropper-image').cropper('reset');
         $('#cropper-image').removeAttr('src');
     
         $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + datosimg + ')');
         $('.upload-image-lost-preview').show();
         $('#lost_pet_file').parent().hide();
         $('#modal-cropper .modal-header button').trigger('click');
+        $('#cropper-image').cropper({
+            crop: function (e) {
+                console.log(e);
+            }
+        });
     /*} else {
         $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + cropper.toDataURL() + ')');
         $('.upload-image-lost-preview').show();
@@ -1894,6 +1900,7 @@ $('#modal-cropper').on('shown.bs.modal', function () {
             $dataWidth.val(Math.round(e.width));
         },
         done: function (data) {
+            $('#cropper-image').cropper('destroy');
             // Output the result data for cropping image.
         }
     });
