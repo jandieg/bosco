@@ -91,21 +91,28 @@
 </style>
 <div id="form-report-lost" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
   <div class="modal-form-report modal-content">
-    <div class="modal-header">
+    <div class="modal-header" style="padding: 0px;">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <div class="modal-form-report-menu">
-        <ul class="text-center">
+      <div class="modal-form-report-menu header-reporte">
+        <!--<ul class="text-center">
           <li id="report_tab_1"><span id="tab-1" data-tab="tab-1" class="tab-on"><em>1</em>Mascota</span></li>
           <li id="report_tab_2" onclick="Map_correction();"><span id="tab-2" data-tab="tab-2"><em>2</em>Reporte</span></li>
           <li id="report_tab_3"><span id="tab-3" data-tab="tab-3"><em>3</em>Tus datos</span></li>
-        </ul>
+        </ul>-->
+        <div class="text-center" style="vertical-align: middle;">
+          Reporta en tres pasos
+        </div>
       </div>
     </div>
     <div class="modal-body" style='height:420px; overflow-y: auto;'>
       <form id="form-report-lost-form" action="" method="post">
         <div class="row">
-          <div id="form-report-lost-tab-1" class="form-report-lost-tab">
-            <div class="col-lg-6 col-md-6">
+          <!-- <div id="form-report-lost-tab-1" class="form-report-lost-tab"> cierre tab 1 -->
+            
+            <div class="col-lg-12 col-md-12">
+              <div class="form-group titulo-reporte">
+                Mascota
+              </div>
               <div class="form-group">
                 <label>Estado</label>
                 <div class="pet-type">
@@ -118,11 +125,11 @@
               </div>
               <div class="form-group encontrado" id="name_div" style="margin-bottom: 32px;">
                 <label>Nombre de mascota</label>
-                <input type="text" name="lost_pet_name" id="lost_pet_name" class="form-control">
+                <input type="text" name="lost_pet_name" id="lost_pet_name" class="form-control" maxlength="20">
               </div>
               <div class="form-group  encontrado" style="margin-bottom: 32px;">
                 <label>Raza</label>
-                <input type="text" name="lost_pet_race" id="lost_pet_race" class="form-control">
+                <input type="text" name="lost_pet_race" id="lost_pet_race" class="form-control" maxlength="20">
                 <!--select class="form-control" name="lost_pet_race" id="lost_pet_race">
                   <option value="dog">Perro</option>
                   <option value="cat">Gato</option>
@@ -136,7 +143,7 @@
                 </select>
               </div>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-12 col-md-12">
               <div class="form-group">
                 <label>Foto</label>
                 <div class="btn-block clearfix">
@@ -153,17 +160,31 @@
                 <textarea  placeholder="150 caracteres max"  name="lost_pet_description" id="lost_pet_description" class="form-control" rows="5"></textarea>
               </div>
             </div>
-            <div class="col-lg-12 col-md-12 center-block">
+            <!--<div class="col-lg-12 col-md-12 center-block">
               <div class="form-group form-actions">
                 <button id="goto_map_tab" type="button" data-tab="tab-2" class="btn btn-primary btn-button btn-lg btn-next">Siguiente</button>
               </div>
-            </div>
-          </div>
-          <div id="form-report-lost-tab-2" class="form-report-lost-tab hide">
+            </div>-->
+          <!--</div> cierre tab 1-->
+          <!--<div id="form-report-lost-tab-2" class="form-report-lost-tab hide">-->
             
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-12 col-md-12">
+              <div class="form-group titulo-reporte">
+                Reporte
+              </div>
+              <div class="form-group">
+                <label>Fecha y hora de desaparición</label>
+                <div class="clearfix">
+                  <div class="input-group form-date date">
+                    <input type='text' name="lost_pet_date" class="form-control" id='datepicker'/>
+                  </div>
+                  <div class="input-group form-time date">
+                    <input type='text' name="lost_pet_time" class="form-control" id='timepicker'/>
+                  </div>
+                </div>
+              </div>
               <div class="form-group">              
-                <label>Última vez visto</label>                
+               <!-- <label>Última vez visto</label>                
                 <div class="inputsAddress">               
                <div class="form-group">
                 <div class="col-md-12">
@@ -196,9 +217,7 @@
                   </select>
                   </label>
                </div>    
-               </div>
-               <div class="form-group">
-                </div>           
+               </div>                      
                  <div class="form-group">
                  <div class="col-md-12">
                  <label for="street">
@@ -210,37 +229,39 @@
               </div>
               </div>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-12 col-md-12">
               <div class="form-group">
               <input type ="hidden" id="lat" name="pet-lost-lat" />
                 <input type ="hidden" id="lng" name="pet-lost-lng" />            
-                <div id="pet-lost-map" style="width:100%;height:100px;">
+                <div id="pet-lost-map" style="width:100%;height:200px;">
                  </div>
               </div>
-              <div class="form-group">
-                <label>Fecha y hora de desaparición</label>
-                <div class="clearfix">
-                  <div class="input-group form-date date">
-                    <input type='text' name="lost_pet_date" class="form-control" id='datepicker'/>
-                  </div>
-                  <div class="input-group form-time date">
-                    <input type='text' name="lost_pet_time" class="form-control" id='timepicker'/>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group encontrado">
+              
+              <!--<div class="form-group encontrado">
                 <label>¿Cómo se perdió?</label>               
                 <textarea placeholder="150 caracteres max" name="lost_pet_report_description" id="lost_pet_report_description" class="form-control" rows="4"></textarea>
-              </div>
+              </div>-->
+              <label>Calle</label>
+                <div id='pac-input-div'><input type="text" id="pac-input" class="form-control" placeholder="Ingresa la dirección donde se perdió o arrastra el PIN"></div>
+                <input type="hidden" name="pet-lost-address" id="pac-address" class="form-control">                
+                <input type="hidden" name="pet-lost-lat" id="lat" class="form-control">
+                <input type="hidden" name="pet-lost-lng" id="lng" class="form-control">
+                <input type="hidden" name="lost_pet_postal_code" id="pac-postal_code" class="form-control">
+                <div id="pet-lost-map" style="width:100%;height:300px;">
+                 </div>
             </div>
-            <div class="col-lg-12 col-md-12 center-block">
+            <!--<div class="col-lg-12 col-md-12 center-block">
               <div class="form-group form-actions">
                 <button type="button" data-tab="tab-3" class="btn btn-primary btn-button btn-lg btn-next">Siguiente</button>
               </div>
-            </div>
+            </div>-->
+          <!--</div> cierre tab 2 -->
+          <!--<div id="form-report-lost-tab-3" class="form-report-lost-tab hide"> cierro tab-->
           </div>
-          <div id="form-report-lost-tab-3" class="form-report-lost-tab hide">
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-12 col-md-12">
+              <div class="form-group titulo-reporte">
+                Tus Datos
+              </div>
               <div class="form-group">
                 <label>Nombre de dueño</label>
                 <input type="text" id="el_dueno" name="lost_pet_owner_name" class="form-control" value="{{ Auth::user()? Auth::user()->name:'' }}">
@@ -257,19 +278,23 @@
                 </div>                
               </div>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-12 col-md-12">
               <div class="form-group">
                 <label>Email de contacto</label>
                 <input type="text" name="lost_pet_contact_email" class="form-control" value="{{ Auth::user()? Auth::user()->email:'' }}">
               </div>
             </div>
             <div class="col-lg-12 col-md-12 center-block">
-              <div class="form-group form-actions">
-                <button type="button" data-dismiss="modal" aria-hidden="true" class="btn btn-primary btn-button btn-lg btn-submit-report">Finalizar</button>
+              <div class="form-group form-actions row">     
+                <div class="col-md-6 col-sm-12">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="btn btn-primary btn-button btn-lg btn-submit-report">Finalizar</button>
+                </div>           
+                <div class="col-md-6 col-sm-12">
+                  <button data-dismiss="modal" aria-hidden="true" type="button" class="btn btn-primary btn-button btn-lg close" style="color: black !important; background: white !important; border: 1px solid lightgray; text-align: center; float: initial; opacity: 1;" >Cancelar</button>                
+                </div>                                                             
               </div>
             </div>
-          </div>
-       
+          <!--</div> cierre tab 3 -->       
       </div>
            </form>
     </div>

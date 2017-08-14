@@ -30,13 +30,13 @@ class AuthController extends Controller
         if(Auth::attempt(['email'=>$request->get('email'), 'password'=>$request->get('password')],$request->get('remember'))){
             return response()->json([
                 'status' => true,
-                'message' => utf8_encode('La direcci��n de correo electr��nico ya existe! Por favor Iniciar sesi��n'),
+                'message' => utf8_encode(''),
                 'url' => url('mis-reportes')
             ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
         }
         return response()->json([
             'status' => false,
-            'errors' => utf8_encode('El correo electr��nico y la contrase�0�9a no coinciden entre s��!')
+            'errors' => utf8_encode('El correo electronico y la contrasena no coinciden entre si!')
         ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
     
