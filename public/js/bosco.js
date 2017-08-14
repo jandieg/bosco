@@ -1033,7 +1033,7 @@ reportLostAdd.on('click', function (e) {
     $("#tab-3").html("<em>3</em>Dueño");
     Initialize_Report(); 
     $('#cropper-image').attr('src', '');
-    $('#cropper-image').cropper('clear');
+    $('#cropper-image').cropper('reset');
     $('#cropper-image').cropper('destroy');
     hideMapComponents();
 
@@ -1053,7 +1053,7 @@ reportFoundAdd.on('click', function (e) {
     $("#tab-3").html("<em>3</em>Tus Datos");
     Initialize_Report();  
     $('#cropper-image').attr('src', '');
-    $('#cropper-image').cropper('clear');
+    $('#cropper-image').cropper('reset');
     $('#cropper-image').cropper('destroy');
     hideMapComponents();
               
@@ -1873,11 +1873,7 @@ $('#cropper-confirm').on('click', function () {
         $('.upload-image-lost-preview').show();
         $('#lost_pet_file').parent().hide();
         $('#modal-cropper .modal-header button').trigger('click');
-        $('#cropper-image').cropper({
-            crop: function (e) {
-                console.log(e);
-            }
-        });
+        
     /*} else {
         $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + cropper.toDataURL() + ')');
         $('.upload-image-lost-preview').show();
@@ -1908,17 +1904,35 @@ $('#modal-cropper').on('shown.bs.modal', function () {
 }).on('hidden.bs.modal', function () {
     // cropBoxData = $image.cropper('getCropBoxData');
     // canvasData = $image.cropper('getCanvasData');
-    $('#cropper-image').cropper('destroy');
+    $('#cropper-image').cropper('unbuild');
 });
 $('#form-report-lost').on('shown.bs.modal', function () {
 //    alert();
 }).on('hidden.bs.modal', function () {
+    console.log('esta entrando');
+    $("#lost_pet_file").filestyle('clear');
+    $('#cropper-image').cropper('unbuild');
+    $('#cropper-image').removeData('cropper');
+    $("#cropper-image").removeClass('cropper-hidden');
+    $('#cropper-image').cropper('destroy');
+    $('#cropper-image').cropper('reset');
    /* $("#form-report-lost-tab-1").removeClass('hide');
     $("#form-report-lost-tab-2").addClass('hide');
     $("#form-report-lost-tab-3").addClass('hide');
     $("#tab-1").addClass('tab-on');
     $("#tab-2").removeClass('tab-on');
     $("#tab-3").removeClass('tab-on');*/
+    $('#cropper-image').cropper({
+        crop: function (e) {
+            console.log(e);
+        },
+        done: function (data) {
+            $('#cropper-image').cropper('unbuild');
+            $('#cropper-image').cropper('destroy');
+            // Output the result data for cropping image.
+        }
+    });
+    $('#cropper-image').cropper('destroy');
     });
 var menuOn;
 $('.edit_menu').on('mouseover', function () {
