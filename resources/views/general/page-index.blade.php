@@ -8,8 +8,16 @@
       <div class="block-video">
         <div class="arrow-down"></div>
         <div class="block-video-content">
-          <p>Un amor tan grande, no merece ser separado</p>
-          <a href="mis-reportes" class="btn btn-video">Reportar mascota</a>
+        <div class="row">
+          <div class="col-md-12">
+            <p>Un amor tan grande, no merece ser separado</p>
+          </div>
+          <div class="col-md-12">
+            <a href="mis-reportes" class="btn btn-video">Reportar mascota</a>
+          </div>
+        </div>
+          
+          
         </div>
       </div>
     </div>

@@ -1032,6 +1032,9 @@ reportLostAdd.on('click', function (e) {
     $('.encontrado').show();
     $("#tab-3").html("<em>3</em>Dueño");
     Initialize_Report(); 
+    $('#cropper-image').attr('src', '');
+    $('#cropper-image').cropper('clear');
+    $('#cropper-image').cropper('destroy');
     hideMapComponents();
 
     /*var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
@@ -1049,6 +1052,9 @@ reportFoundAdd.on('click', function (e) {
     $('.encontrado').hide();
     $("#tab-3").html("<em>3</em>Tus Datos");
     Initialize_Report();  
+    $('#cropper-image').attr('src', '');
+    $('#cropper-image').cropper('clear');
+    $('#cropper-image').cropper('destroy');
     hideMapComponents();
               
     /*var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
@@ -1274,6 +1280,7 @@ submitReport.on('click', function (e) {
     croppng = datosimg;
     $('#cropper-image').cropper('clear');
     $('#cropper-image').cropper('destroy');
+    $('#cropper-image').removeAttr('src');
     $.ajax({
         type: "POST",
         url: window.location.origin + '/mis-reportes-registrar',
@@ -1859,6 +1866,7 @@ $('#cropper-confirm').on('click', function () {
         datosimg = canvas.toDataURL("image/jpeg");
         $('#cropper-image').cropper('clear');
         $('#cropper-image').cropper('destroy');
+        $('#cropper-image').removeAttr('src');
     
         $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + datosimg + ')');
         $('.upload-image-lost-preview').show();
