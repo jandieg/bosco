@@ -158,6 +158,8 @@ input,
   text-align: center;
 }
 
+
+
 .header-reporte {
   background-color: red; 
   color: white; 
@@ -1054,6 +1056,15 @@ a.btn-video:hover {
   border-right: 1px solid #b7b7b7;
 }
 @media only screen and (max-width: 768px) {
+  .centradas { 
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 	.block-reports-lost {
 		border-right: 0;
 	}
