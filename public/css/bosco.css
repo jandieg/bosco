@@ -1072,14 +1072,15 @@ a.btn-video:hover {
 @media only screen and (max-width: 409px) {
   .centradas li {
     width: 80vw;
-    height: 85vw;
+    height: 120vw;
   }
   .centradas li a{
     width: 80vw;
-    height: 70vw;
+    height: 105vw;
   }
   .centradas li a img{ 
     width: 80vw !important;
+    height: 80vw !important;
   }  
 
 }
