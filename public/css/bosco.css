@@ -1069,8 +1069,20 @@ a.btn-video:hover {
 		border-right: 0;
 	}
 }
+@media only screen and (max-width: 409px) {
+  .centradas li {
+    width: 80vw;
+    height: 85vw;
+  }
+  .centradas li a{
+    width: 80vw;
+    height: 70vw;
+  }
+  .centradas li a img{ 
+    width: 80vw !important;
+  }  
 
-
+}
 
 .block-reports li {
   display: block;
