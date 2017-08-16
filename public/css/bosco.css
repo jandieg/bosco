@@ -2420,6 +2420,7 @@ footer .block-socialnetwork li a.link-instagran {
     display: flex;
     justify-content: center;
     align-content: center;
+    align-items: center;
     /*height: 100vh;*/
     padding: 0;
     flex-direction: row;
@@ -2808,6 +2809,7 @@ footer .block-socialnetwork li a.link-instagran {
     display: flex;
     justify-content: center;
     align-content: center;
+    align-items: center;
     height: 100vh;
     padding: 0;
     flex-direction: row;
@@ -2890,6 +2892,7 @@ footer .block-socialnetwork li a.link-instagran {
     display: flex;
     justify-content: center;
     align-content: center;
+    align-items: center;
     height: 100vh;
     padding: 0;
     flex-direction: row;
@@ -2972,6 +2975,7 @@ footer .block-socialnetwork li a.link-instagran {
     display: flex;
     justify-content: center;
     align-content: center;
+    align-items: center;
     height: 100vh;
     padding: 0;
     flex-direction: row;
