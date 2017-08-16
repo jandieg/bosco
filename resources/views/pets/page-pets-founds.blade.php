@@ -27,7 +27,7 @@
     <div class="row">
       <div id="block-gallery-founds" class="block-gallery clearfix">
         <div class="view-content">
-          <ul class="pets-list text-left">
+          <ul class="pets-list text-left centradas">
         @if(!empty($reports['data']))
           @foreach($reports['data'] as $item)
             <li>
