@@ -55,6 +55,7 @@
 		.data('slider');
         distance.disable();
         $('#distanceOk').hide();
+        updateRangeHandle();
     }, 100);
 
     $(document.body).on('click', '#distanceSlider', distanceChange);
@@ -126,5 +127,26 @@
 
         return li_html;
     }
+
+    function updateRangeHandle() {
+        if(isSmallScreen()) {
+            $('#rangeHandle').removeClass('no-right-border');
+            $('#rangeHandle').addClass('rounded-right-border');
+            $('#rangeHandle').next('input').next('span').hide();
+            $('#rangeHandle').next('input').hide();
+        }
+        else{
+            $('#rangeHandle').addClass('no-right-border');
+            $('#rangeHandle').removeClass('rounded-right-border');
+            $('#rangeHandle').next('input').next('span').show();
+            $('#rangeHandle').next('input').show();
+        }
+    }
+
+    function isSmallScreen() {
+        return $('#hideOnXS').is(':hidden');
+    }
+
+    $(window).resize(updateRangeHandle);
 
 }());

@@ -3297,3 +3297,7 @@ margin:0;
         box-shadow: none;
         border-color: #ccc;
     }
+
+.rounded-right-border {
+    border-radius: 0 4px 4px 0 !important;
+}

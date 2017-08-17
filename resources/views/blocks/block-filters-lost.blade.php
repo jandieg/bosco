@@ -15,7 +15,7 @@
                         <i class="glyphicon glyphicon-map-marker"></i>
                     </span>
                     <input id="location" placeholder="Escribir zona o distrito" type="text" class="form-control no-left-border large-addon" />
-                    <span class="input-group-addon no-right-border no-right-border modal-handle"
+                    <span id="rangeHandle" class="input-group-addon modal-handle"
                         data-toggle="modal" data-target="#distanceModal">
                         <i class="glyphicon glyphicon-resize-horizontal"></i>
                     </span>
@@ -31,6 +31,7 @@
         </div>
     </div>
 </div>
+<span class="hidden-xs" id="hideOnXS">&nbsp;</span>
 <div id="distanceModal" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
     <div class="modal-dialog">
         <div class="modal-content">
