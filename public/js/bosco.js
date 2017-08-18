@@ -247,7 +247,8 @@ $('#timepicker').datetimepicker({
     format: "H:mm a"
 });
 
-function gallery_item_over(id, status) {
+function gallery_item_over(id, status) {   
+    jQuery.noConflict(); 
     $("#pet-detail").modal().show();
     $('.pet-detail-image').html('');
     $('.pet-detail-location').html('');
@@ -288,7 +289,12 @@ function gallery_item_over(id, status) {
                 $('.report-detail-address').html(data.pet.location_address);
                 $('.report-detail-description').html(data.pet.report_description);
                 var lat = parseFloat(data.pet.location_latitude);
-                var lon = parseFloat(data.pet.location_longitude);
+                var lon = parseFloat(data.pet.location_longitude);  
+                detail_map = new google.maps.Map(document.getElementById('pet-detail-map'), {
+                    center: { lat: lat, lng: lon },
+                    zoom: 15,
+                    disableDefaultUI: true
+                });              
 
                 modal_center();
                 if (detail_marker)
