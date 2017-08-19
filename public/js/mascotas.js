@@ -1,6 +1,6 @@
 ﻿(function () {
-    var mascotas_lat;
-    var mascotas_lng;
+    var mascotas_lat = 0;
+    var mascotas_lng = 0;
     var mascotas_distance = 1000;
     var distance;
     var isGeolocationAcessible = false;
@@ -14,10 +14,14 @@
                     mascotas_lng = position.coords.longitude;
                     isGeolocationAcessible = true;
                     searchPets();
-                    $('#location').val("My location");
+                    $('#location').val("Mi ubicación");
                     distance.enable();
                     $('#distanceOk').show();
                 });
+                searchPets();
+            }
+            else {
+                searchPets();
             }
         } catch (e) {
             $('#warning').show();
@@ -36,7 +40,7 @@
             searchPets();
         });
         if(isGeolocationAcessible){
-            $('#location').val("My location");
+            $('#location').val("Mi ubicación");
             distance.enable();
             $('#distanceOk').show();
         }
