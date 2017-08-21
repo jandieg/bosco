@@ -1289,11 +1289,11 @@ submitReport.on('click', function (e) {
     else
         croppng = '';
     */
-    
+    console.log('esta entrando en el registro');
     croppng = datosimg;
-    $('#cropper-image').cropper('clear');
+  /*  $('#cropper-image').cropper('clear');
     $('#cropper-image').cropper('destroy');
-    $('#cropper-image').removeAttr('src');
+    $('#cropper-image').removeAttr('src');*/
     $.ajax({
         type: "POST",
         url: window.location.origin + '/mis-reportes-registrar',
