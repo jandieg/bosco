@@ -69,6 +69,13 @@ $('.numeric').keyup(function () {
     this.value = this.value.replace(/[^0-9\.]/g,'');
 });
 
+$(".link-user > span").on('click', function(){
+    if ($(this).hasClass('active')) {
+        $(this).removeClass('active');
+    } else {
+        $(this).addClass('active');    
+    }
+});
 $(".link-user > span").mouseenter(function(){
     
     $('.link-user > span').removeClass('active');
