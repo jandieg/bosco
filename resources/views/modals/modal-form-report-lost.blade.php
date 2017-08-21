@@ -92,14 +92,14 @@
 <div id="form-report-lost" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
   <div class="modal-form-report modal-content">
     <div class="modal-header" style="padding: 0px;">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <button type="button" style="margin:.3em" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       <div class="modal-form-report-menu header-reporte">
         <!--<ul class="text-center">
           <li id="report_tab_1"><span id="tab-1" data-tab="tab-1" class="tab-on"><em>1</em>Mascota</span></li>
           <li id="report_tab_2" onclick="Map_correction();"><span id="tab-2" data-tab="tab-2"><em>2</em>Reporte</span></li>
           <li id="report_tab_3"><span id="tab-3" data-tab="tab-3"><em>3</em>Tus datos</span></li>
         </ul>-->
-        <div class="text-center" style="vertical-align: middle;">
+        <div class="text-center" style="vertical-align: middle;padding:.6em">
           Reporta en tres pasos
         </div>
       </div>
