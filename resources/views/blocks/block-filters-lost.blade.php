@@ -1,7 +1,6 @@
-﻿<!-- Block Filters -->
+<!-- Block Filters -->
 @section('js')
 <link href="../css/bootstrap-slider.min.css" rel="stylesheet" />
-<script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap-slider.min.js"></script>
 <script type="text/javascript" src="../js/mascotas.js"></script>
 @endsection
@@ -15,15 +14,15 @@
                         <i class="glyphicon glyphicon-map-marker"></i>
                     </span>
                     <input id="location" placeholder="Escribir zona o distrito" type="text" class="form-control no-left-border large-addon" />
-                    <span class="input-group-addon no-right-border no-right-border modal-handle"
-                        data-toggle="modal" data-target="#distanceModal">
+                    <span id="rangeHandle" class="input-group-addon modal-handle"
+                          data-toggle="modal" data-target="#distanceModal">
                         <i class="glyphicon glyphicon-resize-horizontal"></i>
                     </span>
                     <input type="button" class="form-control no-left-border no-right-border modal-handle"
-                        value="Rango de busqueda" 
-                        data-toggle="modal" data-target="#distanceModal" />
+                           value="Rango de busqueda"
+                           data-toggle="modal" data-target="#distanceModal" />
                     <span class="input-group-addon no-left-border modal-handle"
-                        data-toggle="modal" data-target="#distanceModal">
+                          data-toggle="modal" data-target="#distanceModal">
                         <i class="caret"></i>
                     </span>
                 </div>
@@ -31,6 +30,7 @@
         </div>
     </div>
 </div>
+<span class="hidden-xs" id="hideOnXS">&nbsp;</span>
 <div id="distanceModal" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -43,7 +43,7 @@
             </div>
             <div class="modal-body">
                 <input id="distance" data-slider-id='distanceSlider' type="text" data-slider-min="100" data-slider-max="10000"
-                    data-slider-step="100" data-slider-value="1000" data-slider-tooltip="hide" />
+                       data-slider-step="100" data-slider-value="1000" data-slider-tooltip="hide" />
             </div>
             <div class="modal-footer">
                 <a id="distanceCancel" href="javascript:void(0)" class="pull-left text-warning" data-dismiss="modal">Cancelar</a>

@@ -69,6 +69,13 @@ $('.numeric').keyup(function () {
     this.value = this.value.replace(/[^0-9\.]/g,'');
 });
 
+$(".link-user > span").on('click', function(){
+    if ($(this).hasClass('active')) {
+        $(this).removeClass('active');
+    } else {
+        $(this).addClass('active');    
+    }
+});
 $(".link-user > span").mouseenter(function(){
     
     $('.link-user > span').removeClass('active');
@@ -247,7 +254,8 @@ $('#timepicker').datetimepicker({
     format: "H:mm a"
 });
 
-function gallery_item_over(id, status) {
+function gallery_item_over(id, status) {   
+    jQuery.noConflict(); 
     $("#pet-detail").modal().show();
     $('.pet-detail-image').html('');
     $('.pet-detail-location').html('');
@@ -288,7 +296,12 @@ function gallery_item_over(id, status) {
                 $('.report-detail-address').html(data.pet.location_address);
                 $('.report-detail-description').html(data.pet.report_description);
                 var lat = parseFloat(data.pet.location_latitude);
-                var lon = parseFloat(data.pet.location_longitude);
+                var lon = parseFloat(data.pet.location_longitude);  
+                detail_map = new google.maps.Map(document.getElementById('pet-detail-map'), {
+                    center: { lat: lat, lng: lon },
+                    zoom: 15,
+                    disableDefaultUI: true
+                });              
 
                 modal_center();
                 if (detail_marker)
@@ -1032,6 +1045,9 @@ reportLostAdd.on('click', function (e) {
     $('.encontrado').show();
     $("#tab-3").html("<em>3</em>Dueño");
     Initialize_Report(); 
+    $('#cropper-image').attr('src', '');
+    $('#cropper-image').cropper('reset');
+    $('#cropper-image').cropper('destroy');
     hideMapComponents();
 
     /*var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
@@ -1049,6 +1065,9 @@ reportFoundAdd.on('click', function (e) {
     $('.encontrado').hide();
     $("#tab-3").html("<em>3</em>Tus Datos");
     Initialize_Report();  
+    $('#cropper-image').attr('src', '');
+    $('#cropper-image').cropper('reset');
+    $('#cropper-image').cropper('destroy');
     hideMapComponents();
               
     /*var pac_html = "<input type='text' id='pac-input' placeholder='Ingresa la dirección donde se perdió o arrastra el PIN'></input>";
@@ -1274,6 +1293,7 @@ submitReport.on('click', function (e) {
     croppng = datosimg;
     $('#cropper-image').cropper('clear');
     $('#cropper-image').cropper('destroy');
+    $('#cropper-image').removeAttr('src');
     $.ajax({
         type: "POST",
         url: window.location.origin + '/mis-reportes-registrar',
@@ -1859,11 +1879,14 @@ $('#cropper-confirm').on('click', function () {
         datosimg = canvas.toDataURL("image/jpeg");
         $('#cropper-image').cropper('clear');
         $('#cropper-image').cropper('destroy');
+        $('#cropper-image').cropper('reset');
+        $('#cropper-image').removeAttr('src');
     
         $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + datosimg + ')');
         $('.upload-image-lost-preview').show();
         $('#lost_pet_file').parent().hide();
         $('#modal-cropper .modal-header button').trigger('click');
+        
     /*} else {
         $('.upload-image-lost-preview .preview-img').css('background-image', 'url(' + cropper.toDataURL() + ')');
         $('.upload-image-lost-preview').show();
@@ -1886,6 +1909,7 @@ $('#modal-cropper').on('shown.bs.modal', function () {
             $dataWidth.val(Math.round(e.width));
         },
         done: function (data) {
+            $('#cropper-image').cropper('destroy');
             // Output the result data for cropping image.
         }
     });
@@ -1893,17 +1917,35 @@ $('#modal-cropper').on('shown.bs.modal', function () {
 }).on('hidden.bs.modal', function () {
     // cropBoxData = $image.cropper('getCropBoxData');
     // canvasData = $image.cropper('getCanvasData');
-    $('#cropper-image').cropper('destroy');
+    $('#cropper-image').cropper('unbuild');
 });
 $('#form-report-lost').on('shown.bs.modal', function () {
 //    alert();
 }).on('hidden.bs.modal', function () {
+    console.log('esta entrando');
+    $("#lost_pet_file").filestyle('clear');
+    $('#cropper-image').cropper('unbuild');
+    $('#cropper-image').removeData('cropper');
+    $("#cropper-image").removeClass('cropper-hidden');
+    $('#cropper-image').cropper('destroy');
+    $('#cropper-image').cropper('reset');
    /* $("#form-report-lost-tab-1").removeClass('hide');
     $("#form-report-lost-tab-2").addClass('hide');
     $("#form-report-lost-tab-3").addClass('hide');
     $("#tab-1").addClass('tab-on');
     $("#tab-2").removeClass('tab-on');
     $("#tab-3").removeClass('tab-on');*/
+    $('#cropper-image').cropper({
+        crop: function (e) {
+            console.log(e);
+        },
+        done: function (data) {
+            $('#cropper-image').cropper('unbuild');
+            $('#cropper-image').cropper('destroy');
+            // Output the result data for cropping image.
+        }
+    });
+    $('#cropper-image').cropper('destroy');
     });
 var menuOn;
 $('.edit_menu').on('mouseover', function () {

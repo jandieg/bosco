@@ -1,6 +1,6 @@
 ﻿(function () {
-    var mascotas_lat;
-    var mascotas_lng;
+    var mascotas_lat = 0;
+    var mascotas_lng = 0;
     var mascotas_distance = 1000;
     var distance;
     var isGeolocationAcessible = false;
@@ -14,10 +14,14 @@
                     mascotas_lng = position.coords.longitude;
                     isGeolocationAcessible = true;
                     searchPets();
-                    $('#location').val("My location");
+                    $('#location').val("Mi ubicación");
                     distance.enable();
                     $('#distanceOk').show();
                 });
+                searchPets();
+            }
+            else {
+                searchPets();
             }
         } catch (e) {
             $('#warning').show();
@@ -36,7 +40,7 @@
             searchPets();
         });
         if(isGeolocationAcessible){
-            $('#location').val("My location");
+            $('#location').val("Mi ubicación");
             distance.enable();
             $('#distanceOk').show();
         }
@@ -55,6 +59,7 @@
 		.data('slider');
         distance.disable();
         $('#distanceOk').hide();
+        updateRangeHandle();
     }, 100);
 
     $(document.body).on('click', '#distanceSlider', distanceChange);
@@ -126,5 +131,26 @@
 
         return li_html;
     }
+
+    function updateRangeHandle() {
+        if(isSmallScreen()) {
+            $('#rangeHandle').removeClass('no-right-border');
+            $('#rangeHandle').addClass('rounded-right-border');
+            $('#rangeHandle').next('input').next('span').hide();
+            $('#rangeHandle').next('input').hide();
+        }
+        else{
+            $('#rangeHandle').addClass('no-right-border');
+            $('#rangeHandle').removeClass('rounded-right-border');
+            $('#rangeHandle').next('input').next('span').show();
+            $('#rangeHandle').next('input').show();
+        }
+    }
+
+    function isSmallScreen() {
+        return $('#hideOnXS').is(':hidden');
+    }
+
+    $(window).resize(updateRangeHandle);
 
 }());

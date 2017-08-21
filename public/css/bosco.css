@@ -158,6 +158,8 @@ input,
   text-align: center;
 }
 
+
+
 .header-reporte {
   background-color: red; 
   color: white; 
@@ -1054,11 +1056,34 @@ a.btn-video:hover {
   border-right: 1px solid #b7b7b7;
 }
 @media only screen and (max-width: 768px) {
+  .centradas { 
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 	.block-reports-lost {
 		border-right: 0;
 	}
 }
+@media only screen and (max-width: 409px) {
+  .centradas li {
+    width: 80vw;
+    height: 120vw;
+  }
+  .centradas li a{
+    width: 80vw;
+    height: 105vw;
+  }
+  .centradas li a img{ 
+    width: 80vw !important;
+    height: 80vw !important;
+  }  
 
+}
 
 .block-reports li {
   display: block;
@@ -2420,6 +2445,7 @@ footer .block-socialnetwork li a.link-instagran {
     display: flex;
     justify-content: center;
     align-content: center;
+    align-items: center;
     /*height: 100vh;*/
     padding: 0;
     flex-direction: row;
@@ -2808,6 +2834,7 @@ footer .block-socialnetwork li a.link-instagran {
     display: flex;
     justify-content: center;
     align-content: center;
+    align-items: center;
     height: 100vh;
     padding: 0;
     flex-direction: row;
@@ -2890,6 +2917,7 @@ footer .block-socialnetwork li a.link-instagran {
     display: flex;
     justify-content: center;
     align-content: center;
+    align-items: center;
     height: 100vh;
     padding: 0;
     flex-direction: row;
@@ -2972,6 +3000,7 @@ footer .block-socialnetwork li a.link-instagran {
     display: flex;
     justify-content: center;
     align-content: center;
+    align-items: center;
     height: 100vh;
     padding: 0;
     flex-direction: row;
@@ -3268,3 +3297,7 @@ margin:0;
         box-shadow: none;
         border-color: #ccc;
     }
+
+.rounded-right-border {
+    border-radius: 0 4px 4px 0 !important;
+}

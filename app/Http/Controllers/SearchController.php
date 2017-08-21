@@ -65,35 +65,31 @@ class SearchController extends Controller {
     public function searchByLocation(Request $request) {
         $data=[];
 
-        $start = array($request->get('lat'),$request->get('lng'));
-        $dist = $request->get('dist');
-
-        $latNorth = $this->geoDestination( $start, $dist,0 )[0];
-        $latSouth = $this->geoDestination( $start, $dist,180 )[0];
-        $lonWest = $this->geoDestination( $start, $dist,270 )[1];
-        $lonEast = $this->geoDestination( $start, $dist,90 )[1];
-
         $limitado = false;
         if ($request->get('limitado') != null) {
             $limitado = $request->get('limitado');
         }
 
-        $locations = \App\Location::all()->filter (function($location) use($latNorth, $latSouth,$lonWest,$lonEast) {
-            $lat=$location->latitude;
-            $lng=$location->longitude;
-            return $lat < $latNorth AND $lat > $latSouth AND $lng > $lonWest AND $lng < $lonEast;
-        });
+        $start = array($request->get('lat'),$request->get('lng'));
 
-        ////if($department && $department != "Todos") $ubigeo=\App\Ubigeo::where('department',$department)->pluck('id')->toArray();
-        ////if($city  && $city != "Todos") $ubigeo=\App\Ubigeo::where('city',$city)->pluck('id')->toArray();
-        ////if($district && $district != "Todos") $ubigeo= \App\Ubigeo::where('district',$district)->pluck('id')->toArray();
-        ////if (($department && $department != "Todos") || $district)
-        ////    $locations= \App\Location::whereIn('ubigeo_id', $ubigeo)->get();
-        ////else
-        ////    $locations= \App\Location::get();
+        $locations = \App\Location::all();
 
+        if ($start[0] != 0 and $start[1] != 0) {
+            $dist = $request->get('dist');
 
-        foreach ($locations as $location){
+            $latNorth = $this->geoDestination( $start, $dist,0 )[0];
+            $latSouth = $this->geoDestination( $start, $dist,180 )[0];
+            $lonWest = $this->geoDestination( $start, $dist,270 )[1];
+            $lonEast = $this->geoDestination( $start, $dist,90 )[1];
+
+            $locations = $locations->filter (function($location) use($latNorth, $latSouth,$lonWest,$lonEast) {
+                $lat=$location->latitude;
+                $lng=$location->longitude;
+                return $lat < $latNorth AND $lat > $latSouth AND $lng > $lonWest AND $lng < $lonEast;
+            });
+        }
+
+        foreach ($locations as $location) {
             if (! $limitado) {
                 $reports=Report::where('last_location_id', $location->id)->where('found', 0)->get();
             } else {

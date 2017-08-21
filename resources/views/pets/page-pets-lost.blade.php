@@ -36,7 +36,7 @@
           <div class="alert alert-danger" style="display:none;" id="error">
             Error occured while getting the data.
           </div>
-          <ul class="pets-list text-left">
+          <ul class="pets-list text-left centradas">
           </ul>
         </div>
       </div>

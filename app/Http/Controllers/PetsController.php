@@ -19,7 +19,8 @@ class PetsController extends Controller {
        $this->middleware('api');
     }
     public function getPetsLost() {
-        return view('pets.page-pets-lost');
+        return view('pets.page-pets-lost', 
+        ['user' => Auth::check() ? Auth::user() : null]);
     }
 
     public function getPetsFound(Request $request) {
