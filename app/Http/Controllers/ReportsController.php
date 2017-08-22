@@ -289,7 +289,7 @@ class ReportsController extends Controller {
             $valorFecha->setFontSize(20);
             $valorFecha->setFillColor(new ImagickPixel('gray'));
             $valorFecha->setFont("fonts/montserrat/montserrat-light.ttf");
-            $valorFecha->annotation(110, 45, ucfirst($dia . ' ' . $mes . ' ' . $anho));  
+            $valorFecha->annotation(110, 48, ucfirst($dia . ' ' . $mes . ' ' . $anho));  
             $footerLienzo->drawImage($valorFecha);
             $locationImg = new Imagick("img/location.png");
             $footerLienzo->compositeimage($locationImg->getimage(), Imagick::COMPOSITE_DEFAULT, 400, 30);
@@ -297,7 +297,7 @@ class ReportsController extends Controller {
             $valorDireccion->setFontSize(20);
             $valorDireccion->setFillColor(new ImagickPixel('gray'));
             $valorDireccion->setFont("fonts/montserrat/montserrat-light.ttf");
-            $valorDireccion->annotation(435, 45, ucfirst($address));  
+            $valorDireccion->annotation(435, 48, ucfirst($address));  
             $footerLienzo->drawImage($valorDireccion);
             $logoImg = new Imagick("img/logo_2.png");            
             $footerLienzo->compositeimage($logoImg->getimage(), Imagick::COMPOSITE_DEFAULT, 660, 108);
@@ -336,7 +336,7 @@ class ReportsController extends Controller {
             $im->drawImage($rewardLienzo);
             $im->drawImage($phoneLienzo);
             $phoneImg = new Imagick("img/phone.png");            
-            $im->compositeimage($phoneImg->getimage(), Imagick::COMPOSITE_DEFAULT, 200, 735);
+            $im->compositeimage($phoneImg->getimage(), Imagick::COMPOSITE_DEFAULT, 230, 735);
             $phoneTexto = new \ImagickDraw();
             $phoneTexto->setFontSize(36);
             $phoneTexto->setFillColor(new ImagickPixel('white'));
@@ -575,7 +575,7 @@ class ReportsController extends Controller {
             $valorFecha->setFontSize(20);
             $valorFecha->setFillColor(new ImagickPixel('gray'));
             $valorFecha->setFont("fonts/montserrat/montserrat-light.ttf");
-            $valorFecha->annotation(110, 45, ucfirst($dia . ' ' . $mes . ' ' . $anho));  
+            $valorFecha->annotation(110, 48, ucfirst($dia . ' ' . $mes . ' ' . $anho));  
             $footerLienzo->drawImage($valorFecha);
             $locationImg = new Imagick("img/location.png");
             $footerLienzo->compositeimage($locationImg->getimage(), Imagick::COMPOSITE_DEFAULT, 400, 30);
@@ -583,7 +583,7 @@ class ReportsController extends Controller {
             $valorDireccion->setFontSize(20);
             $valorDireccion->setFillColor(new ImagickPixel('gray'));
             $valorDireccion->setFont("fonts/montserrat/montserrat-light.ttf");
-            $valorDireccion->annotation(435, 45, ucfirst($address));  
+            $valorDireccion->annotation(435, 48, ucfirst($address));  
             $footerLienzo->drawImage($valorDireccion);
             $logoImg = new Imagick("img/logo_2.png");            
             $footerLienzo->compositeimage($logoImg->getimage(), Imagick::COMPOSITE_DEFAULT, 660, 108);
@@ -621,7 +621,7 @@ class ReportsController extends Controller {
             $im->drawImage($rewardLienzo);
             $im->drawImage($phoneLienzo);
             $phoneImg = new Imagick("img/phone.png");            
-            $im->compositeimage($phoneImg->getimage(), Imagick::COMPOSITE_DEFAULT, 200, 735);
+            $im->compositeimage($phoneImg->getimage(), Imagick::COMPOSITE_DEFAULT, 230, 735);
             $phoneTexto = new \ImagickDraw();
             $phoneTexto->setFontSize(36);
             $phoneTexto->setFillColor(new ImagickPixel('white'));
