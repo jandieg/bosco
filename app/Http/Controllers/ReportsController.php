@@ -158,7 +158,7 @@ class ReportsController extends Controller {
             $headerLienzo->newImage(800, 168, new ImagickPixel('rgb(238, 55, 55)'));
             $headerLienzo->setImageFormat("jpg");
             $textoPerdido = new \ImagickDraw();
-            $textoPerdido->setFont("fonts/montserrat/montserrat-light.ttf");
+            $textoPerdido->setFont("fonts/montserrat/Montserrat-Bold.ttf");
             $textoPerdido->setFontSize(84);
             $textoPerdido->setStrokeWidth(3);
             $textoPerdido->setFillColor(new ImagickPixel('white'));
@@ -173,22 +173,22 @@ class ReportsController extends Controller {
             $factorCorreccionTextoIzquierda = 362; 
             $largoTextoIzquierda = strlen($name);
             $textoNombre = new \ImagickDraw();
-            $textoNombre->setFontSize(19);
+            $textoNombre->setFontSize(20);
             $textoNombre->setStrokeWidth(2);
             $textoNombre->setFillColor(new ImagickPixel('white'));        
             //15
             $textoNombre->setFont("fonts/montserrat/montserrat-light.ttf");
-            $textoNombre->annotation($factorCorreccionTituloIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion - 3, 155, 'Nombre:');                                                                   
+            $textoNombre->annotation($factorCorreccionTituloIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion , 155, 'Nombre:');                                                                   
             if ($status == "lost")
             $headerLienzo->drawImage($textoNombre);
             $valorNombre = new \ImagickDraw();
             $valorNombre->setFontWeight(600);
-            $valorNombre->setFontSize(24);
+            $valorNombre->setFontSize(22);
             $valorNombre->setStrokeWidth(2);
             $valorNombre->setFillColor(new ImagickPixel('white'));
             //98
-            $valorNombre->setFont("fonts/montserrat/montserrat-light.ttf");
-            $valorNombre->annotation($factorCorreccionTextoIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion - 6, 155, ucfirst($name));                                                                   
+            $valorNombre->setFont("fonts/montserrat/Montserrat-Bold.ttf");
+            $valorNombre->annotation(2+$factorCorreccionTextoIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion , 155, ucfirst($name));                                                                   
             if ($status == "lost")
             $headerLienzo->drawImage($valorNombre);  
             $draw = new \ImagickDraw();
@@ -200,7 +200,7 @@ class ReportsController extends Controller {
             $draw->line(363  - $valorCorreccion, 135, 363  - $valorCorreccion, 155);
             $headerLienzo->drawImage($draw);
             $textoRaza = new \ImagickDraw();
-            $textoRaza->setFontSize(19);
+            $textoRaza->setFontSize(20);
             $textoRaza->setStrokeWidth(2);
             $textoRaza->setFillColor(new ImagickPixel('white'));
             $textoRaza->setFont("fonts/montserrat/montserrat-light.ttf");
@@ -208,11 +208,11 @@ class ReportsController extends Controller {
             if ($status == "lost")
             $headerLienzo->drawImage($textoRaza);    
             $valorRaza = new \ImagickDraw();
-            $valorRaza->setFontSize(24);
+            $valorRaza->setFontSize(22);
             $valorRaza->setStrokeWidth(2);
             $valorRaza->setFillColor(new ImagickPixel('white'));
             $valorRaza->setFontWeight(600);
-            $valorRaza->setFont("fonts/montserrat/montserrat-light.ttf");
+            $valorRaza->setFont("fonts/montserrat/Montserrat-Bold.ttf");
             $valorRaza->annotation(423 - $valorCorreccion, 155, ucfirst($race));  
             if ($status == "lost")
             $headerLienzo->drawImage($valorRaza);   
@@ -222,7 +222,7 @@ class ReportsController extends Controller {
             $largoTextoCentro = strlen($race);
             $largoTextoCentroCorreccion = 20 - $largoTextoCentro; 
             $textoGenero = new \ImagickDraw();
-            $textoGenero->setFontSize(19);
+            $textoGenero->setFontSize(20);
             $textoGenero->setStrokeWidth(2);
             $textoGenero->setFillColor(new ImagickPixel('white'));
             //693
@@ -231,13 +231,13 @@ class ReportsController extends Controller {
             if ($status == "lost")
             $headerLienzo->drawImage($textoGenero);  
             $valorGenero = new \ImagickDraw();
-            $valorGenero->setFontSize(24);
+            $valorGenero->setFontSize(22);
             $valorGenero->setStrokeWidth(2);
             $valorGenero->setFillColor(new ImagickPixel('white'));
             $valorGenero->setFontWeight(600);
             //773
             $positionTextoDerecha = $factorCorreccionTextoDerecha - ($largoTextoCentroCorreccion * $metricaCaracter);
-            $valorGenero->setFont("fonts/montserrat/montserrat-light.ttf");
+            $valorGenero->setFont("fonts/montserrat/Montserrat-Bold.ttf");
             if (strlen($gender) == 5) {
                 $valorGenero->annotation($positionTextoDerecha - $valorCorreccion, 155, "M");                                                                               
             } else {
@@ -340,7 +340,7 @@ class ReportsController extends Controller {
             $phoneTexto = new \ImagickDraw();
             $phoneTexto->setFontSize(36);
             $phoneTexto->setFillColor(new ImagickPixel('white'));
-            $phoneTexto->setFont("fonts/montserrat/montserrat-light.ttf");
+            $phoneTexto->setFont("fonts/montserrat/Montserrat-Bold.ttf");
             $phoneTexto->annotation(300, 760, $contact_phone);  
             $im->drawImage($phoneTexto);    
             $im->setImageFormat("png");
@@ -354,7 +354,7 @@ class ReportsController extends Controller {
             $rewardTextoValor = new \ImagickDraw();
             $rewardTextoValor->setFontSize(26);
             $rewardTextoValor->setFillColor(new ImagickPixel('white'));
-            $rewardTextoValor->setFont("fonts/montserrat/montserrat-light.ttf");
+            $rewardTextoValor->setFont("fonts/montserrat/Montserrat-Bold.ttf");
             $rewardTextoValor->annotation(720, 35, $reward);  
             if (strlen($reward) > 0) 
             $im->drawImage($rewardTextoValor);    
@@ -456,31 +456,31 @@ class ReportsController extends Controller {
             $headerLienzo->newImage(800, 168, new ImagickPixel('rgb(238, 55, 55)'));
             $headerLienzo->setImageFormat("jpg");
             $textoPerdido = new \ImagickDraw();
-            $textoPerdido->setFontSize(82);
+            $textoPerdido->setFontSize(84);
             $textoPerdido->setStrokeWidth(3);
             $textoPerdido->setFillColor(new ImagickPixel('white'));
-            $textoPerdido->setFont("fonts/montserrat/montserrat-light.ttf");
+            $textoPerdido->setFont("fonts/montserrat/Montserrat-Bold.ttf");
             $textoPerdido->annotation(200, 90, 'PERDIDO');
             $headerLienzo->drawImage($textoPerdido);
             $factorCorreccionTituloIzquierda = 279; 
             $factorCorreccionTextoIzquierda = 362; 
             $largoTextoIzquierda = strlen($name);
             $textoNombre = new \ImagickDraw();
-            $textoNombre->setFontSize(19);
+            $textoNombre->setFontSize(20);
             $textoNombre->setStrokeWidth(2);
             $textoNombre->setFillColor(new ImagickPixel('white'));
             //15
             $textoNombre->setFont("fonts/montserrat/montserrat-light.ttf");
-            $textoNombre->annotation($factorCorreccionTituloIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion - 3, 155, 'Nombre:');                                                                   
+            $textoNombre->annotation($factorCorreccionTituloIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion, 155, 'Nombre:');                                                                   
             $headerLienzo->drawImage($textoNombre);
             $valorNombre = new \ImagickDraw();
-            $valorNombre->setFontSize(24);
+            $valorNombre->setFontSize(22);
             $valorNombre->setStrokeWidth(2);
             $valorNombre->setFillColor(new ImagickPixel('white'));
             $valorNombre->setFontWeight(600);
             //98
-            $valorNombre->setFont("fonts/montserrat/montserrat-light.ttf");
-            $valorNombre->annotation($factorCorreccionTextoIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion - 6, 155, ucfirst($name));                                                                   
+            $valorNombre->setFont("fonts/montserrat/Montserrat-Bold.ttf");
+            $valorNombre->annotation(2+$factorCorreccionTextoIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion, 155, ucfirst($name));                                                                   
             $headerLienzo->drawImage($valorNombre);  
             $draw = new \ImagickDraw();
             $draw->setStrokeColor(new ImagickPixel('white'));
@@ -490,18 +490,18 @@ class ReportsController extends Controller {
             $draw->line(363  - $valorCorreccion, 135, 363  - $valorCorreccion, 155);
             $headerLienzo->drawImage($draw);
             $textoRaza = new \ImagickDraw();
-            $textoRaza->setFontSize(19);
+            $textoRaza->setFontSize(20);
             $textoRaza->setStrokeWidth(2);
             $textoRaza->setFillColor(new ImagickPixel('white'));
             $textoRaza->setFont("fonts/montserrat/montserrat-light.ttf");
             $textoRaza->annotation(367 - $valorCorreccion, 155, 'Raza:');  
             $headerLienzo->drawImage($textoRaza);    
             $valorRaza = new \ImagickDraw();
-            $valorRaza->setFontSize(24);
+            $valorRaza->setFontSize(22);
             $valorRaza->setStrokeWidth(2);
             $valorRaza->setFontWeight(600);
             $valorRaza->setFillColor(new ImagickPixel('white'));
-            $valorRaza->setFont("fonts/montserrat/montserrat-light.ttf");
+            $valorRaza->setFont("fonts/montserrat/Montserrat-Bold.ttf");
             $valorRaza->annotation(423 - $valorCorreccion, 155, ucfirst($race));  
             $headerLienzo->drawImage($valorRaza);   
             $factorCorreccionTextoDerecha = 773;
@@ -510,7 +510,7 @@ class ReportsController extends Controller {
             $largoTextoCentro = strlen($race);
             $largoTextoCentroCorreccion = 20 - $largoTextoCentro; 
             $textoGenero = new \ImagickDraw();
-            $textoGenero->setFontSize(19);
+            $textoGenero->setFontSize(20);
             $textoGenero->setStrokeWidth(2);
             $textoGenero->setFillColor(new ImagickPixel('white'));
             $textoGenero->setFontWeight(600);
@@ -519,13 +519,13 @@ class ReportsController extends Controller {
             $textoGenero->annotation($factorCorreccionTituloDerecha - ($largoTextoCentroCorreccion * $metricaCaracter) - $valorCorreccion+2, 155, 'Género:');                                                                               
             $headerLienzo->drawImage($textoGenero);  
             $valorGenero = new \ImagickDraw();
-            $valorGenero->setFontSize(24);
+            $valorGenero->setFontSize(22);
             $valorGenero->setStrokeWidth(2);
             $valorGenero->setFontWeight(600);
             $valorGenero->setFillColor(new ImagickPixel('white'));
             //773
             $positionTextoDerecha = $factorCorreccionTextoDerecha - ($largoTextoCentroCorreccion * $metricaCaracter);
-            $valorGenero->setFont("fonts/montserrat/montserrat-light.ttf");
+            $valorGenero->setFont("fonts/montserrat/Montserrat-Bold.ttf");
             if (strlen($gender) == 5) {
                 $valorGenero->annotation($positionTextoDerecha - $valorCorreccion, 155, "M");                                                                               
             } else {
@@ -625,7 +625,7 @@ class ReportsController extends Controller {
             $phoneTexto = new \ImagickDraw();
             $phoneTexto->setFontSize(36);
             $phoneTexto->setFillColor(new ImagickPixel('white'));
-            $phoneTexto->setFont("fonts/montserrat/montserrat-light.ttf");
+            $phoneTexto->setFont("fonts/montserrat/Montserrat-Bold.ttf");
             $phoneTexto->annotation(300, 760, $contact_phone);  
             $im->drawImage($phoneTexto);    
             $im->setImageFormat("png");
@@ -636,9 +636,9 @@ class ReportsController extends Controller {
             $rewardTexto->annotation(530, 35, "Recompensa: S/. ");  
             $im->drawImage($rewardTexto);    
             $rewardTextoValor = new \ImagickDraw();
-            $rewardTextoValor->setFontSize(27);
+            $rewardTextoValor->setFontSize(26);
             $rewardTextoValor->setFillColor(new ImagickPixel('white'));
-            $rewardTextoValor->setFont("fonts/montserrat/montserrat-light.ttf");
+            $rewardTextoValor->setFont("fonts/montserrat/Montserrat-Bold.ttf");
             $rewardTextoValor->annotation(720, 35, $reward);  
             $im->drawImage($rewardTextoValor);    
             $lienzo->compositeimage($headerLienzo->getimage(), Imagick::COMPOSITE_COPY, 0, 0);
