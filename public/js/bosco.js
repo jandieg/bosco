@@ -2052,6 +2052,19 @@ function edit_pet_detail(id, status)
                 longitude = parseFloat(data.pet.location_longitude);
                 $('#lat').val(latitude);
                 $('#lng').val(longitude);
+                initMap();
+                if (lost_marker)
+                lost_marker.setMap(null);
+                lost_marker = new google.maps.Marker({
+                    position: { lat: latitude, lng: longitude },
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                });
+                lost_marker.setMap(lost_map);
+                lost_map.addListener('click', toggleBounce);
+                lost_map.setCenter(new google.maps.LatLng(latitude, longitude));
+                lost_map.setZoom(15);
+                 
                 $('#lost_pet_report_description').val(data.pet.report_description);
                 $('#lost_pet_reward').val(data.pet.owner_reward);
                 $('#lost_pet_contact_phone').val(data.pet.owner_phone);
