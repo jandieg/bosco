@@ -188,7 +188,7 @@ class ReportsController extends Controller {
             $valorNombre->setFillColor(new ImagickPixel('white'));
             //98
             $valorNombre->setFont("fonts/montserrat/montserrat-light.ttf");
-            $valorNombre->annotation($factorCorreccionTextoIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion, 155, ucfirst($name));                                                                   
+            $valorNombre->annotation($factorCorreccionTextoIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion - 2, 155, ucfirst($name));                                                                   
             if ($status == "lost")
             $headerLienzo->drawImage($valorNombre);  
             $draw = new \ImagickDraw();
@@ -480,7 +480,7 @@ class ReportsController extends Controller {
             $valorNombre->setFontWeight(600);
             //98
             $valorNombre->setFont("fonts/montserrat/montserrat-light.ttf");
-            $valorNombre->annotation($factorCorreccionTextoIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion, 155, ucfirst($name));                                                                   
+            $valorNombre->annotation($factorCorreccionTextoIzquierda-($largoTextoIzquierda*$metricaCaracter) - $valorCorreccion - 2, 155, ucfirst($name));                                                                   
             $headerLienzo->drawImage($valorNombre);  
             $draw = new \ImagickDraw();
             $draw->setStrokeColor(new ImagickPixel('white'));
