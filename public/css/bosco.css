@@ -1082,6 +1082,10 @@ a.btn-video:hover {
     width: 80vw !important;
     height: 80vw !important;
   }  
+  .gallery-item-hover{
+    width: 80vw !important;
+    height: 80vw !important;
+  }
 
 }
 
