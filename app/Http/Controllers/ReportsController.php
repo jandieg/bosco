@@ -286,7 +286,7 @@ class ReportsController extends Controller {
             $mes = $meses[$mesnum];
 
             $valorFecha = new \ImagickDraw();
-            $valorFecha->setFontSize(22);
+            $valorFecha->setFontSize(20);
             $valorFecha->setFillColor(new ImagickPixel('gray'));
             $valorFecha->setFont("fonts/montserrat/montserrat-light.ttf");
             $valorFecha->annotation(110, 45, ucfirst($dia . ' ' . $mes . ' ' . $anho));  
@@ -294,7 +294,7 @@ class ReportsController extends Controller {
             $locationImg = new Imagick("img/location.png");
             $footerLienzo->compositeimage($locationImg->getimage(), Imagick::COMPOSITE_DEFAULT, 400, 30);
             $valorDireccion = new \ImagickDraw();
-            $valorDireccion->setFontSize(18);
+            $valorDireccion->setFontSize(20);
             $valorDireccion->setFillColor(new ImagickPixel('gray'));
             $valorDireccion->setFont("fonts/montserrat/montserrat-light.ttf");
             $valorDireccion->annotation(435, 45, ucfirst($address));  
@@ -572,7 +572,7 @@ class ReportsController extends Controller {
             $mes = $meses[$mesnum];
 
             $valorFecha = new \ImagickDraw();
-            $valorFecha->setFontSize(22);
+            $valorFecha->setFontSize(20);
             $valorFecha->setFillColor(new ImagickPixel('gray'));
             $valorFecha->setFont("fonts/montserrat/montserrat-light.ttf");
             $valorFecha->annotation(110, 45, ucfirst($dia . ' ' . $mes . ' ' . $anho));  
@@ -580,7 +580,7 @@ class ReportsController extends Controller {
             $locationImg = new Imagick("img/location.png");
             $footerLienzo->compositeimage($locationImg->getimage(), Imagick::COMPOSITE_DEFAULT, 400, 30);
             $valorDireccion = new \ImagickDraw();
-            $valorDireccion->setFontSize(18);
+            $valorDireccion->setFontSize(20);
             $valorDireccion->setFillColor(new ImagickPixel('gray'));
             $valorDireccion->setFont("fonts/montserrat/montserrat-light.ttf");
             $valorDireccion->annotation(435, 45, ucfirst($address));  
