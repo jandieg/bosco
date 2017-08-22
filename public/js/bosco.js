@@ -2007,18 +2007,29 @@ function edit_pet_detail(id, status)
                 $("#pac-input-div").html(pac_html);
                 $("#lost_pet_file").parent().hide();
                 $(".upload-image-lost-preview").show(); 
+                var url = '/images/pets/' + data.pet.pet_image ;
+                var img = new Image();
+                img.src = url;
                 var canvas = document.createElement('canvas');
                 var ctx = canvas.getContext("2d");
+                var pic_real_width, pic_real_height;
+                $("<img/>") // se hace una copia en memoria de la imagen para no lidiar con el css que reduce a 206
+                    .attr("src", url)
+                    .load(function () {
+                        pic_real_width = this.width;
+                        pic_real_height = this.height;
+                        canvas.width = pic_real_width;
+                        canvas.height = pic_real_height;
+                        ctx.drawImage(img, 0, 0, pic_real_width, pic_real_width);
+                        
+                        
+
+                        datosimg = canvas.toDataURL('image/jpeg');
+                        $('.upload-image-lost-preview .preview-img').attr('style', "background-image:url('" + datosimg + "')");
+                    });
+
                 
-                var img = new Image();
-                img.src = '/images/pets/' + data.pet.pet_image;
-                img.onload = function () {
-                    img_width = img.width;
-                    img_height = img.height;
-                    ctx.drawImage(img, 0, 0, img_width, img_height);
-                    datosimg = canvas.toDataURL("image/jpeg");
-                }                                             
-                $('.upload-image-lost-preview .preview-img').attr('style', 'background-image:url("/images/pets/' + data.pet.pet_image + '")');
+                //$('.upload-image-lost-preview .preview-img').attr('style', 'background-image:url("/images/pets/' + data.pet.pet_image + '")');
                 $('#lost_pet_name').val(data.pet.pet_name);
                 $('#lost_pet_race').val(data.pet.pet_race);
                 $('#lost_pet_gender').val(data.pet.pet_gender);
