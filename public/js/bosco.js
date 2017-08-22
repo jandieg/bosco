@@ -255,24 +255,25 @@ $('#timepicker').datetimepicker({
 });
 
 function gallery_item_over(id, status) {   
+    console.log('te muestra el modal');
     jQuery.noConflict(); 
-    $("#pet-detail").modal().show();
-    $('.pet-detail-image').html('');
-    $('.pet-detail-location').html('');
-    $('.owner-detail-name').html('');
-    $('.owner-detail-phone').html('');
-    $('.owner-detail-email a').html('');
-    $('.owner-detail-reward').html('');
-    $('.pet-detail-name').html('');
-    $('.pet-detail-race').html('');
-    $('.pet-detail-gender').html('');
-    $('.pet-detail-description').html('');
-    $('.report-detail-date').html('');
-    $('.report-detail-hour').html('');
-    $('.report-detail-description').html('');
+    jQuery("#pet-detail").modal().show();
+    jQuery('.pet-detail-image').html('');
+    jQuery('.pet-detail-location').html('');
+    jQuery('.owner-detail-name').html('');
+    jQuery('.owner-detail-phone').html('');
+    jQuery('.owner-detail-email a').html('');
+    jQuery('.owner-detail-reward').html('');
+    jQuery('.pet-detail-name').html('');
+    jQuery('.pet-detail-race').html('');
+    jQuery('.pet-detail-gender').html('');
+    jQuery('.pet-detail-description').html('');
+    jQuery('.report-detail-date').html('');
+    jQuery('.report-detail-hour').html('');
+    jQuery('.report-detail-description').html('');
     modal_center();
-    var $this = $(this);
-    $.ajax({
+    var $this = jQuery(this);
+    jQuery.ajax({
         type: "GET",
         url: window.location.origin + '/mascotas-detalle',
         dataType: 'json',
@@ -280,21 +281,21 @@ function gallery_item_over(id, status) {
         data: {report_id: id, status: status},
         success: function (data) {
             if (data.result) {
-                $('.pet-detail-image').html('<img src="/images/pets/' + data.pet.pet_image + '" style="width:100%;">');
-                $('.pet-detail-location').html(data.pet.address);
-                $('.owner-detail-phone').html('<a class="report-phone" href="tel:' + data.pet.user_phone + '">' + data.pet.user_phone + '</a>');
-                $('.owner-detail-name').html(data.pet.user_name);
-                $('.owner-detail-email').html(data.pet.user_email);
-                $('.owner-detail-reward').html('S/. ' + data.pet.owner_reward);
-                $('.pet-detail-name').html(data.pet.pet_name);
-                $('.pet-detail-race').html(data.pet.pet_race);
-                $('.pet-detail-gender').html(data.pet.pet_gender);
-                $('.pet-detail-description').html(data.pet.pet_description);
-                $('.report-detail-date').html(data.pet.report_date);
-                $('.report-detail-date').html(data.pet.report_date);
-                $('.report-detail-hour').html(data.pet.report_time);
-                $('.report-detail-address').html(data.pet.location_address);
-                $('.report-detail-description').html(data.pet.report_description);
+                jQuery('.pet-detail-image').html('<img src="/images/pets/' + data.pet.pet_image + '" style="width:100%;">');
+                jQuery('.pet-detail-location').html(data.pet.address);
+                jQuery('.owner-detail-phone').html('<a class="report-phone" href="tel:' + data.pet.user_phone + '">' + data.pet.user_phone + '</a>');
+                jQuery('.owner-detail-name').html(data.pet.user_name);
+                jQuery('.owner-detail-email').html(data.pet.user_email);
+                jQuery('.owner-detail-reward').html('S/. ' + data.pet.owner_reward);
+                jQuery('.pet-detail-name').html(data.pet.pet_name);
+                jQuery('.pet-detail-race').html(data.pet.pet_race);
+                jQuery('.pet-detail-gender').html(data.pet.pet_gender);
+                jQuery('.pet-detail-description').html(data.pet.pet_description);
+                jQuery('.report-detail-date').html(data.pet.report_date);
+                jQuery('.report-detail-date').html(data.pet.report_date);
+                jQuery('.report-detail-hour').html(data.pet.report_time);
+                jQuery('.report-detail-address').html(data.pet.location_address);
+                jQuery('.report-detail-description').html(data.pet.report_description);
                 var lat = parseFloat(data.pet.location_latitude);
                 var lon = parseFloat(data.pet.location_longitude);  
                 detail_map = new google.maps.Map(document.getElementById('pet-detail-map'), {
