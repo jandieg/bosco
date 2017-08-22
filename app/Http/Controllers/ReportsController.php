@@ -122,8 +122,9 @@ class ReportsController extends Controller {
         $contact_phone = $request->get('lost_pet_contact_name');
         $contact_email = $request->get('lost_pet_contact_email');
         $date = $request->get('lost_pet_date');
-        $date=date("Y-m-d", strtotime($date));
+        $date=date("Y-m-d", strtotime($date));                
         $time = $request->get('lost_pet_time');
+        
 //        $url = $request->get('filename');
         $img = $request->get('pngimageData');
         $user_id = Auth::user()->id;
@@ -435,6 +436,7 @@ class ReportsController extends Controller {
             $correccion = $largoTotal/2 - $centroActual;
             $valorCorreccion = $correccion * $metricaCaracter;
             $im = new Imagick("images/pets/".$report->pet_id.".jpg");
+            $im->setImageFormat("jpg");
             $lienzo = new Imagick();
             $lienzo->newImage(800, 1136, "none");
             $headerLienzo = new Imagick();
@@ -616,7 +618,7 @@ class ReportsController extends Controller {
             $lienzo->compositeimage($headerLienzo->getimage(), Imagick::COMPOSITE_COPY, 0, 0);
             $lienzo->compositeimage($im->getimage(), Imagick::COMPOSITE_COPY, 0, 168);
             $lienzo->compositeimage($footerLienzo->getimage(), Imagick::COMPOSITE_COPY, 0, 968);
-            $lienzo->writeimage("images/pets/report_".$pet_id.".png");
+            $lienzo->writeimage("images/pets/report_".$report->pet_id.".png");
             $lienzo->destroy();
 
             //fin logica del lienzo
@@ -636,8 +638,14 @@ class ReportsController extends Controller {
                 'updated_at' =>Date('Y-m-d H:i:s')
             ];        
             $result = \App\Location::where('id',$report->last_location_id)->update($location_data);
-            $report_data = [
-                'date' =>date_format(\DateTime::createFromFormat("Y-m-d H:i a", $date." ".$time), "Y-m-d H:i"),
+            $lafecha = "";
+            if (strrpos($time, "am") === false && strrpos($time, "pm") === false) {
+                $lafecha = \DateTime::createFromFormat("Y-m-d H:i:s", $date." ".$time);
+            } else {
+                $lafecha = \DateTime::createFromFormat("Y-m-d H:i a", $date." ".$time);
+            }
+            $report_data = [                
+                'date' =>date_format($lafecha, "Y-m-d H:i"),
 //                'last_location_id' => $location_id,
                 'reward' => $reward,
                 'description' => $report_description,

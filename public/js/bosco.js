@@ -2006,7 +2006,18 @@ function edit_pet_detail(id, status)
                 var pac_html = "<input type='text' id='pac-input'></input>";
                 $("#pac-input-div").html(pac_html);
                 $("#lost_pet_file").parent().hide();
-                $(".upload-image-lost-preview").show();
+                $(".upload-image-lost-preview").show(); 
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext("2d");
+                
+                var img = new Image();
+                img.src = '/images/pets/' + data.pet.pet_image;
+                img.onload = function () {
+                    img_width = img.width;
+                    img_height = img.height;
+                    ctx.drawImage(img, 0, 0, img_width, img_height);
+                    datosimg = canvas.toDataURL("image/jpeg");
+                }                                             
                 $('.upload-image-lost-preview .preview-img').attr('style', 'background-image:url("/images/pets/' + data.pet.pet_image + '")');
                 $('#lost_pet_name').val(data.pet.pet_name);
                 $('#lost_pet_race').val(data.pet.pet_race);
@@ -2028,8 +2039,8 @@ function edit_pet_detail(id, status)
                 $('#pac-postal_code').val(data.pet.ubigeo_code);
                 latitude = parseFloat(data.pet.location_latitude);
                 longitude = parseFloat(data.pet.location_longitude);
-                $('#pac-latitude').val(latitude);
-                $('#pac-longitude').val(longitude);
+                $('#lat').val(latitude);
+                $('#lng').val(longitude);
                 $('#lost_pet_report_description').val(data.pet.report_description);
                 $('#lost_pet_reward').val(data.pet.owner_reward);
                 $('#lost_pet_contact_phone').val(data.pet.owner_phone);
