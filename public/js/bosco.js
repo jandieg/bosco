@@ -1541,7 +1541,7 @@ function displayLocation(latitude, longitude, map) {
                         var city = extractFromAdress(results[0].address_components, "locality");
                         var department = extractFromAdress(results[0].address_components, "administrative_area_level_2");
                         var country = extractFromAdress(results[0].address_components, "country");
-                        document.getElementById('pac-address').value = district + " " + street_number;
+                        document.getElementById('pac-address').value = department + " " + district + " " + street_number;
                         /*document.getElementById('pac-department').value = department;
                         document.getElementById('pac-city').value = city;
                         document.getElementById('pac-district').value = district;*/

@@ -155,7 +155,7 @@ class ReportsController extends Controller {
             $lienzo = new Imagick();
             $lienzo->newImage(800, 1136, "none");
             $headerLienzo = new Imagick();
-            $headerLienzo->newImage(800, 168, new ImagickPixel('red'));
+            $headerLienzo->newImage(800, 168, new ImagickPixel('rgb(238, 55, 55)'));
             $headerLienzo->setImageFormat("jpg");
             $textoPerdido = new \ImagickDraw();
             $textoPerdido->setFontSize(84);
@@ -281,7 +281,7 @@ class ReportsController extends Controller {
             $valorFecha = new \ImagickDraw();
             $valorFecha->setFontSize(24);
             $valorFecha->setFillColor(new ImagickPixel('gray'));
-            $valorFecha->annotation(90, 45, ucfirst($dia . ' ' . $mes . ' ' . $anho));  
+            $valorFecha->annotation(110, 45, ucfirst($dia . ' ' . $mes . ' ' . $anho));  
             $footerLienzo->drawImage($valorFecha);
             $locationImg = new Imagick("img/location.png");
             $footerLienzo->compositeimage($locationImg->getimage(), Imagick::COMPOSITE_DEFAULT, 400, 30);
@@ -440,7 +440,7 @@ class ReportsController extends Controller {
             $lienzo = new Imagick();
             $lienzo->newImage(800, 1136, "none");
             $headerLienzo = new Imagick();
-            $headerLienzo->newImage(800, 168, new ImagickPixel('red'));
+            $headerLienzo->newImage(800, 168, new ImagickPixel('rgb(238, 55, 55)'));
             $headerLienzo->setImageFormat("jpg");
             $textoPerdido = new \ImagickDraw();
             $textoPerdido->setFontSize(84);
@@ -554,7 +554,7 @@ class ReportsController extends Controller {
             $valorFecha = new \ImagickDraw();
             $valorFecha->setFontSize(24);
             $valorFecha->setFillColor(new ImagickPixel('gray'));
-            $valorFecha->annotation(90, 45, ucfirst($dia . ' ' . $mes . ' ' . $anho));  
+            $valorFecha->annotation(110, 45, ucfirst($dia . ' ' . $mes . ' ' . $anho));  
             $footerLienzo->drawImage($valorFecha);
             $locationImg = new Imagick("img/location.png");
             $footerLienzo->compositeimage($locationImg->getimage(), Imagick::COMPOSITE_DEFAULT, 400, 30);
