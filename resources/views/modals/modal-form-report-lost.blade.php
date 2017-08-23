@@ -129,7 +129,7 @@
               </div>
               <div class="form-group  encontrado">
                 <label>Mascota:</label>
-                <select class="form-control" onchange="updateListPets()" name="lost_pet_gender" id="lost_pet_gender">
+                <select class="form-control" onchange="updateListPets()" name="lost_pet_type" id="lost_pet_type">
                   <option value="perro">Perro</option>
                   <option value="gato">Gato</option>
                 </select>
