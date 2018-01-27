@@ -127,9 +127,106 @@
                 <label>Nombre de mascota</label>
                 <input type="text" name="lost_pet_name" id="lost_pet_name" class="form-control" maxlength="20">
               </div>
+              <div class="form-group  encontrado">
+                <label>Mascota:</label>
+                <select class="form-control" onchange="updateListPets()" name="lost_pet_type" id="lost_pet_type">
+                  <option value="perro">Perro</option>
+                  <option value="gato">Gato</option>
+                </select>
+              </div>
+
               <div class="form-group  encontrado" style="margin-bottom: 32px;">
                 <label>Raza</label>
-                <input type="text" name="lost_pet_race" id="lost_pet_race" class="form-control" maxlength="20">
+                <input type="text" name="lost_pet_race" id="lost_pet_race" class="form-control" maxlength="20" list="mascotasl">
+                <datalist id="mascotasl">
+                   <option value="Alano">
+    <option value="Alaskan Malamute">
+    <option value="American Staffordshire Terrier">
+    <option value="American Water Spaniel">
+    <option value="Antiguo Pastor Inglés">    
+    <option value="Basset Azul Gaseogne">
+    <option value="Basset Hound">    
+    <option value="Basset leonado">    
+    <option value="Beagle">
+    <option value="Bearded Collie">
+    <option value="Bichón Maltés">
+    <option value="Bobtail">
+    <option value="Border Collie">
+    <option value="Boston Terrier"> 
+    <option value="Boxer">
+    <option value="Bull Terrier">
+    <option value="Bulldog Americano">
+    <option value="Bulldog Frances">
+    <option value="Bulldog Ingles">
+    <option value="Caniche">
+    <option value="Carlino">
+    <option value="Chihuahua">
+    <option value="Cirneco del Etna">
+    <option value="Chow Chow">
+    <option value="Cocker Spaniel Americano">
+    <option value="Cocker Spaniel Ingles">
+    <option value="Dalmata">
+    <option value="Dobermann">
+    <option value="Dogo Alemán">
+    <option value="Dogo Argentino">
+    <option value="Dogo de Burdeos">
+    <option value="Finlandes">
+    <option value="Fox Terrier pelo liso">
+    <option value="Fox Terrier">
+    <option value="Foxhound Americano">
+    <option value="Foxhound Ingles">
+    <option value="Galgo Afgano">
+    <option value="Gigante Pirineos">
+    <option value="Golden Retriever">
+    <option value="Gos d Atura">
+    <option value="Gran Danes">
+    <option value="Husky Siberiano">
+    <option value="Laika Siberia">
+    <option value="Laika Ruso-europeo">
+    <option value="Labrador">
+    <option value="Mastin del Pirineo">
+    <option value="Mastin del Tibet">
+    <option value="Mastín Español">
+    <option value="Mastin Napolitano">
+    <option value="Pastor Aleman">
+    <option value="Pastor Australiano">
+    <option value="Pastor Belga">
+    <option value="Pastor de Brie">
+    <option value="Pastor de Cara Rosa">
+    <option value="Pekines">
+    <option value="Perdiguero Chesapeake">
+    <option value="Perdiguero Pelo Liso">
+    <option value="Perdiguero Rizado">
+    <option value="Perdiguero Portugues">
+    <option value="Pitbull">
+    <option value="Podenco Ibicenco">
+    <option value="Podenco Portugues">
+    <option value="Presa Canario">
+    <option value="Presa Mallorquin">    
+    <option value="Rottweiler">
+    <option value="Rough Collie">
+    <option value="Sabueso Español">
+    <option value="Sabueso Hélenico">
+    <option value="Sabueso Italiano">
+    <option value="Sabueso Suizo">
+    <option value="Samoyedo">
+    <option value="San Bernardo"> 
+    <option value="Scottish Terrier"> 
+    <option value="Setter Irlandés">
+    <option value="Shar Pei"> 
+    <option value="Shiba Inu"> 
+    <option value="Staffordshire Bull Terrier">
+    <option value="Teckel">
+    <option value="Terranova">
+    <option value="Terrier Australiano">
+    <option value="Terrier Escocés"> 
+    <option value="Terrier Irlandés">
+    <option value="Terrier Japonés">
+    <option value="Terrier Negro Ruso">
+    <option value="Terrier Norfolk">
+    <option value="Terrier Norwich">
+    <option value="Yorkshire Terrier">
+                </datalist>
                 <!--select class="form-control" name="lost_pet_race" id="lost_pet_race">
                   <option value="dog">Perro</option>
                   <option value="cat">Gato</option>

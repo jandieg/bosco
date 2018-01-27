@@ -26,7 +26,7 @@
                 <ul class="nav navbar-nav text-center" >
                   <li style="{{ (Request::is('/'))  ? 'display:none;' : '' }}">
                 <div>
-					<a href="{{ url('/mis-reportes')}}" style="border-radius: 30px;background-color: #E63A38;color:#fff;padding: 8px 12px;text-align: center;" >Reportar</a>
+					<a href="{{ url('/mis-reportes')}}" class="estilo-reportar" style="border-radius: 30px;background-color: #E63A38;color:#fff;padding: 8px 12px;text-align: center;" >Reportar Mascota</a>
 					</div>
                   </li>
 				  <li class="first" >
