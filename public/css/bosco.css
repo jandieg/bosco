@@ -1089,6 +1089,19 @@ a.btn-video:hover {
 
 }
 
+
+
+div.in ul li{
+  background-color: #063042 !important;
+  color: white !important;
+}
+
+div.in ul li a.estilo-reportar{  
+  background-color: transparent !important;
+  color: #E63A38 !important;
+}
+
+
 .block-reports li {
   display: block;
   float: left;
@@ -2597,14 +2610,14 @@ footer .block-socialnetwork li a.link-instagran {
     margin-top: 0;
   }
   .nav > li {
-    border-bottom: 1px solid #80CFB2;
+    /*border-bottom: 1px solid #80CFB2;*/
   }
   .block-menu li.menu-item-session {
     display: block;
   }
   .nav > li a, 
   .nav > li span {
-    color: #063042;
+    color: white;
     cursor: pointer;
     font-size: 16px;
   }
@@ -2622,7 +2635,7 @@ footer .block-socialnetwork li a.link-instagran {
     display: block;
   } 
   .nav li li {
-    border-bottom: 1px solid #80CFB2;
+    /*border-bottom: 1px solid #80CFB2;*/
     display: block;
     min-height: auto;
   }
@@ -2823,6 +2836,32 @@ footer .block-socialnetwork li a.link-instagran {
     image-rendering: pixelated;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: optimizeQuality;
+  }
+
+  .block-buttons .col-md-12{
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  .block-buttons .col-md-12 .btn{
+    min-width:48%;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding:20px;
+    font-size:16px;
+  }
+  .block-gallery .centradas li{
+    padding-left:10px;
   }
   
 }
