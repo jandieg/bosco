@@ -8,7 +8,7 @@
 <div class="row">
     <div class="block-filters clearfix">
         <div class="col-lg-12 col-md-12">
-            <div class="form-group col-md-8 col-lg-8">
+            <div class="form-group col-md-12 col-lg-12">
                 <div class="input-group" id="location-group">
                     <span class="input-group-addon no-right-border">
                         <i class="glyphicon glyphicon-map-marker"></i>

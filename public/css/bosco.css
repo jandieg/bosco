@@ -759,10 +759,9 @@ a.btn-video:hover {
 
 .block-gallery li {
   display: inline-grid;
-  height: 300px;
   letter-spacing: 0.5px;
   padding: 10px;
-  width: 205px;
+  width: 160px;
   padding-left: 0px;
 }
 
@@ -773,11 +772,7 @@ a.btn-video:hover {
   background: #fff;
   border-bottom: 1px solid #D0D1D1;
   display: inline-block;
-  height: 280px;
-  width: 184px;
-}
-
-.block-gallery li a {
+  height: 268px;
   color: #5e5e5e;
   font-size: 11.5px;
   position: relative;
@@ -833,7 +828,7 @@ a.btn-video:hover {
   -webkit-transition: opacity .25s ease-in-out;
   border-radius: 2px 2px 0 0;
   color: #fff;
-  height: 184px;
+  height: 150px;
   left: 0;
   opacity: 0;
   overflow: hidden;
@@ -841,7 +836,7 @@ a.btn-video:hover {
   position: absolute;
   cursor:pointer;
   top: 0;
-  width: 184px;
+  width: 150px;
 }
 
 .block-gallery li a:hover .gallery-item-hover {
@@ -1055,41 +1050,6 @@ a.btn-video:hover {
 .block-reports-lost {
   border-right: 1px solid #b7b7b7;
 }
-@media only screen and (max-width: 768px) {
-  .centradas { 
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    padding: 0;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-	.block-reports-lost {
-		border-right: 0;
-	}
-}
-@media only screen and (max-width: 409px) {
-  .centradas li {
-    width: 80vw;
-    height: 120vw;
-  }
-  .centradas li a{
-    width: 80vw;
-    height: 105vw;
-  }
-  .centradas li a img{ 
-    width: 80vw !important;
-    height: 80vw !important;
-  }  
-  .gallery-item-hover{
-    width: 80vw !important;
-    height: 80vw !important;
-  }
-
-}
-
-
 
 div.in ul li{
   background-color: #063042 !important;
@@ -1101,6 +1061,10 @@ div.in ul li a.estilo-reportar{
   color: #E63A38 !important;
 }
 
+.pets-list.text-left.centradas {
+text-align:center;
+margin-left:1em;
+}
 
 .block-reports li {
   display: block;
@@ -2424,7 +2388,6 @@ footer .block-socialnetwork li a.link-instagran {
   .nav li {
     display: inline-block;
     float: none;
-    padding: 0 5%;
   }
   .nav > li > a, 
   .nav > li > span {
@@ -2445,7 +2408,6 @@ footer .block-socialnetwork li a.link-instagran {
   .pets-list {
     margin-left: 0px;
     margin-right: auto;
-    max-width: 1039px;
   }
   .works-app {
     display: none;
@@ -2852,18 +2814,15 @@ footer .block-socialnetwork li a.link-instagran {
     -ms-flex-pack: justify;
     justify-content: space-between;
   }
-  .block-buttons .col-md-12 .btn{
-    min-width:48%;
-    -webkit-flex: 1 1 auto;
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    padding:20px;
-    font-size:16px;
-  }
-  .block-gallery .centradas li{
-    padding-left:10px;
-  }
-  
+	.block-buttons .col-md-12 .btn {
+		min-width: 48%;
+		-webkit-flex: 1 1 auto;
+		-ms-flex: 1 1 auto;
+		flex: 1 1 auto;
+		font-size: 14px;
+		line-height: 12px;
+	}
+   
 }
 
 @media only screen and (max-width : 640px) {
@@ -3246,8 +3205,8 @@ margin:0;
     padding-bottom:5px;
 }
 .pets-list li a img{
-    width:184px;
-    height:184px;
+    width:100%;
+    height:auto;
 }
 .home-pets-list li a img{
     width:184px;
