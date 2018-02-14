@@ -20,6 +20,7 @@
 
 <section id="content"> 
   <div class="container">
+  
 
      @include('blocks.block-filters-lost',['type'=>'perdidos'])
 

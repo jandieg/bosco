@@ -18,38 +18,30 @@
   </div>
 </div>
 
-<section id="content">
+<section id="content"> 
   <div class="container">
+  hola que hace??
 
-    @include('blocks.block-filters',['type'=>'encontrados'])
+     @include('blocks.block-filters-found',['type'=>'encontrados'])
 
     <!-- Block Images -->
+          <div class="alert alert-warning" style="display:none;" id="warning">
+            Location access is blocked for this application.
+          </div>
     <div class="row">
-      <div id="block-gallery-founds" class="block-gallery clearfix">
+      <div id="block-gallery-lost" class="block-gallery clearfix">
         <div class="view-content">
+          <div class="alert alert-info" style="display:none;" id="noRecords">
+            No hay mascotas perdidas en este rango
+          </div>
+          <div class="alert alert-danger" style="display:none;" id="error">
+            Error occured while getting the data.
+          </div>
           <ul class="pets-list text-left centradas">
-        @if(!empty($reports['data']))
-          @foreach($reports['data'] as $item)
-            <li>
-              <a data-toggle="modal" href="#pet-detail">
-                <img src="{{ asset('images/pets/' . $item['image']) }}" />
-                <div class="gallery-item-hover" data-id="{{ $item['id'] }}" data-status="found">
-                  {!! $item['description'] !!}
-                </div>
-                <div class="gallery-item-detail">
-                  <h2>{{ $item['name'] }}</h2>
-                  <p class="gallery-item-birthday">{{ $item['date']->format('d F Y') }}</p>
-                  <p class="gallery-item-location">address</p>
-                </div>
-              </a>
-            </li>
-            @endforeach
-          @endif
           </ul>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -57,6 +49,12 @@
 @endsection
 
 @section('js')
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=
-AIzaSyCVwxoueL862CKW2souz3oc3XGddmPYU_8&callback=initMap"></script>
 @endsection
+@if (session('openLogin'))
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {    
+      document.querySelector('[href="#form-user"]').click();
+      document.querySelector('.block-help-container').style.height = 'auto';
+    });
+    </script>
+@endif

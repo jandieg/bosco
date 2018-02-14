@@ -53,6 +53,7 @@
     Route::get('ubigeo-distritos', 'UbigeoController@getUbigeoDistrict');
     Route::get('search-pets', 'SearchController@search');
     Route::get('search-pets-by-location', 'SearchController@searchByLocation');
+    Route::get('search-found-pets-by-location', 'SearchController@searchFoundByLocation');
 
 
 

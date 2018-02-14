@@ -62,6 +62,62 @@ class SearchController extends Controller {
         return response()->json(['data'=>$data]);
     }
 
+    public function searchFoundByLocation(Request $request) {
+        $data=[];
+
+        $limitado = false;
+        if ($request->get('limitado') != null) {
+            $limitado = $request->get('limitado');
+        }
+
+        $start = array($request->get('lat'),$request->get('lng'));
+
+        $locations = \App\Location::all();
+
+        if ($start[0] != 0 and $start[1] != 0) {
+            $dist = $request->get('dist');
+
+            $latNorth = $this->geoDestination( $start, $dist,0 )[0];
+            $latSouth = $this->geoDestination( $start, $dist,180 )[0];
+            $lonWest = $this->geoDestination( $start, $dist,270 )[1];
+            $lonEast = $this->geoDestination( $start, $dist,90 )[1];
+
+            $locations = $locations->filter (function($location) use($latNorth, $latSouth,$lonWest,$lonEast) {
+                $lat=$location->latitude;
+                $lng=$location->longitude;
+                return $lat < $latNorth AND $lat > $latSouth AND $lng > $lonWest AND $lng < $lonEast;
+            });
+        }
+
+        foreach ($locations as $location) {
+            if (! $limitado) {
+                $reports=Report::where('last_location_id', $location->id)->where('found', 0)->where('status', 'found')->get();
+            } else {
+                $reports=Report::where('last_location_id', $location->id)->where('found', 0)->where('status', 'found')->limit($limitado)->get();
+            }
+
+            foreach ($reports as $report){
+
+
+                $pet=\App\Pet::where('id', $report->pet_id)->first();
+                $photos= \App\Photo::where('pet_id', $report->pet_id)->get();
+                $data[] = [
+                    'id' => $report->id,
+                    'status' => $report->status,
+                    'pet_id'=>$pet->id,
+                    'name' => $pet->name,
+                    'race' => $pet->race,
+                    'gender' => $pet->gender,
+                    'description' => $pet->description,
+                    'date' => date_format(date_create($report->date), 'd M Y'),
+                    'address' => $location->address,
+                    'image' => $photos[0]->url
+                ];
+            }
+        }
+        return response()->json(['data'=>$data]);
+    }
+
     public function searchByLocation(Request $request) {
         $data=[];
 
