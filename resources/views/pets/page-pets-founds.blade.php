@@ -20,7 +20,7 @@
 
 <section id="content"> 
   <div class="container">
-  hola que hace??
+  
 
      @include('blocks.block-filters-found',['type'=>'encontrados'])
 
