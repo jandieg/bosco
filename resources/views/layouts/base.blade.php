@@ -38,7 +38,7 @@
     <script type="text/javascript" src="{{ asset('js/cropper.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bosco.js') }}"></script>
     @section('js')@show
-    <script src="https://maps.googleapis.com/maps/api/js?language=es&key=AIzaSyDFGaR0UF3iVMDALypSjPLXENovKdecVpo&libraries=places&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?language=es&key=AIzaSyDFGaR0UF3iVMDALypSjPLXENovKdecVpo&v=3.22&libraries=places&callback=initMap"
         async defer></script>
 </body>
 </html>

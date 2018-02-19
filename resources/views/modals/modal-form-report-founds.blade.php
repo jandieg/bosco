@@ -59,10 +59,10 @@
                 <label>Fecha y hora de desaparición</label>
                 <div class="clearfix">
                   <div class="input-group form-date date">
-                    <input type='text' class="form-control" id='datepicker'/>
+                    <input type='text' class="form-control" id='datepicker2'/>
                   </div>
                   <div class="input-group form-time date">
-                    <input type='text' class="form-control" id='timepicker'/>
+                    <input type='text' class="form-control" id='timepicker2'/>
                   </div>
                 </div>
               </div>

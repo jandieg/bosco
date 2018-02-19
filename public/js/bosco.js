@@ -254,6 +254,13 @@ $('#timepicker').datetimepicker({
     format: "H:mm a"
 });
 
+$('#datepicker2').datetimepicker({
+    format: "DD MMMM YYYY"
+});
+$('#timepicker2').datetimepicker({
+    format: "H:mm a"
+});
+
 function gallery_item_over(id, status) {   
     console.log('te muestra el modal');
     jQuery.noConflict(); 

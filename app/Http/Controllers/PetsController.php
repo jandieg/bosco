@@ -24,7 +24,10 @@ class PetsController extends Controller {
     }
 
     public function getPetsFound(Request $request) {
-        $parameters = array(
+        
+        return view('pets.page-pets-founds', 
+        ['user' => Auth::check() ? Auth::user() : null]);
+        /*$parameters = array(
             'status' => 'found',
             'userid' => FALSE
         );
@@ -32,14 +35,15 @@ class PetsController extends Controller {
         $cities = Ubigeo::getDataCities(null);
         $districts = Ubigeo::getDataDistricts(null);
         $reports = Report::getPublicReports($parameters, TRUE, 10, 'mascotas/perdidos');
-        return view('pets.page-pets-lost', [
+        return view('pets.page-pets-founds', [
             'reports' => $reports,
             'departments'=>$departments,
             'cities'=>$cities,
             'districts'=>$districts,
                 'user' => Auth::check() ? Auth::user() : null
                 ]   
-        );
+        );*/
+
     }
 
     public function getPetsDetail(Request $request) {
