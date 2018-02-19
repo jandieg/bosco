@@ -34,8 +34,8 @@
     <script type="text/javascript" src="{{ asset('js/bootstrap-filestyle.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bosco.js') }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6kUmkn79fl1DsSaFQLDxhefSwVYjiOtI&libraries=places&callback=initMap"
-         async defer></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6kUmkn79fl1DsSaFQLDxhefSwVYjiOtI&libraries=places&callback=initMap"
+         async defer></script>-->
     @section('js')@show
 
   </body>
