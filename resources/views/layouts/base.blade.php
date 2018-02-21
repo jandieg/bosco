@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-datetimepicker.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bosco.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/cropper.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/cropper.min.css') }}">
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
 </head>
 <body>
@@ -35,7 +35,7 @@
 
     <script type="text/javascript" src="{{ asset('js/bootstrap-filestyle.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/cropper.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/cropper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bosco.js') }}"></script>
     @section('js')@show
     <script src="https://maps.googleapis.com/maps/api/js?language=es&key=AIzaSyDFGaR0UF3iVMDALypSjPLXENovKdecVpo&v=3.22&libraries=places&callback=initMap"
