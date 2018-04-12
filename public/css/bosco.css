@@ -10,6 +10,16 @@
 }
 */
 
+.block-video {
+  background-image: url("../img/bg.jpg");
+  background-position-x: center;
+  background-position-y: bottom;
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+  width: 100%;
+}
+
 @font-face {
   font-family: 'Cocon';
   src: url('../fonts/cocon/cocon-regular.eot');
@@ -478,15 +488,7 @@ input[type="submit"]:hover {
 
 /* Block Video */
 
-.block-video {
-  background-image: url("../img/bg.jpg");
-  background-position-x: center;
-  background-position-y: bottom;
-  background-size: cover;
-  height: 100vh;
-  position: relative;
-  width: 100%;
-}
+
 .overlay-image{
   width:100%;
   height:auto;
