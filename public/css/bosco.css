@@ -1670,6 +1670,11 @@ margin-left:1em;
   font-weight: bold !important;
 }
 
+.modal-oculto {
+  display: none;
+  color: white;
+  z-index: 4;
+}
 
 
 .modal-report-data li.last {
@@ -1718,6 +1723,10 @@ span.report-detail-reward {
     pointer-events: none;
     background: url('../img/sprite_vertical.png') no-repeat 60px -635px;  
     background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-oculto {
+    display: block;
   }
 
 }

@@ -422,6 +422,11 @@ function item_finded_pet(id) {
    
     
 }
+
+function cerrar_modal_mobile() {
+    $("#report-detail-lost").modal().hide();
+}
+
 function item_detail_view(id) {
     $("#report-detail-lost").modal().show();
     $("#report-detail-lost").find('a').show();
