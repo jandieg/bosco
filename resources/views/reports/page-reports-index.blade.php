@@ -45,7 +45,7 @@
                     <div class="rotated_div_tag"></div>
                     <div class="edit_menu_body">
                     <p style="margin-bottom: 0px;" class="enlace" onclick="edit_pet_detail({{ $item['id'] }},0);"><img class="edit_icon" src="{{ asset('img/icon-edit.png') }}"/>&emsp;<span>Editar</span></p>
-                    <p class="enlace" ><img class="edit_icon" src="{{ asset('img/Icono-Promover.png') }}"/>&emsp;<span>Promover</span></p>
+                    <!--<p class="enlace" ><img class="edit_icon" src="{{ asset('img/Icono-Promover.png') }}"/>&emsp;<span>Promover</span></p>-->
                     <p style="margin-bottom: 0px;" class="enlace" onclick="delete_pet_detail({{ $item['id'] }},0);"><img class="edit_icon" src="{{ asset('img/icon-delete.png') }}"/>&emsp;<span>Eliminar</span></p>
                     <p class="enlace _item_{{ $item['id'] }}" onclick="item_finded_pet({{ $item['id']}});"><img class="edit_icon" src="{{ asset('img/Icono-Promover.png') }}"/>&emsp;<span style="font-size: 14px;">Encontrado</span></p>                    
                     </div>
