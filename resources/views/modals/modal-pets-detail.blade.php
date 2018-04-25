@@ -4,7 +4,7 @@
     <div class="modal-body">
       <div class="pet-detail-left">
         <div class="pet-detail-image">
-          <img src="" />
+          <img src="{{ asset('images/report_detail_image.png') }}" />
         </div>
         <div class="pet-detail-data">
           <p><label></label><span class="pet-detail-location"></span></p>

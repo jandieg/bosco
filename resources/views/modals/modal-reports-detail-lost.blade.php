@@ -5,7 +5,7 @@
    
         <div class="modal-report-detail-left">
         <span class="report-detail-lost-image">          
-            <img   src="" style="width:100%; height: 80vh; margin-top:0px;
+            <img   src="{{ asset('images/report_detail_image.png') }}" style="width:100%; height: 80vh; margin-top:0px;
             image-rendering: pixelated; 
             image-rendering: optimizeQuality;
             image-rendering: optimizeSpeed;
