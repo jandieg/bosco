@@ -54,7 +54,7 @@ class Pet extends Model
         $address=str_replace("Provincia de ","",$address);
         $data = [
             'user_name' => $user->name . ' ' . $user->last_name,
-            'user_phone' => $user->phone,
+            'user_phone' => $user->phone?$user->phone:$report->phone,
             'user_email' => $user->email,
             'is_owner' => $report->is_owner?'Dueño':'Usuario',
             'owner_reward' => $report->reward,

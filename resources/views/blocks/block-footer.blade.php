@@ -19,8 +19,8 @@
       <div class="col-lg-2 col-md-2 block-socialnetwork text-center clearfix">
         <h4>Síguenos</h4>
         <ul>
-          <li><a href="http://www.facebook.com/BoscoAyuda" class="link-facebook" target="_blank"></a></li>
-          <li><a href="http://www.instagram.com/BoscoAyuda" class="link-instagran" target="_blank"></a></li>
+          <li><a href="http://www.facebook.com/BoscoPetsss" class="link-facebook" target="_blank"></a></li>
+          <li><a href="http://www.instagram.com/boscopets" class="link-instagran" target="_blank"></a></li>
         </ul>
       </div>
     </div>

@@ -10,6 +10,16 @@
 }
 */
 
+.block-video {
+  background-image: url("../img/bg.jpg");
+  background-position-x: center;
+  background-position-y: bottom;
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+  width: 100%;
+}
+
 @font-face {
   font-family: 'Cocon';
   src: url('../fonts/cocon/cocon-regular.eot');
@@ -478,15 +488,7 @@ input[type="submit"]:hover {
 
 /* Block Video */
 
-.block-video {
-  background-image: url("../img/bg.jpg");
-  background-position-x: center;
-  background-position-y: bottom;
-  background-size: cover;
-  height: 100vh;
-  position: relative;
-  width: 100%;
-}
+
 .overlay-image{
   width:100%;
   height:auto;
@@ -1668,6 +1670,11 @@ margin-left:1em;
   font-weight: bold !important;
 }
 
+.modal-oculto {
+  display: none;
+  color: white;
+  z-index: 4;
+}
 
 
 .modal-report-data li.last {
@@ -1716,6 +1723,10 @@ span.report-detail-reward {
     pointer-events: none;
     background: url('../img/sprite_vertical.png') no-repeat 60px -635px;  
     background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-oculto {
+    display: block;
   }
 
 }
@@ -2195,12 +2206,30 @@ span.report-detail-reward {
 }
 
 .pet-detail-info-group p {
-  line-height: 18px;
+  line-height: 17px;
   margin-bottom: 0;
 }
 
 .pet-detail-info-group p label {
   width: 40%;
+}
+
+.pet-detail-info-group label {
+  line-height: 20px;
+}
+
+.grilla{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 20px;
+  grid-gap: 15px;
+}
+
+.grillaesp{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 30px;
+  grid-gap: 15px;
 }
 
 /* Page Content */

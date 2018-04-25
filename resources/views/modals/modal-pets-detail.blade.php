@@ -15,25 +15,25 @@
       <div class="pet-detail-right">
         <div class="pet-detail-info-group">
           <h3 id="is-owner">Datos</h3>
-          <p><label>Nombre</label><span class="owner-detail-name"></span></p>
-          <p><label>Contacto</label><span class="owner-detail-phone"></span></p>
-          <p><label>Email</label><span class="owner-detail-email"></span></p>
-          <p><label>Recompensa</label><span class="owner-detail-reward"></span></p>
+          <p class="grilla"><label>Nombre</label><span class="owner-detail-name"></span></p>
+          <p class="grilla"><label>Contacto</label><span class="owner-detail-phone"></span></p>
+          <p class="grilla"><label>Email</label><span class="owner-detail-email"></span></p>
+          <p class="grilla"><label>Recompensa</label><span class="owner-detail-reward"></span></p>
         </div>
         <div class="pet-detail-info-group">
           <h3>Mascota</h3>
-          <p><label>Nombre</label><span class="pet-detail-name"></span></p>
-          <p><label>Raza</label><span class="pet-detail-race"></span></p>
-          <p><label>Género</label><span class="pet-detail-gender"></span></p>
-          <p><label>Descripción</label><span class="description pet-detail-description"></span></p>
+          <p class="grilla"><label>Nombre</label><span class="pet-detail-name"></span></p>
+          <p class="grilla"><label>Raza</label><span class="pet-detail-race"></span></p>
+          <p class="grilla"><label>Género</label><span class="pet-detail-gender"></span></p>
+          <p class="grilla"><label>Descripción</label><span class="description pet-detail-description"></span></p>
           <!--<p class="description pet-detail-description"></p>-->
         </div>
         <div class="pet-detail-info-group">
           <h3>Reporte</h3>
-          <p><label>Fecha</label><span class="report-detail-date"></span></p>
-          <p><label>Hora</label><span class="report-detail-hour"></span></p>
-          <p><label>dirección</label><span class="report-detail-address"></span></p>
-          <p><label>Descripción</label><span class="description report-detail-description"></span></p>
+          <p class="grilla"><label>Fecha</label><span class="report-detail-date"></span></p>
+          <p class="grilla"><label>Hora</label><span class="report-detail-hour"></span></p>
+          <p class="grillaesp"><label>Dirección</label><span class="report-detail-address"></span></p>
+          <p class="grilla"><label>Descripción</label><span class="description report-detail-description"></span></p>
           
         </div>
       </div>

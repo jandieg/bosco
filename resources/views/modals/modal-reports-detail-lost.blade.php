@@ -1,6 +1,6 @@
 <div id="report-detail-lost" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
   <div class="modal-report modal-content clearfix">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    <button type="button" class="close modal-oculto" data-dismiss="modal" aria-hidden="true">X</button>
     <div class="modal-body">
    
         <div class="modal-report-detail-left">
