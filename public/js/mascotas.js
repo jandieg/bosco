@@ -115,7 +115,7 @@
             gallery_event = "gallery_item_over";
 
         for (var i = 0; i < data.length; i++) {
-            li_html += '<li><a data-toggle="modal"><img src="/images/pets/' + data[i]['image'] + '">';
+            li_html += '<li><a data-toggle="modal"><div style="background-image:url(/images/pets/' + data[i]['image'] + ');background-size:cover;width:150px;height:150px;"></div>';
             li_html += '<div class="gallery-item-hover" onclick="gallery_item_over(' + data[i]['id'] + ')">';
             li_html += '<p>' + data[i]['description'] + '</p>';
             li_html += '</div>';

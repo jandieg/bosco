@@ -18,7 +18,8 @@
           @foreach($reports['data'] as $item)
         <li>
           <a data-toggle="modal">
-            <img src="{{ asset('images/pets/' . $item['image']) }}">
+            <div style="background-image:url({{ asset('images/pets/' . $item['image']) }});background-size:cover;width:206px;height:206px;" id="_{{ $item['id']}}"></div>
+
             <div class="gallery-item-hover"  onclick="gallery_item_over({{ $item['id'] }})"><!--onclick="item_detail_view({{ $item['id'] }})"-->
               <p>{{ $item['description'] }}</p>
             </div>

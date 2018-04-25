@@ -29,7 +29,7 @@
             @foreach($reports['lost']['data'] as $item)
               <li>
                 <div class="report-item-content">                  
-                  <img src="{{ asset('images/pets/' . $item['image']) }}" style="width:206px;height:206px;" id="_{{ $item['id']}}"/>
+                  <div style="background-image:url({{ asset('images/pets/' . $item['image']) }});background-size:cover;width:206px;height:206px;" id="_{{ $item['id']}}"></div>
                   <div class="report-item-detail">
                     <h2>{{ $item['name'] }}</h2>
                     <p class="report-item-birthday">{{ date_format(date_create($item['date']), 'd M Y') }}</p>
@@ -69,7 +69,7 @@
               @foreach($reports['found']['data'] as $item)
               <li>
                 <div class="report-item-content">
-                  <img src="{{ asset('images/pets/' . $item['image']) }}"  style="width:206px;height:206px;"/>
+                  <div style="background-image:url({{ asset('images/pets/' . $item['image']) }});background-size:cover;width:206px;height:206px;" id="_{{ $item['id']}}"></div>
                   <div class="report-item-detail">
                     <h2>{{ $item['name'] }}</h2>
                     <p class="report-item-birthday">{{ date_format(date_create($item['date']), 'd M Y') }}</p>

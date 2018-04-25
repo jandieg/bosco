@@ -26,7 +26,7 @@
 
     <!-- Block Images -->
           <div class="alert alert-warning" style="display:none;" id="warning">
-            Location access is blocked for this application.
+            El acceso a la ubicación no está habilitado en este navegador.
           </div>
     <div class="row">
       <div id="block-gallery-lost" class="block-gallery clearfix">
@@ -35,7 +35,7 @@
             No hay mascotas perdidas en este rango
           </div>
           <div class="alert alert-danger" style="display:none;" id="error">
-            Error occured while getting the data.
+            Error al obtener la data.
           </div>
           <ul class="pets-list text-left centradas">
           </ul>
