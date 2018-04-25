@@ -42,12 +42,12 @@ class AuthController extends Controller
     
     public function user_login($username, $password)
     {
-        $user=Auth::attempt(['username'=>$username, 'password'=>$password]);
+        $user=Auth::attempt(['username'=>$username, 'password'=>$password]) || Auth::viaRemember(); 
         if($user) return true; else return false;
     }
     public function user_logout()
     {
-        $user=Auth::attempt(['username'=>$username, 'password'=>$password]);
+        $user=Auth::attempt(['username'=>$username, 'password'=>$password]) || Auth::viaRemember();
         if($user) return true; else return false;
     }
 
