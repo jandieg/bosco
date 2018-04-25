@@ -92,7 +92,7 @@
 <div id="form-report-lost" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
   <div class="modal-form-report modal-content">
     <div class="modal-header" style="padding: 0px;">
-      <button type="button" style="margin:.3em" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <button type="button" style="margin:.3em; color: white; font-weight: bold; opacity: 1;" class="close" data-dismiss="modal" aria-hidden="true">X</button>
       <div class="modal-form-report-menu header-reporte">
         <!--<ul class="text-center">
           <li id="report_tab_1"><span id="tab-1" data-tab="tab-1" class="tab-on"><em>1</em>Mascota</span></li>
