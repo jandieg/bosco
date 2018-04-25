@@ -8,7 +8,7 @@
             <h3>Encontrado</h3>
           </div>
           <span class="report-detail-found-image">
-            <img src="{{ asset('images/report_detail_image.png') }}">
+            <img src="">
           </span>
           <span class="report-detail-found-phone">
             <a class="report-phone" href="tel:969 003 009">969 003 009</a>
