@@ -90,7 +90,7 @@
       }
 </style>
 <div id="form-report-lost" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
-  <div class="modal-form-report modal-content">
+  <div class="modal-form-report modal-content" style="height:90%;max-height:70em">
     <div class="modal-header" style="padding: 0px;">
       <button type="button" style="padding:.9em; color: white; opacity: 1" class="close" data-dismiss="modal" aria-hidden="true">
         <i class="glyphicon glyphicon-remove"></i>
@@ -106,7 +106,7 @@
         </div>
       </div>
     </div>
-    <div class="modal-body" style='height:420px; overflow-y: auto;'>
+    <div class="modal-body" style='height:90%; overflow-y: auto;'>
       <form id="form-report-lost-form" action="" method="post">
         <div class="row">
           <!-- <div id="form-report-lost-tab-1" class="form-report-lost-tab"> cierre tab 1 -->
