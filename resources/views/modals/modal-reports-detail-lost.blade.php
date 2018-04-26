@@ -52,5 +52,6 @@
       </div>
       <!--se acaba el modal righ-->      
     </div>
+    <div class="modal-loader"></div>
   </div>
 </div>
