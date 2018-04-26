@@ -1058,7 +1058,6 @@ reportLostAdd.on('click', function (e) {
     $("#form-report-lost #pet_lost_radio").prop("checked", true);
     $("#form-report-lost #name_div").show();
     var margin_top = $("#form-report-lost").find('.modal-content').outerHeight() / 2;
-    $("#form-report-lost").find('.modal-content').css('height', '70vh');
    // $("#form-report-lost").find('.modal-content').css('top', '50vh');
     //$("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
     
@@ -1081,7 +1080,6 @@ reportFoundAdd.on('click', function (e) {
     //$("#form-report-lost #name_div").hide();
     $("#form-report-lost").modal().show();
     var margin_top = $("#form-report-lost").find('.modal-content').outerHeight() / 2;
-    $("#form-report-lost").find('.modal-content').css('height', '70vh');
     //$("#form-report-lost").find('.modal-content').css('margin-top', '-' + margin_top + 'px');
     $('.encontrado').hide();
     $("#tab-3").html("<em>3</em>Tus Datos");
