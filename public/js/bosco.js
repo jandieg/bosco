@@ -428,23 +428,30 @@ function cerrar_modal_mobile() {
 }
 
 function item_detail_view(id) {
-    $("#report-detail-lost").modal().show();
-    $("#report-detail-lost").find('a').show();
-    $('.report-detail-lost-image').html('');
-    $('.report-detail-lost-address').html('');
-    $('.report-detail-lost-phone').html('');
-    $('.report-detail-lost-name').html('');
-    $('.report-detail-lost-race').html('');
-    $('.report-detail-lost-gender').html('');
-    $('.report-detail-lost-date').html('');
-    $('.report-detail-lost-reward').html('');
-    modal_center();
+
     $.ajax({
         type: "GET",
         url: window.location.origin + '/mis-reportes-detalle-perdido',
         dataType: 'json',
         cache: false,
         data: {reportid: id},
+        beforeSend: function() {            
+            $("#report-detail-lost")
+              .modal()
+              .show();
+            $("#report-detail-lost")
+              .find("a")
+              .show();
+            $(".report-detail-lost-image").html('<img src="/img/loanding.gif">');
+            $(".report-detail-lost-address").html("");
+            $(".report-detail-lost-phone").html("");
+            $(".report-detail-lost-name").html("");
+            $(".report-detail-lost-race").html("");
+            $(".report-detail-lost-gender").html("");
+            $(".report-detail-lost-date").html("");
+            $(".report-detail-lost-reward").html("");
+            modal_center();
+        },
         success: function (data) {
             if (data.result) {
                 $('.report-detail-lost-image').html('<img src="/images/pets/report_' + data.report.pet_id + '.png" style="width:500px;height:710px; width: auto; height: auto; display: block;">');
