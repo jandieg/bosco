@@ -1719,6 +1719,10 @@ span.report-detail-reward {
 }
 
 @media only screen and (max-width : 762px) {
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   .modal-report-detail-image a.report-phone {
     pointer-events: none;
     background: url('../img/sprite_vertical.png') no-repeat 60px -635px;  
@@ -2394,6 +2398,7 @@ footer .block-socialnetwork li a.link-instagran {
 
 @media only screen and (min-width : 767px) {
   
+  
   #home-page .block-menu a {
     color: #fff;
   }
@@ -2445,6 +2450,7 @@ footer .block-socialnetwork li a.link-instagran {
 }
 
 @media only screen and (max-width : 1150px) {
+ 
   .block-video {
     height: 500px;
   }
@@ -2565,6 +2571,10 @@ footer .block-socialnetwork li a.link-instagran {
 
 @media only screen and (max-width : 767px) {
  
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   .header-top {
     height: 55px;
     position: relative;
@@ -2811,6 +2821,10 @@ footer .block-socialnetwork li a.link-instagran {
 }
 
 @media only screen and (max-width : 712px) {
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   .modal-report-detail-image .modal-report-title {
     height: auto;
   }
@@ -2824,6 +2838,10 @@ footer .block-socialnetwork li a.link-instagran {
 }
 
 @media only screen and (max-width : 680px) {
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   .modal-report-detail-image img{
     image-rendering: pixelated;
     image-rendering: -webkit-optimize-contrast;
@@ -2856,6 +2874,10 @@ footer .block-socialnetwork li a.link-instagran {
 }
 
 @media only screen and (max-width : 640px) {
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   .block-video {
     height: 300px;
   }
@@ -2888,7 +2910,10 @@ footer .block-socialnetwork li a.link-instagran {
 }
 
 @media only screen and (max-width : 584px) {
- 
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   .modal-report .modal-body {
     padding: 15px;
   }
@@ -2916,6 +2941,10 @@ footer .block-socialnetwork li a.link-instagran {
 }
 
 @media only screen and (max-width : 516px) {
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   .block-reports li, 
   #block-reports-founds li {
     float: none;
@@ -2936,6 +2965,10 @@ footer .block-socialnetwork li a.link-instagran {
 }
 
 @media only screen and (max-width : 408px) {
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   .block-about-us .block-about-us-item .block-about-us-detail {
     margin-top: -10px;
   }
@@ -3012,6 +3045,10 @@ footer .block-socialnetwork li a.link-instagran {
 }
 
 @media only screen and (max-width : 370px) {
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   .modal-form-report-menu li em {
     display: none;
   }
@@ -3024,6 +3061,10 @@ footer .block-socialnetwork li a.link-instagran {
 }
 
 @media only screen and (max-width : 300px) {
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   .block-video {
     height: 200px;
   }
@@ -3073,6 +3114,10 @@ footer .block-socialnetwork li a.link-instagran {
 }
 
 @media only screen and (max-width : 240px) {
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   .block-about-us .block-about-us-item {
     height: 150px;
   }
