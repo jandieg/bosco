@@ -2201,6 +2201,7 @@ span.report-detail-reward {
   background: #fff;
   margin-bottom: 10px;
   padding: 10px;
+  height: auto;
 }
 
 .pet-detail-info-group h3 {
@@ -2225,14 +2226,14 @@ span.report-detail-reward {
 .grilla{
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 20px;
+  grid-template-rows: 1fr;
   grid-gap: 15px;
 }
 
 .grillaesp{
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 30px;
+  grid-template-rows: 1fr;
   grid-gap: 15px;
 }
 
