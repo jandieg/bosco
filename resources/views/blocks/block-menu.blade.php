@@ -26,7 +26,7 @@
                 <ul class="nav navbar-nav text-center" >
                   <li style="{{ (Request::is('/'))  ? 'display:none;' : '' }}">
                 <div>
-					<a href="{{ url('/mis-reportes')}}" class="estilo-reportar" style="border-radius: 30px;background-color: #E63A38;color:#fff;padding: 8px 12px;text-align: center;" >Reportar Mascota</a>
+					<a href="{{ url('/mis-reportes')}}" class="estilo-reportar">Reportar Mascota</a>
 					</div>
                   </li>
 				  <li class="first" >
@@ -42,11 +42,10 @@
                     @if(empty($user->id))
                     <a data-toggle="modal" href="#form-user">Ingresar</a>
                     @else
-                    <a href="#">{{ $user->name }} <em class="caret"></em></a>
-                    <ul>
-                      <li><a href="{{ url('mis-reportes') }}">Mis Reportes</a></li>
-                      <li><a href="{{ url('cerrar-sesion') }}">Cerrar sesión</a></li>
-                    </ul>
+                    
+                     <a href="{{ url('mis-reportes') }}">Mis Reportes ({{ $user->name }})</a>
+                      <a href="{{ url('cerrar-sesion') }}">Cerrar sesión</a>
+                     
                     @endif
                   </li>
                 </ul>

@@ -383,13 +383,13 @@
                 <input type="text" name="lost_pet_contact_email" class="form-control" value="{{ Auth::user()? Auth::user()->email:'' }}">
               </div>
             </div>
-            <div class="col-lg-12 col-md-12 center-block">
+            <div class="col-xs-12 center-block">
               <div class="form-group form-actions row">     
-                <div class="col-md-6 col-sm-12">
-                    <button type="button" data-dismiss="modal" aria-hidden="true" class="btn btn-primary btn-button btn-lg btn-submit-report">Finalizar</button>
+                <div class="col-xs-6">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="btn btn-primary btn-button btn-submit-report">Finalizar</button>
                 </div>           
-                <div class="col-md-6 col-sm-12">
-                  <button data-dismiss="modal" aria-hidden="true" type="button" class="btn btn-primary btn-button btn-lg close" style="color: black !important; background: white !important; border: 1px solid lightgray; text-align: center; float: initial; opacity: 1;" >Cancelar</button>                
+                <div class="col-xs-6">
+                  <button data-dismiss="modal" aria-hidden="true" type="button" class="btn btn-button" style="color: black !important; background: white !important; border: 1px solid lightgray; opacity:1" >Cancelar</button>                
                 </div>                                                             
               </div>
             </div>

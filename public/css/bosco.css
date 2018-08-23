@@ -687,7 +687,6 @@ a.btn-video:hover {
 {
   display: inline-flex;
   position: absolute;
-  left: -10px; 
 }
 #block-home-gallery .prev-gallery-btn {
   display: none;
@@ -1056,13 +1055,14 @@ a.btn-video:hover {
 }
 
 div.in ul li{
-  background-color: #063042 !important;
-  color: white !important;
+  background-color: #063042;
+  color: white;
 }
 
 div.in ul li a.estilo-reportar{  
-  background-color: transparent !important;
-  color: #E63A38 !important;
+  background-color: transparent;
+  color: #E63A38;
+    text-align: center;
     line-height: 2.3em;
 }
 
@@ -1586,6 +1586,10 @@ margin-left:1em;
   background: #fff;
   float: left;
   width: 62.8%;
+  background-image: url('/img/loanding.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh;
 }
 
 .modal-report-detail-image .modal-report-title {
@@ -1958,7 +1962,7 @@ span.report-detail-reward {
 }
 
 .modal-form-report .modal-body {
-  padding: 35px 50px;
+  padding: 35px;
 }
 
 .modal-form-report form .form-control {
@@ -2450,6 +2454,14 @@ footer .block-socialnetwork li a.link-instagran {
   .works-app {
     display: none;
   }
+
+  ul li a.estilo-reportar{  
+    border-radius: 30px;
+    background-color: #E63A38;
+    color:#fff;
+    padding: 8px 12px;
+  }  
+
 }
 
 @media only screen and (max-width : 1150px) {
@@ -3380,8 +3392,4 @@ margin:0;
 
 .rounded-right-border {
     border-radius: 0 4px 4px 0 !important;
-}
-
-.report-detail-lost-image{
-  background-color: :
 }
