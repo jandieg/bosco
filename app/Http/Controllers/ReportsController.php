@@ -286,7 +286,7 @@ class ReportsController extends Controller {
             $mes = $meses[$mesnum];
 
             $valorFecha = new \ImagickDraw();
-            $valorFecha->setFontSize(20);
+            $valorFecha->setFontSize(15);
             $valorFecha->setFillColor(new ImagickPixel('gray'));
             $valorFecha->setFont("fonts/montserrat/montserrat-light.ttf");
             $valorFecha->annotation(110, 48, ucfirst($dia . ' ' . $mes . ' ' . $anho));  
@@ -294,7 +294,7 @@ class ReportsController extends Controller {
             $locationImg = new Imagick("img/location.png");
             $footerLienzo->compositeimage($locationImg->getimage(), Imagick::COMPOSITE_DEFAULT, 400, 30);
             $valorDireccion = new \ImagickDraw();
-            $valorDireccion->setFontSize(20);
+            $valorDireccion->setFontSize(18);
             $valorDireccion->setFillColor(new ImagickPixel('gray'));
             $valorDireccion->setFont("fonts/montserrat/montserrat-light.ttf");
             $valorDireccion->annotation(435, 48, ucfirst($address));  
@@ -302,7 +302,7 @@ class ReportsController extends Controller {
             $logoImg = new Imagick("img/logo_2.png");            
             $footerLienzo->compositeimage($logoImg->getimage(), Imagick::COMPOSITE_DEFAULT, 660, 108);
             $reportaTexto = new \ImagickDraw();
-            $reportaTexto->setFontSize(18);
+            $reportaTexto->setFontSize(15);
             $reportaTexto->setFillColor(new ImagickPixel('gray'));
             $reportaTexto->setFont("fonts/montserrat/montserrat-light.ttf");
             $reportaTexto->annotation(25, 130, "Reporta mascotas perdidas o encontradas entrando a www.bosco.pe.");  
@@ -609,7 +609,7 @@ class ReportsController extends Controller {
 
             $phoneLienzo = new ImagickDraw();
             $phoneLienzo->setFillColor("rgb(0,0,0)");
-            $phoneLienzo->setFillOpacity(0.8);
+            $phoneLienzo->setFillOpacity(0.4);
             $phoneLienzo->rectangle(0,700,800,800);
 
             /*$rewardLienzo2 = new Imagick();
