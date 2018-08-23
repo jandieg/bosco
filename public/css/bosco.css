@@ -12,6 +12,7 @@
 
 .block-video {
   background-image: url("../img/bg.jpg");
+  background-color: #9BADB7;
   background-position-x: center;
   background-position-y: bottom;
   background-size: cover;
@@ -966,7 +967,7 @@ a.btn-video:hover {
 }
 
 .bg-home .block-suscription-item {
-  background: url('../img/bg-home-subscription.jpg') no-repeat center center;
+  background: url('../img/bg2.jpg') no-repeat center center;
   background-size: cover;
 }
 
@@ -1051,7 +1052,7 @@ a.btn-video:hover {
 }
 
 .block-reports-lost {
-  border-right: 1px solid #b7b7b7;
+   
 }
 
 div.in ul li{
@@ -1062,6 +1063,7 @@ div.in ul li{
 div.in ul li a.estilo-reportar{  
   background-color: transparent !important;
   color: #E63A38 !important;
+    line-height: 2.3em;
 }
 
 .pets-list.text-left.centradas {
@@ -3332,4 +3334,8 @@ margin:0;
 
 .rounded-right-border {
     border-radius: 0 4px 4px 0 !important;
+}
+
+.report-detail-lost-image{
+  background-color: :
 }
